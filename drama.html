@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ලියැසි SUBVERSE - Drama Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --bg-main: #020408; --neon-cyan: #00f0ff; --text-main: #ffffff; --glass-bg: rgba(6, 11, 25, 0.7); }
+        body { background-color: var(--bg-main); color: var(--text-main); font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; min-height: 100vh; background-image: linear-gradient(to bottom, rgba(2, 4, 8, 0.9), rgba(2, 4, 8, 0.98)); }
+        header { background: var(--glass-bg); padding: 15px 20px; border-bottom: 2px solid var(--neon-cyan); text-align: center;}
+        .main-container { max-width: 1000px; margin: 30px auto; padding: 0 15px; }
+        
+        .drama-info-box { display: flex; gap: 20px; background: rgba(6, 11, 25, 0.8); padding: 20px; border-radius: 10px; border: 1px solid var(--neon-cyan); margin-bottom: 30px;}
+        .drama-poster { width: 180px; border-radius: 8px; box-shadow: 0 0 15px rgba(0,240,255,0.4); object-fit: cover; }
+        .drama-details h1 { margin: 0 0 10px 0; color: var(--neon-cyan); }
+        .drama-details p { color: #ccc; font-size: 14px; line-height: 1.6; }
+        .drama-details .badge { background: #ff007f; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; }
+
+        .section-title { border-bottom: 1px solid #333; padding-bottom: 10px; margin-top: 30px; color: #ffaa00; }
+        .story-map { width: 100%; max-width: 600px; border-radius: 8px; border: 1px solid #333; margin: 15px 0; display: block; }
+
+        .episodes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
+        .ep-card { background: rgba(0,0,0,0.6); border: 1px solid #333; border-radius: 8px; padding: 15px; text-align: center; transition: 0.3s; }
+        .ep-card:hover { border-color: var(--neon-cyan); box-shadow: 0 0 15px rgba(0,240,255,0.2); }
+        .ep-title { font-size: 18px; font-weight: bold; color: white; margin-bottom: 15px; }
+        .btn-down { display: block; background: #00f0ff; color: #000; text-decoration: none; padding: 8px; border-radius: 5px; font-weight: bold; margin-bottom: 8px; }
+        .btn-tg { display: block; background: #0088cc; color: white; text-decoration: none; padding: 8px; border-radius: 5px; font-weight: bold; }
+        
+        @media (max-width: 600px) { .drama-info-box { flex-direction: column; align-items: center; text-align: center; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h2><a href="index.html" style="color:white; text-decoration:none;"><i class="fa-solid fa-arrow-left"></i> Home (ප්‍රධාන පිටුවට)</a></h2>
+    </header>
+
+    <div class="main-container">
+        <div id="drama-info-container">Loading Details...</div>
+        
+        <h2 class="section-title">🎬 Episodes (නිකුත් වූ කොටස්)</h2>
+        <div class="episodes-grid" id="episodes-container">
+            <!-- Episodes will load here -->
+        </div>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const dramaId = urlParams.get('id');
+
+        async function loadDramaDetails() {
+            try {
+                const response = await fetch('data.json');
+                const data = await response.json();
+                
+                const drama = data.dramas[dramaId];
+                if(!drama) {
+                    document.getElementById('drama-info-container').innerHTML = "<h3 style='color:red;'>කතාව සොයාගත නොහැකි විය!</h3>";
+                    return;
+                }
+
+                // කතාවේ විස්තර සහ Map එක පෙන්වීම
+                document.getElementById('drama-info-container').innerHTML = `
+                    <div class="drama-info-box">
+                        <img src="${drama.image_url}" class="drama-poster">
+                        <div class="drama-details">
+                            <h1>${drama.title}</h1>
+                            <p><span class="badge">${drama.type}</span> | <b>IMDB:</b> ⭐ ${drama.imdb}</p>
+                            <p><b>කතාවේ සාරාංශය:</b><br>${drama.synopsis}</p>
+                        </div>
+                    </div>
+                    ${drama.map_url ? `<h2 class="section-title">🗺️ Story Map (සබඳතා පවුර)</h2><img src="${drama.map_url}" class="story-map">` : ''}
+                `;
+
+                // එපිසෝඩ් කාර්ඩ් පෙන්වීම
+                const epContainer = document.getElementById('episodes-container');
+                epContainer.innerHTML = "";
+                drama.episodes.forEach(ep => {
+                    epContainer.innerHTML += `
+                        <div class="ep-card">
+                            <div class="ep-title">${ep.episode}</div>
+                            <a href="${ep.sub_link}" class="btn-down"><i class="fa-solid fa-download"></i> Download Subtitle</a>
+                            <a href="${ep.tg_link}" class="btn-tg" target="_blank"><i class="fa-brands fa-telegram"></i> Watch on Telegram</a>
+                        </div>
+                    `;
+                });
+
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        }
+
+        window.onload = loadDramaDetails;
+    </script>
+</body>
+</html>
