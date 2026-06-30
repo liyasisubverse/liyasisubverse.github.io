@@ -273,6 +273,88 @@
 
         // පිටුව ලෝඩ් වෙද්දිම function එක වැඩ කරන්න
         window.onload = loadPosts;
+    <!-- JAVASCRIPT FOR LOGIC & FETCHING DATA -->
+    <script>
+        function toggleDropdown() {
+            const menu = document.getElementById('threeDotMenu');
+            menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+        }
+
+        function updateCyberClock() {
+            const now = new Date();
+            const options = { timeZone: "Asia/Colombo", hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            document.getElementById('cyberClock').innerHTML = `⏰ ${now.toLocaleTimeString('en-US', options)} [SL]`;
+        }
+        setInterval(updateCyberClock, 1000); updateCyberClock();
+
+        // ======= DATA FETCHING (BOT EKEN UPDATE WENA JSON EKA) =======
+        async function loadPosts() {
+            try {
+                // සයිට් එක Cache නොවී අලුත්ම අප්ඩේට් එක ගන්න '?v=' කෑල්ලක් දැම්මා
+                const response = await fetch('data.json?v=' + new Date().getTime()); 
+                const data = await response.json();
+
+                // 1. අලුත්ම අප්ඩේට්ස් ලෝඩ් කිරීම
+                const updatesContainer = document.getElementById('latest-updates-container');
+                if (data.latest_updates && data.latest_updates.length > 0) {
+                    updatesContainer.innerHTML = ""; // පරණ හිස් එක අයින් කරනවා
+                    data.latest_updates.forEach(post => {
+                        updatesContainer.innerHTML += `
+                            <a href="${post.post_link}" class="update-row-card" style="border-left-color: ${post.border_color};">
+                                <img class="update-img" src="${post.image_url}">
+                                <div class="update-details">
+                                    <div class="update-header-line">
+                                        <h3 class="update-title">${post.title}</h3>
+                                        <span class="update-ep-badge" style="background: ${post.border_color}; box-shadow: 0 0 5px ${post.border_color};">${post.episode}</span>
+                                    </div>
+                                    <p class="update-desc">${post.description}</p>
+                                    <div class="update-meta">
+                                        <span><i class="fa-solid fa-clock"></i> ${post.time_posted}</span>
+                                        <span class="download-btn">📥 DOWNLOAD</span>
+                                    </div>
+                                </div>
+                            </a>
+                        `;
+                    });
+                }
+
+                // 2. ඩ්‍රාමා ලිස්ට් එක ලෝඩ් කිරීම
+                const koreanOngoingContainer = document.getElementById('korean-ongoing-container');
+                if (data.dramas) {
+                    koreanOngoingContainer.innerHTML = "";
+                    Object.values(data.dramas).forEach(drama => {
+                        // අලුත්ම එපිසෝඩ් එකේ නම ගන්නවා
+                        let latestEp = "EP 01";
+                        if(drama.episodes && drama.episodes.length > 0) {
+                            latestEp = drama.episodes[0].episode;
+                        }
+                        
+                        koreanOngoingContainer.innerHTML += `
+                            <a href="drama.html?id=${drama.id}" class="movie-style-card card-ongoing">
+                                <span class="badge-top-left">${drama.type}</span>
+                                <img class="poster-img" src="${drama.image_url}">
+                                <span class="badge-bottom-left">${latestEp}</span>
+                                <span class="badge-imdb-right"><i class="fa-solid fa-star"></i> ${drama.imdb}</span>
+                                <div class="title-overlay"><p>${drama.title}</p></div>
+                            </a>
+                        `;
+                    });
+                }
+
+                // ටිකර් එක අප්ඩේට් කිරීම (අලුත්ම පෝස්ට් එකේ නම උඩින් යන්න දානවා)
+                if (data.latest_updates && data.latest_updates.length > 0) {
+                    document.getElementById('ticker-text').innerHTML = `⚡ අලුත්ම යාවත්කාලීන කිරීම: ${data.latest_updates[0].title} [${data.latest_updates[0].episode}] දැන් නිකුත් වුණා! •`;
+                }
+
+            } catch (error) {
+                console.error("Error loading data:", error);
+            }
+        }
+
+        // පිටුව ලෝඩ් වෙද්දිම function එක වැඩ කරන්න
+        window.onload = loadPosts;
     </script>
+</body>
+</html>
 </body>
 </html>
