@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="si">
 <head>
@@ -26,11 +25,16 @@
             --glass-border: rgba(0, 240, 255, 0.15);
         }
 
+        * { box-sizing: border-box; }
+
         body {
             background-color: var(--bg-main);
             color: var(--text-main);
             font-family: 'Segoe UI', system-ui, sans-serif;
             margin: 0; padding: 0; min-height: 100vh;
+            /* 🏞️ CHANGE YOUR CUSTOM BACKGROUND IMAGE HERE 👇 */
+            background-image: linear-gradient(to bottom, rgba(2, 4, 8, 0.88), rgba(2, 4, 8, 0.97)), 
+                              url('https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=1200&auto=format&fit=crop');
             background-attachment: fixed; background-size: cover; background-position: center;
         }
 
@@ -101,7 +105,7 @@
             border-left: 4px solid var(--neon-cyan);
             border-right: 4px solid var(--neon-cyan);
             border-top: none; border-bottom: none;
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+            box-shadow: -10px 0 15px rgba(0, 240, 255, 0.3), 10px 0 15px rgba(0, 240, 255, 0.3);
             aspect-ratio: 2/3;
             animation: posterNeonPulse 3s infinite alternate ease-in-out;
         }
@@ -161,7 +165,7 @@
         .poster-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
         
         .badge-top-left {
-          position: absolute; top: 8px; left: 8px; background: rgba(2, 4, 8, 0.85); color: #fff;
+            position: absolute; top: 8px; left: 8px; background: rgba(2, 4, 8, 0.85); color: #fff;
             padding: 3px 8px; font-size: 10px; font-weight: 900; border-radius: 4px; border: 1px solid var(--neon-cyan); box-shadow: 0 0 8px rgba(0, 240, 255, 0.4); z-index: 2; text-transform: uppercase;
         }
         .title-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,1) 40%, transparent); padding: 12px 6px; }
@@ -179,7 +183,7 @@
         .ep-btn.active-pink { border-color: var(--neon-pink); color: var(--neon-pink); text-shadow: 0 0 5px var(--neon-pink); }
         .ep-btn.active-pink:hover { background: rgba(255, 0, 127, 0.1); box-shadow: 0 0 15px var(--neon-pink); }
 
-        /* 🇱🇰 VOTE / USER CHOICE PANEL (Overall Bar Added) */
+        /* 🇱🇰 VOTE / USER CHOICE PANEL */
         .sl-vote-container {
             border: 1px solid var(--glass-border); background: rgba(0,0,0,0.3);
             border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 25px;
@@ -202,10 +206,7 @@
         .vote-count { background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 11px; }
 
         /* SOCIAL MEDIA PLUG */
-        .social-plug-box {
-            background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 15px;
-            padding: 25px; margin-top: 50px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.5); border-top: 3px solid var(--neon-pink);
-        }
+        .social-plug-box { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 15px; padding: 25px; margin-top: 50px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.5); border-top: 3px solid var(--neon-pink); }
         .social-title { font-size: 13px; font-weight: 800; color: var(--text-main); text-shadow: 0 0 8px var(--neon-pink); margin-bottom: 20px; letter-spacing: 1px; text-transform: uppercase; }
         .social-icons-wrapper { display: flex; justify-content: center; gap: 25px; }
         
@@ -213,13 +214,23 @@
             position: relative; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
             font-size: 22px; text-decoration: none; transition: all 0.3s ease; background: #020408; color: #fff; overflow: hidden; z-index: 1; border: none;
         }
+        /* 💫 SLEEK SINGLE-COLOR FAST CHASE FOR SOCIAL BUTTONS 👇 */
         .social-btn::before {
             content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-            background: conic-gradient(#ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000);
-            animation: rgb-rotate 4s linear infinite; z-index: -2;
+            background: conic-gradient(var(--neon-cyan) 0deg, transparent 40%, transparent 100%);
+            animation: rgb-rotate 1.5s linear infinite; z-index: -2;
         }
-        .social-btn::after { content: ''; position: absolute; inset: 3px; background: #020408; border-radius: 50%; z-index: -1; transition: background 0.3s ease; }
-        @keyframes rgb-rotate { 100% { transform: rotate(360deg); } }
+        .social-btn::after { 
+            content: ''; position: absolute; 
+            inset: 1.5px; /* Extremely thin! */
+            background: #020408; border-radius: 50%; z-index: -1; transition: background 0.3s ease; 
+        }
+        
+        /* Fast chase animation */
+        @keyframes rgb-rotate { 
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); } 
+        }
 
         .social-btn:hover::after { background: rgba(6, 11, 25, 0.9); }
         .social-btn.facebook:hover { color: #1877f2; text-shadow: 0 0 8px #1877f2; }
@@ -398,7 +409,7 @@
 
             // Populate Info details
             document.getElementById('drama-details-wrapper').innerHTML = `
-                <div class="detail-poster-wrapper" style="border-color: ${statusColor}; box-shadow: 0 0 20px ${statusShadow}55;">
+                <div class="detail-poster-wrapper" style="border-color: ${statusColor};">
                     <img class="detail-poster-img" src="${drama.image_url}" alt="Poster">
                     <div class="rating-bar-vertical" style="border-right-color: ${ratingColor}; color: ${ratingColor}; text-shadow: 0 0 8px ${ratingColor}; box-shadow: 0 0 10px ${ratingShadow};">
                         <i class="fa-solid fa-star" style="font-size: 8px;"></i>
