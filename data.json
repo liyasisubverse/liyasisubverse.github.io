@@ -10,6 +10,12 @@
       "title": "Joseon Attorney: A Morality",
       "episode": "EP 01",
       "image_url": "https://image.tmdb.org/t/p/w500/r9s6F4IgFyPyjSh7n7wGMRO6Mp0.jpg",
+      "post_link": "episode_picker.html?drama_id=206715&ep=EP 01"
+    },
+    {
+      "title": "Joseon Attorney: A Morality",
+      "episode": "EP 01",
+      "image_url": "https://image.tmdb.org/t/p/w500/r9s6F4IgFyPyjSh7n7wGMRO6Mp0.jpg",
       "post_link": "drama_picker.html?id=206715"
     }
   ],
@@ -69,7 +75,7 @@
           "episode": "EP 01",
           "link": "https://liyasisubverse.github.io/subtitles/Joseon_Attorney:_A_Morality_E01.srt",
           "tg_link": "https://t.me/c/3564105068/135",
-          "title": "⚡ Episode 01: යුක්තියේ ආරම්භය ⚡",
+          "title": "✨️ යුක්තියේ ආරම්භය ✨️",
           "image": "https://image.tmdb.org/t/p/w500/r9s6F4IgFyPyjSh7n7wGMRO6Mp0.jpg",
           "synopsis": "අසාධාරණයට එරෙහිව නැගී සිටින අභිරහස් පුද්ගලයාගේ ආගමනය.",
           "map_url": "https://i.ibb.co/Xx69sDVZ/81e8c3a61814.png",
@@ -100,11 +106,11 @@
               "image": "https://image.tmdb.org/t/p/w200/slfoiusX9IrWAB0oi9IbOJ2ih23.jpg"
             }
           ],
-          "director": "N/A",
-          "writer": "Choi Jin-young",
+          "director": "Kim Seung-ho (කිම් ස්‍යුන්ග්-හෝ), Lee Han-joon (ලී හන්-ජුන්)",
+          "writer": "Choi Jin-young (චෝයි ජින්-යන්ග්)",
           "network": "MBC",
-          "first_air_date": "2023-03-31",
-          "runtime": "69 min",
+          "first_air_date": "2023-03-31 සිට 2023-05-20 දක්වා",
+          "runtime": "70 min",
           "country": "South Korea (දකුණු කොරියාව)",
           "imdb": "5.6"
         }
