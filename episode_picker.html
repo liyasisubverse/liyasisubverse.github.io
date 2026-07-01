@@ -94,6 +94,7 @@
 
         .main-container { max-width: 1300px; margin: 20px auto; padding: 0 15px; box-sizing: border-box; }
 
+        /* 🏛️ DETAILED LAYOUT GLASS PANELS */
         .glass-section-custom {
             background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px;
             padding: 25px; margin-bottom: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
@@ -112,17 +113,25 @@
             backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
         }
 
+        /* 🎀 DOUBLE NEON BARS ON POSTER (LEFT & RIGHT) */
         .detail-poster-wrapper {
             position: relative; border-radius: 12px; overflow: hidden;
-            border: 3px solid var(--neon-cyan);
-            box-shadow: 0 0 15px var(--neon-cyan), inset 0 0 10px var(--neon-cyan);
+            border-left: 4px solid var(--neon-cyan);
+            border-right: 4px solid var(--neon-cyan);
+            border-top: none; border-bottom: none;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
             aspect-ratio: 2/3;
             animation: posterNeonPulse 3s infinite alternate ease-in-out;
         }
         @keyframes posterNeonPulse {
-            0% { box-shadow: 0 0 10px var(--neon-cyan), inset 0 0 5px var(--neon-cyan); border-color: var(--neon-cyan); }
-            50% { box-shadow: 0 0 20px var(--neon-pink), inset 0 0 10px var(--neon-pink); border-color: var(--neon-pink); }
-            100% { box-shadow: 0 0 10px var(--neon-cyan), inset 0 0 5px var(--neon-cyan); border-color: var(--neon-cyan); }
+            0% {
+                border-left-color: var(--neon-cyan); border-right-color: var(--neon-cyan);
+                box-shadow: -10px 0 15px rgba(0, 240, 255, 0.3), 10px 0 15px rgba(0, 240, 255, 0.3);
+            }
+            100% {
+                border-left-color: var(--neon-pink); border-right-color: var(--neon-pink);
+                box-shadow: -10px 0 15px rgba(255, 0, 127, 0.3), 10px 0 15px rgba(255, 0, 127, 0.3);
+            }
         }
 
         .detail-poster-img { width: 100%; height: 100%; object-fit: cover; }
@@ -144,12 +153,12 @@
         .info-spec-label { color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); font-weight: bold; }
         .info-spec-value { color: #fff; font-weight: 800; }
 
-        /* 🌈 ROTATING RGB CAST CIRCLES */
+        /* 🌈 ROTATING RGB CAST CIRCLES WITH FIXED CENTER CROP */
         .cast-grid-box { display: grid; grid-template-columns: repeat(6, 1fr); gap: 15px; margin-top: 15px; }
         .cast-member-item { display: flex; flex-direction: column; align-items: center; text-align: center; }
         
         .cast-img-container { 
-            position: relative; width: 65px; height: 60px; border-radius: 50%; overflow: hidden; 
+            position: relative; width: 65px; height: 65px; border-radius: 50%; overflow: hidden; 
             z-index: 1; border: none; display: flex; align-items: center; justify-content: center;
             margin-bottom: 8px;
         }
@@ -158,8 +167,14 @@
             background: conic-gradient(#ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000);
             animation: rgb-rotate 4s linear infinite; z-index: -2;
         }
-        .cast-img-container::after { content: ''; position: absolute; inset: 2px; background: #020408; border-radius: 50%; z-index: -1; }
-        .cast-img-container img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; position: relative; z-index: 1; }
+        .cast-img-container::after { content: ''; position: absolute; inset: 2.5px; background: #020408; border-radius: 50%; z-index: -1; }
+        
+        /* Fixed head-focusing face crop 👇 */
+        .cast-img-container img { 
+            width: 100%; height: 100%; 
+            object-fit: cover; object-position: top center; 
+            border-radius: 50%; position: relative; z-index: 1; 
+        }
 
         .cast-member-name { font-size: 11px; font-weight: bold; color: #ccc; }
 
@@ -198,18 +213,48 @@
         .vote-btn-custom.vote-dislike:hover { background: rgba(255, 0, 127, 0.15); box-shadow: 0 0 15px rgba(255, 0, 127, 0.3); }
         .vote-count { background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 11px; }
 
-        /* DOWNLOAD AREA */
+        /* ✍️ NEON HEADER LABEL STYLE 👇 */
+        .neon-header-text {
+            font-size: 14px; font-weight: 900; text-align: center; text-transform: uppercase;
+            letter-spacing: 2px; color: var(--neon-cyan);
+            text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan);
+            margin: 25px 0 15px 0; animation: neonHeaderPulse 2s infinite alternate;
+        }
+        .neon-header-text.pink {
+            color: var(--neon-pink); text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink);
+        }
+        @keyframes neonHeaderPulse {
+            0% { opacity: 0.85; text-shadow: 0 0 8px currentColor; }
+            100% { opacity: 1; text-shadow: 0 0 18px currentColor, 0 0 25px currentColor; }
+        }
+
+        /* ✍️ CYBERPUNK SWEEPING ELECTRIC DOWNLOAD BUTTONS 👇 */
         .download-box { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 15px; }
         .download-btn {
-            width: 100%; max-width: 320px; text-align: center; text-transform: uppercase; font-weight: 900;
-            font-size: 13.5px; padding: 15px; border-radius: 8px; text-decoration: none; transition: 0.3s;
-            display: flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid rgba(255,255,255,0.2);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            position: relative; width: 100%; max-width: 320px; text-align: center; text-transform: uppercase;
+            font-weight: 900; font-size: 13px; padding: 16px; border-radius: 8px; text-decoration: none;
+            transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px;
+            overflow: hidden; z-index: 1; background: #020408; color: #fff;
+            border: 2px solid #0055ff; /* Dark Blue Border */
+            box-shadow: 0 0 15px rgba(0, 85, 255, 0.4), inset 0 0 10px rgba(0, 85, 255, 0.2);
         }
-        .download-btn.sub-direct { background: transparent; border-color: var(--neon-cyan); color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); box-shadow: 0 0 15px rgba(0, 240, 255, 0.1); }
-        .download-btn.sub-direct:hover { background: var(--neon-cyan); color: #000; box-shadow: 0 0 25px var(--neon-cyan); text-shadow: none; }
-        .download-btn.tg-video { background: #0088cc; border-color: #0088cc; color: #fff; box-shadow: 0 0 15px rgba(0, 136, 204, 0.3); }
-        .download-btn.tg-video:hover { background: #00a2f3; box-shadow: 0 0 25px #0088cc; }
+        /* Electric lightning sweep sheen */
+        .download-btn::after {
+            content: ''; position: absolute; top: 0; left: -150%; width: 80%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.1) 20%, rgba(255, 255, 255, 0.9) 50%, rgba(0, 240, 255, 0.4) 55%, rgba(0, 240, 255, 0.1) 60%, transparent);
+            transform: skewX(-25deg); animation: lightning-sweep 4.5s infinite linear; z-index: 2; pointer-events: none;
+        }
+        .download-btn:hover {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.6), inset 0 0 15px rgba(0, 240, 255, 0.3);
+            color: var(--neon-cyan); text-shadow: 0 0 8px var(--neon-cyan);
+        }
+        .download-btn.tg-video { border-color: #0088cc; box-shadow: 0 0 15px rgba(0, 136, 204, 0.4); }
+        .download-btn.tg-video:hover {
+            border-color: #00a2f3;
+            box-shadow: 0 0 25px rgba(0, 136, 204, 0.6), inset 0 0 15px rgba(0, 136, 204, 0.3);
+            color: #00a2f3; text-shadow: 0 0 8px #00a2f3;
+        }
 
         .video-responsive-box { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; border: 1px solid var(--glass-border); }
         .video-responsive-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
@@ -231,6 +276,7 @@
             animation: rgb-rotate 4s linear infinite; z-index: -2;
         }
         .social-btn::after { content: ''; position: absolute; inset: 3px; background: #020408; border-radius: 50%; z-index: -1; transition: background 0.3s ease; }
+        @keyframes rgb-rotate { 100% { transform: rotate(360deg); } }
 
         .social-btn:hover::after { background: rgba(6, 11, 25, 0.9); }
         .social-btn.facebook:hover { color: #1877f2; text-shadow: 0 0 8px #1877f2; }
@@ -321,6 +367,61 @@
         <!-- 📥 DOWNLOAD BOX CONTAINER -->
         <div class="glass-section-custom" id="download-section-wrapper" style="display:none;"></div>
 
+        <!-- 📂 CATEGORY/GENRE CHOICE PANEL (RESTORED BEAUTIFULLY) 👇 -->
+        <div class="glass-section-custom" id="genre-vote-wrapper" style="display:none;">
+            <h3>📂 ඔබට වැඩිපුරම අවශ්‍ය කුමන ප්‍රභේදද?</h3>
+            <div class="cat-vote-wrapper" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                <div class="sl-vote-container" data-id="cat_fantasy" style="margin-top:0;">
+                    <div class="sl-vote-title"><b>🔮 Fantasy (මායාවී)</b></div>
+                    <div class="neon-bar-wrapper"><div class="neon-bar-track"><div class="neon-bar-fill"></div></div></div>
+                    <div class="sl-vote-buttons">
+                        <div class="vote-btn-custom vote-like" onclick="handleSLVote('like', this)">👍 <span class="vote-count sl-like-cnt">0</span></div>
+                        <div class="vote-btn-custom vote-dislike" onclick="handleSLVote('dislike', this)">👎 <span class="vote-count sl-dislike-cnt">0</span></div>
+                    </div>
+                </div>
+                <div class="sl-vote-container" data-id="cat_sci_fi" style="margin-top:0;">
+                    <div class="sl-vote-title"><b>🚀 Sci-Fi (විද්‍යා ප්‍රබන්ධ)</b></div>
+                    <div class="neon-bar-wrapper"><div class="neon-bar-track"><div class="neon-bar-fill"></div></div></div>
+                    <div class="sl-vote-buttons">
+                        <div class="vote-btn-custom vote-like" onclick="handleSLVote('like', this)">👍 <span class="vote-count sl-like-cnt">0</span></div>
+                        <div class="vote-btn-custom vote-dislike" onclick="handleSLVote('dislike', this)">👎 <span class="vote-count sl-dislike-cnt">0</span></div>
+                    </div>
+                </div>
+                <div class="sl-vote-container" data-id="cat_romance" style="margin-top:0;">
+                    <div class="sl-vote-title"><b>💖 Romance (රොමැන්ස්)</b></div>
+                    <div class="neon-bar-wrapper"><div class="neon-bar-track"><div class="neon-bar-fill"></div></div></div>
+                    <div class="sl-vote-buttons">
+                        <div class="vote-btn-custom vote-like" onclick="handleSLVote('like', this)">👍 <span class="vote-count sl-like-cnt">0</span></div>
+                        <div class="vote-btn-custom vote-dislike" onclick="handleSLVote('dislike', this)">👎 <span class="vote-count sl-dislike-cnt">0</span></div>
+                    </div>
+                </div>
+                <div class="sl-vote-container" data-id="cat_action" style="margin-top:0;">
+                    <div class="sl-vote-title"><b>⚔️ Action (ක්‍රියාදාම)</b></div>
+                    <div class="neon-bar-wrapper"><div class="neon-bar-track"><div class="neon-bar-fill"></div></div></div>
+                    <div class="sl-vote-buttons">
+                        <div class="vote-btn-custom vote-like" onclick="handleSLVote('like', this)">👍 <span class="vote-count sl-like-cnt">0</span></div>
+                        <div class="vote-btn-custom vote-dislike" onclick="handleSLVote('dislike', this)">👎 <span class="vote-count sl-dislike-cnt">0</span></div>
+                    </div>
+                </div>
+                <div class="sl-vote-container" data-id="cat_legal" style="margin-top:0;">
+                    <div class="sl-vote-title"><b>⚖️ Legal/Mystery (නීතිමය/අභිරහස්)</b></div>
+                    <div class="neon-bar-wrapper"><div class="neon-bar-track"><div class="neon-bar-fill"></div></div></div>
+                    <div class="sl-vote-buttons">
+                        <div class="vote-btn-custom vote-like" onclick="handleSLVote('like', this)">👍 <span class="vote-count sl-like-cnt">0</span></div>
+                        <div class="vote-btn-custom vote-dislike" onclick="handleSLVote('dislike', this)">👎 <span class="vote-count sl-dislike-cnt">0</span></div>
+                    </div>
+                </div>
+                <div class="sl-vote-container" data-id="cat_historical" style="margin-top:0;">
+                    <div class="sl-vote-title"><b>🏛️ Historical (ඓතිහාසික)</b></div>
+                    <div class="neon-bar-wrapper"><div class="neon-bar-track"><div class="neon-bar-fill"></div></div></div>
+                    <div class="sl-vote-buttons">
+                        <div class="vote-btn-custom vote-like" onclick="handleSLVote('like', this)">👍 <span class="vote-count sl-like-cnt">0</span></div>
+                        <div class="vote-btn-custom vote-dislike" onclick="handleSLVote('dislike', this)">👎 <span class="vote-count sl-dislike-cnt">0</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- 🌐 GLOWING SOCIAL MEDIA PLUG -->
         <div class="social-plug-box">
             <div class="social-title">CONNECT WITH US ON SOCIAL NETWORKS</div>
@@ -382,7 +483,6 @@
                     const database = await response.json();
                     const drama = database.dramas[dramaId];
                     if (drama) {
-                        // Find matching episode
                         const episode = drama.episodes.find(e => e.episode === episodeNum);
                         if (episode) {
                             renderEpisodeDetails(drama, episode, database.config || {});
@@ -424,7 +524,7 @@
 
             // Populate Info details
             document.getElementById('drama-details-wrapper').innerHTML = `
-                <div class="detail-poster-wrapper" style="border-color: ${statusColor}; box-shadow: 0 0 20px ${statusShadow}55;">
+                <div class="detail-poster-wrapper" style="border-color: ${statusColor};">
                     <img class="detail-poster-img" src="${ep.image || drama.image_url}" alt="Poster">
                     <div class="rating-bar-vertical" style="border-right-color: ${ratingColor}; color: ${ratingColor}; text-shadow: 0 0 8px ${ratingColor}; box-shadow: 0 0 10px ${ratingShadow};">
                         <i class="fa-solid fa-star" style="font-size: 8px;"></i>
@@ -471,7 +571,7 @@
                     <div class="cast-grid-box">
                         ${castToUse.map(c => `
                             <div class="cast-member-item">
-                                <div class="cast-img-container" style="border-color:${statusColor}; box-shadow:0 0 10px ${statusColor}44">
+                                <div class="cast-img-container">
                                     <img src="${c.image}" alt="${c.name}">
                                 </div>
                                 <span class="cast-member-name">${c.name}</span>
@@ -539,20 +639,24 @@
             downloadSection.style.display = 'block';
             downloadSection.innerHTML = `
                 <h3>DOWNLOAD LINKS</h3>
-                <p style="text-align: center; margin: 0 0 15px 0;"><b><span><span style="color: red; font-size: medium;">👇</span><span style="color: #fcff01; font-family: inherit; font-size: large;"><u>DIRECT SUBTITLE</u></span><span style="color: red; font-size: medium;">👇</span></span></b></p>
+                <div class="neon-header-text">👇DIRECT SUBTITLE👇</div>
                 <div class="download-box">
-                    <a class="download-btn sub-direct" href="${ep.link}" onclick="forceDownload(event, this, '${drama.title.replace(/ /g, '_')}_${ep.episode}.srt', '${episodeUniqueId}')">
+                    <a class="download-btn" href="${ep.link}" onclick="forceDownload(event, this, '${drama.title.replace(/ /g, '_')}_${ep.episode}.srt', '${episodeUniqueId}')">
                         <i class="fa-solid fa-download"></i> GET SUBTITLE 
                         <span id="sub-count-display" style="background: rgba(0, 0, 0, 0.2); border-radius: 10px; font-size: 0.9em; margin-left: 5px; padding: 2px 6px;">0</span>
                     </a>
-                    
-                    <p style="margin: 20px 0 10px 0; text-align: center;"><b><span><span style="color: red; font-size: medium;">👇</span><span style="color: #fcff01; font-family: inherit; font-size: large;"><u>VIDEO FILE LINK</u></span><span style="color: red; font-size: medium;">👇</span></span></b></p>
+                </div>
+                <div class="neon-header-text pink" style="margin-top:35px;">👇VIDEO FILE LINK👇</div>
+                <div class="download-box" style="margin-top:0;">
                     <a class="download-btn tg-video" href="${ep.tg_link || '#'}" onclick="trackTelegramClick('${episodeUniqueId}', this)" target="_blank">
                         <i class="fa-brands fa-telegram"></i> TELEGRAM LINK 
                         <span id="tg-count-display" style="background: rgba(0, 0, 0, 0.2); border-radius: 10px; font-size: 0.9em; margin-left: 5px; padding: 2px 6px;">0</span>
                     </a>
                 </div>
             `;
+
+            // Restore category vote panel
+            document.getElementById('genre-vote-wrapper').style.display = 'block';
 
             loadVotes();
         }
