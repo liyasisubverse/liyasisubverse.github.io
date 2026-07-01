@@ -2,6 +2,12 @@
   "latest_updates": [
     {
       "title": "Joseon Attorney: A Morality",
+      "episode": "EP 03",
+      "image_url": "https://i.ibb.co/rKGsNgwd/9a60d798a983.jpg",
+      "post_link": "episode_picker.html?drama_id=206715&ep=EP 03"
+    },
+    {
+      "title": "Joseon Attorney: A Morality",
       "episode": "EP 01",
       "image_url": "https://image.tmdb.org/t/p/w500/r9s6F4IgFyPyjSh7n7wGMRO6Mp0.jpg",
       "post_link": "episode_picker.html?drama_id=206715&ep=EP 01"
@@ -41,12 +47,6 @@
       "episode": "EP 01",
       "image_url": "https://image.tmdb.org/t/p/w500/r9s6F4IgFyPyjSh7n7wGMRO6Mp0.jpg",
       "post_link": "episode_picker.html?drama_id=206715&ep=EP 01"
-    },
-    {
-      "title": "Joseon Attorney: A Morality",
-      "episode": "EP 01",
-      "image_url": "https://image.tmdb.org/t/p/w500/r9s6F4IgFyPyjSh7n7wGMRO6Mp0.jpg",
-      "post_link": "drama_picker.html?id=206715"
     }
   ],
   "dramas": {
@@ -57,7 +57,7 @@
       "status": "ONGOING",
       "imdb": "5.6",
       "total_episodes": 16,
-      "image_url": "https://image.tmdb.org/t/p/w500/r9s6F4IgFyPyjSh7n7wGMRO6Mp0.jpg",
+      "image_url": "https://i.ibb.co/rKGsNgwd/9a60d798a983.jpg",
       "map_url": "https://i.ibb.co/Xx69sDVZ/81e8c3a61814.png",
       "synopsis": "\"Joseon Attorney: A Morality\" යනු ජොසොන් යුගයේ පසුබිමක දිවෙන නීතිමය සහ පලිගැනීමේ කතාවකි. අසාධාරණ ලෙස තම දෙමාපියන්ව මරා දැමූ පුද්ගලයින්ගෙන් පළිගැනීම සඳහා නීතිඥවරයෙකු ලෙස වෙස් වලා ගන්නා කෑන්ග් හන්-සූගේ කතාව මෙහි නිරූපණය වේ. මුලින් මුදල් සහ වාසි බලාගෙන නීති කටයුතුවල නිරත වන ඔහු, ක්‍රමයෙන් සාමාන්‍ය ජනතාවගේ දුක්ගැනවිලි වෙනුවෙන් පෙනී සිටින සැබෑ නීතිඥවරයෙකු බවට පත්වන ආකාරය ඉතා කුතුහලයෙන් යුතුව මෙම කතාවෙන් ගෙනහැර දක්වයි.",
       "genres": [
@@ -151,6 +151,49 @@
           "title": "⚡ Episode 02: උගුලකට හසු වූ අහිංසකයා ⚡",
           "image": "https://i.ibb.co/rKGsNgwd/9a60d798a983.jpg",
           "synopsis": "පළමු නඩුව සහ කුතුහලය දනවන උපාය මාර්ග.",
+          "map_url": "https://i.ibb.co/Xx69sDVZ/81e8c3a61814.png",
+          "trailer": "https://www.youtube.com/embed/PxJZZVhmzc8",
+          "cast": [
+            {
+              "name": "Woo Do-hwan",
+              "image": "https://image.tmdb.org/t/p/w200/6r1yIpHLmoIqujKv9KQeZPEUhXy.jpg"
+            },
+            {
+              "name": "Bona",
+              "image": "https://image.tmdb.org/t/p/w200/z3L2wtjfJ2RoT2fmoUJgsMAXnLZ.jpg"
+            },
+            {
+              "name": "Cha Hak-yeon",
+              "image": "https://image.tmdb.org/t/p/w200/wI2xhjCXyWOWnH9iQK8PnGwLuEL.jpg"
+            },
+            {
+              "name": "Cheon Ho-jin",
+              "image": "https://image.tmdb.org/t/p/w200/eS5jGpHrBDu3wtHHEfUNkwnZ0uE.jpg"
+            },
+            {
+              "name": "Song Geon-hee",
+              "image": "https://image.tmdb.org/t/p/w200/8rjlzhudRf3w3xtSso7R7BG8Ikq.jpg"
+            },
+            {
+              "name": "Lee Doo-seok",
+              "image": "https://image.tmdb.org/t/p/w200/slfoiusX9IrWAB0oi9IbOJ2ih23.jpg"
+            }
+          ],
+          "director": "Kim Seung-ho (කිම් ස්‍යුන්ග්-හෝ), Lee Han-joon (ලී හන්-ජුන්)",
+          "writer": "Choi Jin-young (චෝයි ජින්-යන්ග්)",
+          "network": "MBC",
+          "first_air_date": "2023-03-31 සිට 2023-05-20 දක්වා",
+          "runtime": "70 min",
+          "country": "South Korea (දකුණු කොරියාව)",
+          "imdb": "5.6"
+        },
+        {
+          "episode": "EP 03",
+          "link": "https://liyasisubverse.github.io/subtitles/Joseon_Attorney:_A_Morality_E03.srt",
+          "tg_link": "https://t.me/c/3564105068/135",
+          "title": "⚡ Episode 03: රජ මාළිගයේ රහස් ⚡",
+          "image": "https://i.ibb.co/rKGsNgwd/9a60d798a983.jpg",
+          "synopsis": "කුමරිය සහ නීතිඥවරයාගේ අනපේක්ෂිත හමුවීම.",
           "map_url": "https://i.ibb.co/Xx69sDVZ/81e8c3a61814.png",
           "trailer": "https://www.youtube.com/embed/PxJZZVhmzc8",
           "cast": [
