@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+     <!DOCTYPE html>
 <html lang="si">
 <head>
     <meta charset="UTF-8">
@@ -6,9 +6,9 @@
     <title>ලියැසි SUBVERSE - උපසිරැසි කවුළුව</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
-        const HEADER_BANNER_LOGO = "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/81260990-6d71-4fbb-b966-43f96215438e.png"; // Header Logo
-        const ABOUT_ME_ART_LOGO = "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png";       // About Me / Avatar
-        const firebaseURL = "https://subverse-b897d-default-rtdb.firebaseio.com/"; // Firebase URL
+        const HEADER_BANNER_LOGO = "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/81260990-6d71-4fbb-b966-43f96215438e.png"; 
+        const ABOUT_ME_ART_LOGO = "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png";       
+        const firebaseURL = "https://subverse-b897d-default-rtdb.firebaseio.com/"; 
     </script>
     <style>
         /* 🎨 PREMIUM CYBERPUNK PALETTE */
@@ -31,7 +31,6 @@
             font-family: 'Segoe UI', system-ui, sans-serif;
             margin: 0; padding: 0; min-height: 100vh;
             background-attachment: fixed; background-size: cover; background-position: center;
-            transition: background-image 0.5s ease-in-out;
         }
 
         header {
@@ -95,18 +94,6 @@
 
         .main-container { max-width: 1300px; margin: 20px auto; padding: 0 15px; box-sizing: border-box; }
 
-        /* 🏛️ DETAILED LAYOUT GLASS PANELS */
-        .glass-section-custom {
-            background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px;
-            padding: 25px; margin-bottom: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-        }
-        .glass-section-custom h3 {
-            color: var(--neon-cyan); text-shadow: 0 0 8px var(--neon-cyan); font-size: 14px;
-            font-weight: 900; text-transform: uppercase; border-left: 3px solid var(--neon-cyan);
-            padding-left: 10px; margin: 0 0 15px 0; letter-spacing: 1px;
-        }
-
         .drama-details-container {
             display: grid; grid-template-columns: 280px 1fr; gap: 30px;
             background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px;
@@ -114,10 +101,20 @@
             backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
         }
 
+        /* 🌟 PULSING NEON POSTER */
         .detail-poster-wrapper {
             position: relative; border-radius: 12px; overflow: hidden;
-            border: 3px solid var(--neon-cyan); box-shadow: 0 0 20px rgba(0, 240, 255, 0.3); aspect-ratio: 2/3;
+            border: 3px solid var(--neon-cyan);
+            box-shadow: 0 0 15px var(--neon-cyan), inset 0 0 10px var(--neon-cyan);
+            aspect-ratio: 2/3;
+            animation: posterNeonPulse 3s infinite alternate ease-in-out;
         }
+        @keyframes posterNeonPulse {
+            0% { box-shadow: 0 0 10px var(--neon-cyan), inset 0 0 5px var(--neon-cyan); border-color: var(--neon-cyan); }
+            50% { box-shadow: 0 0 20px var(--neon-pink), inset 0 0 10px var(--neon-pink); border-color: var(--neon-pink); }
+            100% { box-shadow: 0 0 10px var(--neon-cyan), inset 0 0 5px var(--neon-cyan); border-color: var(--neon-cyan); }
+        }
+
         .detail-poster-img { width: 100%; height: 100%; object-fit: cover; }
 
         .rating-bar-vertical {
@@ -132,39 +129,39 @@
             text-shadow: 0 0 5px var(--neon-purple); padding: 4px 12px; font-size: 11px; font-weight: 800; border-radius: 20px; text-transform: uppercase;
         }
 
-        /* SPEC LIST (ABOUT SHOW) */
         .info-spec-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .info-spec-item { font-size: 13.5px; border-bottom: 1px solid rgba(255,255,255,0.03); padding-bottom: 8px; }
         .info-spec-label { color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); font-weight: bold; }
         .info-spec-value { color: #fff; font-weight: 800; }
 
-        /* CAST GRID */
-        .cast-grid-box { display: grid; grid-template-columns: repeat(6, 1fr); gap: 15px; margin-top: 15px; }
-        .cast-member-item { display: flex; flex-direction: column; align-items: center; text-align: center; }
-        .cast-img-container { width: 60px; height: 60px; border-radius: 50%; overflow: hidden; border: 2px solid var(--neon-pink); box-shadow: 0 0 10px rgba(255, 0, 127, 0.3); margin-bottom: 8px; }
-        .cast-img-container img { width: 100%; height: 100%; object-fit: cover; }
-        .cast-member-name { font-size: 11px; font-weight: bold; color: #ccc; }
+        /* 💾 EPISODES SECTION */
+        .episodes-section {
+            background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px;
+            padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); margin-bottom: 30px;
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+        }
 
-        /* STORY MAP */
-        .map-responsive-box { width: 100%; text-align: center; margin-top: 10px; border-radius: 12px; overflow: hidden; border: 1px solid var(--glass-border); }
-        .map-responsive-box img { max-width: 100%; height: auto; display: block; margin: 0 auto; opacity: 0.9; }
+        /* 🃏 MOVIE STYLE EPISODE CARD (FOR ONGOING) */
+        .episodes-grid-cards {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; margin-top: 20px;
+        }
+        .movie-style-card {
+            background: #000; border-radius: 6px; overflow: hidden; position: relative; text-decoration: none;
+            aspect-ratio: 2 / 3; box-shadow: 0 5px 15px rgba(0,0,0,0.7); transition: all 0.3s ease;
+            border-top: 3.5px solid var(--neon-cyan); border-bottom: 3.5px solid var(--neon-cyan);
+        }
+        .movie-style-card:hover { transform: scale(1.05); border-color: var(--neon-pink); box-shadow: 0 0 15px var(--neon-pink); }
+        .poster-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
+        
+        .badge-top-left {
+            position: absolute; top: 8px; left: 8px; background: rgba(2, 4, 8, 0.85); color: #fff;
+            padding: 3px 8px; font-size: 10px; font-weight: 900; border-radius: 4px; border: 1px solid var(--neon-cyan); box-shadow: 0 0 8px rgba(0, 240, 255, 0.4); z-index: 2; text-transform: uppercase;
+        }
+        .title-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,1) 40%, transparent); padding: 12px 6px; }
+        .title-overlay p { color: var(--neon-cyan); text-shadow: 0 0 6px var(--neon-cyan); margin: 0; font-size: 10.5px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: center; }
 
-        /* IMDB/TMDB SCALE RATING */
-        .imdb-wrapper { margin-bottom: 20px; }
-        .imdb-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-        .imdb-title-zone { display: flex; align-items: center; gap: 8px; }
-        .imdb-badge { background: var(--neon-amber); color: #000; font-weight: 900; font-size: 10px; padding: 2px 6px; border-radius: 3px; }
-        .imdb-stars { color: var(--neon-amber); font-size: 12px; }
-        .imdb-score { color: #fff; font-weight: bold; font-size: 14px; }
-        .imdb-bar-track { height: 6px; background: rgba(255, 255, 255, 0.05); border-radius: 4px; overflow: hidden; }
-        .imdb-bar-fill { height: 100%; background: var(--neon-amber); box-shadow: 0 0 10px var(--neon-amber); transition: 1s ease-out; }
-
-        /* OFFICIAL TRAILER */
-        .video-responsive-box { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; border: 1px solid var(--glass-border); }
-        .video-responsive-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-
-        /* EPISODES GRID */
-        .episodes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; margin-top: 20px; }
+        /* BUTTONS LIST (FOR COMPLETED) */
+        .episodes-grid-buttons { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; margin-top: 20px; }
         .ep-btn {
             background: rgba(2, 4, 8, 0.6); border: 1px solid var(--glass-border); color: #ccc;
             padding: 14px; border-radius: 8px; font-weight: 800; text-align: center; text-decoration: none;
@@ -174,7 +171,6 @@
         .ep-btn.active-cyan:hover { background: rgba(0, 240, 255, 0.1); box-shadow: 0 0 15px var(--neon-cyan); }
         .ep-btn.active-pink { border-color: var(--neon-pink); color: var(--neon-pink); text-shadow: 0 0 5px var(--neon-pink); }
         .ep-btn.active-pink:hover { background: rgba(255, 0, 127, 0.1); box-shadow: 0 0 15px var(--neon-pink); }
-        .ep-btn.upcoming { opacity: 0.25; cursor: not-allowed; border-color: rgba(255,255,255,0.05); }
 
         /* SOCIAL MEDIA PLUG */
         .social-plug-box {
@@ -211,13 +207,12 @@
 
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-        /* 📱 RESPONSIVE TUNING */
         @media (max-width: 768px) {
             .drama-details-container { grid-template-columns: 1fr; padding: 20px; text-align: center; }
             .detail-poster-wrapper { max-width: 230px; margin: 0 auto; }
             .info-spec-list { grid-template-columns: 1fr; }
-            .cast-grid-box { grid-template-columns: repeat(3, 1fr); gap: 10px; }
-            .episodes-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; }
+            .episodes-grid-cards { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; }
+            .episodes-grid-buttons { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; }
             .ep-btn { padding: 10px; font-size: 11px; }
         }
         @media (max-width: 600px) {
@@ -227,7 +222,6 @@
             .sub-nav-bar { gap: 10px; padding: 8px; }
             .sub-nav-item { font-size: 11px; padding: 6px 12px; }
         }
-        @media (max-width: 400px) { .live-clock { font-size: 8px !important; padding: 3px 6px !important; } }
     </style>
 </head>
 <body>
@@ -274,16 +268,7 @@
             <p style="text-align: center; color: var(--neon-cyan); grid-column: span 2; padding: 50px 0;">🤖 [SYSTEM RETRIEVING DATA...]</p>
         </div>
 
-        <!-- 🎭 CAST & CREW DYNAMIC HOLDER -->
-        <div class="glass-section-custom" id="cast-section-wrapper" style="display:none;"></div>
-
-        <!-- 🗺️ STORY MAP DYNAMIC HOLDER -->
-        <div class="glass-section-custom" id="map-section-wrapper" style="display:none;"></div>
-
-        <!-- 🍿 OFFICIAL TRAILER DYNAMIC HOLDER -->
-        <div class="glass-section-custom" id="trailer-section-wrapper" style="display:none;"></div>
-
-        <!-- 💾 EPISODES DOWNLOAD GRID HOLDER -->
+        <!-- 💾 EPISODES DOWNLOAD SECTION -->
         <div class="episodes-section" id="episodes-section-wrapper"></div>
 
         <!-- 🌐 GLOWING SOCIAL MEDIA PLUG -->
@@ -292,7 +277,7 @@
             <div class="social-icons-wrapper">
                 <a href="https://facebook.com" target="_blank" class="social-btn facebook"><i class="fa-brands fa-facebook-f"></i></a>
                 <a href="https://youtube.com" target="_blank" class="social-btn youtube"><i class="fa-brands fa-youtube"></i></a>
-                <a href="https://t.me/liyasi1" target="_blank" class="social-btn telegram"><i class="fa-brands fa-telegram"></i></a>
+                <a href="https://t.me/liyasi1" target="_blank" class="social-btn telegram" id="tg-config-link"><i class="fa-brands fa-telegram"></i></a>
             </div>
         </div>
 
@@ -344,7 +329,7 @@
                     const database = await response.json();
                     const drama = database.dramas[dramaId];
                     if (drama) {
-                        renderDramaDetails(drama);
+                        renderDramaDetails(drama, database.config || {});
                     } else {
                         showNotFound();
                     }
@@ -354,15 +339,19 @@
             }
         }
 
-        function renderDramaDetails(drama) {
+        function renderDramaDetails(drama, config) {
             document.getElementById('header-logo-container').innerHTML = `<img class="site-logo-img" src="${HEADER_BANNER_LOGO}" alt="Subverse Logo">`;
             document.title = `${drama.title} - සිංහල උපසිරැසි | ලියැසි SUBVERSE`;
 
-            // Background dynamic blur
+            // Global Config overrides
+            if (config.telegram_channel_link) {
+                document.getElementById('tg-config-link').href = config.telegram_channel_link;
+            }
+
+            // Dynamic background dynamic blur
             document.body.style.backgroundImage = `linear-gradient(to bottom, rgba(2, 4, 8, 0.9), rgba(2, 4, 8, 0.98)), url('${drama.image_url}')`;
             document.getElementById('ticker-text').innerHTML = `⚡ ${drama.title} උපසිරැසි දැන් සූදානම්! • `;
 
-            // Dynamic color grading based on IMDb Rating scale
             const rating = parseFloat(drama.imdb) || 0.0;
             let ratingColor = "#ffaa00"; let ratingShadow = "rgba(255, 170, 0, 0.4)";
             if (rating >= 8.5) { ratingColor = "#00ff66"; ratingShadow = "rgba(0, 255, 102, 0.4)"; }
@@ -396,12 +385,12 @@
                     </div>
 
                     <ul class="info-spec-list" style="margin-bottom: 25px;">
-                        <li class="info-spec-item"><span class="info-spec-label">Director (අධ්‍යක්ෂණය):</span> <span class="info-spec-value">${drama.director || 'N/A'}</span></li>
-                        <li class="info-spec-item"><span class="info-spec-label">Writer (තිර රචනය):</span> <span class="info-spec-value">${drama.writer || 'N/A'}</span></li>
-                        <li class="info-spec-item"><span class="info-spec-label">Network (නාලිකාව):</span> <span class="info-spec-value">${drama.network || 'N/A'}</span></li>
-                        <li class="info-spec-item"><span class="info-spec-label">Country (රට):</span> <span class="info-spec-value">${drama.country || 'N/A'}</span></li>
-                        <li class="info-spec-item"><span class="info-spec-label">Air Date (කාලය):</span> <span class="info-spec-value">${drama.first_air_date || 'N/A'}</span></li>
-                        <li class="info-spec-item"><span class="info-spec-label">Runtime (ධාවන කාලය):</span> <span class="info-spec-value">${drama.runtime || 'N/A'}</span></li>
+                        <li class="info-spec-item"><span class="info-spec-label">Director:</span> <span class="info-spec-value">${drama.director || 'N/A'}</span></li>
+                        <li class="info-spec-item"><span class="info-spec-label">Writer:</span> <span class="info-spec-value">${drama.writer || 'N/A'}</span></li>
+                        <li class="info-spec-item"><span class="info-spec-label">Network:</span> <span class="info-spec-value">${drama.network || 'N/A'}</span></li>
+                        <li class="info-spec-item"><span class="info-spec-label">Country:</span> <span class="info-spec-value">${drama.country || 'N/A'}</span></li>
+                        <li class="info-spec-item"><span class="info-spec-label">Air Date:</span> <span class="info-spec-value">${drama.first_air_date || 'N/A'}</span></li>
+                        <li class="info-spec-item"><span class="info-spec-label">Runtime:</span> <span class="info-spec-value">${drama.runtime || 'N/A'}</span></li>
                     </ul>
 
                     <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); padding: 20px; border-radius: 10px; line-height: 1.8; color: #ccc; font-size: 13.5px;">
@@ -411,53 +400,11 @@
                 </div>
             `;
 
-            // Populate Cast Section
-            if (drama.cast && drama.cast.length > 0) {
-                const castSection = document.getElementById('cast-section-wrapper');
-                castSection.style.display = 'block';
-                castSection.innerHTML = `
-                    <h3><u>CAST (ප්‍රධාන නළු නිළියන්)</u></h3>
-                    <div class="cast-grid-box">
-                        ${drama.cast.map(c => `
-                            <div class="cast-member-item">
-                                <div class="cast-img-container" style="border-color:${statusColor}; box-shadow:0 0 10px ${statusColor}44">
-                                    <img src="${c.image}" alt="${c.name}">
-                                </div>
-                                <span class="cast-member-name">${c.name}</span>
-                            </div>
-                        `).join('')}
-                    </div>
-                `;
-            }
-
-            // Populate Story Map
-            if (drama.map_url) {
-                const mapSection = document.getElementById('map-section-wrapper');
-                mapSection.style.display = 'block';
-                mapSection.innerHTML = `
-                    <h3><u>STORY MAP (සබඳතා පවුර)</u></h3>
-                    <div class="map-responsive-box">
-                        <img src="${drama.map_url}" alt="Story Map">
-                    </div>
-                `;
-            }
-
-            // Populate Trailer
-            if (drama.trailer) {
-                const trailerSection = document.getElementById('trailer-section-wrapper');
-                trailerSection.style.display = 'block';
-                trailerSection.innerHTML = `
-                    <h3><u>OFFICIAL TRAILER</u></h3>
-                    <div class="video-responsive-box">
-                        <iframe src="${drama.trailer}" style="border: none;" allowfullscreen></iframe>
-                    </div>
-                `;
-            }
-
-            // Populate Episode Download Grid
+            // Populate Episodes & Download Section
             const episodesWrapper = document.getElementById('episodes-section-wrapper');
             let episodesHTML = '';
 
+            // Render BATCH button for Completed
             if (isComplete && drama.batch_link) {
                 episodesHTML += `
                     <div class="batch-download-wrapper">
@@ -469,8 +416,8 @@
             }
 
             episodesHTML += `<h2 style="font-size: 15px; font-weight: 900; color: var(--neon-amber); text-shadow: 0 0 8px var(--neon-amber); text-transform: uppercase; margin: 0 0 20px 0; border-left: 3px solid var(--neon-amber); padding-left: 10px;">උපසිරැසි ලබාගන්න (Download Subtitles)</h2>`;
-            episodesHTML += `<div class="episodes-grid">`;
 
+            // Maps linked episodes
             const episodesMap = {};
             if (drama.episodes) {
                 drama.episodes.forEach(epObj => {
@@ -483,58 +430,61 @@
             }
 
             const totalEpsCount = drama.total_episodes || 16;
-            const activeColorClass = isComplete ? 'active-pink' : 'active-cyan';
 
-            for (let i = 1; i <= totalEpsCount; i++) {
-                const epData = episodesMap[i];
-                if (epData && epData.link) {
-                    episodesHTML += `
-                        <a href="${epData.link}" target="_blank" class="ep-btn ${activeColorClass}" onclick="forceDownload(event, this, '${drama.title.replace(/ /g, '_')}_EP${String(i).padStart(2, '0')}.srt')">
-                            <i class="fa-solid fa-download" style="font-size: 14px;"></i>
-                            <span>EPISODE ${String(i).padStart(2, '0')}</span>
-                        </a>
-                    `;
-                } else {
-                    episodesHTML += `
-                        <div class="ep-btn upcoming">
-                            <i class="fa-solid fa-clock" style="font-size: 14px;"></i>
-                            <span>EPISODE ${String(i).padStart(2, '0')}</span>
-                        </div>
-                    `;
+            // ✍️ DYNAMIC CHOICE: ONGOING SHOWS CARDS VS COMPLETED SHOWS BUTTONS 👇
+            if (!isComplete) {
+                // ONGOING: Render beautiful Movie-style Episode Cards
+                episodesHTML += `<div class="episodes-grid-cards">`;
+                for (let i = 1; i <= totalEpsCount; i++) {
+                    const epData = episodesMap[i];
+                    if (epData && epData.link) {
+                        episodesHTML += `
+                            <a href="episode_picker.html?drama_id=${drama.id}&ep=${epData.episode}" class="movie-style-card">
+                                <span class="badge-top-left">${epData.episode}</span>
+                                <div class="rating-bar-vertical" style="border-right-color: ${ratingColor}; color: ${ratingColor}; text-shadow: 0 0 8px ${ratingColor}; box-shadow: 0 0 10px ${ratingShadow};">
+                                    <i class="fa-solid fa-star" style="font-size: 8px;"></i>
+                                    <span>${epData.imdb || drama.imdb}</span>
+                                </div>
+                                <img class="poster-img" src="${epData.image || drama.image_url}" alt="${epData.title}">
+                                <div class="title-overlay"><p>${epData.title}</p></div>
+                            </a>
+                        `;
+                    } else {
+                        episodesHTML += `
+                            <div class="movie-style-card" style="opacity: 0.25; cursor: not-allowed;">
+                                <span class="badge-top-left">EP ${String(i).padStart(2, '0')}</span>
+                                <img class="poster-img" src="${drama.image_url}" alt="Upcoming">
+                                <div class="title-overlay" style="background: rgba(0,0,0,0.85);"><p style="color:var(--text-muted)">⏳ UPCOMING</p></div>
+                            </div>
+                        `;
+                    }
+                }
+            } else {
+                // COMPLETED: Render simple, clean Button Grid
+                episodesHTML += `<div class="episodes-grid-buttons">`;
+                const activeColorClass = 'active-pink';
+                for (let i = 1; i <= totalEpsCount; i++) {
+                    const epData = episodesMap[i];
+                    if (epData && epData.link) {
+                        episodesHTML += `
+                            <a href="episode_picker.html?drama_id=${drama.id}&ep=${epData.episode}" class="ep-btn ${activeColorClass}">
+                                <i class="fa-solid fa-circle-play" style="font-size: 14px;"></i>
+                                <span>EPISODE ${String(i).padStart(2, '0')}</span>
+                            </a>
+                        `;
+                    } else {
+                        episodesHTML += `
+                            <div class="ep-btn upcoming">
+                                <i class="fa-solid fa-clock" style="font-size: 14px;"></i>
+                                <span>EPISODE ${String(i).padStart(2, '0')}</span>
+                            </div>
+                        `;
+                    }
                 }
             }
 
             episodesHTML += `</div>`;
             episodesWrapper.innerHTML = episodesHTML;
-        }
-
-        // Bypasses CORS blocking by fetching local Github raw or same-origin pages data
-        async function forceDownload(event, element, filename) {
-            const originalUrl = element.href;
-            if (originalUrl === "#" || originalUrl === "") return;
-            event.preventDefault();
-            
-            const originalText = element.innerHTML;
-            element.innerHTML = '⏳ Downloading...';
-
-            try {
-                const response = await fetch(originalUrl);
-                if(!response.ok) throw new Error("HTTP Status: " + response.status);
-                const blob = await response.blob();
-                const blobUrl = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = blobUrl;
-                a.download = filename;
-                document.body.appendChild(a);
-                a.click();
-                a.remove();
-                window.URL.revokeObjectURL(blobUrl);
-            } catch (e) {
-                console.error("Direct download failed, falling back to new tab", e);
-                window.open(originalUrl, '_blank');
-            } finally {
-                element.innerHTML = originalText;
-            }
         }
 
         function showNotFound() {
@@ -552,4 +502,4 @@
         window.onload = loadDramaDetails;
     </script>
 </body>
-</html>
+</html>               
