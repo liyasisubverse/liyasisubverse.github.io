@@ -1,4 +1,33 @@
 {
-  "latest_updates": [],
-  "dramas": {}
+  "latest_updates": [
+    {
+      "title": "Joseon Attorney: A Morality",
+      "episode": "E01",
+      "description": "ජොසොන් රාජ්‍යයේ නීතිය දන්නා හඳුනන කපටි නීතිඥයෙකු ලෙස පෙනී සිටින කෑන්ග් හන්-සූ, තමන්ගේම පෞද්ගලික අරමුණක් වෙනුවෙන් නීති කටයුතුවලට මැදිහත් වේ.",
+      "image_url": "https://image.tmdb.org/t/p/w500/r9s6F4IgFyPyjSh7n7wGMRO6Mp0.jpg",
+      "time_posted": "Just Now",
+      "post_link": "drama.html?id=206715",
+      "download_link": "https://raw.githubusercontent.com/liyasisubverse/liyasisubverse.github.io/main/subtitles/Joseon_Attorney:_A_Morality_E01.srt",
+      "border_color": "var(--neon-cyan)"
+    }
+  ],
+  "dramas": {
+    "206715": {
+      "id": "206715",
+      "title": "Joseon Attorney: A Morality",
+      "type": "K-DRAMA",
+      "status": "ONGOING",
+      "imdb": "5.6",
+      "image_url": "https://image.tmdb.org/t/p/w500/r9s6F4IgFyPyjSh7n7wGMRO6Mp0.jpg",
+      "map_url": "https://i.ibb.co/Xx69sDVZ/81e8c3a61814.png",
+      "synopsis": "\"Joseon Attorney: A Morality\" යනු ජොසොන් යුගයේ පසුබිමක දිවෙන නීතිමය සහ පලිගැනීමේ කතාවකි. අසාධාරණ ලෙස තම දෙමාපියන්ව මරා දැමූ පුද්ගලයින්ගෙන් පළිගැනීම සඳහා නීතිඥවරයෙකු ලෙස වෙස් වලා ගන්නා කෑන්ග් හන්-සූගේ කතාව මෙහි නිරූපණය වේ. මුලින් මුදල් සහ වාසි බලාගෙන නීති කටයුතුවල නිරත වන ඔහු, ක්‍රමයෙන් සාමාන්‍ය ජනතාවගේ දුක්ගැනවිලි වෙනුවෙන් පෙනී සිටින සැබෑ නීතිඥවරයෙකු බවට පත්වන ආකාරය ඉතා කුතුහලයෙන් යුතුව මෙම කතාවෙන් ගෙනහැර දක්වයි.",
+      "episodes": [
+        {
+          "episode": "E01",
+          "sub_link": "https://raw.githubusercontent.com/liyasisubverse/liyasisubverse.github.io/main/subtitles/Joseon_Attorney:_A_Morality_E01.srt",
+          "tg_link": ""
+        }
+      ]
+    }
+  }
 }
