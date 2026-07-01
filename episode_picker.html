@@ -147,7 +147,7 @@
             box-shadow: 0 0 10px rgba(255, 170, 0, 0.3); display: flex; align-items: center; gap: 4px; z-index: 2;
         }
 
-        /* 💫 TOP BADGES LAYOUT */
+        /* 💫 TOP BADGES LAYOUT ROW */
         .details-top-badges-row {
             grid-column: span 2;
             display: flex;
@@ -176,7 +176,7 @@
             text-shadow: 0 0 5px var(--neon-purple); padding: 4px 12px; font-size: 11px; font-weight: 800; border-radius: 20px; text-transform: uppercase;
         }
 
-        /* 📋 DYNAMIC SPECS SHEET VERTICAL ALIGNMENT 👇 */
+        /* 📋 METADATA DYNAMIC VERTICAL SPECS SHEET 👇 */
         .info-spec-list { 
             list-style: none; 
             padding: 0; 
@@ -209,7 +209,9 @@
         .cast-img-container::before {
             content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
             background: conic-gradient(var(--neon-cyan) 0deg, transparent 40%, transparent 100%);
-            animation: rgb-rotate 1.5s linear infinite; z-index: -2;
+            animation: rgb-rotate 1.5s linear infinite; 
+            -webkit-animation: rgb-rotate 1.5s linear infinite;
+            z-index: -2;
         }
         .cast-img-container::after { 
             content: ''; position: absolute; 
@@ -293,7 +295,7 @@
         .download-btn::after {
             content: ''; position: absolute; top: 0; left: -150%; width: 50%; height: 100%;
             background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.1) 10%, rgba(255, 255, 255, 0.9) 50%, rgba(0, 240, 255, 0.4) 60%, transparent);
-            transform: skewX(-20deg); animation: lightning-sweep 4s infinite linear; z-index: 2; pointer-events: none;
+            transform: skewX(-20deg); animation: lightning-sweep 4.5s infinite linear; z-index: 2; pointer-events: none;
         }
         .download-btn:hover {
             background: rgba(6, 11, 25, 0.9) !important;
@@ -304,7 +306,7 @@
         .download-btn.tg-video { border-color: #0088cc; box-shadow: 0 0 15px rgba(0, 136, 204, 0.4); }
         .download-btn.tg-video:hover {
             border-color: #00a2f3;
-            box-shadow: 0 0 25px rgba(0, 136, 204, 0.6), inset 0 0 15px rgba(0, 136, 204, 0.3);
+            box-shadow: 0 0 25px rgba(0, 136, 204, 0.6), inset 0 0 10px rgba(0, 136, 204, 0.3);
             color: #00a2f3 !important;
         }
 
@@ -324,7 +326,6 @@
             }
         }
 
-        /* 🌐 GLOWING SOCIAL MEDIA PLUG BOX */
         .social-plug-box {
             background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 15px;
             padding: 25px; margin-top: 50px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.5); border-top: 3px solid var(--neon-pink);
@@ -338,8 +339,23 @@
             color: #fff;
         }
         
-        /* ✍️ NEON GLOWING BRAND ICONS FOR SOCIAL MEDIAS 👇 */
-        .social-btn i { transition: all 0.3s ease; }
+        /* ✍️ NEON GLOWING BRAND ICONS FOR SOCIAL MEDIAS WITH THIN CONIC CHASE 👇 */
+        .social-btn::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: conic-gradient(var(--neon-cyan) 0deg, transparent 40%, transparent 100%);
+            animation: rgb-rotate 1.5s linear infinite; z-index: -2;
+        }
+        .social-btn::after { 
+            content: ''; position: absolute; 
+            inset: 1.5px; /* Extremely thin! */
+            background: #020408; border-radius: 50%; z-index: -1; transition: background 0.3s ease; 
+        }
+        @keyframes rgb-rotate { 
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); } 
+        }
+
+        .social-btn i { transition: all 0.3s ease; position: relative; z-index: 2; }
         .social-btn.facebook i { color: #1877f2; text-shadow: 0 0 10px #1877f2, 0 0 20px #1877f2; }
         .social-btn.youtube i { color: #ff0000; text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000; }
         .social-btn.telegram i { color: #0088cc; text-shadow: 0 0 10px #0088cc, 0 0 20px #0088cc; }
@@ -355,7 +371,6 @@
 
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-        /* 📱 RESPONSIVE TUNING */
         @media (max-width: 768px) {
             .drama-details-container { grid-template-columns: 1fr; padding: 20px; text-align: center; }
             /* 🎀 FULL WIDTH POSTER ON MOBILE */
@@ -612,7 +627,7 @@
 
                 <!-- 3. Right Column (Title + Spec List + Synopsis) -->
                 <div class="detail-info-wrapper">
-                    <h1 style="font-size: 28px; font-weight: 900; margin: 0 0 10px 0; text-shadow: 0 0 10px #fff; text-transform: uppercase;">${drama.title}</h1>
+                    <h1 style="font-size: 28px; font-weight: 900; margin: 0 0 15px 0; text-shadow: 0 0 10px #fff; text-transform: uppercase;">${drama.title}</h1>
                     <h2 style="font-size: 18px; font-weight: 800; color: ${statusColor}; text-shadow: 0 0 8px ${statusColor}; margin: 0 0 20px 0; text-transform: uppercase;">${ep.episode}: ${ep.title}</h2>
 
                     <ul class="info-spec-list">
