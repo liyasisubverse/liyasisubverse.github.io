@@ -6,22 +6,18 @@
     <title>ලියැසි SUBVERSE - Premium Subtitles Hub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
-        // =================================----------------------------
-        // 🛠️ ඔයාගේ විස්තර (Your Logo & Firebase Links)
-        // =================================----------------------------
-        const HEADER_BANNER_LOGO = "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/81260990-6d71-4fbb-b966-43f96215438e.png"; // Header Logo
-        const ABOUT_ME_ART_LOGO = "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png";       // About Me / Avatar
-        const firebaseURL = "https://subverse-b897d-default-rtdb.firebaseio.com/"; // ඔබේ Firebase URL එක
+        const HEADER_BANNER_LOGO = "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/81260990-6d71-4fbb-b966-43f96215438e.png"; 
+        const ABOUT_ME_ART_LOGO = "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png";       
+        const firebaseURL = "https://subverse-b897d-default-rtdb.firebaseio.com/"; 
     </script>
     <style>
         /* 🎨 PREMIUM CYBERPUNK PALETTE */
         :root {
             --bg-main: #020408;
             --neon-cyan: #00f0ff;
-            --neon-pink: #ff007f; /* තද නියොන් රෝස */
+            --neon-pink: #ff007f;
             --neon-amber: #ffaa00;
             --neon-purple: #9d4edd;
-            --neon-yellow: #ffee00;
             --text-main: #ffffff;
             --text-muted: #94a3b8;
             --glass-bg: rgba(6, 11, 25, 0.7);
@@ -33,12 +29,12 @@
             color: var(--text-main);
             font-family: 'Segoe UI', system-ui, sans-serif;
             margin: 0; padding: 0; min-height: 100vh;
+            /* 🏞️ CHANGE YOUR CUSTOM BACKGROUND IMAGE HERE 👇 */
             background-image: linear-gradient(to bottom, rgba(2, 4, 8, 0.88), rgba(2, 4, 8, 0.97)), 
                               url('https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=1200&auto=format&fit=crop');
             background-attachment: fixed; background-size: cover; background-position: center;
         }
 
-        /* 1. NAVIGATION HEADER */
         header {
             background: var(--glass-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
             border-bottom: 2px solid rgba(0, 240, 255, 0.25); padding: 10px 20px;
@@ -50,7 +46,6 @@
         }
         .header-left-zone { display: flex; align-items: center; gap: 15px; }
         
-        /* ☰ Three-Dot Wrapper and Dropdown */
         .three-dot-wrapper { position: relative; display: inline-block; }
         .three-dot-btn { background: none; border: none; color: white; font-size: 18px; cursor: pointer; padding: 8px 12px; transition: 0.3s; }
         .three-dot-btn:hover { color: var(--neon-cyan); text-shadow: 0 0 8px var(--neon-cyan); }
@@ -63,125 +58,50 @@
         .dropdown-menu a { display: flex; align-items: center; gap: 8px; color: white; padding: 10px 15px; text-decoration: none; font-size: 13px; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.05); transition: 0.2s; }
         .dropdown-menu a:hover { background: rgba(0,240,255,0.1); color: var(--neon-cyan); }
 
-        /* ⚡ HEADER LOGO WITH LIGHTNING EFFECT */
-        .logo-wrapper { 
-            display: flex; 
-            align-items: center; 
-            gap: 10px; 
-            text-decoration: none; 
-            position: relative;
-            overflow: hidden;
-            border-radius: 4px;
-        }
+        .logo-wrapper { display: flex; align-items: center; gap: 10px; text-decoration: none; position: relative; overflow: hidden; border-radius: 4px; }
         .logo-wrapper::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -150%;
-            width: 80%;
-            height: 100%;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(0, 240, 255, 0.1) 20%,
-                rgba(255, 255, 255, 0.9) 50%,
-                rgba(0, 240, 255, 0.4) 55%,
-                rgba(0, 240, 255, 0.1) 60%,
-                transparent
-            );
-            transform: skewX(-25deg);
-            animation: lightning-sweep 4.5s infinite linear;
-            z-index: 2;
-            pointer-events: none;
+            content: ''; position: absolute; top: 0; left: -150%; width: 80%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.1) 20%, rgba(255, 255, 255, 0.9) 50%, rgba(0, 240, 255, 0.4) 55%, rgba(0, 240, 255, 0.1) 60%, transparent);
+            transform: skewX(-25deg); animation: lightning-sweep 4.5s infinite linear; z-index: 2; pointer-events: none;
         }
-        @keyframes lightning-sweep {
-            0% { left: -150%; }
-            25% { left: 150%; }
-            100% { left: 150%; }
-        }
-
+        @keyframes lightning-sweep { 0% { left: -150%; } 25% { left: 150%; } 100% { left: 150%; } }
         .site-logo-img { height: 40px; width: auto; border-radius: 0; border: none; box-shadow: none; position: relative; z-index: 1; }
 
-        /* 🤖 ROBOTIC DIGITAL CLOCK */
         .live-clock {
             font-family: 'Courier New', monospace; font-size: 13px; font-weight: 900;
             color: var(--neon-cyan); text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px rgba(0, 240, 255, 0.5);
-            background: rgba(0, 240, 255, 0.03); padding: 6px 12px; border-radius: 6px; 
-            border: 2px solid var(--neon-cyan);
+            background: rgba(0, 240, 255, 0.03); padding: 6px 12px; border-radius: 6px; border: 2px solid var(--neon-cyan);
             box-shadow: inset 0 0 8px rgba(0, 240, 255, 0.2), 0 0 12px rgba(0, 240, 255, 0.3);
-            display: flex; align-items: center; gap: 8px;
-            letter-spacing: 0.5px;
+            display: flex; align-items: center; gap: 8px; letter-spacing: 0.5px;
         }
 
-        /* 2. TICKER */
         .ticker-wrapper {
             background: rgba(255, 0, 127, 0.12); border-bottom: 1px solid rgba(255, 0, 127, 0.25);
             overflow: hidden; padding: 5px 0; position: relative;
             -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
             mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
         }
-        .ticker-text {
-            display: inline-block; white-space: nowrap; animation: marquee 25s linear infinite; font-size: 11px; font-weight: 700; text-shadow: 0 0 5px var(--neon-pink);
-        }
+        .ticker-text { display: inline-block; white-space: nowrap; animation: marquee 25s linear infinite; font-size: 11px; font-weight: 700; text-shadow: 0 0 5px var(--neon-pink); }
         @keyframes marquee { 0% { transform: translateX(100vw); } 100% { transform: translateX(-100%); } }
 
-        /* 📍 SUB-NAVIGATION BAR STYLE */
-        .sub-nav-container {
-            max-width: 1300px; margin: 20px auto 0 auto; padding: 0 15px; box-sizing: border-box;
-        }
-        .sub-nav-bar {
-            background: none; border: none; box-shadow: none;
-            padding: 10px; display: flex; justify-content: center; gap: 20px;
-        }
+        .sub-nav-container { max-width: 1300px; margin: 20px auto 0 auto; padding: 0 15px; box-sizing: border-box; }
+        .sub-nav-bar { background: none; border: none; box-shadow: none; padding: 10px; display: flex; justify-content: center; gap: 20px; }
         .sub-nav-item {
             color: var(--text-main); text-decoration: none; font-size: 13px; font-weight: 800;
-            padding: 8px 18px; border-radius: 5px; transition: 0.3s; text-transform: uppercase;
-            letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px;
+            padding: 8px 18px; border-radius: 5px; transition: 0.3s; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px;
         }
-        .sub-nav-item:hover, .sub-nav-item.active {
-            color: var(--neon-cyan); background: rgba(0, 240, 255, 0.1);
-            text-shadow: 0 0 12px var(--neon-cyan); border: 1px solid rgba(0, 240, 255, 0.2);
-        }
-        .sub-nav-item.telegram { color: #0088cc; }
-        .sub-nav-item.telegram:hover {
-            color: #0088cc; background: rgba(0, 136, 204, 0.1);
-            text-shadow: 0 0 8px #0088cc; border-color: rgba(0, 136, 204, 0.2);
-        }
-
-        /* SUB-NAV TICKER (DUST TEXT UNDER HOME) */
-        .sub-nav-ticker {
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            margin-top: 10px;
-            margin-bottom: 20px;
-        }
-        .sub-nav-ticker-text {
-            display: inline-block;
-            white-space: nowrap;
-            animation: marquee 20s linear infinite;
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--neon-cyan);
-            text-shadow: 0 0 10px var(--neon-cyan);
-        }
+        .sub-nav-item:hover, .sub-nav-item.active { color: var(--neon-cyan); background: rgba(0, 240, 255, 0.1); text-shadow: 0 0 12px var(--neon-cyan); border: 1px solid rgba(0, 240, 255, 0.2); }
+        .sub-nav-ticker { overflow: hidden; display: flex; justify-content: center; margin-top: 10px; margin-bottom: 20px; }
+        .sub-nav-ticker-text { display: inline-block; white-space: nowrap; animation: marquee 20s linear infinite; font-size: 14px; font-weight: 700; color: var(--neon-cyan); text-shadow: 0 0 10px var(--neon-cyan); }
 
         .main-container { max-width: 1300px; margin: 20px auto; padding: 0 15px; box-sizing: border-box; }
 
-        /* 3. FEATURED HERO BANNER */
         .hero-banner {
             width: 100%; height: 350px; border-radius: 12px; overflow: hidden; position: relative; margin-bottom: 30px;
-            border: 1px solid var(--glass-border); box-shadow: 0 10px 40px rgba(0,0,0,0.8);
-            background-size: cover; background-position: top center;
+            border: 1px solid var(--glass-border); box-shadow: 0 10px 40px rgba(0,0,0,0.8); background-size: cover; background-position: top center;
         }
-        .hero-content {
-            position: absolute; top: 0; left: 0; bottom: 0; width: 55%;
-            display: flex; flex-direction: column; justify-content: center; padding: 35px; box-sizing: border-box;
-        }
-        .hero-badge {
-            background: var(--neon-pink); color: #fff; padding: 3px 8px; font-size: 11px; font-weight: 900;
-            width: fit-content; border-radius: 4px; margin-bottom: 12px; box-shadow: 0 0 10px var(--neon-pink);
-        }
+        .hero-content { position: absolute; top: 0; left: 0; bottom: 0; width: 55%; display: flex; flex-direction: column; justify-content: center; padding: 35px; box-sizing: border-box; }
+        .hero-badge { background: var(--neon-pink); color: #fff; padding: 3px 8px; font-size: 11px; font-weight: 900; width: fit-content; border-radius: 4px; margin-bottom: 12px; box-shadow: 0 0 10px var(--neon-pink); }
         .hero-title { font-size: 26px; font-weight: 800; margin: 0 0 8px 0; text-shadow: 0 0 10px #fff; }
         .hero-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; margin: 0 0 15px 0; }
         .hero-author { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--neon-cyan); margin-bottom: 15px; }
@@ -192,71 +112,35 @@
         }
         .hero-btn:hover { background: var(--neon-cyan); color: #000; box-shadow: 0 0 20px var(--neon-cyan); }
 
-        /* 👑 WIDGETS BAR */
         .widget-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
         .widget-box { background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 20px; border-radius: 12px; }
         .widget-title { font-size: 14px; font-weight: 900; color: var(--neon-amber); text-transform: uppercase; margin-bottom: 15px; border-left: 3px solid var(--neon-amber); padding-left: 10px; }
 
-        /* 🎀 SECTION BARS */
         .section-bar {
             background: linear-gradient(90deg, rgba(0, 240, 255, 0.15), transparent);
-            border-left: 6px solid var(--neon-cyan); padding: 10px 15px; margin: 40px 0 15px 0;
-            border-radius: 4px; display: flex; align-items: center; gap: 10px;
+            border-left: 6px solid var(--neon-cyan); padding: 10px 15px; margin: 40px 0 15px 0; border-radius: 4px; display: flex; align-items: center; gap: 10px;
         }
         .section-bar.complete { border-left-color: var(--neon-pink); background: linear-gradient(90deg, rgba(255, 0, 127, 0.15), transparent); }
         
-        /* ✍️ TYPEWRITER / ERASING NEON TITLE STYLE */
         .section-title-neon {
-            font-size: 16px;
-            font-weight: 900;
-            color: #ffffff;
-            text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan);
-            text-transform: uppercase;
-            margin: 0;
-            letter-spacing: 1.5px;
-            display: inline-block;
-            overflow: hidden;
-            white-space: nowrap;
-            border-right: 3px solid var(--neon-cyan);
-            animation: 
-                type-and-erase 6s steps(30, end) infinite,
-                blink-caret 0.75s step-end infinite;
-            max-width: fit-content;
+            font-size: 16px; font-weight: 900; color: #ffffff; text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan); text-transform: uppercase;
+            margin: 0; letter-spacing: 1.5px; display: inline-block; overflow: hidden; white-space: nowrap; border-right: 3px solid var(--neon-cyan);
+            animation: type-and-erase 6s steps(30, end) infinite, blink-caret 0.75s step-end infinite; max-width: fit-content;
         }
         .section-bar.complete .section-title-neon {
-            text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink);
-            border-right-color: var(--neon-pink);
-            animation: 
-                type-and-erase-pink 6s steps(30, end) infinite,
-                blink-caret-pink 0.75s step-end infinite;
+            text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink); border-right-color: var(--neon-pink);
+            animation: type-and-erase-pink 6s steps(30, end) infinite, blink-caret-pink 0.75s step-end infinite;
         }
 
-        /* Type and Erase Keyframes */
-        @keyframes type-and-erase {
-            0%, 100% { width: 0; }
-            45%, 55% { width: 100%; }
-            90% { width: 0; }
-        }
-        @keyframes type-and-erase-pink {
-            0%, 100% { width: 0; }
-            45%, 55% { width: 100%; }
-            90% { width: 0; }
-        }
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: var(--neon-cyan); }
-        }
-        @keyframes blink-caret-pink {
-            from, to { border-color: transparent }
-            50% { border-color: var(--neon-pink); }
-        }
+        @keyframes type-and-erase { 0%, 100% { width: 0; } 45%, 55% { width: 100%; } 90% { width: 0; } }
+        @keyframes type-and-erase-pink { 0%, 100% { width: 0; } 45%, 55% { width: 100%; } 90% { width: 0; } }
+        @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: var(--neon-cyan); } }
+        @keyframes blink-caret-pink { from, to { border-color: transparent } 50% { border-color: var(--neon-pink); } }
 
         .status-header { font-size: 12px; color: var(--neon-amber); margin: 20px 0 10px 10px; font-weight: 900; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
 
-        /* 🎬 DRAMA GRID */
         .drama-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 15px; margin-bottom: 25px; }
 
-        /* 🃏 COMPACT MOVIE CARD */
         .movie-style-card {
             background: #000; border-radius: 6px; overflow: hidden; position: relative; text-decoration: none;
             aspect-ratio: 2 / 3; box-shadow: 0 5px 15px rgba(0,0,0,0.7); transition: all 0.3s ease;
@@ -266,172 +150,80 @@
         .movie-style-card.card-complete { border-color: var(--neon-pink); }
         .poster-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
 
-        /* 🎀 UPPER BADGE - SHOWS CATEGORY or COMPLETE STATUS (TOP LEFT) */
         .badge-top-left {
             position: absolute; top: 8px; left: 8px; background: rgba(2, 4, 8, 0.85); color: #fff;
-            padding: 3px 8px; font-size: 10px; font-weight: 900; border-radius: 4px;
-            border: 1px solid var(--neon-cyan); box-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
-            z-index: 2; text-transform: uppercase;
+            padding: 3px 8px; font-size: 10px; font-weight: 900; border-radius: 4px; border: 1px solid var(--neon-cyan); box-shadow: 0 0 8px rgba(0, 240, 255, 0.4); z-index: 2; text-transform: uppercase;
         }
-        /* Style for COMPLETE Badge on completed card */
-        .card-complete .badge-top-left {
-            background: var(--neon-pink);
-            color: #fff;
-            border-color: rgba(255, 255, 255, 0.4);
-            box-shadow: 0 0 12px var(--neon-pink), 0 0 4px #fff;
-        }
+        .card-complete .badge-top-left { background: var(--neon-pink); color: #fff; border-color: rgba(255, 255, 255, 0.4); box-shadow: 0 0 12px var(--neon-pink), 0 0 4px #fff; }
 
-        /* 🎀 LOWER BADGE - SHOWS EPISODE / TOTAL EPISODES (BOTTOM LEFT) */
         .badge-bottom-left {
             position: absolute; bottom: 35px; left: 8px; background: var(--neon-cyan); color: #000;
-            padding: 3px 8px; font-size: 10px; font-weight: 900; border-radius: 4px;
-            box-shadow: 0 0 12px var(--neon-cyan), 0 0 4px #fff; border: 1px solid rgba(255,255,255,0.4);
-            z-index: 2;
+            padding: 3px 8px; font-size: 10px; font-weight: 900; border-radius: 4px; box-shadow: 0 0 12px var(--neon-cyan), 0 0 4px #fff; border: 1px solid rgba(255,255,255,0.4); z-index: 2;
         }
-        /* Style for completed bottom badge */
-        .card-complete .badge-bottom-left {
-            background: var(--neon-pink);
-            color: #fff;
-            box-shadow: 0 0 12px var(--neon-pink), 0 0 4px #fff;
-            border-color: rgba(255,255,255,0.4);
-        }
+        .card-complete .badge-bottom-left { background: var(--neon-pink); color: #fff; box-shadow: 0 0 12px var(--neon-pink), 0 0 4px #fff; border-color: rgba(255,255,255,0.4); }
 
-        /* 🌟 Vertical Yellow Neon Bar (Rating - MOVED TO TOP RIGHT TO PREVENT OVERLAP) */
         .rating-bar-vertical {
-            position: absolute; right: 8px; top: 8px;
-            background: rgba(2, 4, 8, 0.9);
-            border-right: 3px solid var(--neon-amber);
-            color: var(--neon-amber);
-            text-shadow: 0 0 8px var(--neon-amber);
-            padding: 3px 6px; font-size: 10px; font-weight: 900; border-radius: 3px;
-            box-shadow: 0 0 10px rgba(255, 170, 0, 0.3);
-            display: flex; align-items: center; gap: 3px;
-            z-index: 2;
-            transition: all 0.3s ease;
+            position: absolute; right: 8px; top: 8px; background: rgba(2, 4, 8, 0.9);
+            border-right: 3px solid var(--neon-amber); color: var(--neon-amber); text-shadow: 0 0 8px var(--neon-amber);
+            padding: 3px 6px; font-size: 10px; font-weight: 900; border-radius: 3px; box-shadow: 0 0 10px rgba(255, 170, 0, 0.3); display: flex; align-items: center; gap: 3px; z-index: 2; transition: all 0.3s ease;
         }
 
-        /* Neon Title Style inside Overlay */
-        .title-overlay {
-            position: absolute; bottom: 0; left: 0; right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,1) 40%, transparent); padding: 12px 6px;
-        }
-        .title-overlay p { 
-            color: var(--neon-cyan); 
-            text-shadow: 0 0 6px var(--neon-cyan); 
-            margin: 0; font-size: 10.5px; font-weight: 800; 
-            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: center;
-            transition: 0.3s;
-        }
-        .card-complete .title-overlay p {
-            color: var(--neon-pink);
-            text-shadow: 0 0 6px var(--neon-pink);
-        }
-        .movie-style-card:hover .title-overlay p {
-            color: #fff;
-            text-shadow: 0 0 12px var(--neon-cyan), 0 0 4px #fff;
-        }
-        .movie-style-card.card-complete:hover .title-overlay p {
-            color: #fff;
-            text-shadow: 0 0 12px var(--neon-pink), 0 0 4px #fff;
-        }
+        .title-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,1) 40%, transparent); padding: 12px 6px; }
+        .title-overlay p { color: var(--neon-cyan); text-shadow: 0 0 6px var(--neon-cyan); margin: 0; font-size: 10.5px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: center; transition: 0.3s; }
+        .card-complete .title-overlay p { color: var(--neon-pink); text-shadow: 0 0 6px var(--neon-pink); }
+        .movie-style-card:hover .title-overlay p { color: #fff; text-shadow: 0 0 12px var(--neon-cyan), 0 0 4px #fff; }
+        .movie-style-card.card-complete:hover .title-overlay p { color: #fff; text-shadow: 0 0 12px var(--neon-pink), 0 0 4px #fff; }
 
-        /* 7. SPLIT GENRE BOXES */
         .genre-section-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 50px; }
-        .genre-box { 
-            background: var(--glass-bg); padding: 20px; border-radius: 12px; 
-            border: 1px solid var(--glass-border); border-top: 3px solid var(--neon-purple);
-        }
+        .genre-box { background: var(--glass-bg); padding: 20px; border-radius: 12px; border: 1px solid var(--glass-border); border-top: 3px solid var(--neon-purple); }
         .genre-box-title { color: var(--neon-amber); font-weight: 900; font-size: 14px; margin-bottom: 15px; display: block; text-transform: uppercase; }
         .genre-list { display: flex; flex-wrap: wrap; gap: 8px; }
-        .genre-item { 
-            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
-            padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: bold;
-            color: #ccc; text-decoration: none; transition: 0.2s;
-        }
+        .genre-item { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: bold; color: #ccc; text-decoration: none; transition: 0.2s; }
         .genre-item:hover { border-color: var(--neon-cyan); color: var(--neon-cyan); background: rgba(0,240,255,0.05); }
 
-        /* 🔍 SEARCH BOX */
         .search-area { display: flex; justify-content: center; margin: 25px 0; }
-        .search-box {
-            background: rgba(6, 11, 25, 0.8); border: 1px solid var(--glass-border);
-            border-radius: 50px; padding: 12px 25px; display: flex; align-items: center;
-            width: 100%; max-width: 600px; transition: 0.3s;
-        }
+        .search-box { background: rgba(6, 11, 25, 0.8); border: 1px solid var(--glass-border); border-radius: 50px; padding: 12px 25px; display: flex; align-items: center; width: 100%; max-width: 600px; transition: 0.3s; }
         .search-box:focus-within { border-color: var(--neon-cyan); box-shadow: 0 0 15px rgba(0, 240, 255, 0.3); }
         .search-box i { color: var(--neon-cyan); margin-right: 15px; font-size: 16px; }
         .search-box input { background: none; border: none; outline: none; color: white; width: 100%; font-size: 14px; }
 
-        /* 🎛️ DYNAMIC LANGUAGE TABS */
         .filter-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
-        .tab-btn {
-            background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border);
-            color: #ccc; padding: 8px 20px; border-radius: 30px; font-weight: bold; font-size: 13px;
-            cursor: pointer; transition: 0.3s;
-        }
-        .tab-btn:hover, .tab-btn.active {
-            background: rgba(0, 240, 255, 0.1); border-color: var(--neon-cyan);
-            color: var(--neon-cyan); box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
-        }
+        .tab-btn { background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); color: #ccc; padding: 8px 20px; border-radius: 30px; font-weight: bold; font-size: 13px; cursor: pointer; transition: 0.3s; }
+        .tab-btn:hover, .tab-btn.active { background: rgba(0, 240, 255, 0.1); border-color: var(--neon-cyan); color: var(--neon-cyan); box-shadow: 0 0 15px rgba(0, 240, 255, 0.3); }
 
-        /* 🏷️ UNIFIED DYNAMIC GENRE SECTION */
-        .genre-section { 
-            background: var(--glass-bg); padding: 20px; border-radius: 12px; 
-            border: 1px solid var(--glass-border); border-top: 3px solid var(--neon-purple); margin-top: 50px;
-        }
+        .genre-section { background: var(--glass-bg); padding: 20px; border-radius: 12px; border: 1px solid var(--glass-border); border-top: 3px solid var(--neon-purple); margin-top: 50px; }
         .genre-section-title { color: var(--neon-amber); font-weight: 900; font-size: 14px; margin-bottom: 15px; display: block; text-transform: uppercase; }
         .genre-list { display: flex; flex-wrap: wrap; gap: 8px; }
-        .genre-item { 
-            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
-            padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: bold;
-            color: #ccc; text-decoration: none; transition: 0.2s;
-        }
+        .genre-item { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: bold; color: #ccc; text-decoration: none; transition: 0.2s; }
         .genre-item:hover, .genre-item.active { border-color: var(--neon-cyan); color: var(--neon-cyan); background: rgba(0,240,255,0.05); box-shadow: 0 0 10px var(--neon-cyan); }
 
-        /* 👤 ABOUT ME GLASS BOX */
-        .about-section {
-            background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 15px;
-            padding: 30px; margin-top: 50px; display: flex; align-items: center; gap: 25px;
-            border-right: 4px solid var(--neon-pink);
-        }
+        .about-section { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 15px; padding: 30px; margin-top: 50px; display: flex; align-items: center; gap: 25px; border-right: 4px solid var(--neon-pink); }
         .about-img { width: 90px; height: 90px; border-radius: 50%; border: 3px solid var(--neon-pink); box-shadow: 0 0 15px var(--neon-pink); object-fit: cover; }
 
-        /* 🌐 GLOWING SOCIAL MEDIA PLUG BOX WITH RGB BORDER CHASE EFFECT */
-        .social-plug-box {
-            background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 15px;
-            padding: 25px; margin-top: 50px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-            border-top: 3px solid var(--neon-pink);
-        }
-        .social-title {
-            font-size: 13px; font-weight: 800; color: var(--text-main);
-            text-shadow: 0 0 8px var(--neon-pink); margin-bottom: 20px; letter-spacing: 1px;
-            text-transform: uppercase;
-        }
+        .social-plug-box { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 15px; padding: 25px; margin-top: 50px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.5); border-top: 3px solid var(--neon-pink); }
+        .social-title { font-size: 13px; font-weight: 800; color: var(--text-main); text-shadow: 0 0 8px var(--neon-pink); margin-bottom: 20px; letter-spacing: 1px; text-transform: uppercase; }
         .social-icons-wrapper { display: flex; justify-content: center; gap: 25px; }
         
         .social-btn {
-            position: relative;
-            width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 22px; text-decoration: none; transition: all 0.3s ease;
-            background: #020408; color: #fff; overflow: hidden; z-index: 1; border: none;
+            position: relative; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 22px; text-decoration: none; transition: all 0.3s ease; background: #020408; color: #fff; overflow: hidden; z-index: 1; border: none;
         }
+        /* 💫 SLEEK SINGLE-COLOR FAST CHASE FOR SOCIAL BUTTONS 👇 */
         .social-btn::before {
-            content: '';
-            position: absolute;
-            top: -50%; left: -50%; width: 200%; height: 200%;
-            background: conic-gradient(
-                #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000
-            );
-            animation: rgb-rotate 4s linear infinite;
-            z-index: -2;
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: conic-gradient(var(--neon-cyan) 0deg, transparent 40%, transparent 100%);
+            animation: rgb-rotate 1.5s linear infinite; z-index: -2;
         }
-        .social-btn::after {
-            content: '';
-            position: absolute; inset: 3px;
-            background: #020408; border-radius: 50%; z-index: -1;
-            transition: background 0.3s ease;
+        .social-btn::after { 
+            content: ''; position: absolute; 
+            inset: 1.5px; /* Extremely thin! */
+            background: #020408; border-radius: 50%; z-index: -1; transition: background 0.3s ease; 
         }
-        @keyframes rgb-rotate {
-            100% { transform: rotate(360deg); }
+        
+        /* Fast chase animation */
+        @keyframes rgb-rotate { 
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); } 
         }
 
         .social-btn:hover::after { background: rgba(6, 11, 25, 0.9); }
@@ -439,15 +231,7 @@
         .social-btn.youtube:hover { color: #ff0000; text-shadow: 0 0 8px #ff0000; }
         .social-btn.telegram:hover { color: #0088cc; text-shadow: 0 0 8px #0088cc; }
 
-        /* 🏛️ PREMIUM GLASS FOOTER */
-        footer {
-            background: rgba(4, 8, 16, 0.95);
-            border-top: 2px solid var(--neon-cyan);
-            padding: 40px 20px;
-            text-align: center;
-            margin-top: 40px;
-            box-shadow: 0 -10px 30px rgba(0, 240, 255, 0.1);
-        }
+        footer { background: rgba(4, 8, 16, 0.95); border-top: 2px solid var(--neon-cyan); padding: 40px 20px; text-align: center; margin-top: 40px; box-shadow: 0 -10px 30px rgba(0, 240, 255, 0.1); }
         .footer-content { max-width: 800px; margin: 0 auto; }
         .footer-brand { font-size: 22px; font-weight: 900; margin-bottom: 15px; }
         .footer-brand .sinhala { color: #fff; text-shadow: 0 0 8px var(--neon-pink); }
@@ -455,29 +239,13 @@
         .footer-description { font-size: 13px; color: #fff; text-shadow: 0 0 5px var(--neon-pink); line-height: 1.6; margin-bottom: 25px; }
         .footer-credits { font-size: 11px; color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px; }
 
-        /* 💫 BLINK EFFECT FOR ROBOT SYSTEM */
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-        /* 📱 MOBILE RESPONSIVE TUNING */
         @media (max-width: 900px) { .drama-grid { grid-template-columns: repeat(4, 1fr); } }
         @media (max-width: 600px) {
             .header-container { flex-direction: row !important; justify-content: space-between !important; align-items: center !important; width: 100%; }
-            
-            /* 🤖 RESPONSIVE ROBOTIC CLOCK FOR MOBILE */
-            .live-clock {
-                display: flex !important;
-                font-size: 9px !important;
-                padding: 4px 8px !important;
-                letter-spacing: 0px !important;
-                border-width: 1px !important;
-            }
-            .site-logo-img {
-                height: 32px !important;
-            }
-
+            .live-clock { display: flex !important; font-size: 9px !important; padding: 4px 8px !important; letter-spacing: 0px !important; border-width: 1px !important; }
+            .site-logo-img { height: 32px !important; }
             .sub-nav-bar { gap: 10px; padding: 8px; }
             .sub-nav-item { font-size: 11px; padding: 6px 12px; }
             .hero-banner { height: 230px; margin-bottom: 20px; }
@@ -491,27 +259,11 @@
             .widget-title { font-size: 12px; margin-bottom: 6px; }
             .widget-box p { font-size: 11px !important; line-height: 1.4 !important; }
             #visitor-count { font-size: 20px !important; margin-top: 5px !important; }
-            
-            /* Responsive layout adjustments for mobile badges to prevent overlapping */
             .badge-top-left { font-size: 8px; padding: 2px 4px; top: 6px; left: 6px; }
             .rating-bar-vertical { font-size: 8px; padding: 2px 4px; top: 6px; right: 6px; }
             .badge-bottom-left { font-size: 8px; padding: 2px 4px; bottom: 32px; left: 6px; }
-
-            /* ✍️ PREVENT TYPEWRITER TITLE CUTOFF ON MOBILE */
-            .section-title-neon {
-                font-size: 11px !important;
-                letter-spacing: 0.5px !important;
-                border-right-width: 2px !important;
-            }
         }
-
-        /* Responsive scale on tiny screens */
-        @media (max-width: 400px) {
-            .live-clock {
-                font-size: 8px !important;
-                padding: 3px 6px !important;
-            }
-        }
+        @media (max-width: 400px) { .live-clock { font-size: 8px !important; padding: 3px 6px !important; } }
     </style>
 </head>
 <body>
@@ -529,15 +281,12 @@
                         <a href="#"><i class="fa-solid fa-film"></i> Request Drama</a>
                     </div>
                 </div>
-                <!-- LOGO WITH INTEGRATED LIGHTNING SHIELD -->
                 <a href="index.html" class="logo-wrapper" id="header-logo-container"></a>
             </div>
-            <!-- ROBOT SYSTEM DIGITAL CLOCK (NOW FULLY VISIBLE ON MOBILE) -->
             <div class="live-clock" id="cyberClock">🤖 [SECURED TIME DATALINK]</div>
         </div>
     </header>
 
-    <!-- TICKER -->
     <div class="ticker-wrapper">
         <div class="ticker-text" id="ticker-text">⚡ Loading Updates...</div>
     </div>
@@ -547,7 +296,6 @@
         <div class="sub-nav-bar">
             <a href="index.html" class="sub-nav-item active"><i class="fa-solid fa-house"></i> Home</a>
         </div>
-        <!-- NEON TICKER UNDER HOME BUTTON -->
         <div class="sub-nav-ticker">
             <div class="sub-nav-ticker-text">✨️ දුර්ලභ කතා මාලා වල නිවහන {The Home of Rare Series}   ✨️</div>
         </div>
@@ -567,7 +315,7 @@
             </div>
         </div>
 
-        <!-- SEARCH BOX (PLACED DIRECTLY UNDER HERO BANNER) -->
+        <!-- SEARCH BOX -->
         <div class="search-area">
             <div class="search-box">
                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -583,7 +331,7 @@
             <button class="tab-btn" onclick="filterLanguage('J-DRAMA')">JAPANESE</button>
         </div>
 
-        <!-- Dynamic Content (DRAMA CARDS SHOWN FIRST) -->
+        <!-- Dynamic Content -->
         <div id="dynamic-content">
             <p style="text-align: center; color: var(--neon-cyan);">පූරණය වෙමින් පවතී...</p>
         </div>
@@ -594,11 +342,11 @@
             <div class="genre-list" id="genre-container"></div>
         </div>
 
-        <!-- WIDGETS BAR (MOVED DOWN BELOW DRAMAS & GENRES) -->
+        <!-- WIDGETS BAR -->
         <div class="widget-grid" style="margin-top: 40px; margin-bottom: 40px;">
             <div class="widget-box" style="border-right: 4px solid var(--neon-pink);">
                 <div class="widget-title"><i class="fa-solid fa-bullhorn" style="color:var(--neon-pink)"></i> දැනුම්දීම් (Notice)</div>
-                <p style="font-size:12px; line-height:1.6; color:#ccc; margin:0;">අපගේ සියලුම සිංහල උපසිරැසි නොමිලේ ලබාගත හැක. කිසියම් ගැටලුවක් ඇත්නම් 3-Dot මෙනුවේ ඇති Contact පිටුවෙන් අපට පණිවිඩයක් එවන්න.</p>
+                <p id="notice-widget-text" style="font-size:12px; line-height:1.6; color:#ccc; margin:0;">අපගේ සියලුම සිංහල උපසිරැසි නොමිලේ ලබාගත හැක. කිසියම් ගැටලුවක් ඇත්නම් 3-Dot මෙනුවේ ඇති Contact පිටුවෙන් අපට පණිවිඩයක් එවන්න.</p>
             </div>
             <div class="widget-box" style="border-right: 4px solid var(--neon-cyan); text-align: center;">
                 <div class="widget-title" style="border-left-color: var(--neon-cyan);"><i class="fa-solid fa-eye" style="color:var(--neon-cyan)"></i> ප්‍රේක්ෂකයින් (Visits)</div>
@@ -607,20 +355,20 @@
             </div>
             <div class="widget-box" style="border-right: 4px solid var(--neon-amber);">
                 <div class="widget-title" style="border-left-color: var(--neon-amber);"><i class="fa-solid fa-server" style="color:var(--neon-amber)"></i> සේවා තත්ත්වය (Server Status)</div>
-                <p style="font-size:12px; margin:0; color:#ccc; line-height:1.6;">💾 උපසිරැසි සර්වර්: <span style="color:#0f0; font-weight:bold;">ONLINE</span><br>🤖 ටෙලිග්‍රෑම් බොට්: <span style="color:#0f0; font-weight:bold;">ACTIVE</span></p>
+                <p id="server-status-widget" style="font-size:12px; margin:0; color:#ccc; line-height:1.6;">💾 උපසිරැසි සර්වර්: <span style="color:#0f0; font-weight:bold;">ONLINE</span><br>🤖 ටෙලිග්‍රෑම් බොට්: <span style="color:#0f0; font-weight:bold;">ACTIVE</span></p>
             </div>
         </div>
 
         <!-- ABOUT ME GLASS BOX -->
         <div class="about-section" id="about-section-container"></div>
 
-        <!-- 🌐 GLOWING SOCIAL MEDIA PLUG BOX WITH DYNAMIC RGB BORDERS -->
+        <!-- 🌐 GLOWING SOCIAL MEDIA PLUG BOX -->
         <div class="social-plug-box">
             <div class="social-title">CONNECT WITH US ON SOCIAL NETWORKS</div>
-            <div class="social-icons-wrapper">
+            <div class="social-icons-wrapper" id="social-plug-links">
                 <a href="https://facebook.com" target="_blank" class="social-btn facebook"><i class="fa-brands fa-facebook-f"></i></a>
                 <a href="https://youtube.com" target="_blank" class="social-btn youtube"><i class="fa-brands fa-youtube"></i></a>
-                <a href="https://t.me/liyasi1" target="_blank" class="social-btn telegram"><i class="fa-brands fa-telegram"></i></a>
+                <a href="https://t.me/liyasi1" target="_blank" class="social-btn telegram" id="tg-main-icon-link"><i class="fa-brands fa-telegram"></i></a>
             </div>
         </div>
 
@@ -649,15 +397,11 @@
             }
         }
 
-        // 🤖 ROBOT DIGITAL CLOCK SYSTEM IMPLEMENTATION
         function updateCyberClock() {
             const now = new Date();
             const options = { timeZone: "Asia/Colombo", hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
             const timeString = now.toLocaleTimeString('en-US', options);
-            const year = now.getFullYear(); 
-            const month = String(now.getMonth() + 1).padStart(2, '0'); 
-            const day = String(now.getDate()).padStart(2, '0');
-            
+            const year = now.getFullYear(); const month = String(now.getMonth() + 1).padStart(2, '0'); const day = String(now.getDate()).padStart(2, '0');
             document.getElementById('cyberClock').innerHTML = `
                 <span style="font-family: 'Courier New', monospace; letter-spacing: 1px;">
                     <span style="color: var(--neon-pink); font-weight: bold; animation: blink 1.2s infinite;">🤖 [SYSTEM ACTIVE]</span> 
@@ -698,95 +442,8 @@
         }
 
         const dummyDatabase = {
-            "latest_updates": [
-                { "title": "Joseon Attorney", "episode": "EP 07" }
-            ],
-            "dramas": {
-                "1": {
-                    "id": "1",
-                    "title": "Joseon Attorney",
-                    "type": "K-DRAMA",
-                    "status": "ONGOING",
-                    "imdb": "8.9",
-                    "total_episodes": 16,
-                    "image_url": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/03189cce-01a5-4a2b-aaf4-ffdd836806f4.webp",
-                    "synopsis": "තමන්ගේ දෙමව්පියන්ගේ මරණයට පළිගැනීමක් සොයා යන නීතිඥයෙකු වටා ගෙතුණු සුපිරි ඓතිහාසික කොරියානු කතාමාලාව.",
-                    "genres": ["Historical", "Romance", "Action", "Legal"],
-                    "episodes": [{ "episode": "EP 07" }]
-                },
-                "2": {
-                    "id": "2",
-                    "title": "Blood Free",
-                    "type": "K-DRAMA",
-                    "status": "ONGOING",
-                    "imdb": "8.2",
-                    "total_episodes": 10,
-                    "image_url": "https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=400",
-                    "synopsis": "කෘතිම මස් නිෂ්පාදනය කරන සමාගමක් වටා සිදුවන කුතුහලයෙන් පිරි ක්‍රියාදාම කතාමාලාවක්.",
-                    "genres": ["Sci-Fi", "Thriller", "Action", "Medical"],
-                    "episodes": [{ "episode": "EP 02" }]
-                },
-                "3": {
-                    "id": "3",
-                    "title": "Queen of Tears",
-                    "type": "K-DRAMA",
-                    "status": "COMPLETE",
-                    "imdb": "9.1",
-                    "total_episodes": 16,
-                    "image_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=400",
-                    "synopsis": "ප්‍රසිද්ධ ව්‍යාපාරික පවුලක සිදුවන ආදරය සහ විරහව පිරි ලස්සන කොරියානු කතාවක්.",
-                    "genres": ["Romance", "Comedy", "Drama"],
-                    "episodes": [{ "episode": "COMPLETE" }]
-                },
-                "4": {
-                    "id": "4",
-                    "title": "Three-Body Problem",
-                    "type": "C-DRAMA",
-                    "status": "ONGOING",
-                    "imdb": "7.9",
-                    "total_episodes": 30,
-                    "image_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400",
-                    "synopsis": "අනාගතයේ සිදුවීමට නියමිත පිටසක්වල ජීවීන්ගේ ආක්‍රමණයක් වටා ගෙතුණු Sci-Fi චීන කතාවක්.",
-                    "genres": ["Sci-Fi", "Mystery", "Thriller"],
-                    "episodes": [{ "episode": "EP 02" }]
-                },
-                "5": {
-                    "id": "5",
-                    "title": "Alice in Borderland",
-                    "type": "J-DRAMA",
-                    "status": "COMPLETE",
-                    "imdb": "8.0",
-                    "total_episodes": 8,
-                    "image_url": "https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=400",
-                    "synopsis": "තමන්ගේ ජීවිතය බේරාගැනීම සඳහා භයානක ක්‍රීඩාවල නිරත වීමට සිදුවන තරුණයින් පිරිසකගේ ජපන් කතාවක්.",
-                    "genres": ["Sci-Fi", "Action", "Thriller"],
-                    "episodes": [{ "episode": "COMPLETE" }]
-                },
-                "6": {
-                    "id": "6",
-                    "title": "Joy of Life",
-                    "type": "C-DRAMA",
-                    "status": "COMPLETE",
-                    "imdb": "8.7",
-                    "total_episodes": 46,
-                    "image_url": "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=400",
-                    "synopsis": "අතීත චීන රාජධානියක් තුළ සිදුවන දේශපාලන කුමන්ත්‍රණ සහ අභිරහස් පිරි අතිශය ජනප්‍රිය චීන කතාමාලාව.",
-                    "genres": ["Historical", "Romance", "Political"],
-                    "episodes": [{ "episode": "COMPLETE" }]
-                },
-                "7": {
-                    "id": "7",
-                    "title": "Informa",
-                    "type": "J-DRAMA",
-                    "status": "ONGOING",
-                    "imdb": "7.4",
-                    "total_episodes": 10,
-                    "image_url": "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=400",
-                    "synopsis": "අපරාධ ලෝකයේ තොරතුරු සපයන්නෙකු සහ මාධ්‍යවේදියෙකු වටා ගෙතුණු කුතුහලයෙන් පිරි ජපන් ක්‍රියාදාම කතාමාලාව.",
-                    "genres": ["Thriller", "Action", "Mystery"],
-                    "episodes": [{ "episode": "EP 04" }]
-                }
-            }
+            "latest_updates": [],
+            "dramas": {}
         };
 
         let activeLanguage = "ALL";
@@ -801,29 +458,45 @@
                     originalDatabase = await response.json();
                 }
             } catch (e) {
-                console.log("CORS block detected. Running with Offline Mockup Data successfully.");
+                console.log("CORS/Offline. Loading Local Schema Database.");
             }
             renderPage();
             updateVisitorCounter();
         }
 
         function renderPage() {
+            const config = originalDatabase.config || {};
+            const aboutMeText = config.about_me_text || "අපි ඔබ වෙත ගෙන එන්නේ ගුණාත්මක බවින් ඉහළම ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි පමණි. අපගේ නිල සමාජ මාධ්‍ය ජාලයන් සමඟ එක් වී අලුත්ම අප්ඩේට්ස් එවලේම ලබාගන්න.";
+            const aboutMeAvatar = config.about_me_avatar || ABOUT_ME_ART_LOGO;
+            const tgChannelLink = config.telegram_channel_link || "https://t.me/liyasi1";
+            const noticeText = config.notice_text || "අපගේ සියලුම සිංහල උපසිරැසි නොමිලේ ලබාගත හැක. කිසියම් ගැටලුවක් ඇත්නම් 3-Dot මෙනුවේ ඇති Contact පිටුවෙන් අපට පණිවිඩයක් එවන්න.";
+            const subServerStatus = config.server_status_sub || "ONLINE";
+            const botServerStatus = config.server_status_bot || "ACTIVE";
+
+            document.getElementById('notice-widget-text').innerText = noticeText;
+            document.getElementById('server-status-widget').innerHTML = `
+                💾 උපසිරැසි සර්වර්: <span style="color:#0f0; font-weight:bold;">${subServerStatus}</span><br>
+                🤖 ටෙලිග්‍රෑම් බොට්: <span style="color:#0f0; font-weight:bold;">${botServerStatus}</span>
+            `;
+
             document.getElementById('header-logo-container').innerHTML = `<img class="site-logo-img" src="${HEADER_BANNER_LOGO}" alt="Subverse Logo">`;
             
             document.getElementById('about-section-container').innerHTML = `
-                <img src="${ABOUT_ME_ART_LOGO}" class="about-img" alt="Avatar">
+                <img src="${aboutMeAvatar}" class="about-img" alt="Avatar">
                 <div>
                     <h3 style="color: var(--neon-pink); margin: 0 0 10px 0; text-transform: uppercase;">ලියැසි SUBVERSE</h3>
-                    <p style="color: var(--text-muted); font-size: 13px; line-height: 1.6; margin: 0;">අපි ඔබ වෙත ගෙන එන්නේ ගුණාත්මක බවින් ඉහළම ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි පමණි. අපගේ නිල සමාජ මාධ්‍ය ජාලයන් සමඟ එක් වී අලුත්ම අප්ඩේට්ස් එවලේම ලබාගන්න.</p>
+                    <p style="color: var(--text-muted); font-size: 13px; line-height: 1.6; margin: 0;">${aboutMeText}</p>
                 </div>
             `;
+
+            document.getElementById('tg-main-icon-link').href = tgChannelLink;
 
             if (originalDatabase.latest_updates && originalDatabase.latest_updates[0]) {
                 const latest = originalDatabase.latest_updates[0];
                 document.getElementById('ticker-text').innerHTML = `⚡ ${latest.title} [${latest.episode}] දැන් රිලීස් වුණා! • `;
             }
 
-            const dramaArray = Object.values(originalDatabase.dramas);
+            const dramaArray = Object.values(originalDatabase.dramas || {});
             if (dramaArray.length > 0) {
                 const hero = dramaArray[0];
                 document.getElementById('hero-banner-container').style.backgroundImage = `linear-gradient(to right, rgba(2,4,8,0.95) 40%, rgba(2,4,8,0.4) 70%, rgba(2,4,8,0) 100%), url('${hero.image_url}')`;
@@ -831,7 +504,7 @@
                 document.getElementById('hero-desc-text').innerText = hero.synopsis || "";
                 document.getElementById('hero-btn-link').href = `drama_picker.html?id=${hero.id}`;
                 document.getElementById('hero-author-container').innerHTML = `
-                    <img src="${ABOUT_ME_ART_LOGO}" alt="Logo" style="width: 18px; height: 18px; border-radius: 50%;">
+                    <img src="${aboutMeAvatar}" alt="Logo" style="width: 18px; height: 18px; border-radius: 50%;">
                     <span>Posted by ලියැසි SUBVERSE</span>
                 `;
             }
@@ -927,45 +600,36 @@
             let bottomLeftBadgeHTML = "";
 
             if (isComplete) {
-                // Completed layout
                 const totalEpText = d.total_episodes ? `EPISODE ${d.total_episodes}` : "EPISODES";
                 topLeftBadgeHTML = `<span class="badge-top-left">COMPLETE</span>`;
                 bottomLeftBadgeHTML = `<span class="badge-bottom-left">${totalEpText}</span>`;
             } else {
-                // Ongoing layout
                 topLeftBadgeHTML = `<span class="badge-top-left">${categoryText}</span>`;
                 bottomLeftBadgeHTML = `<span class="badge-bottom-left">${ep}</span>`;
             }
 
-            // COLOR-CODED RATING CALCULATION (IMDb Bar Dynamic Styling)
             const rating = parseFloat(d.imdb) || 0.0;
             let ratingColor = "#ffaa00"; 
-            let shadowColor = "rgba(255, 170, 0, 0.4)";
+            let ratingShadow = "rgba(255, 170, 0, 0.4)";
             if (rating >= 8.5) {
-                ratingColor = "#00ff66"; // Excellent (Neon Green)
-                shadowColor = "rgba(0, 255, 102, 0.4)";
+                ratingColor = "#00ff66";
+                ratingShadow = "rgba(0, 255, 102, 0.4)";
             } else if (rating >= 7.5) {
-                ratingColor = "#ffaa00"; // Good (Neon Amber/Yellow)
-                shadowColor = "rgba(255, 170, 0, 0.4)";
+                ratingColor = "#ffaa00";
+                ratingShadow = "rgba(255, 170, 0, 0.4)";
             } else {
-                ratingColor = "#ff007f"; // Average (Neon Pink/Red)
-                shadowColor = "rgba(255, 0, 127, 0.4)";
+                ratingColor = "#ff007f";
+                ratingShadow = "rgba(255, 0, 127, 0.4)";
             }
 
             return `
                 <a href="drama_picker.html?id=${d.id}" class="movie-style-card ${isComplete ? 'card-complete' : ''}">
-                    <!-- Top Left Badge -->
                     ${topLeftBadgeHTML}
-                    
-                    <!-- Bottom Left Badge -->
                     ${bottomLeftBadgeHTML}
-                    
-                    <!-- Right Rating Bar (Color-coded dynamic bar) -->
-                    <div class="rating-bar-vertical" style="border-right-color: ${ratingColor}; color: ${ratingColor}; text-shadow: 0 0 8px ${ratingColor}; box-shadow: 0 0 10px ${shadowColor};">
+                    <div class="rating-bar-vertical" style="border-right-color: ${ratingColor}; color: ${ratingColor}; text-shadow: 0 0 8px ${ratingColor}; box-shadow: 0 0 10px ${ratingShadow};">
                         <i class="fa-solid fa-star" style="font-size: 8px;"></i>
                         <span>${d.imdb}</span>
                     </div>
-                    
                     <img class="poster-img" src="${d.image_url}" alt="Poster">
                     <div class="title-overlay"><p>${d.title}</p></div>
                 </a>
@@ -998,3 +662,4 @@
     </script>
 </body>
 </html>
+
