@@ -123,7 +123,7 @@
             border-left: 4px solid var(--neon-cyan);
             border-right: 4px solid var(--neon-cyan);
             border-top: none; border-bottom: none;
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+            box-shadow: -10px 0 15px rgba(0, 240, 255, 0.3), 10px 0 15px rgba(0, 240, 255, 0.3);
             aspect-ratio: 2/3;
             animation: posterNeonPulse 3s infinite alternate ease-in-out;
         }
@@ -147,17 +147,56 @@
             box-shadow: 0 0 10px rgba(255, 170, 0, 0.3); display: flex; align-items: center; gap: 4px; z-index: 2;
         }
 
+        /* 💫 TOP BADGES LAYOUT */
+        .details-top-badges-row {
+            grid-column: span 2;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* 💫 LEFT COLUMN (POSTER + GENRES UNDER) */
+        .detail-left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+        .genres-row-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
         .genre-tag-badge {
             background: rgba(157, 78, 221, 0.1); border: 1px solid var(--neon-purple); color: #d8b4fe;
             text-shadow: 0 0 5px var(--neon-purple); padding: 4px 12px; font-size: 11px; font-weight: 800; border-radius: 20px; text-transform: uppercase;
         }
 
-        .info-spec-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .info-spec-item { font-size: 13.5px; border-bottom: 1px solid rgba(255,255,255,0.03); padding-bottom: 8px; }
+        /* 📋 DYNAMIC SPECS SHEET VERTICAL ALIGNMENT 👇 */
+        .info-spec-list { 
+            list-style: none; 
+            padding: 0; 
+            margin: 0 0 25px 0; 
+            display: flex;
+            flex-direction: column; 
+            gap: 12px; 
+        }
+        .info-spec-item { 
+            font-size: 13.5px; 
+            border-bottom: 1px solid rgba(255,255,255,0.05); 
+            padding-bottom: 8px; 
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+        }
         .info-spec-label { color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); font-weight: bold; }
-        .info-spec-value { color: #fff; font-weight: 800; }
+        .info-spec-value { color: #fff; font-weight: 800; text-align: right; }
 
-        /* 🌈 ROTATING SINGLE-COLOR SLIM NEON CAST CIRCLES WITH FIXED CENTER CROP */
+        /* 🌈 ROTATING SINGLE-COLOR SLIM CONIC NEON CAST CIRCLES WITH HEAD CROP */
         .cast-grid-box { display: grid; grid-template-columns: repeat(6, 1fr); gap: 15px; margin-top: 15px; }
         .cast-member-item { display: flex; flex-direction: column; align-items: center; text-align: center; }
         
@@ -237,29 +276,29 @@
             100% { opacity: 1; text-shadow: 0 0 18px currentColor, 0 0 25px currentColor; }
         }
 
-        /* ✍️ SOLID WHITE MIDDLE - SWEEPING ELECTRIC DOWNLOAD BUTTONS 👇 */
+        /* ✍️ GLASS DARK - SWEEPING ELECTRIC DOWNLOAD BUTTONS 👇 */
         .download-box { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 15px; }
         .download-btn {
             position: relative; width: 100%; max-width: 280px; text-align: center; text-transform: uppercase;
-            font-weight: 900; font-size: 11.5px; padding: 11px 16px; border-radius: 6px; text-decoration: none;
+            font-weight: 900; font-size: 11.5px; padding: 13px 16px; border-radius: 6px; text-decoration: none;
             transition: 0.3s; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
             overflow: hidden; z-index: 1; 
-            background: #ffffff !important; /* Solid White Background */
-            color: #000000 !important;      /* Black Text for high contrast */
-            border: 2px solid #0055ff;       /* Dark Blue Border */
-            box-shadow: 0 0 15px rgba(0, 85, 255, 0.4), inset 0 0 10px rgba(0, 85, 255, 0.2);
-            white-space: nowrap;            /* Single line text */
+            background: rgba(6, 11, 25, 0.9) !important; /* Elegant Glass Dark background */
+            color: #ffffff !important;                     /* Clear White Text */
+            border: 2px solid var(--neon-cyan);           /* Glowing Cyan border */
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4), inset 0 0 10px rgba(0, 240, 255, 0.2);
+            white-space: nowrap;                           /* Single line text */
         }
         /* Electric lightning sweep sheen */
         .download-btn::after {
             content: ''; position: absolute; top: 0; left: -150%; width: 50%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05) 10%, rgba(255, 255, 255, 0.9) 50%, rgba(0, 240, 255, 0.4) 60%, transparent);
+            background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.1) 10%, rgba(255, 255, 255, 0.9) 50%, rgba(0, 240, 255, 0.4) 60%, transparent);
             transform: skewX(-20deg); animation: lightning-sweep 4s infinite linear; z-index: 2; pointer-events: none;
         }
         .download-btn:hover {
-            background: #ffffff !important;
+            background: rgba(6, 11, 25, 0.9) !important;
             border-color: var(--neon-pink) !important;
-            box-shadow: 0 0 25px var(--neon-pink), inset 0 0 10px rgba(255, 0, 127, 0.2);
+            box-shadow: 0 0 25px var(--neon-pink), inset 0 0 10px rgba(255, 0, 127, 0.3);
             color: var(--neon-pink) !important; /* Text turns pink on hover */
         }
         .download-btn.tg-video { border-color: #0088cc; box-shadow: 0 0 15px rgba(0, 136, 204, 0.4); }
@@ -285,6 +324,7 @@
             }
         }
 
+        /* 🌐 GLOWING SOCIAL MEDIA PLUG BOX */
         .social-plug-box {
             background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 15px;
             padding: 25px; margin-top: 50px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.5); border-top: 3px solid var(--neon-pink);
@@ -294,28 +334,16 @@
         
         .social-btn {
             position: relative; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 22px; text-decoration: none; transition: all 0.3s ease; background: #020408; color: #fff; overflow: hidden; z-index: 1; border: none;
+            text-decoration: none; transition: all 0.3s ease; background: var(--glass-bg); border: 1px solid var(--glass-border);
+            color: #fff;
         }
-        /* 💫 SLEEK SINGLE-COLOR FAST CHASE FOR SOCIAL BUTTONS 👇 */
-        .social-btn::before {
-            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-            background: conic-gradient(var(--neon-cyan) 0deg, transparent 40%, transparent 100%);
-            animation: rgb-rotate 1.5s linear infinite; z-index: -2;
-        }
-        .social-btn::after { 
-            content: ''; position: absolute; 
-            inset: 1.5px; /* Extremely thin! */
-            background: #020408; border-radius: 50%; z-index: -1; transition: background 0.3s ease; 
-        }
-        @keyframes rgb-rotate { 
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); } 
-        }
-
-        .social-btn:hover::after { background: rgba(6, 11, 25, 0.9); }
-        .social-btn.facebook:hover { color: #1877f2; text-shadow: 0 0 8px #1877f2; }
-        .social-btn.youtube:hover { color: #ff0000; text-shadow: 0 0 8px #ff0000; }
-        .social-btn.telegram:hover { color: #0088cc; text-shadow: 0 0 8px #0088cc; }
+        
+        /* ✍️ NEON GLOWING BRAND ICONS FOR SOCIAL MEDIAS 👇 */
+        .social-btn i { transition: all 0.3s ease; }
+        .social-btn.facebook i { color: #1877f2; text-shadow: 0 0 10px #1877f2, 0 0 20px #1877f2; }
+        .social-btn.youtube i { color: #ff0000; text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000; }
+        .social-btn.telegram i { color: #0088cc; text-shadow: 0 0 10px #0088cc, 0 0 20px #0088cc; }
+        .social-btn:hover { border-color: var(--neon-cyan); box-shadow: 0 0 15px var(--neon-cyan); }
 
         footer { background: rgba(4, 8, 16, 0.95); border-top: 2px solid var(--neon-cyan); padding: 40px 20px; text-align: center; margin-top: 40px; box-shadow: 0 -10px 30px rgba(0, 240, 255, 0.1); }
         .footer-content { max-width: 800px; margin: 0 auto; }
@@ -327,9 +355,11 @@
 
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
+        /* 📱 RESPONSIVE TUNING */
         @media (max-width: 768px) {
             .drama-details-container { grid-template-columns: 1fr; padding: 20px; text-align: center; }
-            .detail-poster-wrapper { max-width: 230px; margin: 0 auto; }
+            /* 🎀 FULL WIDTH POSTER ON MOBILE */
+            .detail-poster-wrapper { max-width: 92% !important; width: 100%; margin: 0 auto 20px auto; }
             .info-spec-list { grid-template-columns: 1fr; }
             .cast-grid-box { grid-template-columns: repeat(3, 1fr); gap: 10px; }
         }
@@ -556,30 +586,36 @@
             const statusColor = isComplete ? "var(--neon-pink)" : "var(--neon-cyan)";
             const statusShadow = isComplete ? "var(--neon-pink)" : "var(--neon-cyan)";
 
-            // Populate Info details
+            // Populate Info details with optimized structural layout
             document.getElementById('drama-details-wrapper').innerHTML = `
-                <div class="detail-poster-wrapper" style="border-color: ${statusColor};">
-                    <img class="detail-poster-img" src="${ep.image || drama.image_url}" alt="Poster">
-                    <div class="rating-bar-vertical" style="border-right-color: ${ratingColor}; color: ${ratingColor}; text-shadow: 0 0 8px ${ratingColor}; box-shadow: 0 0 10px ${ratingShadow};">
-                        <i class="fa-solid fa-star" style="font-size: 8px;"></i>
-                        <span>${rating}</span>
-                    </div>
+                <!-- 1. Top Badges Row -->
+                <div class="details-top-badges-row">
+                    <span style="background: ${statusColor}; color: #000; box-shadow: 0 0 10px ${statusColor}; border: 1px solid rgba(255,255,255,0.4); padding: 4px 12px; font-size: 11px; font-weight: 900; border-radius: 4px; text-transform: uppercase;">${drama.status}</span>
+                    <span style="background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: #fff; padding: 4px 12px; font-size: 11px; font-weight: bold; border-radius: 4px;">${drama.type}</span>
+                    <span style="background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: #fff; padding: 4px 12px; font-size: 11px; font-weight: bold; border-radius: 4px;">${drama.total_episodes || '?'} EPISODES</span>
                 </div>
-                <div class="detail-info-wrapper">
-                    <h1 style="font-size: 28px; font-weight: 900; margin: 0 0 10px 0; text-shadow: 0 0 10px #fff; text-transform: uppercase;">${drama.title}</h1>
-                    <h2 style="font-size: 18px; font-weight: 800; color: ${statusColor}; text-shadow: 0 0 8px ${statusColor}; margin: 0 0 15px 0; text-transform: uppercase;">${ep.episode}: ${ep.title}</h2>
-                    
-                    <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;">
-                        <span style="background: ${statusColor}; color: #000; box-shadow: 0 0 10px ${statusColor}; border: 1px solid rgba(255,255,255,0.4); padding: 4px 10px; font-size: 11px; font-weight: 900; border-radius: 4px; text-transform: uppercase;">${drama.status}</span>
-                        <span style="background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: #fff; padding: 4px 10px; font-size: 11px; font-weight: bold; border-radius: 4px;">${drama.type}</span>
-                        <span style="background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: #fff; padding: 4px 10px; font-size: 11px; font-weight: bold; border-radius: 4px;">${drama.total_episodes || '?'} EPISODES</span>
-                    </div>
 
-                    <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 25px;">
+                <!-- 2. Left Column (Poster + Rating + Genres list below) -->
+                <div class="detail-left-column">
+                    <div class="detail-poster-wrapper">
+                        <img class="detail-poster-img" src="${ep.image || drama.image_url}" alt="Poster">
+                        <div class="rating-bar-vertical" style="border-right-color: ${ratingColor}; color: ${ratingColor}; text-shadow: 0 0 8px ${ratingColor}; box-shadow: 0 0 10px ${ratingShadow};">
+                            <i class="fa-solid fa-star" style="font-size: 8px;"></i>
+                            <span>${rating}</span>
+                        </div>
+                    </div>
+                    <!-- Genres list placed directly under poster -->
+                    <div class="genres-row-container">
                         ${drama.genres ? drama.genres.map(g => `<span class="genre-tag-badge">${g}</span>`).join('') : ''}
                     </div>
+                </div>
 
-                    <ul class="info-spec-list" style="margin-bottom: 25px;">
+                <!-- 3. Right Column (Title + Spec List + Synopsis) -->
+                <div class="detail-info-wrapper">
+                    <h1 style="font-size: 28px; font-weight: 900; margin: 0 0 10px 0; text-shadow: 0 0 10px #fff; text-transform: uppercase;">${drama.title}</h1>
+                    <h2 style="font-size: 18px; font-weight: 800; color: ${statusColor}; text-shadow: 0 0 8px ${statusColor}; margin: 0 0 20px 0; text-transform: uppercase;">${ep.episode}: ${ep.title}</h2>
+
+                    <ul class="info-spec-list">
                         <li class="info-spec-item"><span class="info-spec-label">Director:</span> <span class="info-spec-value">${ep.director || drama.director || 'N/A'}</span></li>
                         <li class="info-spec-item"><span class="info-spec-label">Writer:</span> <span class="info-spec-value">${ep.writer || drama.writer || 'N/A'}</span></li>
                         <li class="info-spec-item"><span class="info-spec-label">Network:</span> <span class="info-spec-value">${ep.network || drama.network || 'N/A'}</span></li>
@@ -595,7 +631,7 @@
                 </div>
             `;
 
-            // Cast Section
+            // Cast Section with RGB rotating circles
             const castToUse = ep.cast || drama.cast;
             if (castToUse && castToUse.length > 0) {
                 const castSection = document.getElementById('cast-section-wrapper');
@@ -668,7 +704,7 @@
                 </div>
             `;
 
-            // Download Box Section (Blue Neon Sweping-Electric buttons)
+            // Download Box Section (Glass Dark Sweeping-Electric buttons)
             const downloadSection = document.getElementById('download-section-wrapper');
             downloadSection.style.display = 'block';
             downloadSection.innerHTML = `
@@ -844,7 +880,7 @@
                 <div style="grid-column: span 2; text-align: center; padding: 80px 0;">
                     <i class="fa-solid fa-triangle-exclamation" style="font-size: 48px; color: var(--neon-pink); text-shadow: 0 0 15px var(--neon-pink); margin-bottom: 20px;"></i>
                     <h2 style="font-size: 20px; font-weight: bold; margin-bottom: 10px;">එපිසොඩ් එක සොයාගත නොහැක</h2>
-                    <p style="color: var(--text-muted); margin-bottom: 25px;">සෙවූ ID අංකයට අදාළ දත්ත කිسيවක් පද්ධතිය තුළ හමු නොවුණි.</p>
+                    <p style="color: var(--text-muted); margin-bottom: 25px;">සෙවූ ID අංකයට අදාළ දත්ත කිසිවක් පද්ධතිය තුළ හමු නොවුණි.</p>
                     <a href="index.html" class="sub-nav-item active" style="display: inline-flex; width: fit-content; margin: 0 auto;"><i class="fa-solid fa-house"></i> ආපසු මුල් පිටුවට</a>
                 </div>
             `;
