@@ -152,7 +152,7 @@
             backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
         }
 
-        /* 🃏 MOVIE STYLE EPISODE CARD (FOR ONGOING) */
+        /* 🃏 MOVIE STYLE EPISODE CARD */
         .episodes-grid-cards {
             display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; margin-top: 20px;
         }
@@ -171,7 +171,7 @@
         .title-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,1) 40%, transparent); padding: 12px 6px; }
         .title-overlay p { color: var(--neon-cyan); text-shadow: 0 0 6px var(--neon-cyan); margin: 0; font-size: 10.5px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: center; }
 
-        /* BUTTONS LIST (FOR COMPLETED) */
+        /* BUTTONS LIST */
         .episodes-grid-buttons { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; margin-top: 20px; }
         .ep-btn {
             background: rgba(2, 4, 8, 0.6); border: 1px solid var(--glass-border); color: #ccc;
@@ -212,11 +212,15 @@
         
         .social-btn {
             position: relative; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            text-decoration: none; transition: all 0.3s ease; background: var(--glass-bg); border: 1px solid var(--glass-border);
-            color: #fff;
+            text-decoration: none; transition: all 0.3s ease; background: #020408; color: #fff;
+            /* 🛡️ WebKit Clip Leak Fix on Picker 👇 */
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+            will-change: transform;
+            overflow: hidden;
+            border: none;
         }
-        
-        /* ✍️ NEON GLOWING BRAND ICONS FOR SOCIAL MEDIAS WITH THIN CONIC CHASE 👇 */
+        /* 💫 SLEEK SINGLE-COLOR FAST CHASE FOR SOCIAL BUTTONS 👇 */
         .social-btn::before {
             content: ''; position: absolute; top: -20%; left: -20%; width: 140%; height: 140%;
             background: conic-gradient(var(--neon-cyan) 0deg, transparent 40%, transparent 100%);
@@ -229,8 +233,6 @@
             inset: 1.5px; /* Extremely thin! */
             background: #020408; border-radius: 50%; z-index: -1; transition: background 0.3s ease; 
         }
-        
-        /* Fast chase animation */
         @keyframes rgb-rotate { 
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); } 
@@ -258,7 +260,14 @@
 
         /* 📱 RESPONSIVE TUNING */
         @media (max-width: 768px) {
-            .drama-details-container { grid-template-columns: 1fr; padding: 20px; text-align: center; }
+            /* 🎀 CONVERT TO COLUMN LAYOUT TO PREVENT COLLAPSE 👇 */
+            .drama-details-container { 
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                padding: 20px !important; 
+                text-align: center !important; 
+            }
             /* 🎀 STABLE POSTER HEIGHT AND WIDTH TO PREVENT MOB COLLAPSE 👇 */
             .detail-poster-wrapper { 
                 width: 280px !important; 
@@ -279,7 +288,6 @@
             .sub-nav-bar { gap: 10px; padding: 8px; }
             .sub-nav-item { font-size: 11px; padding: 6px 12px; }
         }
-        @media (max-width: 400px) { .live-clock { font-size: 8px !important; padding: 3px 6px !important; } }
     </style>
 </head>
 <body>
@@ -464,22 +472,6 @@
                     <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); padding: 20px; border-radius: 10px; line-height: 1.8; color: #ccc; font-size: 13.5px;">
                         <h3 style="color: ${statusColor}; text-shadow: 0 0 5px ${statusColor}; margin: 0 0 10px 0; font-size: 14px; text-transform: uppercase; font-weight: 900;">කතා සාරාංශය (Synopsis)</h3>
                         <p style="margin: 0;">${drama.synopsis || 'කතා සාරාංශයක් ඇතුළත් කර නොමැත.'}</p>
-                    </div>
-                </div>
-            `;
-
-            // 🇱🇰 POPULATE SRI LANKA IMDB OVERALL VOTE WIDGET
-            const overallVoteSection = document.getElementById('overall-vote-section');
-            overallVoteSection.style.display = 'block';
-            overallVoteSection.innerHTML = `
-                <div class="sl-vote-container" data-id="${dramaUniqueVoteId}" style="margin-bottom:0;">
-                    <div class="sl-vote-title">🇱🇰 SRI LANKA IMDb RATE (USERS' CHOICE)</div>
-                    <div class="neon-bar-wrapper">
-                        <div class="neon-bar-track"><div class="neon-bar-fill"></div></div>
-                    </div>
-                    <div class="sl-vote-buttons">
-                        <div class="vote-btn-custom vote-like" onclick="handleSLVote('like', this)">👍 බලන්න වටිනවා <span class="vote-count sl-like-cnt">0</span></div>
-                        <div class="vote-btn-custom vote-dislike" onclick="handleSLVote('dislike', this)">👎 වැඩක් නෑ <span class="vote-count sl-dislike-cnt">0</span></div>
                     </div>
                 </div>
             `;
