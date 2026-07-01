@@ -4,6 +4,12 @@
       "title": "Joseon Attorney: A Morality",
       "episode": "EP 01",
       "image_url": "https://image.tmdb.org/t/p/w500/r9s6F4IgFyPyjSh7n7wGMRO6Mp0.jpg",
+      "post_link": "episode_picker.html?drama_id=206715&ep=EP 01"
+    },
+    {
+      "title": "Joseon Attorney: A Morality",
+      "episode": "EP 01",
+      "image_url": "https://image.tmdb.org/t/p/w500/r9s6F4IgFyPyjSh7n7wGMRO6Mp0.jpg",
       "post_link": "drama_picker.html?id=206715"
     }
   ],
@@ -62,9 +68,55 @@
         {
           "episode": "EP 01",
           "link": "https://liyasisubverse.github.io/subtitles/Joseon_Attorney:_A_Morality_E01.srt",
-          "tg_link": ""
+          "tg_link": "https://t.me/c/3564105068/135",
+          "title": "⚡ Episode 01: යුක්තියේ ආරම්භය ⚡",
+          "image": "https://image.tmdb.org/t/p/w500/r9s6F4IgFyPyjSh7n7wGMRO6Mp0.jpg",
+          "synopsis": "අසාධාරණයට එරෙහිව නැගී සිටින අභිරහස් පුද්ගලයාගේ ආගමනය.",
+          "map_url": "https://i.ibb.co/Xx69sDVZ/81e8c3a61814.png",
+          "trailer": "https://www.youtube.com/embed/PxJZZVhmzc8",
+          "cast": [
+            {
+              "name": "Woo Do-hwan",
+              "image": "https://image.tmdb.org/t/p/w200/6r1yIpHLmoIqujKv9KQeZPEUhXy.jpg"
+            },
+            {
+              "name": "Bona",
+              "image": "https://image.tmdb.org/t/p/w200/z3L2wtjfJ2RoT2fmoUJgsMAXnLZ.jpg"
+            },
+            {
+              "name": "Cha Hak-yeon",
+              "image": "https://image.tmdb.org/t/p/w200/wI2xhjCXyWOWnH9iQK8PnGwLuEL.jpg"
+            },
+            {
+              "name": "Cheon Ho-jin",
+              "image": "https://image.tmdb.org/t/p/w200/eS5jGpHrBDu3wtHHEfUNkwnZ0uE.jpg"
+            },
+            {
+              "name": "Song Geon-hee",
+              "image": "https://image.tmdb.org/t/p/w200/8rjlzhudRf3w3xtSso7R7BG8Ikq.jpg"
+            },
+            {
+              "name": "Lee Doo-seok",
+              "image": "https://image.tmdb.org/t/p/w200/slfoiusX9IrWAB0oi9IbOJ2ih23.jpg"
+            }
+          ],
+          "director": "N/A",
+          "writer": "Choi Jin-young",
+          "network": "MBC",
+          "first_air_date": "2023-03-31",
+          "runtime": "69 min",
+          "country": "South Korea (දකුණු කොරියාව)",
+          "imdb": "5.6"
         }
       ]
     }
+  },
+  "config": {
+    "telegram_channel_link": "https://t.me/liyasi1",
+    "about_me_text": "අපි ඔබ වෙත ගෙන එන්නේ ගුණාත්මක බවින් ඉහළම ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි පමණි. අපගේ නිල සමාජ මාධ්‍ය ජාලයන් සමඟ එක් වී අලුත්ම අප්ඩේට්ස් එවලේම ලබාගන්න.",
+    "about_me_avatar": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png",
+    "notice_text": "අපගේ සියලුම සිංහල උපසිරැසි නොමිලේ ලබාගත හැක. කිසියම් ගැටලුවක් ඇත්නම් 3-Dot මෙනුවේ ඇති Contact පිටුවෙන් අපට පණිවිඩයක් එවන්න.",
+    "server_status_sub": "ONLINE",
+    "server_status_bot": "ACTIVE"
   }
 }
