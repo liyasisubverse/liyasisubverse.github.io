@@ -1,4 +1,5 @@
-     <!DOCTYPE html>
+
+<!DOCTYPE html>
 <html lang="si">
 <head>
     <meta charset="UTF-8">
@@ -94,28 +95,34 @@
 
         .main-container { max-width: 1300px; margin: 20px auto; padding: 0 15px; box-sizing: border-box; }
 
+        /* 🎀 DOUBLE NEON BARS ON POSTER (LEFT & RIGHT) */
+        .detail-poster-wrapper {
+            position: relative; border-radius: 12px; overflow: hidden;
+            border-left: 4px solid var(--neon-cyan);
+            border-right: 4px solid var(--neon-cyan);
+            border-top: none; border-bottom: none;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+            aspect-ratio: 2/3;
+            animation: posterNeonPulse 3s infinite alternate ease-in-out;
+        }
+        @keyframes posterNeonPulse {
+            0% {
+                border-left-color: var(--neon-cyan); border-right-color: var(--neon-cyan);
+                box-shadow: -10px 0 15px rgba(0, 240, 255, 0.3), 10px 0 15px rgba(0, 240, 255, 0.3);
+            }
+            100% {
+                border-left-color: var(--neon-pink); border-right-color: var(--neon-pink);
+                box-shadow: -10px 0 15px rgba(255, 0, 127, 0.3), 10px 0 15px rgba(255, 0, 127, 0.3);
+            }
+        }
+        .detail-poster-img { width: 100%; height: 100%; object-fit: cover; }
+
         .drama-details-container {
             display: grid; grid-template-columns: 280px 1fr; gap: 30px;
             background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px;
             padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); margin-bottom: 30px;
             backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
         }
-
-        /* 🌟 PULSING NEON POSTER */
-        .detail-poster-wrapper {
-            position: relative; border-radius: 12px; overflow: hidden;
-            border: 3px solid var(--neon-cyan);
-            box-shadow: 0 0 15px var(--neon-cyan), inset 0 0 10px var(--neon-cyan);
-            aspect-ratio: 2/3;
-            animation: posterNeonPulse 3s infinite alternate ease-in-out;
-        }
-        @keyframes posterNeonPulse {
-            0% { box-shadow: 0 0 10px var(--neon-cyan), inset 0 0 5px var(--neon-cyan); border-color: var(--neon-cyan); }
-            50% { box-shadow: 0 0 20px var(--neon-pink), inset 0 0 10px var(--neon-pink); border-color: var(--neon-pink); }
-            100% { box-shadow: 0 0 10px var(--neon-cyan), inset 0 0 5px var(--neon-cyan); border-color: var(--neon-cyan); }
-        }
-
-        .detail-poster-img { width: 100%; height: 100%; object-fit: cover; }
 
         .rating-bar-vertical {
             position: absolute; right: 8px; top: 8px; background: rgba(2, 4, 8, 0.9);
@@ -154,7 +161,7 @@
         .poster-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
         
         .badge-top-left {
-            position: absolute; top: 8px; left: 8px; background: rgba(2, 4, 8, 0.85); color: #fff;
+          position: absolute; top: 8px; left: 8px; background: rgba(2, 4, 8, 0.85); color: #fff;
             padding: 3px 8px; font-size: 10px; font-weight: 900; border-radius: 4px; border: 1px solid var(--neon-cyan); box-shadow: 0 0 8px rgba(0, 240, 255, 0.4); z-index: 2; text-transform: uppercase;
         }
         .title-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,1) 40%, transparent); padding: 12px 6px; }
@@ -171,6 +178,28 @@
         .ep-btn.active-cyan:hover { background: rgba(0, 240, 255, 0.1); box-shadow: 0 0 15px var(--neon-cyan); }
         .ep-btn.active-pink { border-color: var(--neon-pink); color: var(--neon-pink); text-shadow: 0 0 5px var(--neon-pink); }
         .ep-btn.active-pink:hover { background: rgba(255, 0, 127, 0.1); box-shadow: 0 0 15px var(--neon-pink); }
+
+        /* 🇱🇰 VOTE / USER CHOICE PANEL (Overall Bar Added) */
+        .sl-vote-container {
+            border: 1px solid var(--glass-border); background: rgba(0,0,0,0.3);
+            border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 25px;
+        }
+        .sl-vote-title { font-size: 13px; font-weight: 900; color: #fff; letter-spacing: 0.5px; margin-bottom: 12px; }
+        .neon-bar-wrapper { height: 8px; background: rgba(255,255,255,0.05); border-radius: 10px; overflow: hidden; margin-bottom: 15px; }
+        .neon-bar-track { height: 100%; width: 100%; }
+        .neon-bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink)); box-shadow: 0 0 12px var(--neon-cyan); transition: width 0.8s ease-out; }
+        
+        .sl-vote-buttons { display: flex; justify-content: center; gap: 15px; }
+        .vote-btn-custom {
+            flex: 1; max-width: 180px; padding: 12px; font-size: 11.5px; font-weight: 900;
+            border-radius: 8px; cursor: pointer; text-transform: uppercase; transition: 0.3s;
+            display: flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid var(--glass-border);
+        }
+        .vote-btn-custom.vote-like { background: rgba(0, 240, 255, 0.05); color: var(--neon-cyan); border-color: rgba(0, 240, 255, 0.2); }
+        .vote-btn-custom.vote-like:hover { background: rgba(0, 240, 255, 0.15); box-shadow: 0 0 15px rgba(0, 240, 255, 0.3); }
+        .vote-btn-custom.vote-dislike { background: rgba(255, 0, 127, 0.05); color: var(--neon-pink); border-color: rgba(255, 0, 127, 0.2); }
+        .vote-btn-custom.vote-dislike:hover { background: rgba(255, 0, 127, 0.15); box-shadow: 0 0 15px rgba(255, 0, 127, 0.3); }
+        .vote-count { background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 11px; }
 
         /* SOCIAL MEDIA PLUG */
         .social-plug-box {
@@ -207,6 +236,7 @@
 
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
+        /* 📱 RESPONSIVE TUNING */
         @media (max-width: 768px) {
             .drama-details-container { grid-template-columns: 1fr; padding: 20px; text-align: center; }
             .detail-poster-wrapper { max-width: 230px; margin: 0 auto; }
@@ -268,6 +298,9 @@
             <p style="text-align: center; color: var(--neon-cyan); grid-column: span 2; padding: 50px 0;">🤖 [SYSTEM RETRIEVING DATA...]</p>
         </div>
 
+        <!-- 🇱🇰 SRI LANKA IMDB OVERALL VOTE WIDGET (Added Here Dynamically) -->
+        <div class="glass-section-custom" id="overall-vote-section" style="display: none;"></div>
+
         <!-- 💾 EPISODES DOWNLOAD SECTION -->
         <div class="episodes-section" id="episodes-section-wrapper"></div>
 
@@ -321,6 +354,7 @@
 
         const urlParams = new URLSearchParams(window.location.search);
         const dramaId = urlParams.get('id');
+        let dramaUniqueVoteId = `drama_overall_${dramaId}`;
 
         async function loadDramaDetails() {
             try {
@@ -400,6 +434,22 @@
                 </div>
             `;
 
+            // 🇱🇰 POPULATE SRI LANKA IMDB OVERALL VOTE WIDGET
+            const overallVoteSection = document.getElementById('overall-vote-section');
+            overallVoteSection.style.display = 'block';
+            overallVoteSection.innerHTML = `
+                <div class="sl-vote-container" data-id="${dramaUniqueVoteId}" style="margin-bottom:0;">
+                    <div class="sl-vote-title">🇱🇰 SRI LANKA IMDb RATE (USERS' CHOICE)</div>
+                    <div class="neon-bar-wrapper">
+                        <div class="neon-bar-track"><div class="neon-bar-fill"></div></div>
+                    </div>
+                    <div class="sl-vote-buttons">
+                        <div class="vote-btn-custom vote-like" onclick="handleSLVote('like', this)">👍 බලන්න වටිනවා <span class="vote-count sl-like-cnt">0</span></div>
+                        <div class="vote-btn-custom vote-dislike" onclick="handleSLVote('dislike', this)">👎 වැඩක් නෑ <span class="vote-count sl-dislike-cnt">0</span></div>
+                    </div>
+                </div>
+            `;
+
             // Populate Episodes & Download Section
             const episodesWrapper = document.getElementById('episodes-section-wrapper');
             let episodesHTML = '';
@@ -431,7 +481,6 @@
 
             const totalEpsCount = drama.total_episodes || 16;
 
-            // ✍️ DYNAMIC CHOICE: ONGOING SHOWS CARDS VS COMPLETED SHOWS BUTTONS 👇
             if (!isComplete) {
                 // ONGOING: Render beautiful Movie-style Episode Cards
                 episodesHTML += `<div class="episodes-grid-cards">`;
@@ -485,6 +534,76 @@
 
             episodesHTML += `</div>`;
             episodesWrapper.innerHTML = episodesHTML;
+
+            loadVotes();
+        }
+
+        async function loadVotes() {
+            try {
+                const res = await fetch(firebaseURL + "votes.json");
+                const data = await res.json();
+                if (!data) return;
+
+                document.querySelectorAll('.sl-vote-container').forEach(container => {
+                    const id = container.getAttribute('data-id');
+                    if (data[id]) {
+                        const likes = data[id].like || 0;
+                        const dislikes = data[id].dislike || 0;
+
+                        const likeEl = container.querySelector('.sl-like-cnt');
+                        const dislikeEl = container.querySelector('.sl-dislike-cnt');
+                        if(likeEl) likeEl.innerText = likes;
+                        if(dislikeEl) dislikeEl.innerText = dislikes;
+
+                        const total = likes + dislikes;
+                        const fillEl = container.querySelector('.neon-bar-fill');
+                        if (fillEl && total > 0) {
+                            fillEl.style.width = ((likes / total) * 100) + '%';
+                        }
+                    }
+                });
+            } catch(e) {
+                console.error("Error loading votes:", e);
+            }
+        }
+
+        async function handleSLVote(type, btn) {
+            const container = btn.closest('.sl-vote-container');
+            const id = container.getAttribute('data-id');
+            if (localStorage.getItem('voted_' + id)) {
+                alert("ඔබ දැනටමත් මනාපය ලබා දී ඇත!");
+                return;
+            }
+
+            try {
+                const res = await fetch(`${firebaseURL}votes/${id}.json`);
+                const currentData = await res.json() || { like: 0, dislike: 0 };
+                let newLikes = currentData.like || 0;
+                let newDislikes = currentData.dislike || 0;
+
+                if (type === 'like') newLikes++;
+                if (type === 'dislike') newDislikes++;
+
+                await fetch(`${firebaseURL}votes/${id}.json`, {
+                    method: 'PATCH',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ [type]: type === 'like' ? newLikes : newDislikes })
+                });
+
+                localStorage.setItem('voted_' + id, 'true');
+                const likeEl = container.querySelector('.sl-like-cnt');
+                const dislikeEl = container.querySelector('.sl-dislike-cnt');
+                if(likeEl) likeEl.innerText = newLikes;
+                if(dislikeEl) dislikeEl.innerText = newDislikes;
+
+                const total = newLikes + newDislikes;
+                const fillEl = container.querySelector('.neon-bar-fill');
+                if (fillEl && total > 0) {
+                    fillEl.style.width = ((newLikes / total) * 100) + '%';
+                }
+            } catch(e) {
+                console.error("Error updating vote:", e);
+            }
         }
 
         function showNotFound() {
@@ -502,4 +621,4 @@
         window.onload = loadDramaDetails;
     </script>
 </body>
-</html>               
+</html>
