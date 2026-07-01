@@ -223,10 +223,38 @@
             position: relative; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
             text-decoration: none; transition: all 0.3s ease; background: var(--glass-bg); border: 1px solid var(--glass-border);
             color: #fff;
+            /* 🛡️ WebKit Clip Leak Fix on Homepage 👇 */
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+            will-change: transform;
+            overflow: hidden;
+            border: none;
         }
         
-        /* ✍️ NEON GLOWING BRAND ICONS FOR SOCIAL MEDIAS 👇 */
-        .social-btn i { transition: all 0.3s ease; }
+        /* ✍️ NEON GLOWING BRAND ICONS FOR SOCIAL MEDIAS WITH THIN CONIC CHASE 👇 */
+        .social-btn::before {
+            content: ''; position: absolute; top: -20%; left: -20%; width: 140%; height: 140%;
+            background: conic-gradient(var(--neon-cyan) 0deg, transparent 40%, transparent 100%);
+            animation: rgb-rotate 1.5s linear infinite; 
+            -webkit-animation: rgb-rotate 1.5s linear infinite;
+            z-index: -2;
+        }
+        .social-btn::after { 
+            content: ''; position: absolute; 
+            inset: 1.5px; /* Extremely thin! */
+            background: #020408; border-radius: 50%; z-index: -1; transition: background 0.3s ease; 
+        }
+        
+        @keyframes rgb-rotate { 
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); } 
+        }
+        @-webkit-keyframes rgb-rotate { 
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); } 
+        }
+
+        .social-btn i { transition: all 0.3s ease; position: relative; z-index: 2; }
         .social-btn.facebook i { color: #1877f2; text-shadow: 0 0 10px #1877f2, 0 0 20px #1877f2; }
         .social-btn.youtube i { color: #ff0000; text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000; }
         .social-btn.telegram i { color: #0088cc; text-shadow: 0 0 10px #0088cc, 0 0 20px #0088cc; }
@@ -347,7 +375,7 @@
         <div class="widget-grid" style="margin-top: 40px; margin-bottom: 40px;">
             <div class="widget-box" style="border-right: 4px solid var(--neon-pink);">
                 <div class="widget-title"><i class="fa-solid fa-bullhorn" style="color:var(--neon-pink)"></i> දැනුම්දීම් (Notice)</div>
-                <p id="notice-widget-text" style="font-size:12px; line-height:1.6; color:#ccc; margin:0;">අපගේ සියලුම සිංහල උපසිරැසි නොමිලේ ලබාගත හැක. කිසියම් ගැටලුවක් ඇත්නම් 3-Dot මෙනුවේ ඇති Contact පිටුවෙන් අපට පණිවිඩයක් එවන්න.</p>
+                <p id="notice-widget-text" style="font-size:12px; line-height:1.6; color:#ccc; margin:0;">අපගේ සියලුම සිංහල උපසිරැසි නොමිලේ ලබාගත හැක. කිසියම් ගැටලුවක් ඇත්නම් 3-Dot มෙනුවේ ඇති Contact පිටුවෙන් අපට පණිවිඩයක් එවන්න.</p>
             </div>
             <div class="widget-box" style="border-right: 4px solid var(--neon-cyan); text-align: center;">
                 <div class="widget-title" style="border-left-color: var(--neon-cyan);"><i class="fa-solid fa-eye" style="color:var(--neon-cyan)"></i> ප්‍රේක්ෂකයින් (Visits)</div>
