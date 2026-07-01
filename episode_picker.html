@@ -147,7 +147,7 @@
             box-shadow: 0 0 10px rgba(255, 170, 0, 0.3); display: flex; align-items: center; gap: 4px; z-index: 2;
         }
 
-        /* 💫 TOP BADGES LAYOUT */
+        /* 💫 TOP BADGES LAYOUT ROW */
         .details-top-badges-row {
             grid-column: span 2;
             display: flex;
@@ -176,7 +176,7 @@
             text-shadow: 0 0 5px var(--neon-purple); padding: 4px 12px; font-size: 11px; font-weight: 800; border-radius: 20px; text-transform: uppercase;
         }
 
-        /* 📋 DYNAMIC SPECS SHEET VERTICAL ALIGNMENT 👇 */
+        /* 📋 METADATA DYNAMIC VERTICAL SPECS SHEET 👇 */
         .info-spec-list { 
             list-style: none; 
             padding: 0; 
@@ -286,7 +286,7 @@
         .download-box { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 15px; }
         .download-btn {
             position: relative; width: 100%; max-width: 280px; height: 48px; text-align: center; text-transform: uppercase;
-            font-weight: 900; font-size: 11.5px; border-radius: 6px; text-decoration: none;
+            font-weight: 900; font-size: 11.5px; padding: 13px 16px; border-radius: 6px; text-decoration: none;
             transition: 0.3s; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
             overflow: hidden; z-index: 1; 
             background: transparent !important; /* Transparent to let pseudo-borders work */
@@ -332,6 +332,51 @@
                 grid-template-columns: 1fr !important; /* Stack single column on mobile */
                 gap: 10px;
             }
+        }
+
+        /* 💬 CUSTOM FIREBASE REAL-TIME COMMENT BOX */
+        .comment-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            position: relative;
+            border-left: 3px solid var(--neon-cyan);
+            text-align: left;
+        }
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--neon-cyan);
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        .comment-body {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #ddd;
+        }
+        .comment-input-field {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--glass-border);
+            border-radius: 6px;
+            color: #fff;
+            padding: 12px;
+            font-size: 13px;
+            margin-bottom: 12px;
+            outline: none;
+            transition: 0.3s;
+        }
+        .comment-input-field:focus {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+        }
+        textarea.comment-input-field {
+            resize: vertical;
+            min-height: 80px;
         }
 
         /* 🌐 GLOWING SOCIAL MEDIA PLUG BOX */
@@ -393,11 +438,6 @@
 
         /* 📱 RESPONSIVE TUNING */
         @media (max-width: 768px) {
-            /* 🎀 FULL WIDTH POSTER ON MOBILE */
-            .detail-poster-wrapper { max-width: 92% !important; width: 100%; margin: 0 auto 20px auto; }
-            .info-spec-list { grid-template-columns: 1fr; }
-            .cast-grid-box { grid-template-columns: repeat(3, 1fr); gap: 10px; }
-            
             /* 🎀 CONVERT TO COLUMN LAYOUT TO PREVENT COLLAPSE 👇 */
             .drama-details-container { 
                 display: flex !important;
@@ -414,6 +454,8 @@
                 margin: 0 auto 20px auto !important; 
                 display: block !important; 
             }
+            .info-spec-list { grid-template-columns: 1fr; }
+            .cast-grid-box { grid-template-columns: repeat(3, 1fr); gap: 10px; }
         }
         @media (max-width: 600px) {
             .header-container { flex-direction: row !important; justify-content: space-between !important; align-items: center !important; width: 100%; }
@@ -536,6 +578,25 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- 💬 CUSTOM FIREBASE REAL-TIME COMMENT BOX -->
+        <div class="glass-section-custom">
+            <h3>💬 අදහස් සහ ප්‍රතිචාර (Comments & Reviews)</h3>
+            
+            <!-- Form to add new comment -->
+            <div style="margin-bottom: 30px;">
+                <input type="text" id="comment-author" class="comment-input-field" placeholder="ඔබේ නම (Your Name)..." required>
+                <textarea id="comment-message" class="comment-input-field" placeholder="ඔබේ අදහස මෙතන ලියන්න (Write your comment)..." required></textarea>
+                <button class="download-btn" id="submit-comment-btn" onclick="submitComment()" style="width: 100%; max-width: 100%; height: auto; padding: 14px;">
+                    <span class="btn-sheen-sweep"></span>
+                    <i class="fa-solid fa-comments" style="position:relative; z-index:3;"></i>
+                    <span style="position:relative; z-index:3;">අදහස් දක්වන්න (Submit Comment)</span>
+                </button>
+            </div>
+            
+            <!-- List of existing comments -->
+            <div id="comments-list"></div>
         </div>
 
         <!-- 🌐 GLOWING SOCIAL MEDIA PLUG -->
@@ -931,6 +992,99 @@
             }
         }
 
+        async function submitComment() {
+            const authorInput = document.getElementById('comment-author');
+            const messageInput = document.getElementById('comment-message');
+            const submitBtn = document.getElementById('submit-comment-btn');
+            
+            const author = authorInput.value.trim();
+            const message = messageInput.value.trim();
+            
+            if (!author || !message) {
+                alert("කරුණාකර නම සහ ඔබේ අදහස ඇතුළත් කරන්න!");
+                return;
+            }
+            
+            submitBtn.disabled = true;
+            submitBtn.innerText = "⏳ යැවෙමින් පවතී...";
+            
+            try {
+                const payload = {
+                    author: author,
+                    message: message,
+                    timestamp: Date.now()
+                };
+                
+                const res = await fetch(`${firebaseURL}comments/${episodeUniqueId}.json`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                if (res.ok) {
+                    messageInput.value = '';
+                    loadComments();
+                } else {
+                    alert("අදහස පළ කිරීමට නොහැකි විය. නැවත උත්සාහ කරන්න.");
+                }
+            } catch (e) {
+                console.error("Comment submission failed", e);
+                alert("සම්බන්ධතා දෝෂයක්. නැවත උත්සාහ කරන්න.");
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = "💬 අදහස් දක්වන්න (Submit Comment)";
+            }
+        }
+
+        async function loadComments() {
+            const commentsList = document.getElementById('comments-list');
+            if (!commentsList) return;
+            commentsList.innerHTML = `<p style="text-align: center; color: var(--text-muted); font-size: 12px;">⏳ අදහස් පූරණය වෙමින් පවතී...</p>`;
+            
+            try {
+                const res = await fetch(`${firebaseURL}comments/${episodeUniqueId}.json`);
+                const data = await res.json();
+                if (!data) {
+                    commentsList.innerHTML = `<p style="text-align: center; color: var(--text-muted); font-size: 12px;">💬 තවමත් කිසිදු අදහසක් පළ කර නොමැත. ඔබේ අදහස මුලින්ම පළ කරන්න!</p>`;
+                    return;
+                }
+                
+                commentsList.innerHTML = '';
+                const commentsArray = Object.values(data);
+                commentsArray.sort((a, b) => b.timestamp - a.timestamp); // latest first
+                
+                commentsArray.forEach(c => {
+                    const dateObj = new Date(c.timestamp);
+                    const formattedDate = dateObj.toLocaleDateString('en-US', { timeZone: "Asia/Colombo" }) + ' | ' + dateObj.toLocaleTimeString('en-US', { timeZone: "Asia/Colombo", hour: '2-digit', minute: '2-digit' });
+                    
+                    commentsList.innerHTML += `
+                        <div class="comment-card">
+                            <div class="comment-header">
+                                <span>👤 ${escapeHTML(c.author)}</span>
+                                <span style="color:var(--text-muted); font-weight:normal;">📅 ${formattedDate}</span>
+                            </div>
+                            <div class="comment-body">${escapeHTML(c.message)}</div>
+                        </div>
+                    `;
+                });
+            } catch (e) {
+                console.error("Failed to load comments", e);
+                commentsList.innerHTML = `<p style="text-align: center; color: var(--neon-pink); font-size: 12px;">❌ අදහස් පූරණය කිරීම අසාර්ථක විය.</p>`;
+            }
+        }
+
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    "'": '&#39;',
+                    '"': '&quot;'
+                }[tag] || tag)
+            );
+        }
+
         function showNotFound() {
             document.getElementById('drama-details-wrapper').innerHTML = `
                 <div style="grid-column: span 2; text-align: center; padding: 80px 0;">
@@ -942,7 +1096,10 @@
             `;
         }
 
-        window.onload = loadEpisodeDetails;
+        window.onload = function() {
+            loadEpisodeDetails();
+            loadComments();
+        };
     </script>
 </body>
 </html>
