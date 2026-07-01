@@ -99,6 +99,25 @@
 
         .main-container { max-width: 1300px; margin: 20px auto; padding: 0 15px; box-sizing: border-box; }
 
+        /* 🏛️ DETAILED LAYOUT GLASS PANELS */
+        .glass-section-custom {
+            background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px;
+            padding: 25px; margin-bottom: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+        }
+        .glass-section-custom h3 {
+            color: var(--neon-cyan); text-shadow: 0 0 8px var(--neon-cyan); font-size: 14px;
+            font-weight: 900; text-transform: uppercase; border-left: 3px solid var(--neon-cyan);
+            padding-left: 10px; margin: 0 0 15px 0; letter-spacing: 1px;
+        }
+
+        .drama-details-container {
+            display: grid; grid-template-columns: 280px 1fr; gap: 30px;
+            background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px;
+            padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); margin-bottom: 30px;
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+        }
+
         /* 🎀 DOUBLE NEON BARS ON POSTER (LEFT & RIGHT) */
         .detail-poster-wrapper {
             position: relative; border-radius: 12px; overflow: hidden;
@@ -121,13 +140,6 @@
         }
         .detail-poster-img { width: 100%; height: 100%; object-fit: cover; }
 
-        .drama-details-container {
-            display: grid; grid-template-columns: 280px 1fr; gap: 30px;
-            background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px;
-            padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); margin-bottom: 30px;
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-        }
-
         .rating-bar-vertical {
             position: absolute; right: 8px; top: 8px; background: rgba(2, 4, 8, 0.9);
             border-right: 3px solid var(--neon-amber); color: var(--neon-amber); text-shadow: 0 0 8px var(--neon-amber);
@@ -135,15 +147,54 @@
             box-shadow: 0 0 10px rgba(255, 170, 0, 0.3); display: flex; align-items: center; gap: 4px; z-index: 2;
         }
 
+        /* 💫 TOP BADGES LAYOUT */
+        .details-top-badges-row {
+            grid-column: span 2;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* 💫 LEFT COLUMN (POSTER + GENRES UNDER) */
+        .detail-left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+        .genres-row-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
         .genre-tag-badge {
             background: rgba(157, 78, 221, 0.1); border: 1px solid var(--neon-purple); color: #d8b4fe;
             text-shadow: 0 0 5px var(--neon-purple); padding: 4px 12px; font-size: 11px; font-weight: 800; border-radius: 20px; text-transform: uppercase;
         }
 
-        .info-spec-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .info-spec-item { font-size: 13.5px; border-bottom: 1px solid rgba(255,255,255,0.03); padding-bottom: 8px; }
+        /* 📋 DYNAMIC SPECS SHEET VERTICAL ALIGNMENT 👇 */
+        .info-spec-list { 
+            list-style: none; 
+            padding: 0; 
+            margin: 0 0 25px 0; 
+            display: flex;
+            flex-direction: column; 
+            gap: 12px; 
+        }
+        .info-spec-item { 
+            font-size: 13.5px; 
+            border-bottom: 1px solid rgba(255,255,255,0.05); 
+            padding-bottom: 8px; 
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+        }
         .info-spec-label { color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); font-weight: bold; }
-        .info-spec-value { color: #fff; font-weight: 800; }
+        .info-spec-value { color: #fff; font-weight: 800; text-align: right; }
 
         /* 💾 EPISODES SECTION */
         .episodes-section {
@@ -183,7 +234,7 @@
         .ep-btn.active-pink { border-color: var(--neon-pink); color: var(--neon-pink); text-shadow: 0 0 5px var(--neon-pink); }
         .ep-btn.active-pink:hover { background: rgba(255, 0, 127, 0.1); box-shadow: 0 0 15px var(--neon-pink); }
 
-        /* 🇱🇰 VOTE / USER CHOICE PANEL */
+        /* 🇱🇰 VOTE / USER CHOICE PANEL (Sri Lanka IMDb Overall Added) */
         .sl-vote-container {
             border: 1px solid var(--glass-border); background: rgba(0,0,0,0.3);
             border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 25px;
@@ -206,13 +257,17 @@
         .vote-count { background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 11px; }
 
         /* SOCIAL MEDIA PLUG */
-        .social-plug-box { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 15px; padding: 25px; margin-top: 50px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.5); border-top: 3px solid var(--neon-pink); }
+        .social-plug-box {
+            background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 15px;
+            padding: 25px; margin-top: 50px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.5); border-top: 3px solid var(--neon-pink);
+        }
         .social-title { font-size: 13px; font-weight: 800; color: var(--text-main); text-shadow: 0 0 8px var(--neon-pink); margin-bottom: 20px; letter-spacing: 1px; text-transform: uppercase; }
         .social-icons-wrapper { display: flex; justify-content: center; gap: 25px; }
         
         .social-btn {
             position: relative; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 22px; text-decoration: none; transition: all 0.3s ease; background: #020408; color: #fff; overflow: hidden; z-index: 1; border: none;
+            text-decoration: none; transition: all 0.3s ease; background: var(--glass-bg); border: 1px solid var(--glass-border);
+            color: #fff;
         }
         /* 💫 SLEEK SINGLE-COLOR FAST CHASE FOR SOCIAL BUTTONS 👇 */
         .social-btn::before {
@@ -225,8 +280,6 @@
             inset: 1.5px; /* Extremely thin! */
             background: #020408; border-radius: 50%; z-index: -1; transition: background 0.3s ease; 
         }
-        
-        /* Fast chase animation */
         @keyframes rgb-rotate { 
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); } 
@@ -250,7 +303,8 @@
         /* 📱 RESPONSIVE TUNING */
         @media (max-width: 768px) {
             .drama-details-container { grid-template-columns: 1fr; padding: 20px; text-align: center; }
-            .detail-poster-wrapper { max-width: 230px; margin: 0 auto; }
+            /* 🎀 FULL WIDTH POSTER ON MOBILE */
+            .detail-poster-wrapper { max-width: 92% !important; width: 100%; margin: 0 auto 20px auto; }
             .info-spec-list { grid-template-columns: 1fr; }
             .episodes-grid-cards { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; }
             .episodes-grid-buttons { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; }
@@ -407,29 +461,35 @@
             const statusColor = isComplete ? "var(--neon-pink)" : "var(--neon-cyan)";
             const statusShadow = isComplete ? "var(--neon-pink)" : "var(--neon-cyan)";
 
-            // Populate Info details
+            // Populate Info details with optimized structural layout
             document.getElementById('drama-details-wrapper').innerHTML = `
-                <div class="detail-poster-wrapper" style="border-color: ${statusColor};">
-                    <img class="detail-poster-img" src="${drama.image_url}" alt="Poster">
-                    <div class="rating-bar-vertical" style="border-right-color: ${ratingColor}; color: ${ratingColor}; text-shadow: 0 0 8px ${ratingColor}; box-shadow: 0 0 10px ${ratingShadow};">
-                        <i class="fa-solid fa-star" style="font-size: 8px;"></i>
-                        <span>${drama.imdb}</span>
+                <!-- 1. Top Badges Row -->
+                <div class="details-top-badges-row">
+                    <span style="background: ${statusColor}; color: #000; box-shadow: 0 0 10px ${statusColor}; border: 1px solid rgba(255,255,255,0.4); padding: 4px 12px; font-size: 11px; font-weight: 900; border-radius: 4px; text-transform: uppercase;">${drama.status}</span>
+                    <span style="background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: #fff; padding: 4px 12px; font-size: 11px; font-weight: bold; border-radius: 4px;">${drama.type}</span>
+                    <span style="background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: #fff; padding: 4px 12px; font-size: 11px; font-weight: bold; border-radius: 4px;">${drama.total_episodes || '?'} EPISODES</span>
+                </div>
+
+                <!-- 2. Left Column (Poster + Rating + Genres list below) -->
+                <div class="detail-left-column">
+                    <div class="detail-poster-wrapper">
+                        <img class="detail-poster-img" src="${drama.image_url}" alt="Poster">
+                        <div class="rating-bar-vertical" style="border-right-color: ${ratingColor}; color: ${ratingColor}; text-shadow: 0 0 8px ${ratingColor}; box-shadow: 0 0 10px ${ratingShadow};">
+                            <i class="fa-solid fa-star" style="font-size: 8px;"></i>
+                            <span>${drama.imdb}</span>
+                        </div>
+                    </div>
+                    <!-- Genres list placed directly under poster -->
+                    <div class="genres-row-container">
+                        ${drama.genres ? drama.genres.map(g => `<span class="genre-tag-badge">${g}</span>`).join('') : ''}
                     </div>
                 </div>
+
+                <!-- 3. Right Column (Title + Spec List + Synopsis) -->
                 <div class="detail-info-wrapper">
                     <h1 style="font-size: 28px; font-weight: 900; margin: 0 0 15px 0; text-shadow: 0 0 10px #fff; text-transform: uppercase;">${drama.title}</h1>
                     
-                    <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;">
-                        <span style="background: ${statusColor}; color: #000; box-shadow: 0 0 10px ${statusColor}; border: 1px solid rgba(255,255,255,0.4); padding: 4px 10px; font-size: 11px; font-weight: 900; border-radius: 4px; text-transform: uppercase;">${drama.status}</span>
-                        <span style="background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: #fff; padding: 4px 10px; font-size: 11px; font-weight: bold; border-radius: 4px;">${drama.type}</span>
-                        <span style="background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: #fff; padding: 4px 10px; font-size: 11px; font-weight: bold; border-radius: 4px;">${drama.total_episodes || '?'} EPISODES</span>
-                    </div>
-
-                    <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 25px;">
-                        ${drama.genres ? drama.genres.map(g => `<span class="genre-tag-badge">${g}</span>`).join('') : ''}
-                    </div>
-
-                    <ul class="info-spec-list" style="margin-bottom: 25px;">
+                    <ul class="info-spec-list">
                         <li class="info-spec-item"><span class="info-spec-label">Director:</span> <span class="info-spec-value">${drama.director || 'N/A'}</span></li>
                         <li class="info-spec-item"><span class="info-spec-label">Writer:</span> <span class="info-spec-value">${drama.writer || 'N/A'}</span></li>
                         <li class="info-spec-item"><span class="info-spec-label">Network:</span> <span class="info-spec-value">${drama.network || 'N/A'}</span></li>
