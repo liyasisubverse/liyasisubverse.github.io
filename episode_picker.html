@@ -25,6 +25,8 @@
             --glass-border: rgba(0, 240, 255, 0.15);
         }
 
+        * { box-sizing: border-box; }
+
         body {
             background-color: var(--bg-main);
             color: var(--text-main);
@@ -94,7 +96,6 @@
 
         .main-container { max-width: 1300px; margin: 20px auto; padding: 0 15px; box-sizing: border-box; }
 
-        /* 🏛️ DETAILED LAYOUT GLASS PANELS */
         .glass-section-custom {
             background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px;
             padding: 25px; margin-bottom: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
@@ -119,7 +120,7 @@
             border-left: 4px solid var(--neon-cyan);
             border-right: 4px solid var(--neon-cyan);
             border-top: none; border-bottom: none;
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+            box-shadow: -10px 0 15px rgba(0, 240, 255, 0.3), 10px 0 15px rgba(0, 240, 255, 0.3);
             aspect-ratio: 2/3;
             animation: posterNeonPulse 3s infinite alternate ease-in-out;
         }
@@ -171,7 +172,7 @@
         
         /* Fixed head-focusing face crop 👇 */
         .cast-img-container img { 
-            width: 100%; height: 100%; 
+            width: calc(100% - 5px); height: calc(100% - 5px); 
             object-fit: cover; object-position: top center; 
             border-radius: 50%; position: relative; z-index: 1; 
         }
@@ -231,18 +232,19 @@
         /* ✍️ CYBERPUNK SWEEPING ELECTRIC DOWNLOAD BUTTONS 👇 */
         .download-box { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 15px; }
         .download-btn {
-            position: relative; width: 100%; max-width: 320px; text-align: center; text-transform: uppercase;
-            font-weight: 900; font-size: 13px; padding: 16px; border-radius: 8px; text-decoration: none;
-            transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px;
+            position: relative; width: 100%; max-width: 280px; text-align: center; text-transform: uppercase;
+            font-weight: 900; font-size: 11.5px; padding: 11px 16px; border-radius: 6px; text-decoration: none;
+            transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px;
             overflow: hidden; z-index: 1; background: #020408; color: #fff;
             border: 2px solid #0055ff; /* Dark Blue Border */
             box-shadow: 0 0 15px rgba(0, 85, 255, 0.4), inset 0 0 10px rgba(0, 85, 255, 0.2);
+            white-space: nowrap; /* Forces text to stay in a single line */
         }
         /* Electric lightning sweep sheen */
         .download-btn::after {
-            content: ''; position: absolute; top: 0; left: -150%; width: 80%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.1) 20%, rgba(255, 255, 255, 0.9) 50%, rgba(0, 240, 255, 0.4) 55%, rgba(0, 240, 255, 0.1) 60%, transparent);
-            transform: skewX(-25deg); animation: lightning-sweep 4.5s infinite linear; z-index: 2; pointer-events: none;
+            content: ''; position: absolute; top: 0; left: -150%; width: 50%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05) 10%, rgba(255, 255, 255, 0.9) 50%, rgba(0, 240, 255, 0.4) 60%, transparent);
+            transform: skewX(-20deg); animation: lightning-sweep 4.5s infinite linear; z-index: 2; pointer-events: none;
         }
         .download-btn:hover {
             border-color: var(--neon-cyan);
@@ -258,6 +260,19 @@
 
         .video-responsive-box { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; border: 1px solid var(--glass-border); }
         .video-responsive-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+        /* 📂 CATEGORY/GENRE CHOICE PANEL WITH RESPONSIVE ALIGNMENT 👇 */
+        .cat-vote-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        @media (max-width: 600px) {
+            .cat-vote-wrapper {
+                grid-template-columns: 1fr !important; /* Stack single column on mobile */
+                gap: 10px;
+            }
+        }
 
         .social-plug-box {
             background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 15px;
@@ -276,7 +291,6 @@
             animation: rgb-rotate 4s linear infinite; z-index: -2;
         }
         .social-btn::after { content: ''; position: absolute; inset: 3px; background: #020408; border-radius: 50%; z-index: -1; transition: background 0.3s ease; }
-        @keyframes rgb-rotate { 100% { transform: rotate(360deg); } }
 
         .social-btn:hover::after { background: rgba(6, 11, 25, 0.9); }
         .social-btn.facebook:hover { color: #1877f2; text-shadow: 0 0 8px #1877f2; }
@@ -370,7 +384,7 @@
         <!-- 📂 CATEGORY/GENRE CHOICE PANEL (RESTORED BEAUTIFULLY) 👇 -->
         <div class="glass-section-custom" id="genre-vote-wrapper" style="display:none;">
             <h3>📂 ඔබට වැඩිපුරම අවශ්‍ය කුමන ප්‍රභේදද?</h3>
-            <div class="cat-vote-wrapper" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+            <div class="cat-vote-wrapper">
                 <div class="sl-vote-container" data-id="cat_fantasy" style="margin-top:0;">
                     <div class="sl-vote-title"><b>🔮 Fantasy (මායාවී)</b></div>
                     <div class="neon-bar-wrapper"><div class="neon-bar-track"><div class="neon-bar-fill"></div></div></div>
@@ -634,7 +648,7 @@
                 </div>
             `;
 
-            // Download Box Section
+            // Download Box Section (Blue Neon Sweping-Electric buttons)
             const downloadSection = document.getElementById('download-section-wrapper');
             downloadSection.style.display = 'block';
             downloadSection.innerHTML = `
