@@ -140,49 +140,10 @@
             text-shadow: 0 0 5px var(--neon-purple); padding: 4px 12px; font-size: 11px; font-weight: 800; border-radius: 20px; text-transform: uppercase;
         }
 
-        /* 📋 METADATA DYNAMIC VERTICAL SPECS SHEET 👇 */
-        .info-spec-list { 
-            list-style: none; 
-            padding: 0; 
-            margin: 0 0 25px 0; 
-            display: flex;
-            flex-direction: column; 
-            gap: 12px; 
-        }
-        .info-spec-item { 
-            font-size: 13.5px; 
-            border-bottom: 1px solid rgba(255,255,255,0.05); 
-            padding-bottom: 8px; 
-            display: flex;
-            justify-content: space-between; 
-            align-items: center;
-        }
+        .info-spec-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .info-spec-item { font-size: 13.5px; border-bottom: 1px solid rgba(255,255,255,0.03); padding-bottom: 8px; }
         .info-spec-label { color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); font-weight: bold; }
-        .info-spec-value { color: #fff; font-weight: 800; text-align: right; }
-
-        /* 💫 TOP BADGES LAYOUT */
-        .details-top-badges-row {
-            grid-column: span 2;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        /* 💫 LEFT COLUMN (POSTER + GENRES UNDER) */
-        .detail-left-column {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            align-items: center;
-        }
-        .genres-row-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            justify-content: center;
-        }
+        .info-spec-value { color: #fff; font-weight: 800; }
 
         /* 💾 EPISODES SECTION */
         .episodes-section {
@@ -245,10 +206,7 @@
         .vote-count { background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 11px; }
 
         /* SOCIAL MEDIA PLUG */
-        .social-plug-box {
-            background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 15px;
-            padding: 25px; margin-top: 50px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.5); border-top: 3px solid var(--neon-pink);
-        }
+        .social-plug-box { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 15px; padding: 25px; margin-top: 50px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.5); border-top: 3px solid var(--neon-pink); }
         .social-title { font-size: 13px; font-weight: 800; color: var(--text-main); text-shadow: 0 0 8px var(--neon-pink); margin-bottom: 20px; letter-spacing: 1px; text-transform: uppercase; }
         .social-icons-wrapper { display: flex; justify-content: center; gap: 25px; }
         
@@ -258,8 +216,31 @@
             color: #fff;
         }
         
-        /* ✍️ NEON GLOWING BRAND ICONS FOR SOCIAL MEDIAS 👇 */
-        .social-btn i { transition: all 0.3s ease; }
+        /* ✍️ NEON GLOWING BRAND ICONS FOR SOCIAL MEDIAS WITH THIN CONIC CHASE 👇 */
+        .social-btn::before {
+            content: ''; position: absolute; top: -20%; left: -20%; width: 140%; height: 140%;
+            background: conic-gradient(var(--neon-cyan) 0deg, transparent 40%, transparent 100%);
+            animation: rgb-rotate 1.5s linear infinite; 
+            -webkit-animation: rgb-rotate 1.5s linear infinite;
+            z-index: -2;
+        }
+        .social-btn::after { 
+            content: ''; position: absolute; 
+            inset: 1.5px; /* Extremely thin! */
+            background: #020408; border-radius: 50%; z-index: -1; transition: background 0.3s ease; 
+        }
+        
+        /* Fast chase animation */
+        @keyframes rgb-rotate { 
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); } 
+        }
+        @-webkit-keyframes rgb-rotate { 
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); } 
+        }
+
+        .social-btn i { transition: all 0.3s ease; position: relative; z-index: 2; }
         .social-btn.facebook i { color: #1877f2; text-shadow: 0 0 10px #1877f2, 0 0 20px #1877f2; }
         .social-btn.youtube i { color: #ff0000; text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000; }
         .social-btn.telegram i { color: #0088cc; text-shadow: 0 0 10px #0088cc, 0 0 20px #0088cc; }
@@ -278,8 +259,14 @@
         /* 📱 RESPONSIVE TUNING */
         @media (max-width: 768px) {
             .drama-details-container { grid-template-columns: 1fr; padding: 20px; text-align: center; }
-            /* 🎀 FULL WIDTH POSTER ON MOBILE */
-            .detail-poster-wrapper { max-width: 92% !important; width: 100%; margin: 0 auto 20px auto; }
+            /* 🎀 STABLE POSTER HEIGHT AND WIDTH TO PREVENT MOB COLLAPSE 👇 */
+            .detail-poster-wrapper { 
+                width: 280px !important; 
+                height: 420px !important; 
+                max-width: 92% !important; 
+                margin: 0 auto 20px auto !important; 
+                display: block !important; 
+            }
             .info-spec-list { grid-template-columns: 1fr; }
             .episodes-grid-cards { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; }
             .episodes-grid-buttons { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; }
@@ -292,6 +279,7 @@
             .sub-nav-bar { gap: 10px; padding: 8px; }
             .sub-nav-item { font-size: 11px; padding: 6px 12px; }
         }
+        @media (max-width: 400px) { .live-clock { font-size: 8px !important; padding: 3px 6px !important; } }
     </style>
 </head>
 <body>
@@ -436,7 +424,7 @@
             const statusColor = isComplete ? "var(--neon-pink)" : "var(--neon-cyan)";
             const statusShadow = isComplete ? "var(--neon-pink)" : "var(--neon-cyan)";
 
-            // Populate Info details (with restructured upper badges and left poster genres) 👇
+            // Populate Info details with optimized structural layout
             document.getElementById('drama-details-wrapper').innerHTML = `
                 <!-- 1. Top Badges Row -->
                 <div class="details-top-badges-row">
