@@ -174,13 +174,12 @@
             background: #000; border-radius: 6px; overflow: hidden; position: relative; text-decoration: none;
             aspect-ratio: 2 / 3; box-shadow: 0 5px 15px rgba(0,0,0,0.7); transition: all 0.3s ease;
             border-top: 3.5px solid var(--neon-cyan); border-bottom: 3.5px solid var(--neon-cyan);
-            display: flex; flex-direction: column;
         }
         .movie-style-card:hover { transform: scale(1.05); border-color: var(--neon-pink); box-shadow: 0 0 15px var(--neon-pink); }
         .movie-style-card.card-complete { border-color: var(--neon-pink); }
         
-        /* 🖼️ කාර්ඩ් පින්තූරය කැපෙන්නේ හෝ දිග හැරෙන්නේ නැතිව සම්පූර්ණයෙන් පෙනෙන්නට contain යොදා ඇත */
-        .poster-img { width: 100%; height: 100%; object-fit: contain; opacity: 0.8; background: #000; }
+        /* 🖼️ FIXED: PREVENT ZOOMING AND CROP inside Movie-style cards */
+        .poster-img { width: 100%; height: 100%; object-fit: contain; background: #000; opacity: 0.8; }
 
         .badge-top-left {
             position: absolute; top: 8px; left: 8px; background: rgba(2, 4, 8, 0.85); color: #fff;
@@ -244,15 +243,6 @@
         .genre-section { background: var(--glass-bg); padding: 20px; border-radius: 12px; border: 1px solid var(--glass-border); border-top: 3px solid var(--neon-purple); margin-top: 50px; }
         .genre-section-title { color: var(--neon-amber); font-weight: 900; font-size: 14px; margin-bottom: 15px; display: block; text-transform: uppercase; }
 
-        /* 🇱🇰 VOTE / USER CHOICE PANEL (Reused for pagination controls styling) */
-        .vote-btn-custom {
-            flex: 1; max-width: 180px; padding: 12px; font-size: 11.5px; font-weight: 900;
-            border-radius: 8px; cursor: pointer; text-transform: uppercase; transition: 0.3s;
-            display: flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid var(--glass-border);
-        }
-        .vote-btn-custom.vote-like { background: rgba(0, 240, 255, 0.05); color: var(--neon-cyan); border-color: rgba(0, 240, 255, 0.2); }
-        .vote-btn-custom.vote-like:hover { background: rgba(0, 240, 255, 0.15); box-shadow: 0 0 15px rgba(0, 240, 255, 0.3); }
-
         .about-section { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 15px; padding: 30px; margin-top: 50px; display: flex; align-items: center; gap: 25px; border-right: 4px solid var(--neon-pink); }
         .about-img { width: 90px; height: 90px; border-radius: 50%; border: 3px solid var(--neon-pink); box-shadow: 0 0 15px var(--neon-pink); object-fit: cover; }
 
@@ -264,6 +254,7 @@
             position: relative; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
             text-decoration: none; transition: all 0.3s ease; background: var(--glass-bg); border: 1px solid var(--glass-border);
             color: #fff;
+            /* 🛡️ WebKit Clip Leak Fix on Homepage 👇 */
             transform: translateZ(0);
             -webkit-transform: translateZ(0);
             will-change: transform;
@@ -281,7 +272,7 @@
         }
         .social-btn::after { 
             content: ''; position: absolute; 
-            inset: 1.5px; 
+            inset: 1.5px; /* Extremely thin! */
             background: #020408; border-radius: 50%; z-index: -1; transition: background 0.3s ease; 
         }
         
@@ -523,8 +514,6 @@
         let activeGenre = "ALL";
         let currentSearchQuery = "";
         let originalDatabase = dummyDatabase;
-        let currentPage = 1;
-        const ITEMS_PER_PAGE = 12; // පිටුවකට පෙන්වන ඩ්‍රාමා ගණන
 
         async function loadContent() {
             try {
@@ -544,7 +533,7 @@
             const aboutMeText = config.about_me_text || "අපි ඔබ වෙත ගෙන එන්නේ ගුණාත්මක බවින් ඉහළම ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි පමණි. අපගේ නිල සමාජ මාධ්‍ය ජාලයන් සමඟ එක් වී අලුත්ම අප්ඩේට්ස් එවලේම ලබාගන්න.";
             const aboutMeAvatar = config.about_me_avatar || ABOUT_ME_ART_LOGO;
             const tgChannelLink = config.telegram_channel_link || "https://t.me/liyasi1";
-            const noticeText = config.notice_text || "අපගේ සියලුම සිංහල උපසිරැසි නොමිලේ ලබාගත හැක. කිසියම් ගැටලුවක් ඇත්නම් 3-Dot මෙනුවේ ඇති Contact පිටුවෙන් අපට පණිවිඩයක් එවන්න.";
+            const noticeText = config.notice_text || "අපගේ සියලුම සිංහල උපසිරැසි නොමිලේ ලබාගත හැක. කිසියම් ගැටලුවක් ඇත්නම් 3-Dot มෙනුවේ ඇති Contact පිටුවෙන් අපට පණිවිඩයක් එවන්න.";
             const subServerStatus = config.server_status_sub || "ONLINE";
             const botServerStatus = config.server_status_bot || "ACTIVE";
 
@@ -601,14 +590,6 @@
                 return;
             }
 
-            // Calculation of Pagination Indexes
-            const totalPages = Math.ceil(filteredDramas.length / ITEMS_PER_PAGE);
-            if (currentPage > totalPages) currentPage = totalPages || 1;
-
-            const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-            const endIndex = startIndex + ITEMS_PER_PAGE;
-            const paginatedDramas = filteredDramas.slice(startIndex, endIndex);
-
             const languages = {
                 "K-DRAMA": "කොරියානු කතාමාලා (Korean Dramas)",
                 "C-DRAMA": "චීන කතාමාලා (Chinese Dramas)",
@@ -616,7 +597,7 @@
             };
 
             Object.entries(languages).forEach(([type, label]) => {
-                const dramasOfLang = paginatedDramas.filter(d => d.type === type);
+                const dramasOfLang = filteredDramas.filter(d => d.type === type);
                 if (dramasOfLang.length === 0) return;
 
                 let sectionHTML = `
@@ -643,48 +624,6 @@
 
                 area.innerHTML += sectionHTML;
             });
-
-            // If there is more than 1 page, render pagination Next / Prev buttons
-            if (totalPages > 1) {
-                let paginationHTML = `
-                    <div class="pagination-container" style="display: flex; justify-content: center; align-items: center; gap: 15px; margin: 40px 0 20px 0; flex-wrap: wrap;">
-                        <button id="btn-prev-page" class="vote-btn-custom vote-like" style="max-width: 150px; cursor: pointer; text-decoration: none; display: ${currentPage > 1 ? 'flex' : 'none'};">
-                            <i class="fa-solid fa-arrow-left"></i> පෙර (PREV)
-                        </button>
-                        <span style="font-weight: bold; color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); font-size: 14px;">
-                            පිටුව ${currentPage} / ${totalPages}
-                        </span>
-                        <button id="btn-next-page" class="vote-btn-custom vote-like" style="max-width: 150px; cursor: pointer; text-decoration: none; display: ${currentPage < totalPages ? 'flex' : 'none'};">
-                            ඊළඟ (NEXT) <i class="fa-solid fa-arrow-right"></i>
-                        </button>
-                    </div>
-                `;
-                area.innerHTML += paginationHTML;
-
-                // Event Bindings
-                const prevBtn = document.getElementById('btn-prev-page');
-                const nextBtn = document.getElementById('btn-next-page');
-                if (prevBtn) {
-                    prevBtn.onclick = () => {
-                        if (currentPage > 1) {
-                            currentPage--;
-                            renderPage();
-                            // Smooth scroll to search/tabs area
-                            window.scrollTo({ top: document.querySelector('.filter-tabs').offsetTop - 100, behavior: 'smooth' });
-                        }
-                    };
-                }
-                if (nextBtn) {
-                    nextBtn.onclick = () => {
-                        if (currentPage < totalPages) {
-                            currentPage++;
-                            renderPage();
-                            // Smooth scroll to search/tabs area
-                            window.scrollTo({ top: document.querySelector('.filter-tabs').offsetTop - 100, behavior: 'smooth' });
-                        }
-                    };
-                }
-            }
         }
 
         function generateDynamicGenres(dramas) {
@@ -763,7 +702,6 @@
 
         function filterLanguage(lang) {
             activeLanguage = lang;
-            currentPage = 1; // සෙවීමේදී පිටුව නැවත මුලට ගනී
             const tabs = document.querySelectorAll('.tab-btn');
             tabs.forEach(t => t.classList.remove('active'));
             event.target.classList.add('active');
@@ -773,7 +711,6 @@
         function filterGenre(genre, element) {
             event.preventDefault();
             activeGenre = genre;
-            currentPage = 1; // ප්‍රභේද තේරීමේදී පිටුව නැවත මුලට ගනී
             const pills = document.querySelectorAll('.genre-item');
             pills.forEach(p => p.classList.remove('active'));
             element.classList.add('active');
@@ -782,7 +719,6 @@
 
         function searchDrama() {
             currentSearchQuery = document.getElementById('searchInput').value;
-            currentPage = 1; // සර්ච් කිරීමේදී පිටුව නැවත මුලට ගනී
             renderPage();
         }
 
