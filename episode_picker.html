@@ -126,30 +126,28 @@
             padding-left: 10px; margin: 0 0 15px 0; letter-spacing: 1px;
         }
 
-        /* 📱 Desktop සහ Mobile දෙකම එකම ආකාරයට සකසා ඇත */
+        /* 🎀 UNIFIED VERTICAL LAYOUT FOR DESKTOP & MOBILE */
         .drama-details-container {
-            display: flex; 
-            flex-direction: column; 
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            text-align: center;
             gap: 30px;
             background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px;
             padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); margin-bottom: 30px;
             backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            text-align: center;
         }
 
-        /* 🎀 DOUBLE NEON BARS ON POSTER (LEFT & RIGHT) */
+        /* 🎀 DOUBLE NEON BARS ON POSTER (LEFT & RIGHT) WITH FIXED ASSETS */
         .detail-poster-wrapper {
             position: relative; border-radius: 12px; overflow: hidden;
             border-left: 4px solid var(--neon-cyan);
             border-right: 4px solid var(--neon-cyan);
             border-top: none; border-bottom: none;
             box-shadow: -10px 0 15px rgba(0, 240, 255, 0.3), 10px 0 15px rgba(0, 240, 255, 0.3);
-            width: 100%;
-            max-width: 320px;
+            width: 280px; height: 420px; max-width: 92%;
             margin: 0 auto;
-            background: rgba(0,0,0,0.6);
-            display: block;
+            aspect-ratio: 2/3;
             animation: posterNeonPulse 3s infinite alternate ease-in-out;
         }
         @keyframes posterNeonPulse {
@@ -163,8 +161,8 @@
             }
         }
 
-        /* 🖼️ රූපය කැපෙන්නේ නැතිව සම්පූර්ණයෙන් පෙනෙන්නට object-fit: contain යොදා ඇත */
-        .detail-poster-img { width: 100%; height: auto; display: block; object-fit: contain; }
+        /* 🖼️ FIXED: PREVENT ZOOMING AND CROP */
+        .detail-poster-img { width: 100%; height: 100%; object-fit: contain; background: #000; }
 
         .rating-bar-vertical {
             position: absolute; right: 8px; top: 8px; background: rgba(2, 4, 8, 0.9);
@@ -180,6 +178,7 @@
             gap: 10px;
             margin-bottom: 20px;
             flex-wrap: wrap;
+            width: 100%;
         }
 
         /* 💫 LEFT COLUMN (POSTER + GENRES UNDER) */
@@ -197,24 +196,23 @@
             justify-content: center;
         }
 
-        .detail-info-wrapper {
-            width: 100%;
-        }
-
         .genre-tag-badge {
             background: rgba(157, 78, 221, 0.1); border: 1px solid var(--neon-purple); color: #d8b4fe;
             text-shadow: 0 0 5px var(--neon-purple); padding: 4px 12px; font-size: 11px; font-weight: 800; border-radius: 20px; text-transform: uppercase;
+        }
+
+        .detail-info-wrapper {
+            width: 100%;
         }
 
         /* 📋 METADATA DYNAMIC VERTICAL SPECS SHEET 👇 */
         .info-spec-list { 
             list-style: none; 
             padding: 0; 
-            margin: 0 auto 25px auto; 
+            margin: 0 0 25px 0; 
             display: flex;
             flex-direction: column; 
-            gap: 12px;
-            max-width: 500px; /* මැදට වී ලස්සනට පෙනෙන්නට */
+            gap: 12px; 
         }
         .info-spec-item { 
             font-size: 13.5px; 
@@ -223,7 +221,6 @@
             display: flex;
             justify-content: space-between; 
             align-items: center;
-            text-align: left;
         }
         .info-spec-label { color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); font-weight: bold; }
         .info-spec-value { color: #fff; font-weight: 800; text-align: right; }
@@ -236,10 +233,12 @@
             position: relative; width: 65px; height: 65px; border-radius: 50%; overflow: hidden; 
             z-index: 1; border: none; display: flex; align-items: center; justify-content: center;
             margin-bottom: 8px;
+            /* 🛡️ WebKit Clip Leak Fix on Cast circles 👇 */
             transform: translateZ(0);
             -webkit-transform: translateZ(0);
             will-change: transform;
         }
+        /* 💫 SLEEK SINGLE-COLOR FAST CHASE FOR CAST CIRCLES 👇 */
         .cast-img-container::before {
             content: ''; position: absolute; top: -20%; left: -20%; width: 140%; height: 140%;
             background: conic-gradient(var(--neon-cyan) 0deg, transparent 40%, transparent 100%);
@@ -249,10 +248,11 @@
         }
         .cast-img-container::after { 
             content: ''; position: absolute; 
-            inset: 1.5px; 
+            inset: 1.5px; /* Extremely thin! */
             background: #020408; border-radius: 50%; z-index: -1; 
         }
         
+        /* Fixed head-focusing face crop 👇 */
         .cast-img-container img { 
             width: calc(100% - 3px); height: calc(100% - 3px); 
             object-fit: cover; object-position: top center; 
@@ -296,18 +296,6 @@
         .vote-btn-custom.vote-dislike:hover { background: rgba(255, 0, 127, 0.15); box-shadow: 0 0 15px rgba(255, 0, 127, 0.3); }
         .vote-count { background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 11px; }
 
-        /* ❌ NAVIGATION DISABLED BUTTON STATE 👇 */
-        .nav-btn-disabled {
-            opacity: 0.35 !important;
-            cursor: not-allowed !important;
-            pointer-events: none !important;
-            border-color: rgba(255, 255, 255, 0.05) !important;
-            color: var(--text-muted) !important;
-            text-shadow: none !important;
-            box-shadow: none !important;
-            background: rgba(0,0,0,0.2) !important;
-        }
-
         /* ✍️ NEON HEADER LABEL STYLE 👇 */
         .neon-header-text {
             font-size: 14px; font-weight: 900; text-align: center; text-transform: uppercase;
@@ -330,14 +318,16 @@
             font-weight: 900; font-size: 11.5px; padding: 13px 16px; border-radius: 6px; text-decoration: none;
             transition: 0.3s; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
             overflow: hidden; z-index: 1; 
-            background: transparent !important;
+            background: transparent !important; /* Transparent to let pseudo-borders work */
             border: none !important;
             color: #ffffff !important;                     
-            white-space: nowrap;                           
+            white-space: nowrap;                           /* Single line text */
+            /* 🛡️ WebKit Clip Leak Fix */
             transform: translateZ(0);
             -webkit-transform: translateZ(0);
             will-change: transform;
         }
+        /* Chasing Dark Blue/Cyan neon border for the button! */
         .download-btn::before {
             content: ''; position: absolute; top: -150%; left: -50%; width: 200%; height: 400%;
             background: conic-gradient(#0055ff 0deg, transparent 40%, transparent 100%);
@@ -349,6 +339,7 @@
             background: rgba(6, 11, 25, 0.95); border-radius: 4px; z-index: -1;
             transition: background 0.3s ease;
         }
+        /* Electric lightning sweep sheen */
         .btn-sheen-sweep {
             position: absolute; top: 0; left: -150%; width: 50%; height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05) 10%, rgba(255, 255, 255, 0.9) 50%, rgba(0, 240, 255, 0.4) 60%, transparent);
@@ -367,7 +358,7 @@
         }
         @media (max-width: 600px) {
             .cat-vote-wrapper {
-                grid-template-columns: 1fr !important; 
+                grid-template-columns: 1fr !important; /* Stack single column on mobile */
                 gap: 10px;
             }
         }
@@ -429,12 +420,14 @@
             position: relative; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
             text-decoration: none; transition: all 0.3s ease; background: var(--glass-bg); border: 1px solid var(--glass-border);
             color: #fff;
+            /* 🛡️ WebKit Clip Leak Fix on Picker 👇 */
             transform: translateZ(0);
             -webkit-transform: translateZ(0);
             will-change: transform;
             overflow: hidden;
             border: none;
         }
+        /* 💫 SLEEK SINGLE-COLOR FAST CHASE FOR SOCIAL BUTTONS 👇 */
         .social-btn::before {
             content: ''; position: absolute; top: -20%; left: -20%; width: 140%; height: 140%;
             background: conic-gradient(var(--neon-cyan) 0deg, transparent 40%, transparent 100%);
@@ -444,7 +437,7 @@
         }
         .social-btn::after { 
             content: ''; position: absolute; 
-            inset: 1.5px; 
+            inset: 1.5px; /* Extremely thin! */
             background: #020408; border-radius: 50%; z-index: -1; transition: background 0.3s ease; 
         }
         @keyframes rgb-rotate { 
@@ -474,6 +467,18 @@
 
         /* 📱 RESPONSIVE TUNING */
         @media (max-width: 768px) {
+            /* 🎀 CONVERT TO COLUMN LAYOUT TO PREVENT COLLAPSE 👇 */
+            .drama-details-container { 
+                padding: 20px !important; 
+            }
+            /* 🎀 STABLE POSTER HEIGHT AND WIDTH TO PREVENT MOB COLLAPSE 👇 */
+            .detail-poster-wrapper { 
+                width: 280px !important; 
+                height: 420px !important; 
+                max-width: 92% !important; 
+                margin: 0 auto 20px auto !important; 
+            }
+            .info-spec-list { grid-template-columns: 1fr; }
             .cast-grid-box { grid-template-columns: repeat(3, 1fr); gap: 10px; }
         }
         @media (max-width: 600px) {
@@ -482,7 +487,6 @@
             .site-logo-img { height: 32px !important; }
             .sub-nav-bar { gap: 10px; padding: 8px; }
             .sub-nav-item { font-size: 11px; padding: 6px 12px; }
-            .info-spec-list { max-width: 100%; }
         }
     </style>
 </head>
@@ -529,7 +533,7 @@
         
         <!-- DYNAMIC DETAILED HERO BLOCK -->
         <div class="drama-details-container" id="drama-details-wrapper">
-            <p style="text-align: center; color: var(--neon-cyan); padding: 50px 0; width: 100%;">🤖 [SYSTEM RETRIEVING DATA...]</p>
+            <p style="text-align: center; color: var(--neon-cyan); grid-column: span 2; padding: 50px 0;">🤖 [SYSTEM RETRIEVING DATA...]</p>
         </div>
 
         <!-- 🎭 CAST & CREW DYNAMIC HOLDER -->
@@ -547,8 +551,19 @@
         <!-- 📥 DOWNLOAD BOX CONTAINER -->
         <div class="glass-section-custom" id="download-section-wrapper" style="display:none;"></div>
 
-        <!-- 🔄 EPISODE NAVIGATION BOX (ඩවුන්ලෝඩ් බොක්ස් එකට පහළින් එන නව බොක්ස් එක) -->
-        <div class="glass-section-custom" id="episode-nav-wrapper" style="display:none;"></div>
+        <!-- ⬅️➡️ NAVIGATION BUTTONS CONTAINER (INSERTED SEPARATELY) -->
+        <div class="glass-section-custom" id="episode-navigation-wrapper" style="display:none; text-align: center; margin-bottom: 25px;">
+            <div style="display: flex; justify-content: center; gap: 20px; align-items: center;">
+                <a id="prev-episode-btn" class="download-btn" href="#" style="max-width: 180px; margin: 0;">
+                    <span class="btn-sheen-sweep"></span>
+                    <span style="position:relative; z-index:3;">⬅️ Previous</span>
+                </a>
+                <a id="next-episode-btn" class="download-btn" href="#" style="max-width: 180px; margin: 0;">
+                    <span class="btn-sheen-sweep"></span>
+                    <span style="position:relative; z-index:3;">Next ➡️</span>
+                </a>
+            </div>
+        </div>
 
         <!-- 📂 CATEGORY/GENRE CHOICE PANEL (RESTORED BEAUTIFULLY) 👇 -->
         <div class="glass-section-custom" id="genre-vote-wrapper" style="display:none;">
@@ -609,6 +624,7 @@
         <div class="glass-section-custom">
             <h3>💬 අදහස් සහ ප්‍රතිචාර (Comments & Reviews)</h3>
             
+            <!-- Form to add new comment -->
             <div style="margin-bottom: 30px;">
                 <input type="text" id="comment-author" class="comment-input-field" placeholder="ඔබේ නම (Your Name)..." required>
                 <textarea id="comment-message" class="comment-input-field" placeholder="ඔබේ අදහස මෙතන ලියන්න (Write your comment)..." required></textarea>
@@ -619,8 +635,12 @@
                 </button>
             </div>
             
+            <!-- List of existing comments -->
             <div id="comments-list"></div>
         </div>
+
+        <!-- 👤 ABOUT ME SECTION (Moved to bottom above footer) -->
+        <div class="glass-section-custom" id="about-me-section-wrapper" style="display:none; text-align: center; margin-top: 30px;"></div>
 
         <!-- 🌐 GLOWING SOCIAL MEDIA PLUG -->
         <div class="social-plug-box">
@@ -637,7 +657,7 @@
     <footer>
         <div class="footer-content">
             <div class="footer-brand"><span class="sinhala">ලියැසි</span><span class="english">SUBVERSE</span></div>
-            <p class="footer-description">ලියැසි SUBVERSE වෙතින් උසස්ම තත්ත්වයේ ආසියානු kතාමාලා සඳහා සිංහල උපසිරැසි නොමිලේ ලබාගත හැක.</p>
+            <p class="footer-description">ලියැසි SUBVERSE වෙතින් උසස්ම තත්ත්වයේ ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි නොමිලේ ලබාගත හැක.</p>
             <div class="footer-credits">&copy; 2026 ලියැසි SUBVERSE. All Rights Reserved.</div>
         </div>
     </footer>
@@ -702,6 +722,7 @@
             document.getElementById('header-logo-container').innerHTML = `<img class="site-logo-img" src="${HEADER_BANNER_LOGO}" alt="Subverse Logo">`;
             document.title = `${drama.title} - ${ep.episode} - සිංහල උපසිරැසි | ලියැසි SUBVERSE`;
 
+            // Dynamically update the search description for Google/Telegram!
             let metaDesc = document.querySelector('meta[name="description"]');
             if (!metaDesc) {
                 metaDesc = document.createElement('meta');
@@ -709,14 +730,16 @@
                 document.head.appendChild(metaDesc);
             }
             metaDesc.content = ep.synopsis ? ep.synopsis.substring(0, 150) : `${drama.title} හි ${ep.episode} කොටස සිංහල උපසිරැසි සමඟ නොමිලේ බාගත කරගන්න.`;
-            
+            // Global Config overrides
             if (config.telegram_channel_link) {
                 document.getElementById('tg-config-link').href = config.telegram_channel_link;
             }
 
+            // Dynamic background dynamic blur
             document.body.style.backgroundImage = `linear-gradient(to bottom, rgba(2, 4, 8, 0.9), rgba(2, 4, 8, 0.98)), url('${ep.image || drama.image_url}')`;
             document.getElementById('ticker-text').innerHTML = `⚡ ${drama.title} [${ep.episode}] උපසිරැසි දැන් සූදානම්! • `;
 
+            // Rating color algorithm
             const rating = parseFloat(ep.imdb || drama.imdb) || 0.0;
             let ratingColor = "#ffaa00"; let ratingShadow = "rgba(255, 170, 0, 0.4)";
             if (rating >= 8.5) { ratingColor = "#00ff66"; ratingShadow = "rgba(0, 255, 102, 0.4)"; }
@@ -727,6 +750,7 @@
             const statusColor = isComplete ? "var(--neon-pink)" : "var(--neon-cyan)";
             const statusShadow = isComplete ? "var(--neon-pink)" : "var(--neon-cyan)";
 
+            // Populate Info details with optimized structural layout
             document.getElementById('drama-details-wrapper').innerHTML = `
                 <!-- 1. Top Badges Row -->
                 <div class="details-top-badges-row">
@@ -744,6 +768,7 @@
                             <span>${rating}</span>
                         </div>
                     </div>
+                    <!-- Genres list placed directly under poster -->
                     <div class="genres-row-container">
                         ${drama.genres ? drama.genres.map(g => `<span class="genre-tag-badge">${g}</span>`).join('') : ''}
                     </div>
@@ -763,7 +788,7 @@
                         <li class="info-spec-item"><span class="info-spec-label">Runtime:</span> <span class="info-spec-value">${ep.runtime || drama.runtime || 'N/A'}</span></li>
                     </ul>
 
-                    <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); padding: 20px; border-radius: 10px; line-height: 1.8; color: #ccc; font-size: 13.5px; text-align: left;">
+                    <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); padding: 20px; border-radius: 10px; line-height: 1.8; color: #ccc; font-size: 13.5px;">
                         <h3 style="color: ${statusColor}; text-shadow: 0 0 5px ${statusColor}; margin: 0 0 10px 0; font-size: 14px; text-transform: uppercase; font-weight: 900;">කතා සාරාංශය (Synopsis)</h3>
                         <p style="margin: 0;">${ep.synopsis || drama.synopsis || 'කතා සාරාංශයක් ඇතුළත් කර නොමැත.'}</p>
                     </div>
@@ -811,7 +836,7 @@
                 trailerSection.innerHTML = `
                     <h3><u>OFFICIAL TRAILER</u></h3>
                     <div class="video-responsive-box">
-                        <iframe src="${trailerToUse}" style="border: none; width:100%; height:300px;" allowfullscreen></iframe>
+                        <iframe src="${trailerToUse}" style="border: none;" allowfullscreen></iframe>
                     </div>
                 `;
             }
@@ -868,56 +893,53 @@
                 </div>
             `;
 
-            // Setup Next / Prev Navigation Buttons dynamically in the separate Box
-            const epNavWrapper = document.getElementById('episode-nav-wrapper');
-            if (epNavWrapper) {
-                epNavWrapper.style.display = 'block';
-                epNavWrapper.innerHTML = `
-                    <h3>EPISODE NAVIGATION</h3>
-                    <div style="display: flex; justify-content: space-between; gap: 15px; width: 100%; max-width: 500px; margin: 0 auto; flex-wrap: nowrap;">
-                        <a id="btn-prev-ep" class="vote-btn-custom vote-like" style="flex: 1; text-decoration: none; justify-content: center; align-items: center; display: flex;">
-                            ⬅️ Prev
-                        </a>
-                        <a id="btn-next-ep" class="vote-btn-custom vote-like" style="flex: 1; text-decoration: none; justify-content: center; align-items: center; display: flex;">
-                            Next ➡️
-                        </a>
-                    </div>
-                `;
+            // ⬅️➡️ DYNAMIC NEXT/PREVIOUS NAVIGATION LOGIC
+            const currentEpIndex = drama.episodes.findIndex(e => e.episode === ep.episode);
+            const prevEpBtn = document.getElementById('prev-episode-btn');
+            const nextEpBtn = document.getElementById('next-episode-btn');
+            const navWrapper = document.getElementById('episode-navigation-wrapper');
 
-                const currentEpNumStr = ep.episode.match(/\d+/);
-                if (currentEpNumStr && drama.episodes) {
-                    const currentNum = parseInt(currentEpNumStr[0]);
-                    const prevEp = drama.episodes.find(e => {
-                        const m = e.episode.match(/\d+/);
-                        return m && parseInt(m[0]) === currentNum - 1;
-                    });
-                    const nextEp = drama.episodes.find(e => {
-                        const m = e.episode.match(/\d+/);
-                        return m && parseInt(m[0]) === currentNum + 1;
-                    });
-
-                    const btnPrev = document.getElementById('btn-prev-ep');
-                    const btnNext = document.getElementById('btn-next-ep');
-
-                    if (prevEp) {
-                        btnPrev.href = `?drama_id=${dramaId}&ep=${prevEp.episode}`;
-                        btnPrev.classList.remove('nav-btn-disabled');
-                    } else {
-                        btnPrev.removeAttribute('href');
-                        btnPrev.classList.add('nav-btn-disabled');
-                    }
-
-                    if (nextEp) {
-                        btnNext.href = `?drama_id=${dramaId}&ep=${nextEp.episode}`;
-                        btnNext.classList.remove('nav-btn-disabled');
-                    } else {
-                        btnNext.removeAttribute('href');
-                        btnNext.classList.add('nav-btn-disabled');
-                    }
+            if (currentEpIndex !== -1 && drama.episodes.length > 1) {
+                navWrapper.style.display = 'block';
+                
+                if (currentEpIndex > 0) {
+                    const prevEp = drama.episodes[currentEpIndex - 1];
+                    prevEpBtn.href = `episode_picker.html?drama_id=${dramaId}&ep=${prevEp.episode}`;
+                    prevEpBtn.style.opacity = '1';
+                    prevEpBtn.style.pointerEvents = 'auto';
+                } else {
+                    prevEpBtn.style.opacity = '0.3';
+                    prevEpBtn.style.pointerEvents = 'none';
+                    prevEpBtn.removeAttribute('href');
                 }
+
+                if (currentEpIndex < drama.episodes.length - 1) {
+                    const nextEp = drama.episodes[currentEpIndex + 1];
+                    nextEpBtn.href = `episode_picker.html?drama_id=${dramaId}&ep=${nextEp.episode}`;
+                    nextEpBtn.style.opacity = '1';
+                    nextEpBtn.style.pointerEvents = 'auto';
+                } else {
+                    nextEpBtn.style.opacity = '0.3';
+                    nextEpBtn.style.pointerEvents = 'none';
+                    nextEpBtn.removeAttribute('href');
+                }
+            } else {
+                navWrapper.style.display = 'none';
             }
 
+            // Restore category vote panel
             document.getElementById('genre-vote-wrapper').style.display = 'block';
+
+            // Show About me Section above footer if required
+            const aboutMeSection = document.getElementById('about-me-section-wrapper');
+            if (aboutMeSection && ABOUT_ME_ART_LOGO) {
+                aboutMeSection.style.display = 'block';
+                aboutMeSection.innerHTML = `
+                    <h3>👤 ABOUT ME</h3>
+                    <img src="${ABOUT_ME_ART_LOGO}" alt="About Me Art" style="max-width: 100%; height: auto; border-radius: 10px; opacity: 0.9; margin-top: 10px;">
+                `;
+            }
+
             loadVotes();
         }
 
@@ -931,6 +953,7 @@
             element.innerHTML = '⏳ Downloading...';
             let newCount = currentCount;
 
+            // Increment Firebase subtitle downloads
             if (!localStorage.getItem('downloaded_sub_' + showId)) {
                 try {
                     const res = await fetch(`${firebaseURL}votes/${showId}.json`);
@@ -1159,11 +1182,10 @@
 
         function showNotFound() {
             document.getElementById('drama-details-wrapper').innerHTML = `
-                <div style="width: 100%; text-align: center; padding: 80px 0;">
+                <div style="grid-column: span 2; text-align: center; padding: 80px 0;">
                     <i class="fa-solid fa-triangle-exclamation" style="font-size: 48px; color: var(--neon-pink); text-shadow: 0 0 15px var(--neon-pink); margin-bottom: 20px;"></i>
-                    <h2 style="font-size: 20px; font-weight: bold; margin-bottom: 10px;">එපිසොඩ් එක සොයාගත නොහැක</h2>
-                    <p style="color: var(--text-muted); margin-bottom: 25px;">සෙවූ ID අංකයට අදාළ දත්ත කිසිවක් පද්ධතිය තුළ හමු නොවුණි.</p>
-                    <a href="index.html" class="sub-nav-item active" style="display: inline-flex; width: fit-content; margin: 0 auto;"><i class="fa-solid fa-house"></i> ආපසු මුල් පිටුවට</a>
+                    <h2 style="font-size: 20px; font-weight: bold; margin-bottom: 10px;">Episode Not Found</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 25px;">The system could not retrieve data for the requested ID.</p>
                 </div>
             `;
         }
