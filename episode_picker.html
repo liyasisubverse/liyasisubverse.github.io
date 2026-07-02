@@ -296,6 +296,18 @@
         .vote-btn-custom.vote-dislike:hover { background: rgba(255, 0, 127, 0.15); box-shadow: 0 0 15px rgba(255, 0, 127, 0.3); }
         .vote-count { background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 11px; }
 
+        /* ❌ NAVIGATION DISABLED BUTTON STATE 👇 */
+        .nav-btn-disabled {
+            opacity: 0.35 !important;
+            cursor: not-allowed !important;
+            pointer-events: none !important;
+            border-color: rgba(255, 255, 255, 0.05) !important;
+            color: var(--text-muted) !important;
+            text-shadow: none !important;
+            box-shadow: none !important;
+            background: rgba(0,0,0,0.2) !important;
+        }
+
         /* ✍️ NEON HEADER LABEL STYLE 👇 */
         .neon-header-text {
             font-size: 14px; font-weight: 900; text-align: center; text-transform: uppercase;
@@ -535,6 +547,9 @@
         <!-- 📥 DOWNLOAD BOX CONTAINER -->
         <div class="glass-section-custom" id="download-section-wrapper" style="display:none;"></div>
 
+        <!-- 🔄 EPISODE NAVIGATION BOX (ඩවුන්ලෝඩ් බොක්ස් එකට පහළින් එන නව බොක්ස් එක) -->
+        <div class="glass-section-custom" id="episode-nav-wrapper" style="display:none;"></div>
+
         <!-- 📂 CATEGORY/GENRE CHOICE PANEL (RESTORED BEAUTIFULLY) 👇 -->
         <div class="glass-section-custom" id="genre-vote-wrapper" style="display:none;">
             <h3>📂 ඔබට වැඩිපුරම අවශ්‍ය කුමන ප්‍රභේදද?</h3>
@@ -622,7 +637,7 @@
     <footer>
         <div class="footer-content">
             <div class="footer-brand"><span class="sinhala">ලියැසි</span><span class="english">SUBVERSE</span></div>
-            <p class="footer-description">ලියැසි SUBVERSE වෙතින් උසස්ම තත්ත්වයේ ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි නොමිලේ ලබාගත හැක.</p>
+            <p class="footer-description">ලියැසි SUBVERSE වෙතින් උසස්ම තත්ත්වයේ ආසියානු kතාමාලා සඳහා සිංහල උපසිරැසි නොමිලේ ලබාගත හැක.</p>
             <div class="footer-credits">&copy; 2026 ලියැසි SUBVERSE. All Rights Reserved.</div>
         </div>
     </footer>
@@ -851,41 +866,54 @@
                         <span id="tg-count-display" style="background: rgba(0, 0, 0, 0.2); border-radius: 10px; font-size: 0.9em; padding: 2px 6px; position:relative; z-index:3;">0</span>
                     </a>
                 </div>
-
-                <!-- 0. Navigation Buttons for Prev / Next Episode (Moved below downloads) -->
-                <div id="ep-nav-buttons" style="display: flex; justify-content: center; gap: 15px; width: 100%; margin-top: 35px;">
-                    <a id="btn-prev-ep" class="vote-btn-custom vote-like" style="display: none; max-width: none; text-decoration: none; color: var(--neon-cyan);">
-                        <i class="fa-solid fa-backward"></i> පෙර කොටස (PREV)
-                    </a>
-                    <a id="btn-next-ep" class="vote-btn-custom vote-like" style="display: none; max-width: none; text-decoration: none; color: var(--neon-cyan);">
-                        ඊළඟ කොටස (NEXT) <i class="fa-solid fa-forward"></i>
-                    </a>
-                </div>
             `;
 
-            // Setup Next / Prev Navigation Buttons dynamically
-            const currentEpNumStr = ep.episode.match(/\d+/);
-            if (currentEpNumStr && drama.episodes) {
-                const currentNum = parseInt(currentEpNumStr[0]);
-                const prevEp = drama.episodes.find(e => {
-                    const m = e.episode.match(/\d+/);
-                    return m && parseInt(m[0]) === currentNum - 1;
-                });
-                const nextEp = drama.episodes.find(e => {
-                    const m = e.episode.match(/\d+/);
-                    return m && parseInt(m[0]) === currentNum + 1;
-                });
+            // Setup Next / Prev Navigation Buttons dynamically in the separate Box
+            const epNavWrapper = document.getElementById('episode-nav-wrapper');
+            if (epNavWrapper) {
+                epNavWrapper.style.display = 'block';
+                epNavWrapper.innerHTML = `
+                    <h3>EPISODE NAVIGATION</h3>
+                    <div style="display: flex; justify-content: space-between; gap: 15px; width: 100%; max-width: 500px; margin: 0 auto; flex-wrap: nowrap;">
+                        <a id="btn-prev-ep" class="vote-btn-custom vote-like" style="flex: 1; text-decoration: none; justify-content: center; align-items: center; display: flex;">
+                            ⬅️ Prev
+                        </a>
+                        <a id="btn-next-ep" class="vote-btn-custom vote-like" style="flex: 1; text-decoration: none; justify-content: center; align-items: center; display: flex;">
+                            Next ➡️
+                        </a>
+                    </div>
+                `;
 
-                const btnPrev = document.getElementById('btn-prev-ep');
-                const btnNext = document.getElementById('btn-next-ep');
+                const currentEpNumStr = ep.episode.match(/\d+/);
+                if (currentEpNumStr && drama.episodes) {
+                    const currentNum = parseInt(currentEpNumStr[0]);
+                    const prevEp = drama.episodes.find(e => {
+                        const m = e.episode.match(/\d+/);
+                        return m && parseInt(m[0]) === currentNum - 1;
+                    });
+                    const nextEp = drama.episodes.find(e => {
+                        const m = e.episode.match(/\d+/);
+                        return m && parseInt(m[0]) === currentNum + 1;
+                    });
 
-                if (prevEp) {
-                    btnPrev.style.display = 'flex';
-                    btnPrev.href = `?drama_id=${dramaId}&ep=${prevEp.episode}`;
-                }
-                if (nextEp) {
-                    btnNext.style.display = 'flex';
-                    btnNext.href = `?drama_id=${dramaId}&ep=${nextEp.episode}`;
+                    const btnPrev = document.getElementById('btn-prev-ep');
+                    const btnNext = document.getElementById('btn-next-ep');
+
+                    if (prevEp) {
+                        btnPrev.href = `?drama_id=${dramaId}&ep=${prevEp.episode}`;
+                        btnPrev.classList.remove('nav-btn-disabled');
+                    } else {
+                        btnPrev.removeAttribute('href');
+                        btnPrev.classList.add('nav-btn-disabled');
+                    }
+
+                    if (nextEp) {
+                        btnNext.href = `?drama_id=${dramaId}&ep=${nextEp.episode}`;
+                        btnNext.classList.remove('nav-btn-disabled');
+                    } else {
+                        btnNext.removeAttribute('href');
+                        btnNext.classList.add('nav-btn-disabled');
+                    }
                 }
             }
 
