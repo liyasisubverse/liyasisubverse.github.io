@@ -256,6 +256,18 @@
         .vote-btn-custom.vote-dislike:hover { background: rgba(255, 0, 127, 0.15); box-shadow: 0 0 15px rgba(255, 0, 127, 0.3); }
         .vote-count { background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 11px; }
 
+        /* ❌ NAVIGATION DISABLED BUTTON STATE 👇 */
+        .nav-btn-disabled {
+            opacity: 0.35 !important;
+            cursor: not-allowed !important;
+            pointer-events: none !important;
+            border-color: rgba(255, 255, 255, 0.05) !important;
+            color: var(--text-muted) !important;
+            text-shadow: none !important;
+            box-shadow: none !important;
+            background: rgba(0,0,0,0.2) !important;
+        }
+
         /* SOCIAL MEDIA PLUG */
         .social-plug-box { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 15px; padding: 25px; margin-top: 50px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.5); border-top: 3px solid var(--neon-pink); }
         .social-title { font-size: 13px; font-weight: 800; color: var(--text-main); text-shadow: 0 0 8px var(--neon-pink); margin-bottom: 20px; letter-spacing: 1px; text-transform: uppercase; }
@@ -375,6 +387,9 @@
         <!-- 💾 EPISODES DOWNLOAD SECTION -->
         <div class="episodes-section" id="episodes-section-wrapper"></div>
 
+        <!-- 🔄 DRAMA NAVIGATION BOX (කතාමාලා අතර මාරුවීමේ නව පෙට්ටිය) -->
+        <div class="glass-section-custom" id="drama-nav-wrapper" style="display:none;"></div>
+
         <!-- 🌐 GLOWING SOCIAL MEDIA PLUG -->
         <div class="social-plug-box">
             <div class="social-title">CONNECT WITH US ON SOCIAL NETWORKS</div>
@@ -467,32 +482,7 @@
             const statusColor = isComplete ? "var(--neon-pink)" : "var(--neon-cyan)";
             const statusShadow = isComplete ? "var(--neon-pink)" : "var(--neon-cyan)";
 
-            // Calculate Previous and Next Dramas for Navigation
-            const dramaKeys = Object.keys(database.dramas);
-            const currentIndex = dramaKeys.indexOf(dramaId);
-            
-            let prevBtnHTML = `<a class="vote-btn-custom vote-like" style="visibility: hidden; max-width: none;"><i class="fa-solid fa-backward"></i> පෙර</a>`;
-            let nextBtnHTML = `<a class="vote-btn-custom vote-like" style="visibility: hidden; max-width: none;">ඊළඟ <i class="fa-solid fa-forward"></i></a>`;
-            
-            if (currentIndex > 0) {
-                const prevId = dramaKeys[currentIndex - 1];
-                prevBtnHTML = `<a href="?id=${prevId}" class="vote-btn-custom vote-like" style="max-width: none; text-decoration: none; color: var(--neon-cyan);"><i class="fa-solid fa-backward"></i> පෙර කතාමාලාව</a>`;
-            }
-            if (currentIndex !== -1 && currentIndex < dramaKeys.length - 1) {
-                const nextId = dramaKeys[currentIndex + 1];
-                nextBtnHTML = `<a href="?id=${nextId}" class="vote-btn-custom vote-like" style="max-width: none; text-decoration: none; color: var(--neon-cyan);">ඊළඟ කතාමාලාව <i class="fa-solid fa-forward"></i></a>`;
-            }
-
             document.getElementById('drama-details-wrapper').innerHTML = `
-                <!-- 0. Navigation Buttons for Prev / Next Drama -->
-                <div id="drama-nav-buttons" style="display: flex; justify-content: center; gap: 15px; width: 100%; margin-bottom: 10px;">
-                    ${prevBtnHTML}
-                    <a href="index.html" class="vote-btn-custom" style="max-width: none; text-decoration: none; color: #fff; border-color: var(--glass-border);">
-                        <i class="fa-solid fa-house"></i> මුල් පිටුව
-                    </a>
-                    ${nextBtnHTML}
-                </div>
-
                 <!-- 1. Top Badges Row -->
                 <div class="details-top-badges-row">
                     <span style="background: ${statusColor}; color: #000; box-shadow: 0 0 10px ${statusColor}; border: 1px solid rgba(255,255,255,0.4); padding: 4px 12px; font-size: 11px; font-weight: 900; border-radius: 4px; text-transform: uppercase;">${drama.status}</span>
@@ -614,6 +604,47 @@
 
             episodesHTML += `</div>`;
             episodesWrapper.innerHTML = episodesHTML;
+
+            // Setup Next / Prev Navigation Buttons dynamically in the separate Box for Series
+            const dramaNavWrapper = document.getElementById('drama-nav-wrapper');
+            if (dramaNavWrapper) {
+                dramaNavWrapper.style.display = 'block';
+                dramaNavWrapper.innerHTML = `
+                    <h3>SERIES NAVIGATION</h3>
+                    <div style="display: flex; justify-content: space-between; gap: 15px; width: 100%; max-width: 500px; margin: 0 auto; flex-wrap: nowrap;">
+                        <a id="btn-prev-drama" class="vote-btn-custom vote-like" style="flex: 1; text-decoration: none; justify-content: center; align-items: center; display: flex;">
+                            ⬅️ Prev
+                        </a>
+                        <a id="btn-next-drama" class="vote-btn-custom vote-like" style="flex: 1; text-decoration: none; justify-content: center; align-items: center; display: flex;">
+                            Next ➡️
+                        </a>
+                    </div>
+                `;
+
+                const dramaKeys = Object.keys(database.dramas);
+                const currentIndex = dramaKeys.indexOf(dramaId);
+
+                const btnPrev = document.getElementById('btn-prev-drama');
+                const btnNext = document.getElementById('btn-next-drama');
+
+                if (currentIndex > 0) {
+                    const prevId = dramaKeys[currentIndex - 1];
+                    btnPrev.href = `?id=${prevId}`;
+                    btnPrev.classList.remove('nav-btn-disabled');
+                } else {
+                    btnPrev.removeAttribute('href');
+                    btnPrev.classList.add('nav-btn-disabled');
+                }
+
+                if (currentIndex !== -1 && currentIndex < dramaKeys.length - 1) {
+                    const nextId = dramaKeys[currentIndex + 1];
+                    btnNext.href = `?id=${nextId}`;
+                    btnNext.classList.remove('nav-btn-disabled');
+                } else {
+                    btnNext.removeAttribute('href');
+                    btnNext.classList.add('nav-btn-disabled');
+                }
+            }
 
             loadVotes();
         }
