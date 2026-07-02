@@ -621,8 +621,8 @@
         <div class="social-plug-box">
             <div class="social-title">CONNECT WITH US ON SOCIAL NETWORKS</div>
             <div class="social-icons-wrapper">
-                <a href="https://facebook.com" target="_blank" class="social-btn facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="https://youtube.com" target="_blank" class="social-btn youtube"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" target="_blank" class="social-btn facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" target="_blank" class="social-btn youtube"><i class="fa-brands fa-youtube"></i></a>
                 <a href="https://t.me/liyasi1" target="_blank" class="social-btn telegram" id="tg-config-link"><i class="fa-brands fa-telegram"></i></a>
             </div>
         </div>
@@ -697,6 +697,14 @@
             document.getElementById('header-logo-container').innerHTML = `<img class="site-logo-img" src="${HEADER_BANNER_LOGO}" alt="Subverse Logo">`;
             document.title = `${drama.title} - ${ep.episode} - සිංහල උපසිරැසි | ලියැසි SUBVERSE`;
 
+            // Dynamically update the search description for Google/Telegram!
+            let metaDesc = document.querySelector('meta[name="description"]');
+            if (!metaDesc) {
+                metaDesc = document.createElement('meta');
+                metaDesc.name = 'description';
+                document.head.appendChild(metaDesc);
+            }
+            metaDesc.content = ep.synopsis ? ep.synopsis.substring(0, 150) : `${drama.title} හි ${ep.episode} කොටස සිංහල උපසිරැසි සමඟ නොමිලේ බාගත කරගන්න.`;
             // Global Config overrides
             if (config.telegram_channel_link) {
                 document.getElementById('tg-config-link').href = config.telegram_channel_link;
