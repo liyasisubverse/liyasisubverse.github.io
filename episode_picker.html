@@ -713,19 +713,6 @@
             const statusShadow = isComplete ? "var(--neon-pink)" : "var(--neon-cyan)";
 
             document.getElementById('drama-details-wrapper').innerHTML = `
-                <!-- 0. Navigation Buttons for Prev / Next Episode -->
-                <div id="ep-nav-buttons" style="display: flex; justify-content: center; gap: 15px; width: 100%; margin-bottom: 10px;">
-                    <a id="btn-prev-ep" class="vote-btn-custom vote-like" style="display: none; max-width: none; text-decoration: none; color: var(--neon-cyan);">
-                        <i class="fa-solid fa-backward"></i> පෙර කොටස (PREV)
-                    </a>
-                    <a href="drama_picker.html?id=${dramaId}" class="vote-btn-custom" style="max-width: none; text-decoration: none; color: #fff; border-color: var(--glass-border);">
-                        <i class="fa-solid fa-list"></i> සියලු කොටස් (LIST)
-                    </a>
-                    <a id="btn-next-ep" class="vote-btn-custom vote-like" style="display: none; max-width: none; text-decoration: none; color: var(--neon-cyan);">
-                        ඊළඟ කොටස (NEXT) <i class="fa-solid fa-forward"></i>
-                    </a>
-                </div>
-
                 <!-- 1. Top Badges Row -->
                 <div class="details-top-badges-row">
                     <span style="background: ${statusColor}; color: #000; box-shadow: 0 0 10px ${statusColor}; border: 1px solid rgba(255,255,255,0.4); padding: 4px 12px; font-size: 11px; font-weight: 900; border-radius: 4px; text-transform: uppercase;">${drama.status}</span>
@@ -767,32 +754,6 @@
                     </div>
                 </div>
             `;
-
-            // Setup Next / Prev Navigation Buttons dynamically
-            const currentEpNumStr = ep.episode.match(/\d+/);
-            if (currentEpNumStr && drama.episodes) {
-                const currentNum = parseInt(currentEpNumStr[0]);
-                const prevEp = drama.episodes.find(e => {
-                    const m = e.episode.match(/\d+/);
-                    return m && parseInt(m[0]) === currentNum - 1;
-                });
-                const nextEp = drama.episodes.find(e => {
-                    const m = e.episode.match(/\d+/);
-                    return m && parseInt(m[0]) === currentNum + 1;
-                });
-
-                const btnPrev = document.getElementById('btn-prev-ep');
-                const btnNext = document.getElementById('btn-next-ep');
-
-                if (prevEp) {
-                    btnPrev.style.display = 'flex';
-                    btnPrev.href = `?drama_id=${dramaId}&ep=${prevEp.episode}`;
-                }
-                if (nextEp) {
-                    btnNext.style.display = 'flex';
-                    btnNext.href = `?drama_id=${dramaId}&ep=${nextEp.episode}`;
-                }
-            }
 
             // Cast Section with RGB rotating circles
             const castToUse = ep.cast || drama.cast;
@@ -890,7 +851,43 @@
                         <span id="tg-count-display" style="background: rgba(0, 0, 0, 0.2); border-radius: 10px; font-size: 0.9em; padding: 2px 6px; position:relative; z-index:3;">0</span>
                     </a>
                 </div>
+
+                <!-- 0. Navigation Buttons for Prev / Next Episode (Moved below downloads) -->
+                <div id="ep-nav-buttons" style="display: flex; justify-content: center; gap: 15px; width: 100%; margin-top: 35px;">
+                    <a id="btn-prev-ep" class="vote-btn-custom vote-like" style="display: none; max-width: none; text-decoration: none; color: var(--neon-cyan);">
+                        <i class="fa-solid fa-backward"></i> පෙර කොටස (PREV)
+                    </a>
+                    <a id="btn-next-ep" class="vote-btn-custom vote-like" style="display: none; max-width: none; text-decoration: none; color: var(--neon-cyan);">
+                        ඊළඟ කොටස (NEXT) <i class="fa-solid fa-forward"></i>
+                    </a>
+                </div>
             `;
+
+            // Setup Next / Prev Navigation Buttons dynamically
+            const currentEpNumStr = ep.episode.match(/\d+/);
+            if (currentEpNumStr && drama.episodes) {
+                const currentNum = parseInt(currentEpNumStr[0]);
+                const prevEp = drama.episodes.find(e => {
+                    const m = e.episode.match(/\d+/);
+                    return m && parseInt(m[0]) === currentNum - 1;
+                });
+                const nextEp = drama.episodes.find(e => {
+                    const m = e.episode.match(/\d+/);
+                    return m && parseInt(m[0]) === currentNum + 1;
+                });
+
+                const btnPrev = document.getElementById('btn-prev-ep');
+                const btnNext = document.getElementById('btn-next-ep');
+
+                if (prevEp) {
+                    btnPrev.style.display = 'flex';
+                    btnPrev.href = `?drama_id=${dramaId}&ep=${prevEp.episode}`;
+                }
+                if (nextEp) {
+                    btnNext.style.display = 'flex';
+                    btnNext.href = `?drama_id=${dramaId}&ep=${nextEp.episode}`;
+                }
+            }
 
             document.getElementById('genre-vote-wrapper').style.display = 'block';
             loadVotes();
