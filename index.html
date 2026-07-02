@@ -7,6 +7,9 @@
 <!-- 🌟 FAVICON LINK (අලුතින්ම එකතු කරන කේතය) 👇 -->
     <link rel="icon" type="image/png" href="favicon.png">
 
+
+
+    
 <!-- 🔍 SEO META TAGS (ගූගල් සෙවුම සඳහා Search Description සහ Keywords) -->
     <meta name="description" content="ලියැසි SUBVERSE වෙතින් උසස්ම තත්ත්වයේ ආසියානු කතාමාලා (K-Dramas, C-Dramas, J-Dramas) සඳහා සිංහල උපසිරැසි නොමිලේ, සෘජුවම බාගත කරගන්න.">
     <meta name="keywords" content="liyasi subverse, sinhala subtitles, sinhala sub, liyasi sub, korean drama sinhala sub, subverse, කේ ඩ්‍රාමා සිංහල උපසිරැසි">
@@ -167,18 +170,17 @@
 
         .drama-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 15px; margin-bottom: 25px; }
 
-        /* 🎀 CARDS WITH PERFECT NO-SPACES CROP (COVER + CENTER) 👇 */
         .movie-style-card {
             background: #000; border-radius: 6px; overflow: hidden; position: relative; text-decoration: none;
-            aspect-ratio: 2 / 3; /* <--- 2:3 අනුපාතය නිසා පින්තූරය හරියටම කොටුවට ගැලපේ */
-            box-shadow: 0 5px 15px rgba(0,0,0,0.7); transition: all 0.3s ease;
+            aspect-ratio: 2 / 3; box-shadow: 0 5px 15px rgba(0,0,0,0.7); transition: all 0.3s ease;
             border-top: 3.5px solid var(--neon-cyan); border-bottom: 3.5px solid var(--neon-cyan);
+            display: flex; flex-direction: column;
         }
         .movie-style-card:hover { transform: scale(1.05); border-color: var(--neon-pink); box-shadow: 0 0 15px var(--neon-pink); }
         .movie-style-card.card-complete { border-color: var(--neon-pink); }
         
-        /* 🎀 හිස්තැන් නොමැතිව කාර්ඩ් එකට පිරෙන්න සකසා ඇත (Top Center නිසා හිස කැපෙන්නේ නෑ) 👇 */
-        .poster-img { width: 100%; height: 100%; object-fit: cover; object-position: top center; opacity: 0.8; }
+        /* 🖼️ කාර්ඩ් පින්තූරය කැපෙන්නේ හෝ දිග හැරෙන්නේ නැතිව සම්පූර්ණයෙන් පෙනෙන්නට contain යොදා ඇත */
+        .poster-img { width: 100%; height: 100%; object-fit: contain; opacity: 0.8; background: #000; }
 
         .badge-top-left {
             position: absolute; top: 8px; left: 8px; background: rgba(2, 4, 8, 0.85); color: #fff;
@@ -208,13 +210,21 @@
         .genre-box { background: var(--glass-bg); padding: 20px; border-radius: 12px; border: 1px solid var(--glass-border); border-top: 3px solid var(--neon-purple); }
         .genre-box-title { color: var(--neon-amber); font-weight: 900; font-size: 14px; margin-bottom: 15px; display: block; text-transform: uppercase; }
         
+        /* ✍️ CENTRE ALIGNED & TIDY HOMEPAGE GENRES LIST 👇 */
         .genre-list { 
-            display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; padding: 10px 0; margin: 0 auto; max-width: 1000px;
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 10px; 
+            justify-content: center; /* Beautifully Centered! */
+            padding: 10px 0;
+            margin: 0 auto;
+            max-width: 1000px;
         }
         .genre-item { 
             background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); 
             padding: 8px 18px; border-radius: 20px; font-size: 11px; font-weight: bold; 
-            color: #ccc; text-decoration: none; transition: 0.2s; white-space: nowrap;
+            color: #ccc; text-decoration: none; transition: 0.2s; 
+            white-space: nowrap;
         }
         .genre-item:hover, .genre-item.active { 
             border-color: var(--neon-cyan); color: var(--neon-cyan); 
@@ -244,18 +254,36 @@
         .social-btn {
             position: relative; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
             text-decoration: none; transition: all 0.3s ease; background: var(--glass-bg); border: 1px solid var(--glass-border);
-            color: #fff; transform: translateZ(0); -webkit-transform: translateZ(0); will-change: transform; overflow: hidden; border: none;
+            color: #fff;
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+            will-change: transform;
+            overflow: hidden;
+            border: none;
         }
         
+        /* ✍️ NEON GLOWING BRAND ICONS FOR SOCIAL MEDIAS WITH THIN CONIC CHASE 👇 */
         .social-btn::before {
             content: ''; position: absolute; top: -20%; left: -20%; width: 140%; height: 140%;
             background: conic-gradient(var(--neon-cyan) 0deg, transparent 40%, transparent 100%);
-            animation: rgb-rotate 1.5s linear infinite; -webkit-animation: rgb-rotate 1.5s linear infinite; z-index: -2;
+            animation: rgb-rotate 1.5s linear infinite; 
+            -webkit-animation: rgb-rotate 1.5s linear infinite;
+            z-index: -2;
         }
-        .social-btn::after { content: ''; position: absolute; inset: 1.5px; background: #020408; border-radius: 50%; z-index: -1; transition: background 0.3s ease; }
+        .social-btn::after { 
+            content: ''; position: absolute; 
+            inset: 1.5px; 
+            background: #020408; border-radius: 50%; z-index: -1; transition: background 0.3s ease; 
+        }
         
-        @keyframes rgb-rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        @-webkit-keyframes rgb-rotate { 0% { -webkit-transform: rotate(0deg); } 100% { -webkit-transform: rotate(360deg); } }
+        @keyframes rgb-rotate { 
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); } 
+        }
+        @-webkit-keyframes rgb-rotate { 
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); } 
+        }
 
         .social-btn i { transition: all 0.3s ease; position: relative; z-index: 2; }
         .social-btn.facebook i { color: #1877f2; text-shadow: 0 0 10px #1877f2, 0 0 20px #1877f2; }
@@ -412,6 +440,9 @@
         <div class="footer-content">
             <div class="footer-brand"><span class="sinhala">ලියැසි</span><span class="english">SUBVERSE</span></div>
             <p class="footer-description">ලියැසි SUBVERSE වෙතින් උසස්ම තත්ත්වයේ ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි නොමිලේ ලබාගත හැක.</p>
+
+
+            
             <div class="footer-credits">&copy; 2026 ලියැසි SUBVERSE. All Rights Reserved.</div>
         </div>
     </footer>
@@ -627,7 +658,8 @@
         function createCardHTML(d) {
             const isComplete = d.status === "COMPLETE";
             const categoryText = d.type || "DRAMA";
-            
+            const ep = d.episodes && d.episodes[0] ? d.episodes[0].episode : "EP 01";
+
             let topLeftBadgeHTML = "";
             let bottomLeftBadgeHTML = "";
 
@@ -637,8 +669,7 @@
                 bottomLeftBadgeHTML = `<span class="badge-bottom-left">${totalEpText}</span>`;
             } else {
                 topLeftBadgeHTML = `<span class="badge-top-left">${categoryText}</span>`;
-                /* 🌟 EP 01 වෙනුවට ONGOING යෙදීම 👇 */
-                bottomLeftBadgeHTML = `<span class="badge-bottom-left" style="background: var(--neon-cyan); color: #000;">ONGOING</span>`;
+                bottomLeftBadgeHTML = `<span class="badge-bottom-left">${ep}</span>`;
             }
 
             const rating = parseFloat(d.imdb) || 0.0;
