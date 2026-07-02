@@ -15,8 +15,10 @@
 <!-- 🌟 FAVICON LINK (අලුතින්ම එකතු කරන කේතය) 👇 -->
     <link rel="icon" type="image/png" href="favicon.png">
 
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
+    
         const HEADER_BANNER_LOGO = "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/81260990-6d71-4fbb-b966-43f96215438e.png"; 
         const ABOUT_ME_ART_LOGO = "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png";       
         const firebaseURL = "https://subverse-b897d-default-rtdb.firebaseio.com/"; 
@@ -110,29 +112,15 @@
 
         .main-container { max-width: 1300px; margin: 20px auto; padding: 0 15px; box-sizing: border-box; }
 
-        .glass-section-custom {
-            background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px;
-            padding: 25px; margin-bottom: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-        }
-
-        /* 🎀 GRID අයින් කර CENTER කර ඇත 👇 */
-        .drama-details-container {
-            display: flex; flex-direction: column; align-items: center; text-align: center; gap: 30px;
-            background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px;
-            padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); margin-bottom: 30px;
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-        }
-
-        /* 🎀 සූම් වීම වලක්වා පළල පාලනය කර ඇත 👇 */
+        /* 📋 POSTER NEON BARS AND CONTAIN */
         .detail-poster-wrapper {
             position: relative; border-radius: 12px; overflow: hidden;
             border-left: 4px solid var(--neon-cyan);
             border-right: 4px solid var(--neon-cyan);
             border-top: none; border-bottom: none;
             box-shadow: -10px 0 15px rgba(0, 240, 255, 0.3), 10px 0 15px rgba(0, 240, 255, 0.3);
-            width: 320px; max-width: 100%; margin: 0 auto;
-            aspect-ratio: 2/3;
+            width: 100%; max-width: 320px; margin: 0 auto;
+            background: rgba(0,0,0,0.6); display: block;
             animation: posterNeonPulse 3s infinite alternate ease-in-out;
         }
         @keyframes posterNeonPulse {
@@ -145,7 +133,20 @@
                 box-shadow: -10px 0 15px rgba(255, 0, 127, 0.3), 10px 0 15px rgba(255, 0, 127, 0.3);
             }
         }
-        .detail-poster-img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+        /* 🖼️ රූපය කැපෙන්නේ නැතිව සම්පූර්ණයෙන් පෙනෙන්නට object-fit: contain යොදා ඇත */
+        .detail-poster-img { width: 100%; height: auto; display: block; object-fit: contain; }
+
+        /* 📱 Desktop සහ Mobile දෙකම එකම ආකාරයට සකසා ඇත */
+        .drama-details-container {
+            display: flex; 
+            flex-direction: column; 
+            align-items: center;
+            text-align: center;
+            gap: 30px;
+            background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px;
+            padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); margin-bottom: 30px;
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+        }
 
         .rating-bar-vertical {
             position: absolute; right: 8px; top: 8px; background: rgba(2, 4, 8, 0.9);
@@ -154,25 +155,42 @@
             box-shadow: 0 0 10px rgba(255, 170, 0, 0.3); display: flex; align-items: center; gap: 4px; z-index: 2;
         }
 
-        .details-top-badges-row { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
-        .detail-left-column { display: flex; flex-direction: column; gap: 20px; align-items: center; }
-        .genres-row-container { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+        /* 💫 TOP BADGES LAYOUT ROW */
+        .details-top-badges-row {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* 💫 LEFT COLUMN (POSTER + GENRES UNDER) */
+        .detail-left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+            width: 100%;
+        }
+        .genres-row-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+        .detail-info-wrapper { width: 100%; }
 
         .genre-tag-badge {
             background: rgba(157, 78, 221, 0.1); border: 1px solid var(--neon-purple); color: #d8b4fe;
             text-shadow: 0 0 5px var(--neon-purple); padding: 4px 12px; font-size: 11px; font-weight: 800; border-radius: 20px; text-transform: uppercase;
         }
 
-        /* 📋 METADATA DYNAMIC VERTICAL SPECS SHEET CENTERED 👇 */
+        /* 📋 METADATA DYNAMIC VERTICAL SPECS SHEET 👇 */
         .info-spec-list { 
             list-style: none; padding: 0; margin: 0 auto 25px auto; 
-            display: flex; flex-direction: column; gap: 12px; 
-            width: 100%; max-width: 600px;
+            display: flex; flex-direction: column; gap: 12px; max-width: 500px;
         }
-        .info-spec-item { 
-            font-size: 13.5px; border-bottom: 1px solid rgba(255,255,255,0.03); 
-            padding-bottom: 8px; display: flex; justify-content: space-between; align-items: center;
-        }
+        .info-spec-item { font-size: 13.5px; border-bottom: 1px solid rgba(255,255,255,0.03); padding-bottom: 8px; display: flex; justify-content: space-between; align-items: center; text-align: left; }
         .info-spec-label { color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); font-weight: bold; }
         .info-spec-value { color: #fff; font-weight: 800; text-align: right; }
 
@@ -191,9 +209,11 @@
             background: #000; border-radius: 6px; overflow: hidden; position: relative; text-decoration: none;
             aspect-ratio: 2 / 3; box-shadow: 0 5px 15px rgba(0,0,0,0.7); transition: all 0.3s ease;
             border-top: 3.5px solid var(--neon-cyan); border-bottom: 3.5px solid var(--neon-cyan);
+            display: flex; flex-direction: column;
         }
         .movie-style-card:hover { transform: scale(1.05); border-color: var(--neon-pink); box-shadow: 0 0 15px var(--neon-pink); }
-        .poster-img { width: 100%; height: 100%; object-fit: cover; object-position: top center; opacity: 0.8; }
+        /* 🖼️ එපිසෝඩ් කාර්ඩ්ස් වල පින්තූරත් කැපෙන්නේ නැතිව සම්පූර්ණයෙන් පෙනෙන්නට object-fit: contain යොදා ඇත */
+        .poster-img { width: 100%; height: 100%; object-fit: contain; opacity: 0.8; background: #000; }
         
         .badge-top-left {
             position: absolute; top: 8px; left: 8px; background: rgba(2, 4, 8, 0.85); color: #fff;
@@ -214,6 +234,28 @@
         .ep-btn.active-pink { border-color: var(--neon-pink); color: var(--neon-pink); text-shadow: 0 0 5px var(--neon-pink); }
         .ep-btn.active-pink:hover { background: rgba(255, 0, 127, 0.1); box-shadow: 0 0 15px var(--neon-pink); }
 
+        /* 🇱🇰 VOTE / USER CHOICE PANEL */
+        .sl-vote-container {
+            border: 1px solid var(--glass-border); background: rgba(0,0,0,0.3);
+            border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 25px;
+        }
+        .sl-vote-title { font-size: 13px; font-weight: 900; color: #fff; letter-spacing: 0.5px; margin-bottom: 12px; }
+        .neon-bar-wrapper { height: 8px; background: rgba(255,255,255,0.05); border-radius: 10px; overflow: hidden; margin-bottom: 15px; }
+        .neon-bar-track { height: 100%; width: 100%; }
+        .neon-bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink)); box-shadow: 0 0 12px var(--neon-cyan); transition: width 0.8s ease-out; }
+        
+        .sl-vote-buttons { display: flex; justify-content: center; gap: 15px; }
+        .vote-btn-custom {
+            flex: 1; max-width: 180px; padding: 12px; font-size: 11.5px; font-weight: 900;
+            border-radius: 8px; cursor: pointer; text-transform: uppercase; transition: 0.3s;
+            display: flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid var(--glass-border);
+        }
+        .vote-btn-custom.vote-like { background: rgba(0, 240, 255, 0.05); color: var(--neon-cyan); border-color: rgba(0, 240, 255, 0.2); }
+        .vote-btn-custom.vote-like:hover { background: rgba(0, 240, 255, 0.15); box-shadow: 0 0 15px rgba(0, 240, 255, 0.3); }
+        .vote-btn-custom.vote-dislike { background: rgba(255, 0, 127, 0.05); color: var(--neon-pink); border-color: rgba(255, 0, 127, 0.2); }
+        .vote-btn-custom.vote-dislike:hover { background: rgba(255, 0, 127, 0.15); box-shadow: 0 0 15px rgba(255, 0, 127, 0.3); }
+        .vote-count { background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 11px; }
+
         /* SOCIAL MEDIA PLUG */
         .social-plug-box { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 15px; padding: 25px; margin-top: 50px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.5); border-top: 3px solid var(--neon-pink); }
         .social-title { font-size: 13px; font-weight: 800; color: var(--text-main); text-shadow: 0 0 8px var(--neon-pink); margin-bottom: 20px; letter-spacing: 1px; text-transform: uppercase; }
@@ -222,18 +264,32 @@
         .social-btn {
             position: relative; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
             text-decoration: none; transition: all 0.3s ease; background: #020408; color: #fff;
-            transform: translateZ(0); -webkit-transform: translateZ(0); will-change: transform; overflow: hidden; border: none;
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+            will-change: transform;
+            overflow: hidden;
+            border: none;
         }
         .social-btn::before {
             content: ''; position: absolute; top: -20%; left: -20%; width: 140%; height: 140%;
             background: conic-gradient(var(--neon-cyan) 0deg, transparent 40%, transparent 100%);
-            animation: rgb-rotate 1.5s linear infinite; -webkit-animation: rgb-rotate 1.5s linear infinite; z-index: -2;
+            animation: rgb-rotate 1.5s linear infinite; 
+            -webkit-animation: rgb-rotate 1.5s linear infinite;
+            z-index: -2;
         }
         .social-btn::after { 
-            content: ''; position: absolute; inset: 1.5px; background: #020408; border-radius: 50%; z-index: -1; transition: background 0.3s ease; 
+            content: ''; position: absolute; 
+            inset: 1.5px; 
+            background: #020408; border-radius: 50%; z-index: -1; transition: background 0.3s ease; 
         }
-        @keyframes rgb-rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        @-webkit-keyframes rgb-rotate { 0% { -webkit-transform: rotate(0deg); } 100% { -webkit-transform: rotate(360deg); } }
+        @keyframes rgb-rotate { 
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); } 
+        }
+        @-webkit-keyframes rgb-rotate { 
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); } 
+        }
 
         .social-btn i { transition: all 0.3s ease; position: relative; z-index: 2; }
         .social-btn.facebook i { color: #1877f2; text-shadow: 0 0 10px #1877f2, 0 0 20px #1877f2; }
@@ -251,7 +307,9 @@
 
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
+        /* 📱 RESPONSIVE TUNING */
         @media (max-width: 768px) {
+            .info-spec-list { max-width: 100%; }
             .episodes-grid-cards { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; }
             .episodes-grid-buttons { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; }
             .ep-btn { padding: 10px; font-size: 11px; }
@@ -308,10 +366,10 @@
         
         <!-- DYNAMIC DETAILED HERO BLOCK -->
         <div class="drama-details-container" id="drama-details-wrapper">
-            <p style="text-align: center; color: var(--neon-cyan); padding: 50px 0;">🤖 [SYSTEM RETRIEVING DATA...]</p>
+            <p style="text-align: center; color: var(--neon-cyan); width: 100%; padding: 50px 0;">🤖 [SYSTEM RETRIEVING DATA...]</p>
         </div>
 
-        <!-- 🇱🇰 SRI LANKA IMDB OVERALL VOTE WIDGET -->
+        <!-- 🇱🇰 SRI LANKA IMDB OVERALL VOTE WIDGET (Added Here Dynamically) -->
         <div class="glass-section-custom" id="overall-vote-section" style="display: none;"></div>
 
         <!-- 💾 EPISODES DOWNLOAD SECTION -->
@@ -376,7 +434,8 @@
                     const database = await response.json();
                     const drama = database.dramas[dramaId];
                     if (drama) {
-                        renderDramaDetails(drama, database.config || {});
+                        // Pass database to know about all dramas for Prev/Next navigation
+                        renderDramaDetails(drama, database);
                     } else {
                         showNotFound();
                     }
@@ -386,7 +445,8 @@
             }
         }
 
-        function renderDramaDetails(drama, config) {
+        function renderDramaDetails(drama, database) {
+            const config = database.config || {};
             document.getElementById('header-logo-container').innerHTML = `<img class="site-logo-img" src="${HEADER_BANNER_LOGO}" alt="Subverse Logo">`;
             document.title = `${drama.title} - සිංහල උපසිරැසි | ලියැසි SUBVERSE`;
 
@@ -405,14 +465,42 @@
 
             const isComplete = drama.status === "COMPLETE";
             const statusColor = isComplete ? "var(--neon-pink)" : "var(--neon-cyan)";
+            const statusShadow = isComplete ? "var(--neon-pink)" : "var(--neon-cyan)";
+
+            // Calculate Previous and Next Dramas for Navigation
+            const dramaKeys = Object.keys(database.dramas);
+            const currentIndex = dramaKeys.indexOf(dramaId);
+            
+            let prevBtnHTML = `<a class="vote-btn-custom vote-like" style="visibility: hidden; max-width: none;"><i class="fa-solid fa-backward"></i> පෙර</a>`;
+            let nextBtnHTML = `<a class="vote-btn-custom vote-like" style="visibility: hidden; max-width: none;">ඊළඟ <i class="fa-solid fa-forward"></i></a>`;
+            
+            if (currentIndex > 0) {
+                const prevId = dramaKeys[currentIndex - 1];
+                prevBtnHTML = `<a href="?id=${prevId}" class="vote-btn-custom vote-like" style="max-width: none; text-decoration: none; color: var(--neon-cyan);"><i class="fa-solid fa-backward"></i> පෙර කතාමාලාව</a>`;
+            }
+            if (currentIndex !== -1 && currentIndex < dramaKeys.length - 1) {
+                const nextId = dramaKeys[currentIndex + 1];
+                nextBtnHTML = `<a href="?id=${nextId}" class="vote-btn-custom vote-like" style="max-width: none; text-decoration: none; color: var(--neon-cyan);">ඊළඟ කතාමාලාව <i class="fa-solid fa-forward"></i></a>`;
+            }
 
             document.getElementById('drama-details-wrapper').innerHTML = `
+                <!-- 0. Navigation Buttons for Prev / Next Drama -->
+                <div id="drama-nav-buttons" style="display: flex; justify-content: center; gap: 15px; width: 100%; margin-bottom: 10px;">
+                    ${prevBtnHTML}
+                    <a href="index.html" class="vote-btn-custom" style="max-width: none; text-decoration: none; color: #fff; border-color: var(--glass-border);">
+                        <i class="fa-solid fa-house"></i> මුල් පිටුව
+                    </a>
+                    ${nextBtnHTML}
+                </div>
+
+                <!-- 1. Top Badges Row -->
                 <div class="details-top-badges-row">
                     <span style="background: ${statusColor}; color: #000; box-shadow: 0 0 10px ${statusColor}; border: 1px solid rgba(255,255,255,0.4); padding: 4px 12px; font-size: 11px; font-weight: 900; border-radius: 4px; text-transform: uppercase;">${drama.status}</span>
                     <span style="background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: #fff; padding: 4px 12px; font-size: 11px; font-weight: bold; border-radius: 4px;">${drama.type}</span>
                     <span style="background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: #fff; padding: 4px 12px; font-size: 11px; font-weight: bold; border-radius: 4px;">${drama.total_episodes || '?'} EPISODES</span>
                 </div>
 
+                <!-- 2. Left Column (Poster + Rating + Genres list below) -->
                 <div class="detail-left-column">
                     <div class="detail-poster-wrapper">
                         <img class="detail-poster-img" src="${drama.image_url}" alt="Poster">
@@ -426,6 +514,7 @@
                     </div>
                 </div>
 
+                <!-- 3. Right Column (Title + Spec List + Synopsis) -->
                 <div class="detail-info-wrapper">
                     <h1 style="font-size: 28px; font-weight: 900; margin: 0 0 15px 0; text-shadow: 0 0 10px #fff; text-transform: uppercase;">${drama.title}</h1>
                     
@@ -438,27 +527,28 @@
                         <li class="info-spec-item"><span class="info-spec-label">Runtime:</span> <span class="info-spec-value">${drama.runtime || 'N/A'}</span></li>
                     </ul>
 
-                    <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); padding: 20px; border-radius: 10px; line-height: 1.8; color: #ccc; font-size: 13.5px; text-align: center;">
+                    <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); padding: 20px; border-radius: 10px; line-height: 1.8; color: #ccc; font-size: 13.5px; text-align: left;">
                         <h3 style="color: ${statusColor}; text-shadow: 0 0 5px ${statusColor}; margin: 0 0 10px 0; font-size: 14px; text-transform: uppercase; font-weight: 900;">කතා සාරාංශය (Synopsis)</h3>
                         <p style="margin: 0;">${drama.synopsis || 'කතා සාරාංශයක් ඇතුළත් කර නොමැත.'}</p>
                     </div>
                 </div>
             `;
 
+            // Populate Episodes & Download Section
             const episodesWrapper = document.getElementById('episodes-section-wrapper');
             let episodesHTML = '';
 
             if (isComplete && drama.batch_link) {
                 episodesHTML += `
-                    <div class="batch-download-wrapper" style="text-align: center; margin-bottom: 20px;">
-                        <a href="${drama.batch_link}" target="_blank" style="display:inline-block; background: var(--neon-cyan); color: #000; font-weight: bold; padding: 10px 20px; border-radius: 5px; text-decoration: none;">
+                    <div class="batch-download-wrapper">
+                        <a href="${drama.batch_link}" target="_blank" class="batch-btn" style="display: block; text-align: center; background: rgba(255,0,127,0.1); border: 1px solid var(--neon-pink); color: var(--neon-pink); padding: 15px; border-radius: 8px; font-weight: 900; text-decoration: none; margin-bottom: 20px; transition: 0.3s;">
                             <i class="fa-solid fa-file-zipper"></i> BATCH DOWNLOAD FULL SEASON (.ZIP)
                         </a>
                     </div>
                 `;
             }
 
-            episodesHTML += `<h2 style="font-size: 15px; font-weight: 900; color: var(--neon-amber); text-shadow: 0 0 8px var(--neon-amber); text-transform: uppercase; margin: 0 0 20px 0; border-left: 3px solid var(--neon-amber); padding-left: 10px; text-align: left;">උපසිරැසි ලබාගන්න (Download Subtitles)</h2>`;
+            episodesHTML += `<h2 style="font-size: 15px; font-weight: 900; color: var(--neon-amber); text-shadow: 0 0 8px var(--neon-amber); text-transform: uppercase; margin: 0 0 20px 0; border-left: 3px solid var(--neon-amber); padding-left: 10px;">උපසිරැසි ලබාගන්න (Download Subtitles)</h2>`;
 
             const episodesMap = {};
             if (drama.episodes) {
@@ -513,7 +603,7 @@
                         `;
                     } else {
                         episodesHTML += `
-                            <div class="ep-btn upcoming">
+                            <div class="ep-btn upcoming" style="opacity: 0.5;">
                                 <i class="fa-solid fa-clock" style="font-size: 14px;"></i>
                                 <span>EPISODE ${String(i).padStart(2, '0')}</span>
                             </div>
@@ -525,11 +615,80 @@
             episodesHTML += `</div>`;
             episodesWrapper.innerHTML = episodesHTML;
 
+            loadVotes();
+        }
+
+        async function loadVotes() {
+            try {
+                const res = await fetch(firebaseURL + "votes.json");
+                const data = await res.json();
+                if (!data) return;
+
+                document.querySelectorAll('.sl-vote-container').forEach(container => {
+                    const id = container.getAttribute('data-id');
+                    if (data[id]) {
+                        const likes = data[id].like || 0;
+                        const dislikes = data[id].dislike || 0;
+
+                        const likeEl = container.querySelector('.sl-like-cnt');
+                        const dislikeEl = container.querySelector('.sl-dislike-cnt');
+                        if(likeEl) likeEl.innerText = likes;
+                        if(dislikeEl) dislikeEl.innerText = dislikes;
+
+                        const total = likes + dislikes;
+                        const fillEl = container.querySelector('.neon-bar-fill');
+                        if (fillEl && total > 0) {
+                            fillEl.style.width = ((likes / total) * 100) + '%';
+                        }
+                    }
+                });
+            } catch(e) {
+                console.error("Error loading votes:", e);
+            }
+        }
+
+        async function handleSLVote(type, btn) {
+            const container = btn.closest('.sl-vote-container');
+            const id = container.getAttribute('data-id');
+            if (localStorage.getItem('voted_' + id)) {
+                alert("ඔබ දැනටමත් මනාපය ලබා දී ඇත!");
+                return;
+            }
+
+            try {
+                const res = await fetch(`${firebaseURL}votes/${id}.json`);
+                const currentData = await res.json() || { like: 0, dislike: 0 };
+                let newLikes = currentData.like || 0;
+                let newDislikes = currentData.dislike || 0;
+
+                if (type === 'like') newLikes++;
+                if (type === 'dislike') newDislikes++;
+
+                await fetch(`${firebaseURL}votes/${id}.json`, {
+                    method: 'PATCH',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ [type]: type === 'like' ? newLikes : newDislikes })
+                });
+
+                localStorage.setItem('voted_' + id, 'true');
+                const likeEl = container.querySelector('.sl-like-cnt');
+                const dislikeEl = container.querySelector('.sl-dislike-cnt');
+                if(likeEl) likeEl.innerText = newLikes;
+                if(dislikeEl) dislikeEl.innerText = newDislikes;
+
+                const total = newLikes + newDislikes;
+                const fillEl = container.querySelector('.neon-bar-fill');
+                if (fillEl && total > 0) {
+                    fillEl.style.width = ((newLikes / total) * 100) + '%';
+                }
+            } catch(e) {
+                console.error("Error updating vote:", e);
+            }
         }
 
         function showNotFound() {
             document.getElementById('drama-details-wrapper').innerHTML = `
-                <div style="text-align: center; padding: 80px 0;">
+                <div style="width: 100%; text-align: center; padding: 80px 0;">
                     <i class="fa-solid fa-triangle-exclamation" style="font-size: 48px; color: var(--neon-pink); text-shadow: 0 0 15px var(--neon-pink); margin-bottom: 20px;"></i>
                     <h2 style="font-size: 20px; font-weight: bold; margin-bottom: 10px;">කතාමාලාව සොයාගත නොහැක</h2>
                     <p style="color: var(--text-muted); margin-bottom: 25px;">සෙවූ ID අංකයට අදාළ දත්ත කිසිවක් පද්ධතිය තුළ හමු නොවුණි.</p>
