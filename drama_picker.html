@@ -234,6 +234,10 @@
         .ep-btn.active-pink { border-color: var(--neon-pink); color: var(--neon-pink); text-shadow: 0 0 5px var(--neon-pink); }
         .ep-btn.active-pink:hover { background: rgba(255, 0, 127, 0.1); box-shadow: 0 0 15px var(--neon-pink); }
 
+        /* ABOUT US GLASS BOX STYLE */
+        .about-section { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 15px; padding: 30px; margin-top: 50px; display: flex; align-items: center; gap: 25px; border-right: 4px solid var(--neon-pink); }
+        .about-img { width: 90px; height: 90px; border-radius: 50%; border: 3px solid var(--neon-pink); box-shadow: 0 0 15px var(--neon-pink); object-fit: cover; }
+
         /* ✍️ CYBERPUNK CHROME BUTTONS FOR DRAMA NAVIGATION */
         .download-btn {
             position: relative; width: 100%; max-width: 280px; height: 48px; text-align: center; text-transform: uppercase;
@@ -351,12 +355,12 @@
                 width: 280px !important; 
                 height: 420px !important; 
                 max-width: 92% !important; 
-                margin: 0 auto 20px auto !important; 
             }
             .info-spec-list { grid-template-columns: 1fr; }
             .episodes-grid-cards { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; }
             .episodes-grid-buttons { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; }
             .ep-btn { padding: 10px; font-size: 11px; }
+            .about-section { flex-direction: column; text-align: center; }
         }
         @media (max-width: 600px) {
             .header-container { flex-direction: row !important; justify-content: space-between !important; align-items: center !important; width: 100%; }
@@ -433,8 +437,8 @@
             </div>
         </div>
 
-        <!-- 👤 ABOUT ME SECTION (Moved to bottom above footer) -->
-        <div class="glass-section-custom" id="about-me-section-wrapper" style="display:none; text-align: center; margin-top: 30px;"></div>
+        <!-- ABOUT US GLASS BOX (Moved beautifully to the bottom, above social networks & footer) -->
+        <div class="about-section" id="about-us-section-wrapper" style="display:none; margin-top: 30px;"></div>
 
         <!-- 🌐 GLOWING SOCIAL MEDIA PLUG -->
         <div class="social-plug-box">
@@ -667,6 +671,10 @@
             if (currentDramaIndex !== -1 && dramaKeys.length > 1) {
                 navWrapper.style.display = 'block';
                 
+                if (currentEpIndex > -1) { // Fallback check or simple logic
+                     // Handled safely via indexes below
+                }
+
                 if (currentDramaIndex > 0) {
                     const prevId = dramaKeys[currentDramaIndex - 1];
                     prevDramaBtn.href = `drama_picker.html?id=${prevId}`;
@@ -692,13 +700,18 @@
                 navWrapper.style.display = 'none';
             }
 
-            // About Me dynamic render above footer
-            const aboutMeSection = document.getElementById('about-me-section-wrapper');
-            if (aboutMeSection && ABOUT_ME_ART_LOGO) {
-                aboutMeSection.style.display = 'block';
-                aboutMeSection.innerHTML = `
-                    <h3>👤 ABOUT ME</h3>
-                    <img src="${ABOUT_ME_ART_LOGO}" alt="About Me Art" style="max-width: 100%; height: auto; border-radius: 10px; opacity: 0.9; margin-top: 10px;">
+            // About Us dynamic render above footer (MATCHING THE HOME PAGE DESIGN)
+            const aboutUsSection = document.getElementById('about-us-section-wrapper');
+            if (aboutUsSection) {
+                aboutUsSection.style.display = 'flex';
+                const aboutMeText = config.about_me_text || "අපි ඔබ වෙත ගෙන එන්නේ ගුණාත්මක බවින් ඉහළම ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි පමණි. අපගේ නිල සමාජ මාධ්‍ය ජාලයන් සමඟ එක් වී අලුත්ම අප්ඩේට්ස් එවලේම ලබාගන්න.";
+                const aboutMeAvatar = config.about_me_avatar || ABOUT_ME_ART_LOGO;
+                aboutUsSection.innerHTML = `
+                    <img src="${aboutMeAvatar}" class="about-img" alt="Avatar">
+                    <div style="text-align: left;">
+                        <h3 style="color: var(--neon-pink); margin: 0 0 10px 0; text-transform: uppercase;">ලියැසි SUBVERSE (About Us)</h3>
+                        <p style="color: var(--text-muted); font-size: 13px; line-height: 1.6; margin: 0;">${aboutMeText}</p>
+                    </div>
                 `;
             }
 
