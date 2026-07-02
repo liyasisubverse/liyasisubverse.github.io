@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ලියැසි SUBVERSE - අප පිළිබඳව (About Us)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        const HEADER_BANNER_LOGO = "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/81260990-6d71-4fbb-b966-43f96215438e.png"; 
+        const ABOUT_ME_ART_LOGO = "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png";       
+    </script>
+    <style>
+        :root {
+            --bg-main: #020408;
+            --neon-cyan: #00f0ff;
+            --neon-pink: #ff007f;
+            --glass-bg: rgba(6, 11, 25, 0.7);
+            --glass-border: rgba(0, 240, 255, 0.15);
+        }
+        * { box-sizing: border-box; }
+        body {
+            background-color: var(--bg-main);
+            color: #ffffff;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            margin: 0; padding: 40px 20px;
+            /* 🏞️ CHANGE YOUR CUSTOM BACKGROUND IMAGE HERE 👇 */
+            background-image: linear-gradient(to bottom, rgba(2, 4, 8, 0.88), rgba(2, 4, 8, 0.97)), url('https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=1200&auto=format&fit=crop');
+            background-attachment: fixed; background-size: cover; background-position: center;
+        }
+        .container {
+            max-width: 800px; margin: 0 auto;
+            background: var(--glass-bg); border: 1px solid var(--glass-border);
+            padding: 40px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border-top: 4px solid var(--neon-cyan);
+            border-bottom: 4px solid var(--neon-pink);
+            text-align: center;
+        }
+        
+        /* 🌈 ROTATING SLIM NEON AVATAR */
+        .about-avatar-container {
+            position: relative; width: 100px; height: 100px; border-radius: 50%; overflow: hidden;
+            display: flex; align-items: center; justify-content: center; margin: 0 auto 25px auto;
+            z-index: 1;
+        }
+        .about-avatar-container::before {
+            content: ''; position: absolute; top: -20%; left: -20%; width: 140%; height: 140%;
+            background: conic-gradient(var(--neon-cyan) 0deg, transparent 40%, transparent 100%);
+            animation: rgb-rotate 1.5s linear infinite; -webkit-animation: rgb-rotate 1.5s linear infinite;
+            z-index: -2;
+        }
+        .about-avatar-container::after { content: ''; position: absolute; inset: 2px; background: #020408; border-radius: 50%; z-index: -1; }
+        .about-avatar-container img { width: calc(100% - 4px); height: calc(100% - 4px); object-fit: cover; border-radius: 50%; position: relative; z-index: 1; }
+
+        @keyframes rgb-rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @-webkit-keyframes rgb-rotate { 0% { -webkit-transform: rotate(0deg); } 100% { -webkit-transform: rotate(360deg); } }
+
+        h1 { color: var(--neon-cyan); text-shadow: 0 0 10px var(--neon-cyan); text-transform: uppercase; margin-bottom: 20px; font-size: 24px; font-weight: 900; }
+        p { line-height: 1.8; color: #ccc; font-size: 14.5px; text-align: left; }
+        .back-btn {
+            display: inline-flex; align-items: center; gap: 8px; color: var(--neon-pink);
+            text-decoration: none; font-weight: bold; margin-top: 25px;
+            text-shadow: 0 0 5px var(--neon-pink); transition: 0.3s;
+            font-size: 14px;
+        }
+        .back-btn:hover { text-shadow: 0 0 15px var(--neon-pink); color: #fff; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 🌈 Rotating Slim Neon Avatar -->
+        <div class="about-avatar-container">
+            <img src="https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png" alt="Avatar">
+        </div>
+        
+        <h1>About Us (අප පිළිබඳව)</h1>
+        
+        <p>ලියැසි SUBVERSE වෙත සාදරයෙන් පිළිගනිමු! අප ඔබ වෙත ගෙන එන්නේ ගුණාත්මක බවින් ඉහළම ආසියානු කතාමාලා (Korean, Chinese, Japanese Dramas) සඳහා වන සිංහල උපසිරැසි පමණි.</p>
+        <p>අපගේ එකම අරමුණ වන්නේ ආසියානු සිනමා රසිකයින් වෙනුවෙන් ඉතාමත් නිවැරදි, ගලායන සහ උසස් මට්ටමේ සිංහල උපසිරැසි සම්පූර්ණයෙන්ම නොමිලේ ලබා දීමයි. අපගේ වෙබ් අඩවියේ ඇති සියලුම උපසිරැසි පරිශීලකයින්ගේ උපරිම පහසුව වෙනුවෙන් කිසිදු කරදරකාරී වෙළඳ දැන්වීමකින් තොරව සෘජුවම බාගත (Direct Download) කරගත හැක.</p>
+        <p>අපගේ නිල ටෙලිග්‍රෑම් සමූහය සමඟ සම්බන්ධ වීමෙන් ඔබට නවතම උපසිරැසි නිකුත් වූ සැනින් ඒවා ලබා ගැනීමටත්, අප සමඟ අදහස් හුවමාරු කර ගැනීමටත් අවස්ථාව ලැබේ.</p>
+        
+        <br>
+        <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> මුල් පිටුවට (Go Back)</a>
+    </div>
+</body>
+</html>
