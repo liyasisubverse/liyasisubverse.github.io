@@ -243,6 +243,7 @@
         .genre-section { background: var(--glass-bg); padding: 20px; border-radius: 12px; border: 1px solid var(--glass-border); border-top: 3px solid var(--neon-purple); margin-top: 50px; }
         .genre-section-title { color: var(--neon-amber); font-weight: 900; font-size: 14px; margin-bottom: 15px; display: block; text-transform: uppercase; }
 
+        /* ABOUT US SECTION IN INDEX.HTML */
         .about-section { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 15px; padding: 30px; margin-top: 50px; display: flex; align-items: center; gap: 25px; border-right: 4px solid var(--neon-pink); }
         .about-img { width: 90px; height: 90px; border-radius: 50%; border: 3px solid var(--neon-pink); box-shadow: 0 0 15px var(--neon-pink); object-fit: cover; }
 
@@ -339,10 +340,6 @@
                         <a href="disclaimer.html"><i class="fa-solid fa-triangle-exclamation"></i> Disclaimer</a>
                         <a href="dmca.html"><i class="fa-solid fa-scale-balanced"></i> DMCA</a>
                         <a href="request.html"><i class="fa-solid fa-film"></i> Request Drama</a>
-
-<a href="about.html" class="sub-nav-item"><i class="fa-solid fa-address-card"></i> About Us</a>
-
-                        
                     </div>
                 </div>
                 <a href="index.html" class="logo-wrapper" id="header-logo-container"></a>
@@ -359,8 +356,8 @@
     <div class="sub-nav-container">
         <div class="sub-nav-bar">
             <a href="index.html" class="sub-nav-item active"><i class="fa-solid fa-house"></i> Home</a>
-       
-    </div>
+       <a href="about.html" class="sub-nav-item"><i class="fa-solid fa-address-card"></i> About Us</a>
+        </div>
         <div class="sub-nav-ticker">
             <div class="sub-nav-ticker-text">✨️ දුර්ලභ කතා මාලා වල නිවහන {The Home of Rare Series}   ✨️</div>
         </div>
@@ -424,7 +421,7 @@
             </div>
         </div>
 
-        <!-- ABOUT ME GLASS BOX -->
+        <!-- ABOUT US GLASS BOX (Moved beautifully to the bottom, above social networks & footer) -->
         <div class="about-section" id="about-section-container"></div>
 
         <!-- 🌐 GLOWING SOCIAL MEDIA PLUG BOX -->
@@ -446,11 +443,9 @@
             <p class="footer-description">ලියැසි SUBVERSE වෙතින් උසස්ම තත්ත්වයේ ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි නොමිලේ ලබාගත හැක.</p>
 
 
+            
             <div class="footer-credits">&copy; 2026 ලියැසි SUBVERSE. All Rights Reserved.</div>
         </div>
-
-
-        
     </footer>
 
     <!-- JAVASCRIPT LOGIC -->
@@ -539,7 +534,7 @@
             const aboutMeText = config.about_me_text || "අපි ඔබ වෙත ගෙන එන්නේ ගුණාත්මක බවින් ඉහළම ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි පමණි. අපගේ නිල සමාජ මාධ්‍ය ජාලයන් සමඟ එක් වී අලුත්ම අප්ඩේට්ස් එවලේම ලබාගන්න.";
             const aboutMeAvatar = config.about_me_avatar || ABOUT_ME_ART_LOGO;
             const tgChannelLink = config.telegram_channel_link || "https://t.me/liyasi1";
-            const noticeText = config.notice_text || "අපගේ සියලුම සිංහල උපසිරැසි නොමිලේ ලබාගත හැක. කිසියම් ගැටලුවක් ඇත්නම් 3-Dot มෙනුවේ ඇති Contact පිටුවෙන් අපට පණිවිඩයක් එවන්න.";
+            const noticeText = config.notice_text || "අපගේ සියලුම සිංහල උපසිරැසි නොමිලේ ලබාගත හැක. කිසියම් ගැටලුවක් ඇත්නම් 3-Dot මෙනුවේ ඇති Contact පිටුවෙන් අපට පණිවිඩයක් එවන්න.";
             const subServerStatus = config.server_status_sub || "ONLINE";
             const botServerStatus = config.server_status_bot || "ACTIVE";
 
@@ -554,7 +549,7 @@
             document.getElementById('about-section-container').innerHTML = `
                 <img src="${aboutMeAvatar}" class="about-img" alt="Avatar">
                 <div>
-                    <h3 style="color: var(--neon-pink); margin: 0 0 10px 0; text-transform: uppercase;">ලියැසි SUBVERSE</h3>
+                    <h3 style="color: var(--neon-pink); margin: 0 0 10px 0; text-transform: uppercase;">ලියැසි SUBVERSE (About Us)</h3>
                     <p style="color: var(--text-muted); font-size: 13px; line-height: 1.6; margin: 0;">${aboutMeText}</p>
                 </div>
             `;
@@ -563,7 +558,7 @@
 
             if (originalDatabase.latest_updates && originalDatabase.latest_updates[0]) {
                 const latest = originalDatabase.latest_updates[0];
-                document.getElementById('ticker-text').innerHTML = `⚡ ${latest.title} [${latest.episode}] Updated! • `;
+                document.getElementById('ticker-text').innerHTML = `⚡ ${latest.title} [${latest.episode}] දැන් රිලීස් වුණා! • `;
             }
 
             const dramaArray = Object.values(originalDatabase.dramas || {});
@@ -664,7 +659,6 @@
         function createCardHTML(d) {
             const isComplete = d.status === "COMPLETE";
             const categoryText = d.type || "DRAMA";
-            const ep = d.episodes && d.episodes[0] ? d.episodes[0].episode : "EP 01";
 
             let topLeftBadgeHTML = "";
             let bottomLeftBadgeHTML = "";
@@ -675,7 +669,7 @@
                 bottomLeftBadgeHTML = `<span class="badge-bottom-left">${totalEpText}</span>`;
             } else {
                 topLeftBadgeHTML = `<span class="badge-top-left">${categoryText}</span>`;
-                bottomLeftBadgeHTML = `<span class="badge-bottom-left">${ep}</span>`;
+                bottomLeftBadgeHTML = `<span class="badge-bottom-left">UNCOMPLETE</span>`; // FIXED: Changed Ep 1 to UNCOMPLETE
             }
 
             const rating = parseFloat(d.imdb) || 0.0;
