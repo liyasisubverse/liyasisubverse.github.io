@@ -1,2 +1,2 @@
-# liyasisubverse.github.lk
+# liyasisubverse.github.io
 Premium Sinhala Subtitles Hub
