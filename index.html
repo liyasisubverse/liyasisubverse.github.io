@@ -725,7 +725,45 @@
             renderPage();
         }
 
+function loadContent() {
+        
+            updateVisitorCounter();
+        }
+
+        async function updateVisitorCounter() {
+            if (localStorage.getItem('isAdmin') === 'true') {
+                console.log("Admin session: Counter skipped.");
+                try {
+                    const response = await fetch(`${firebaseURL}visitorCount.json`);
+                    const data = await response.json();
+                    document.getElementById('visitor-count').innerText = data !== null ? data.toLocaleString() : "0";
+                } catch (e) { console.error("Admin view error:", e); }
+                return; 
+            }
+
+            try {
+                const response = await fetch(`${firebaseURL}visitorCount.json`);
+                let currentCount = await response.json();
+                let newCount = (currentCount || 0) + 1;
+
+                await fetch(`${firebaseURL}visitorCount.json`, {
+                    method: 'PUT',
+                    body: JSON.stringify(newCount)
+                });
+
+                document.getElementById('visitor-count').innerText = newCount.toLocaleString();
+            } catch (error) {
+                console.error("Error updating count:", error);
+            }
+        }
+
+        function searchDrama() {
+            currentSearchQuery = document.getElementById('searchInput').value;
+            renderPage();
+        }
+
         window.onload = loadContent;
     </script>
 </body>
 </html>
+
