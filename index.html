@@ -7,9 +7,6 @@
 <!-- 🌟 FAVICON LINK (අලුතින්ම එකතු කරන කේතය) 👇 -->
     <link rel="icon" type="image/png" href="favicon.png">
 
-
-
-    
 <!-- 🔍 SEO META TAGS (ගූගල් සෙවුම සඳහා Search Description සහ Keywords) -->
     <meta name="description" content="ලියැසි SUBVERSE වෙතින් උසස්ම තත්ත්වයේ ආසියානු කතාමාලා (K-Dramas, C-Dramas, J-Dramas) සඳහා සිංහල උපසිරැසි නොමිලේ, සෘජුවම බාගත කරගන්න.">
     <meta name="keywords" content="liyasi subverse, sinhala subtitles, sinhala sub, liyasi sub, korean drama sinhala sub, subverse, කේ ඩ්‍රාමා සිංහල උපසිරැසි">
@@ -340,9 +337,7 @@
                         <a href="disclaimer.html"><i class="fa-solid fa-triangle-exclamation"></i> Disclaimer</a>
                         <a href="dmca.html"><i class="fa-solid fa-scale-balanced"></i> DMCA</a>
                         <a href="request.html"><i class="fa-solid fa-film"></i> Request Drama</a>
-
-<a href="about.html"><i class="fa-solid fa-address-card"></i> About Us</a>
-                        
+                        <a href="about.html"><i class="fa-solid fa-address-card"></i> About Us</a>
                     </div>
                 </div>
                 <a href="index.html" class="logo-wrapper" id="header-logo-container"></a>
@@ -359,7 +354,6 @@
     <div class="sub-nav-container">
         <div class="sub-nav-bar">
             <a href="index.html" class="sub-nav-item active"><i class="fa-solid fa-house"></i> Home</a>
-       
         </div>
         <div class="sub-nav-ticker">
             <div class="sub-nav-ticker-text">✨️ දුර්ලභ කතා මාලා වල නිවහන {The Home of Rare Series}   ✨️</div>
@@ -415,7 +409,7 @@
             </div>
             <div class="widget-box" style="border-right: 4px solid var(--neon-cyan); text-align: center;">
                 <div class="widget-title" style="border-left-color: var(--neon-cyan);"><i class="fa-solid fa-eye" style="color:var(--neon-cyan)"></i> ප්‍රේක්ෂකයින් (Visits)</div>
-                <h2 id="visitor-count" style="color: var(--neon-cyan); margin: 10px 0 0 0; text-shadow: 0 0 10px var(--neon-cyan); font-family: monospace;">12,845</h2>
+                <h2 id="visitor-count" style="color: var(--neon-cyan); margin: 10px 0 0 0; text-shadow: 0 0 10px var(--neon-cyan); font-family: monospace;">0</h2>
                 <p style="font-size:10px; color:var(--text-muted); margin:5px 0 0 0;">සජීවී නරඹන්නන් ගණන</p>
             </div>
             <div class="widget-box" style="border-right: 4px solid var(--neon-amber);">
@@ -444,9 +438,6 @@
         <div class="footer-content">
             <div class="footer-brand"><span class="sinhala">ලියැසි</span><span class="english">SUBVERSE</span></div>
             <p class="footer-description">ලියැසි SUBVERSE වෙතින් උසස්ම තත්ත්වයේ ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි නොමිලේ ලබාගත හැක.</p>
-
-
-            
             <div class="footer-credits">&copy; 2026 ලියැසි SUBVERSE. All Rights Reserved.</div>
         </div>
     </footer>
@@ -479,36 +470,6 @@
         }
         setInterval(updateCyberClock, 1000); updateCyberClock();
 
-        async function updateVisitorCounter() {
-            try {
-                const urlParams = new URLSearchParams(window.location.search);
-                if (urlParams.get('admin') === 'true') {
-                    localStorage.setItem('isAdmin', 'true');
-                }
-
-                const isAdmin = localStorage.getItem('isAdmin') === 'true';
-                const res = await fetch(`${firebaseURL}stats/visits.json`);
-                let count = await res.json() || 0;
-                
-                if (isAdmin) {
-                    document.getElementById('visitor-count').innerText = count.toLocaleString();
-                    return;
-                }
-
-                if (!sessionStorage.getItem('visited')) {
-                    count++;
-                    await fetch(`${firebaseURL}stats/visits.json`, {
-                        method: 'PUT',
-                        body: JSON.stringify(count)
-                    });
-                    sessionStorage.setItem('visited', 'true');
-                }
-                document.getElementById('visitor-count').innerText = count.toLocaleString();
-            } catch (e) {
-                document.getElementById('visitor-count').innerText = "12,845";
-            }
-        }
-
         const dummyDatabase = {
             "latest_updates": [],
             "dramas": {}
@@ -519,6 +480,7 @@
         let currentSearchQuery = "";
         let originalDatabase = dummyDatabase;
 
+        // වෙබ් අඩවියට පිවිසෙන විට ක්‍රියාත්මක වන ප්‍රධාන loadContent function එක
         async function loadContent() {
             try {
                 const response = await fetch('data.json?v=' + new Date().getTime());
@@ -530,6 +492,33 @@
             }
             renderPage();
             updateVisitorCounter();
+        }
+
+        async function updateVisitorCounter() {
+            if (localStorage.getItem('isAdmin') === 'true') {
+                console.log("Admin session: Counter skipped.");
+                try {
+                    const response = await fetch(`${firebaseURL}visitorCount.json`);
+                    const data = await response.json();
+                    document.getElementById('visitor-count').innerText = data !== null ? data.toLocaleString() : "0";
+                } catch (e) { console.error("Admin view error:", e); }
+                return; 
+            }
+
+            try {
+                const response = await fetch(`${firebaseURL}visitorCount.json`);
+                let currentCount = await response.json();
+                let newCount = (currentCount || 0) + 1;
+
+                await fetch(`${firebaseURL}visitorCount.json`, {
+                    method: 'PUT',
+                    body: JSON.stringify(newCount)
+                });
+
+                document.getElementById('visitor-count').innerText = newCount.toLocaleString();
+            } catch (error) {
+                console.error("Error updating count:", error);
+            }
         }
 
         function renderPage() {
@@ -672,7 +661,7 @@
                 bottomLeftBadgeHTML = `<span class="badge-bottom-left">${totalEpText}</span>`;
             } else {
                 topLeftBadgeHTML = `<span class="badge-top-left">${categoryText}</span>`;
-                bottomLeftBadgeHTML = `<span class="badge-bottom-left">UNCOMPLETE</span>`; // FIXED: Changed Ep 1 to UNCOMPLETE
+                bottomLeftBadgeHTML = `<span class="badge-bottom-left">UNCOMPLETE</span>`; 
             }
 
             const rating = parseFloat(d.imdb) || 0.0;
@@ -725,45 +714,7 @@
             renderPage();
         }
 
-function loadContent() {
-        
-            updateVisitorCounter();
-        }
-
-        async function updateVisitorCounter() {
-            if (localStorage.getItem('isAdmin') === 'true') {
-                console.log("Admin session: Counter skipped.");
-                try {
-                    const response = await fetch(`${firebaseURL}visitorCount.json`);
-                    const data = await response.json();
-                    document.getElementById('visitor-count').innerText = data !== null ? data.toLocaleString() : "0";
-                } catch (e) { console.error("Admin view error:", e); }
-                return; 
-            }
-
-            try {
-                const response = await fetch(`${firebaseURL}visitorCount.json`);
-                let currentCount = await response.json();
-                let newCount = (currentCount || 0) + 1;
-
-                await fetch(`${firebaseURL}visitorCount.json`, {
-                    method: 'PUT',
-                    body: JSON.stringify(newCount)
-                });
-
-                document.getElementById('visitor-count').innerText = newCount.toLocaleString();
-            } catch (error) {
-                console.error("Error updating count:", error);
-            }
-        }
-
-        function searchDrama() {
-            currentSearchQuery = document.getElementById('searchInput').value;
-            renderPage();
-        }
-
         window.onload = loadContent;
     </script>
 </body>
 </html>
-
