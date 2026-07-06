@@ -2,6 +2,12 @@
   "latest_updates": [
     {
       "title": "Joseon Attorney: A Morality",
+      "episode": "EP 01",
+      "image_url": "https://i.ibb.co/23xKnG79/60b83a1c8f87.jpg",
+      "post_link": "episode_picker.html?drama_id=206715&ep=EP 01"
+    },
+    {
+      "title": "Joseon Attorney: A Morality",
       "episode": "EP 02",
       "image_url": "https://i.ibb.co/23xKnG79/60b83a1c8f87.jpg",
       "post_link": "episode_picker.html?drama_id=206715&ep=EP 02"
@@ -73,7 +79,7 @@
           "image": "https://i.ibb.co/23xKnG79/60b83a1c8f87.jpg",
           "synopsis": "අසාධාරණයට එරෙහිව නැගී සිටින අභිරහස් පුද්ගලයාගේ ආගමනය.",
           "map_url": "https://i.ibb.co/Xx69sDVZ/81e8c3a61814.png",
-          "trailer": "",
+          "trailer": "https://www.youtube.com/embed/PxJZZVhmzc8",
           "cast": [
             {
               "name": "Woo Do-hwan",
