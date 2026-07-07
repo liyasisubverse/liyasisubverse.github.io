@@ -38,6 +38,9 @@
         const HEADER_BANNER_LOGO = "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/81260990-6d71-4fbb-b966-43f96215438e.png"; 
         const ABOUT_ME_ART_LOGO = "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png";       
         const firebaseURL = "https://subverse-b897d-default-rtdb.firebaseio.com/"; 
+        
+        // 🤖 Cloudflare Worker URL එක සාර්ථකව ඇතුළත් කර ඇත:
+        const CLOUDFLARE_WORKER_URL = "https://ask-gemini.rashmi004005g.workers.dev";
     </script>
 
     <style>
@@ -1733,18 +1736,17 @@
             const typingId = appendChatMessage("bot", "typing...");
             
             try {
-                // මේ විදිහට අලුත් කොටස දාලා බලන්න:
-const response = await fetch("https://ask-gemini.rashmi004005g.workers.dev", {
-    method: "POST",
-    mode: 'cors', // 👈 මෙය අනිවාර්යයි
-    headers: { 
-        "Content-Type": "application/json" 
-    },
-    body: JSON.stringify({ 
-        message: text, 
-        dramas: "[]"
-    })
-});
+                // Cloudflare Worker වෙත ඉල්ලීම යැවීම
+                const response = await fetch(CLOUDFLARE_WORKER_URL, {
+                    method: "POST",
+                    mode: 'cors', // 👈 CORS සඳහා මෙය අනිවාර්යයි
+                    headers: { 
+                        "Content-Type": "application/json" 
+                    },
+                    body: JSON.stringify({ 
+                        message: text
+                    })
+                });
                 const data = await response.json();
                 removeChatMessage(typingId);
                 
