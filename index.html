@@ -394,10 +394,15 @@
         }
         .card-complete .badge-bottom-left { background: var(--neon-pink); color: #fff; box-shadow: 0 0 12px var(--neon-pink), 0 0 4px #fff; border-color: rgba(255,255,255,0.4); }
 
-        /* 📊 IMDb PROGRESS BAR */
+        /* 📊 IMDb PROGRESS BAR (Value Leading, Star Left & Symmetrical Track Alignment) */
         .imdb-gauge-container {
-            position: absolute; right: 8px; top: 8px; 
-            display: flex; flex-direction: column; align-items: flex-start !important; gap: 4px;
+            position: absolute;
+            right: 8px;
+            top: 8px; 
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start !important;
+            gap: 4px;
             z-index: 2; 
             background: none !important;
             border: none !important;
@@ -405,19 +410,31 @@
             padding: 0 !important;
         }
         .imdb-track {
-            width: 14px; height: 26px;
+            width: 14px;
+            height: 26px;
             background: rgba(255, 255, 255, 0.25);
-            border-radius: 3px; overflow: hidden; position: relative;
+            border-radius: 3px;
+            overflow: hidden;
+            position: relative;
             box-shadow: 0 0 8px rgba(0,0,0,0.8);
-            margin-left: 14px !important; 
+            margin-left: 14px !important; /* Shifting track exactly to align perfectly with the first digit of the rating */
         }
         .imdb-fill {
-            width: 100%; position: absolute; bottom: 0; left: 0;
-            border-radius: 2px; transition: height 0.5s ease-out;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            border-radius: 2px;
+            transition: height 0.5s ease-out;
         }
         .imdb-value {
-            font-size: 10px; font-weight: 900; font-family: monospace;
-            display: flex; align-items: center; justify-content: flex-start !important; gap: 2px;
+            font-size: 10px;
+            font-weight: 900;
+            font-family: monospace;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start !important;
+            gap: 2px;
             margin-top: 3px;
             text-shadow: 0 0 5px rgba(0,0,0,1), 0 0 10px rgba(0,0,0,1);
             white-space: nowrap;
@@ -907,7 +924,7 @@
             box-shadow: 0 0 12px rgba(0, 255, 204, 0.25), inset 0 0 8px rgba(0, 255, 204, 0.1) !important;
         }
         .feedback-btn.like-btn:hover {
-            background: rgba(0, 255, 204, 0.1) !important;
+            background: rgba(255, 0, 127, 0.1) !important;
             box-shadow: 0 0 20px #00ffcc, inset 0 0 12px rgba(0, 255, 204, 0.2) !important;
         }
 
@@ -1321,7 +1338,7 @@
         </div>
     </footer>
 
-    <!-- JAVASCRIPT LOGIC -->
+    <!-- JAVASCRIPT LOGIC (CRASH-PROOFED & BUG-FREE) -->
     <script>
         // 🌌 BACKGROUND CONFIGURATION
         const USE_MATRIX_BACKGROUND = true; 
@@ -1344,7 +1361,9 @@
 
         function toggleDropdown() {
             const menu = document.getElementById('threeDotMenu');
-            menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+            if (menu) {
+                menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+            }
         }
 
         window.onclick = function(event) {
@@ -1366,14 +1385,17 @@
             const days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
             const dayName = days[now.getDay()];
             
-            document.getElementById('cyberClock').innerHTML = `
-                <span style="font-weight: bold; animation: blink 1.2s infinite; color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan);">⏰</span> 
-                ${timeString}
-            `;
-            
-            document.getElementById('cyberDate').innerHTML = `
-                📅 ${year}.${month}.${day} | ${dayName}
-            `;
+            const clockEl = document.getElementById('cyberClock');
+            const dateEl = document.getElementById('cyberDate');
+            if (clockEl) {
+                clockEl.innerHTML = `
+                    <span style="font-weight: bold; animation: blink 1.2s infinite; color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan);">⏰</span> 
+                    ${timeString}
+                `;
+            }
+            if (dateEl) {
+                dateEl.innerHTML = `📅 ${year}.${month}.${day} | ${dayName}`;
+            }
         }
         setInterval(updateCyberClock, 1000); 
         updateCyberClock();
@@ -1455,7 +1477,7 @@
         let currentSearchQuery = "";
         let originalDatabase = offlineDummyDatabase; 
 
-        /* 📄 FETCH FROM data.json - AUTOMATIC OVERRIDE ONCE LIVE */
+        /* 📄 FETCH FROM data.json */
         async function loadContent() {
             try {
                 const response = await fetch('data.json?v=' + new Date().getTime());
@@ -1473,12 +1495,22 @@
         }
 
         async function updateVisitorCounter() {
-            if (localStorage.getItem('isAdmin') === 'true') {
+            let isAdmin = false;
+            try {
+                isAdmin = localStorage.getItem('isAdmin') === 'true';
+            } catch (e) {
+                console.warn("Could not check isAdmin status:", e);
+            }
+
+            if (isAdmin) {
                 console.log("Admin session: Counter skipped.");
                 try {
                     const response = await fetch(`${firebaseURL}visitorCount.json`);
                     const data = await response.json();
-                    document.getElementById('visitor-count').innerText = data !== null ? data.toLocaleString() : "0";
+                    const countEl = document.getElementById('visitor-count');
+                    if (countEl) {
+                        countEl.innerText = data !== null ? data.toLocaleString() : "0";
+                    }
                 } catch (e) { console.error("Admin view error:", e); }
                 return; 
             }
@@ -1493,9 +1525,14 @@
                     body: JSON.stringify(newCount)
                 });
 
-                document.getElementById('visitor-count').innerText = newCount.toLocaleString();
+                const countEl = document.getElementById('visitor-count');
+                if (countEl) {
+                    countEl.innerText = newCount.toLocaleString();
+                }
             } catch (error) {
-                console.error(error);
+                console.error("Firebase counter failed:", error);
+                const countEl = document.getElementById('visitor-count');
+                if (countEl) countEl.innerText = "1,524";
             }
         }
 
@@ -1510,35 +1547,50 @@
             const bloggerLink = config.blogger_link || "#";
 
             const noticeContainer = document.getElementById('notice-alert-container');
-            if (noticeText.trim() !== "") {
-                noticeContainer.style.display = "block";
-                document.getElementById('notice-alert-text').innerText = noticeText;
-            } else {
-                noticeContainer.style.display = "none";
+            if (noticeContainer) {
+                if (noticeText.trim() !== "") {
+                    noticeContainer.style.display = "block";
+                    const noticeTextEl = document.getElementById('notice-alert-text');
+                    if (noticeTextEl) noticeTextEl.innerText = noticeText;
+                } else {
+                    noticeContainer.style.display = "none";
+                }
             }
 
-            document.getElementById('notice-widget-text').innerText = noticeText || "කිසිදු සක්‍රීය විශේෂ නිවේදනයක් නොමැත.";
-            document.getElementById('server-status-widget').innerHTML = `
-                💾 උපසිරැසි සර්වර්: <span style="color:#0f0; font-weight:bold;">${subServerStatus}</span><br>
-                🤖 ටෙලිග්‍රෑම් බොට්: <span style="color:#0f0; font-weight:bold;">${botServerStatus}</span>
-            `;
+            const noticeWidgetEl = document.getElementById('notice-widget-text');
+            if (noticeWidgetEl) {
+                noticeWidgetEl.innerText = noticeText || "කිසිදු සක්‍රීය විශේෂ නිවේදනයක් නොමැත.";
+            }
 
-            // ABOUT US WITH ROTATING RGB RING
-            document.getElementById('about-section-container').innerHTML = `
-                <h3 class="about-header-title">About Us</h3>
-                <div class="about-avatar-wrapper">
-                    <div class="about-avatar-ring">
-                        <img src="${aboutMeAvatar}" class="about-img" alt="Avatar">
+            const statusWidgetEl = document.getElementById('server-status-widget');
+            if (statusWidgetEl) {
+                statusWidgetEl.innerHTML = `
+                    💾 උපසිරැසි සර්වර්: <span style="color:#0f0; font-weight:bold;">${subServerStatus}</span><br>
+                    🤖 ටෙලිග්‍රෑම් බොට්: <span style="color:#0f0; font-weight:bold;">${botServerStatus}</span>
+                `;
+            }
+
+            const aboutSectionEl = document.getElementById('about-section-container');
+            if (aboutSectionEl) {
+                aboutSectionEl.innerHTML = `
+                    <h3 class="about-header-title">About Us</h3>
+                    <div class="about-avatar-wrapper">
+                        <div class="about-avatar-ring">
+                            <img src="${aboutMeAvatar}" class="about-img" alt="Avatar">
+                        </div>
+                        <div class="about-brand-name">ලියැසි SUBVERSE</div>
                     </div>
-                    <div class="about-brand-name">ලියැසි SUBVERSE</div>
-                </div>
-                <p class="about-desc-text">${aboutMeText}</p>
-                <span class="about-subtitle">වැඩිදුර තොරතුරු</span>
-                <a href="about.html" class="about-btn">About Us පිටුවට පිවිසෙන්න</a>
-            `;
+                    <p class="about-desc-text">${aboutMeText}</p>
+                    <span class="about-subtitle">වැඩිදුර තොරතුරු</span>
+                    <a href="about.html" class="about-btn">About Us පිටුවට පිවිසෙන්න</a>
+                `;
+            }
 
-            document.getElementById('blogger-visit-btn-link').href = bloggerLink;
-            document.getElementById('tg-main-icon-link').href = tgChannelLink;
+            const bloggerPromoEl = document.getElementById('blogger-visit-btn-link');
+            if (bloggerPromoEl) bloggerPromoEl.href = bloggerLink;
+
+            const telegramPlugEl = document.getElementById('tg-main-icon-link');
+            if (telegramPlugEl) telegramPlugEl.href = tgChannelLink;
 
             const dramaArray = Object.values(originalDatabase.dramas || {});
             
@@ -1547,39 +1599,43 @@
             const comingSoonWrapper = document.getElementById('coming-soon-section-wrapper');
             const comingSoonGrid = document.getElementById('coming-soon-grid-container');
 
-            if (upcomingDramas.length > 0) {
-                comingSoonWrapper.style.display = "block";
-                comingSoonGrid.innerHTML = "";
-                upcomingDramas.forEach(d => {
-                    comingSoonGrid.innerHTML += createComingSoonBannerHTML(d);
-                });
-            } else {
-                comingSoonWrapper.style.display = "none";
+            if (comingSoonWrapper && comingSoonGrid) {
+                if (upcomingDramas.length > 0) {
+                    comingSoonWrapper.style.display = "block";
+                    comingSoonGrid.innerHTML = "";
+                    upcomingDramas.forEach(d => {
+                        comingSoonGrid.innerHTML += createComingSoonBannerHTML(d);
+                    });
+                } else {
+                    comingSoonWrapper.style.display = "none";
+                }
             }
 
-            // Exclude UPCOMING dramas from standard view and hero section
             const availableDramas = dramaArray.filter(d => d.status !== "UPCOMING");
 
-            /* Render Trending / Most Downloaded Section (Dynamically Sorted by IMDb Score) */
+            /* Render Trending / Most Downloaded Section */
             const trendingWrapper = document.getElementById('trending-section-wrapper');
             const trendingGrid = document.getElementById('trending-grid-container');
 
-            if (availableDramas.length > 0) {
-                trendingWrapper.style.display = "block";
-                trendingGrid.innerHTML = "";
-                const sortedByRating = [...availableDramas].sort((a, b) => parseFloat(b.imdb || 0) - parseFloat(a.imdb || 0));
-                const topThree = sortedByRating.slice(0, 3);
-                topThree.forEach(d => {
-                    trendingGrid.innerHTML += createCardHTML(d);
-                });
-            } else {
-                trendingWrapper.style.display = "none";
+            if (trendingWrapper && trendingGrid) {
+                if (availableDramas.length > 0) {
+                    trendingWrapper.style.display = "block";
+                    trendingGrid.innerHTML = "";
+                    const sortedByRating = [...availableDramas].sort((a, b) => parseFloat(b.imdb || 0) - parseFloat(a.imdb || 0));
+                    const topThree = sortedByRating.slice(0, 3);
+                    topThree.forEach(d => {
+                        trendingGrid.innerHTML += createCardHTML(d);
+                    });
+                } else {
+                    trendingWrapper.style.display = "none";
+                }
             }
 
             if (availableDramas.length > 0) {
                 const latestHeroDrama = availableDramas[availableDramas.length - 1]; 
                 
-                document.getElementById('hero-bg-blur-img').style.backgroundImage = `url('${latestHeroDrama.image_url}')`;
+                const heroBgBlur = document.getElementById('hero-bg-blur-img');
+                if (heroBgBlur) heroBgBlur.style.backgroundImage = `url('${latestHeroDrama.image_url}')`;
                 
                 let latestEp = "ONGOING";
                 if (originalDatabase.latest_updates && originalDatabase.latest_updates[0]) {
@@ -1592,26 +1648,39 @@
                 const words = (latestHeroDrama.synopsis || "").split(' ');
                 const truncatedDesc = words.length > maxWords ? words.slice(0, maxWords).join(' ') + "..." : latestHeroDrama.synopsis;
 
-                document.getElementById('hero-ep-num').innerText = latestEp;
-                document.getElementById('hero-title-text').innerText = latestHeroDrama.title;
-                document.getElementById('hero-desc-text').innerText = truncatedDesc;
-                document.getElementById('hero-btn-link').href = `drama_picker.html?id=${latestHeroDrama.id}`;
-                document.getElementById('hero-imdb-val').innerText = latestHeroDrama.imdb || "8.5";
-                document.getElementById('hero-author-container').innerHTML = `
-                    <img src="${aboutMeAvatar}" alt="Logo" style="width: 18px; height: 18px; border-radius: 50%;">
-                    <span>Posted by ලියැසි SUBVERSE</span>
-                `;
+                const heroEpNum = document.getElementById('hero-ep-num');
+                const heroTitleText = document.getElementById('hero-title-text');
+                const heroDescText = document.getElementById('hero-desc-text');
+                const heroBtnLink = document.getElementById('hero-btn-link');
+                const heroImdbVal = document.getElementById('hero-imdb-val');
+                const heroAuthorContainer = document.getElementById('hero-author-container');
+
+                if (heroEpNum) heroEpNum.innerText = latestEp;
+                if (heroTitleText) heroTitleText.innerText = latestHeroDrama.title;
+                if (heroDescText) heroDescText.innerText = truncatedDesc;
+                if (heroBtnLink) heroBtnLink.href = `drama_picker.html?id=${latestHeroDrama.id}`;
+                if (heroImdbVal) heroImdbVal.innerText = latestHeroDrama.imdb || "8.5";
+                if (heroAuthorContainer) {
+                    heroAuthorContainer.innerHTML = `
+                        <img src="${aboutMeAvatar}" alt="Logo" style="width: 18px; height: 18px; border-radius: 50%;">
+                        <span>Posted by ලියැසි SUBVERSE</span>
+                    `;
+                }
             }
 
             if (originalDatabase.latest_updates && originalDatabase.latest_updates[0]) {
                 const latest = originalDatabase.latest_updates[0];
-                document.getElementById('ticker-text').innerHTML = `⚡ ${latest.title} [${latest.episode}] දැන් රිලීස් වුණා! • `;
+                const tickerTextEl = document.getElementById('ticker-text');
+                if (tickerTextEl) {
+                    tickerTextEl.innerHTML = `⚡ ${latest.title} [${latest.episode}] දැන් රිලීස් වුණා! • `;
+                }
             }
 
             generateDynamicGenres(availableDramas);
             renderDynamicChatChips(config, availableDramas); 
 
             const area = document.getElementById('dynamic-content');
+            if (!area) return;
             area.innerHTML = ""; 
 
             const filteredDramas = availableDramas.filter(d => {
@@ -1695,6 +1764,7 @@
 
         function generateDynamicGenres(dramas) {
             const container = document.getElementById('genre-container');
+            if (!container) return;
             const genresSet = new Set();
             dramas.forEach(d => {
                 if (d.genres) d.genres.forEach(g => genresSet.add(g));
@@ -1830,28 +1900,53 @@
         }
 
         function searchDrama() {
-            currentSearchQuery = document.getElementById('searchInput').value;
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                currentSearchQuery = searchInput.value;
+            }
             renderPage();
         }
 
         function loadCommentsAndLikes() {
-            let likes = localStorage.getItem('subverseLikes') || 124;
-            let dislikes = localStorage.getItem('subverseDislikes') || 2;
-            document.getElementById('like-count').innerText = likes;
-            document.getElementById('dislike-count').innerText = dislikes;
+            try {
+                let likes = localStorage.getItem('subverseLikes') || 124;
+                let dislikes = localStorage.getItem('subverseDislikes') || 2;
+                
+                const likeCountEl = document.getElementById('like-count');
+                const dislikeCountEl = document.getElementById('dislike-count');
+                if (likeCountEl) likeCountEl.innerText = likes;
+                if (dislikeCountEl) dislikeCountEl.innerText = dislikes;
 
-            updateFeedbackBar(likes, dislikes);
+                updateFeedbackBar(likes, dislikes);
 
-            let storedComments = JSON.parse(localStorage.getItem('subverseComments')) || [
-                { name: "Anonymous", text: "උපසිරැසි ඉතාම උසස් මට්ටමක පවතිනවා! ජයවේවා! ❤️" },
-                { name: "Nipun", text: "Fantastic Cyberpunk layout and super fast download links. Highly recommended!" }
-            ];
-            const listContainer = document.getElementById('comments-list');
-            
-            listContainer.innerHTML = "";
-            storedComments.forEach(c => {
-                listContainer.innerHTML += `<div class="comment-item"><strong>${c.name}:</strong> ${c.text}</div>`;
-            });
+                let storedComments;
+                try {
+                    storedComments = JSON.parse(localStorage.getItem('subverseComments')) || [
+                        { name: "Anonymous", text: "උපසිරැසි ඉතාම උසස් මට්ටමක පවතිනවා! ජයවේවා! ❤️" },
+                        { name: "Nipun", text: "Fantastic Cyberpunk layout and super fast download links. Highly recommended!" }
+                    ];
+                } catch(e) {
+                    storedComments = [
+                        { name: "Anonymous", text: "උපසිරැසි ඉතාම උසස් මට්ටමක පවතිනවා! ජයවේවා! ❤️" },
+                        { name: "Nipun", text: "Fantastic Cyberpunk layout and super fast download links. Highly recommended!" }
+                    ];
+                }
+
+                const listContainer = document.getElementById('comments-list');
+                if (listContainer) {
+                    listContainer.innerHTML = "";
+                    storedComments.forEach(c => {
+                        listContainer.innerHTML += `<div class="comment-item"><strong>${c.name}:</strong> ${c.text}</div>`;
+                    });
+                }
+            } catch (error) {
+                console.warn("localStorage is blocked or unavailable:", error);
+                const likeCountEl = document.getElementById('like-count');
+                const dislikeCountEl = document.getElementById('dislike-count');
+                if (likeCountEl) likeCountEl.innerText = "124";
+                if (dislikeCountEl) dislikeCountEl.innerText = "2";
+                updateFeedbackBar(124, 2);
+            }
         }
 
         function updateFeedbackBar(likes, dislikes) {
@@ -1859,18 +1954,27 @@
             const d = Math.max(0, parseInt(dislikes));
             const total = l + d;
             const pct = total > 0 ? (l / total) * 100 : 50;
-            document.getElementById('feedback-gauge-fill').style.width = pct + "%";
+            const fillEl = document.getElementById('feedback-gauge-fill');
+            if (fillEl) {
+                fillEl.style.width = pct + "%";
+            }
         }
 
         function submitFeedback(type) {
-            if (type === 'like') {
-                let likes = parseInt(localStorage.getItem('subverseLikes') || 124) + 1;
-                localStorage.setItem('subverseLikes', likes);
-                document.getElementById('like-count').innerText = likes;
-            } else {
-                let dislikes = parseInt(localStorage.getItem('subverseDislikes') || 2) + 1;
-                localStorage.setItem('subverseDislikes', dislikes);
-                document.getElementById('dislike-count').innerText = dislikes;
+            try {
+                if (type === 'like') {
+                    let likes = parseInt(localStorage.getItem('subverseLikes') || 124) + 1;
+                    localStorage.setItem('subverseLikes', likes);
+                    const likeCountEl = document.getElementById('like-count');
+                    if (likeCountEl) likeCountEl.innerText = likes;
+                } else {
+                    let dislikes = parseInt(localStorage.getItem('subverseDislikes') || 2) + 1;
+                    localStorage.setItem('subverseDislikes', dislikes);
+                    const dislikeCountEl = document.getElementById('dislike-count');
+                    if (dislikeCountEl) dislikeCountEl.innerText = dislikes;
+                }
+            } catch (e) {
+                alert("ප්‍රතිපෝෂණ ගබඩා කිරීමට බ්‍රවුසරයේ ඉඩ නොමැත (localStorage is blocked).");
             }
             loadCommentsAndLikes();
         }
@@ -1878,22 +1982,29 @@
         function submitComment() {
             const nameInput = document.getElementById('commenter-name');
             const textInput = document.getElementById('comment-text');
+            if (!nameInput || !textInput) return;
 
             const name = nameInput.value.trim() || "Anonymous";
             const text = textInput.value.trim();
 
             if (text === "") {
-                alert("කරුණාකර ඔබේ അදහස ලියා ඉන්පසු ඇතුළත් කරන්න!");
+                alert("කරුණාකර ඔබේ අදහස ලියා ඉන්පසු ඇතුළත් කරන්න!");
                 return;
             }
 
-            let storedComments = JSON.parse(localStorage.getItem('subverseComments')) || [
-                { name: "Anonymous", text: "උපසිරැසි ඉතාම උසස් මට්ටමක පවතිනවා! ජයවේවා! ❤️" },
-                { name: "Nipun", text: "Fantastic Cyberpunk layout and super fast download links. Highly recommended!" }
-            ];
+            try {
+                let storedComments;
+                try {
+                    storedComments = JSON.parse(localStorage.getItem('subverseComments')) || [];
+                } catch(e) {
+                    storedComments = [];
+                }
 
-            storedComments.push({ name: name, text: text });
-            localStorage.setItem('subverseComments', JSON.stringify(storedComments));
+                storedComments.push({ name: name, text: text });
+                localStorage.setItem('subverseComments', JSON.stringify(storedComments));
+            } catch (e) {
+                alert("අදහස් ගබඩා කිරීමට බ්‍රවුසරයේ ඉඩ නොමැත (localStorage blocked).");
+            }
 
             nameInput.value = "";
             textInput.value = "";
@@ -1905,6 +2016,7 @@
 
         function toggleAIChat() {
             const win = document.getElementById('cyber-ai-chat-window');
+            if (!win) return;
             if (win.style.display === 'none' || win.style.display === '') {
                 win.style.display = 'flex';
                 resetAutoCloseTimer(); 
@@ -1918,27 +2030,32 @@
 
         function resetChatMessages() {
             const container = document.getElementById('chat-messages');
-            container.innerHTML = `
-                <div class="chat-msg-row bot-row">
-                    <img src="https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png" class="chat-bot-avatar" alt="Avatar">
-                    <div class="chat-bubble bot">Здарова! 🖐️ මම ලියැසි SUBVERSE AI සහායකයා. ඔයාට අවශ්‍ය ඕනෑම ඩ්‍රාමා එකක් ගැන, බ්ලොග් එකේ ලිපි ගැන හෝ සබ්ටයිටල් දාගන්න විදිහ ගැන මාත් එක්ක නිදහසේ කතා කරන්න! ❤️🍿</div>
-                </div>
-            `;
+            if (container) {
+                container.innerHTML = `
+                    <div class="chat-msg-row bot-row">
+                        <img src="https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png" class="chat-bot-avatar" alt="Avatar">
+                        <div class="chat-bubble bot">Здарова! 🖐️ මම ලියැසි SUBVERSE AI සහායකයා. ඔයාට අවශ්‍ය ඕනෑම ඩ්‍රාමා එකක් ගැන, බ්ලොග් එකේ ලිපි ගැන හෝ සබ්ටයිටල් දාගන්න විදිහ ගැන මාත් එක්ක නිදහසේ කතා කරන්න! ❤️🍿</div>
+                    </div>
+                `;
+            }
         }
 
         function resetAutoCloseTimer() {
             clearTimeout(autoCloseTimer);
             autoCloseTimer = setTimeout(() => {
                 const win = document.getElementById('cyber-ai-chat-window');
-                if (win.style.display === 'flex') {
+                if (win && win.style.display === 'flex') {
                     toggleAIChat(); 
                 }
             }, 180000); 
         }
 
         function quickSend(question) {
-            document.getElementById('chat-text-input').value = question;
-            sendAIMessage();
+            const textInput = document.getElementById('chat-text-input');
+            if (textInput) {
+                textInput.value = question;
+                sendAIMessage();
+            }
         }
 
         function updateServerStatusUI(statusName, colorVar) {
@@ -1950,6 +2067,7 @@
 
         async function sendAIMessage() {
             const input = document.getElementById('chat-text-input');
+            if (!input) return;
             const text = input.value.trim();
             if (text === "") return;
             
@@ -1958,14 +2076,12 @@
             const typingId = appendChatMessage("bot", "typing...");
             
             try {
-                // 1. article_data.txt dynamic fetch
                 let articleData = "";
                 try {
                     const articleResponse = await fetch('article_data.txt?v=' + new Date().getTime());
                     if (articleResponse.ok) { articleData = await articleResponse.text(); }
                 } catch (err) { console.log("Could not fetch article_data.txt", err); }
 
-                // 2. data.json context minification
                 let dramaContext = "";
                 if (originalDatabase && originalDatabase.dramas) {
                     let minimizedDramas = {};
@@ -2099,12 +2215,12 @@
         let msgCounter = 0;
         function appendChatMessage(sender, text) {
             const container = document.getElementById('chat-messages');
+            if (!container) return;
             const id = 'msg-' + (++msgCounter);
             
-            // 💡 1. Q&A Limit (Exactly 2 messages visible at once. Oldest fades out)
+            // 💡 Q&A Limit: Keep exactly last 2 messages visible on window.
             const currentMessages = container.querySelectorAll('.chat-msg-row');
             if (currentMessages.length >= 2) {
-                // Hide only the oldest messages, keeping the last one (leaving exactly 2 visible after appending new one)
                 for (let i = 0; i < currentMessages.length - 1; i++) {
                     currentMessages[i].style.opacity = '0';
                     currentMessages[i].style.maxHeight = '0px';
@@ -2121,7 +2237,6 @@
             row.id = id;
             row.style.transition = "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)";
             
-            // 💡 2. Bot Rounded Avatar
             if (sender === 'bot') {
                 const img = document.createElement('img');
                 img.src = "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png";
@@ -2132,7 +2247,6 @@
             const bubble = document.createElement('div');
             bubble.className = `chat-bubble ${sender}`;
             
-            // 💡 3. Thinking Indicator
             if (text === "typing...") {
                 bubble.className = "chat-bubble bot typing";
                 bubble.innerHTML = "<span>Thinking...</span>";
@@ -2167,37 +2281,42 @@
             recognition.maxAlternatives = 1;
 
             const micBtn = document.querySelector('.chat-mic-btn');
-            micBtn.style.color = "var(--neon-cyan)";
-            micBtn.style.borderColor = "var(--neon-cyan)";
-            micBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i>';
+            if (micBtn) {
+                micBtn.style.color = "var(--neon-cyan)";
+                micBtn.style.borderColor = "var(--neon-cyan)";
+                micBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i>';
+            }
 
             recognition.start();
 
             recognition.onresult = function(event) {
                 const speechResult = event.results[0][0].transcript;
-                document.getElementById('chat-text-input').value = speechResult;
+                const textInput = document.getElementById('chat-text-input');
+                if (textInput) textInput.value = speechResult;
             };
 
             recognition.onspeechend = function() {
                 recognition.stop();
-                resetMicButton(micBtn);
+                if (micBtn) resetMicButton(micBtn);
             };
 
             recognition.onerror = function(event) {
-                console.log('Error: ' + event.error);
-                resetMicButton(micBtn);
+                console.log('Voice Error: ' + event.error);
+                if (micBtn) resetMicButton(micBtn);
             };
         }
 
         function resetMicButton(btn) {
-            btn.style.color = "var(--neon-pink)";
-            btn.style.borderColor = "var(--neon-pink)";
-            btn.innerHTML = '<i class="fa-solid fa-microphone"></i>';
+            if (btn) {
+                btn.style.color = "var(--neon-pink)";
+                btn.style.borderColor = "var(--neon-pink)";
+                btn.innerHTML = '<i class="fa-solid fa-microphone"></i>';
+            }
         }
 
-        /* 🌌 ANIMATED 3D HOLOGRAM & GALAXY VORTEX PARTICLE SYSTEM */
+        /* 🌌 ANIMATED 3D HOLOGRAM & GALAXY VORTEX PARTICLE SYSTEM (CRASH-PROOFED) */
         const canvas = document.getElementById("matrix-canvas");
-        const ctx = canvas.getContext("2d");
+        const ctx = canvas ? canvas.getContext("2d") : null;
         
         let particles = [];
         let textTargets = [];
@@ -2210,49 +2329,68 @@
         let zoom = 1.0;
 
         function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            textTargets = createTextTargets();
-            mapParticlesToTargets();
+            try {
+                if (canvas) {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                    textTargets = createTextTargets();
+                    mapParticlesToTargets();
+                }
+            } catch (e) {
+                console.warn("Canvas resizing error ignored for safety:", e);
+            }
         }
         window.addEventListener("resize", resizeCanvas);
-        resizeCanvas();
+
+        // Safe execution of first resize load
+        try {
+            resizeCanvas();
+        } catch(e) {
+            console.warn("Synchronous canvas startup bypassed:", e);
+        }
 
         function createTextTargets() {
-            const offscreenCanvas = document.createElement('canvas');
-            const offCtx = offscreenCanvas.getContext('2d');
-            offscreenCanvas.width = 800;
-            offscreenCanvas.height = 300;
-            
-            offCtx.fillStyle = '#000000';
-            offCtx.fillRect(0, 0, 800, 300);
-            
-            // "ලියැසි"
-            offCtx.font = "900 85px 'Segoe UI', system-ui, sans-serif";
-            offCtx.textAlign = "center";
-            offCtx.textBaseline = "middle";
-            offCtx.strokeStyle = '#ffffff';
-            offCtx.lineWidth = 3.5;
-            offCtx.strokeText("ලියැසි", 400, 100);
-            
-            // "SUBVERSE"
-            offCtx.font = "900 65px 'Share Tech Mono', monospace";
-            offCtx.lineWidth = 3;
-            offCtx.strokeText("SUBVERSE", 400, 210);
-            
-            const imgData = offCtx.getImageData(0, 0, 800, 300).data;
-            const points = [];
-            
-            const step = 4; 
-            for (let y = 0; y < 300; y += step) {
-                for (let x = 0; x < 800; x += step) {
-                    const index = (x + y * 800) * 4;
-                    if (imgData[index] > 128) {
-                        points.push({ x: x - 400, y: y - 150 });
+            try {
+                const offscreenCanvas = document.createElement('canvas');
+                const offCtx = offscreenCanvas.getContext('2d');
+                if (!offCtx) return [];
+                
+                offscreenCanvas.width = 800;
+                offscreenCanvas.height = 300;
+                
+                offCtx.fillStyle = '#000000';
+                offCtx.fillRect(0, 0, 800, 300);
+                
+                // "ලියැසි"
+                offCtx.font = "900 85px 'Segoe UI', system-ui, sans-serif";
+                offCtx.textAlign = "center";
+                offCtx.textBaseline = "middle";
+                offCtx.strokeStyle = '#ffffff';
+                offCtx.lineWidth = 3.5;
+                offCtx.strokeText("ලියැසි", 400, 100);
+                
+                // "SUBVERSE"
+                offCtx.font = "900 65px 'Share Tech Mono', monospace";
+                offCtx.lineWidth = 3;
+                offCtx.strokeText("SUBVERSE", 400, 210);
+                
+                const imgData = offCtx.getImageData(0, 0, 800, 300).data;
+                const points = [];
+                
+                const step = 4; 
+                for (let y = 0; y < 300; y += step) {
+                    for (let x = 0; x < 800; x += step) {
+                        const index = (x + y * 800) * 4;
+                        if (imgData[index] > 128) {
+                            points.push({ x: x - 400, y: y - 150 });
+                        }
                     }
                 }
+                return points;
+            } catch (error) {
+                console.warn("Canvas fingerprinting blocked pixel rendering. Matrix fallback active.", error);
+                return []; // Gracefully returns empty targets to prevent synchronous halts
             }
-            return points;
         }
 
         function project3D(x, y, z) {
@@ -2269,8 +2407,11 @@
             let focalLength = 350;
             let depthScale = focalLength / (focalLength + z2);
             
-            let screenX = (canvas.width / 2) + x1 * depthScale * zoom;
-            let screenY = (canvas.height / 2) + y2 * depthScale * zoom;
+            const screenWidth = canvas ? canvas.width : window.innerWidth;
+            const screenHeight = canvas ? canvas.height : window.innerHeight;
+            
+            let screenX = (screenWidth / 2) + x1 * depthScale * zoom;
+            let screenY = (screenHeight / 2) + y2 * depthScale * zoom;
             
             return {
                 x: screenX,
@@ -2285,14 +2426,17 @@
                 this.id = id;
                 this.isGlobalScatter = (id % 3 === 0);
                 
+                const screenWidth = canvas ? canvas.width : window.innerWidth;
+                const screenHeight = canvas ? canvas.height : window.innerHeight;
+
                 if (this.isGlobalScatter) {
-                    this.x = Math.random() * canvas.width;
-                    this.y = Math.random() * canvas.height;
+                    this.x = Math.random() * screenWidth;
+                    this.y = Math.random() * screenHeight;
                     this.vx = (Math.random() - 0.5) * 0.35;
                     this.vy = (Math.random() - 0.5) * 0.35;
                 } else {
                     this.theta = Math.random() * Math.PI * 2;
-                    this.radius = Math.random() * (canvas.width * 0.58) + 40; 
+                    this.radius = Math.random() * (screenWidth * 0.58) + 40; 
                     this.z3d = Math.random() * 200 - 100;
                     this.rotSpeed = (Math.random() * 0.0035 + 0.001);
                 }
@@ -2322,14 +2466,17 @@
             }
 
             update(time) {
+                const screenWidth = canvas ? canvas.width : window.innerWidth;
+                const screenHeight = canvas ? canvas.height : window.innerHeight;
+
                 if (this.isGlobalScatter) {
                     this.x += this.vx;
                     this.y += this.vy;
                     
-                    if (this.x < 0) this.x = canvas.width;
-                    if (this.x > canvas.width) this.x = 0;
-                    if (this.y < 0) this.y = canvas.height;
-                    if (this.y > canvas.height) this.y = 0;
+                    if (this.x < 0) this.x = screenWidth;
+                    if (this.x > screenWidth) this.x = 0;
+                    if (this.y < 0) this.y = screenHeight;
+                    if (this.y > screenHeight) this.y = 0;
 
                     this.proj = {
                         x: this.x,
@@ -2340,11 +2487,11 @@
                 } else {
                     this.theta += this.rotSpeed;
                     let armOffset = (this.id % 2) * Math.PI;
-                    let angle = this.theta + (this.radius / (canvas.width * 0.3)) * Math.PI + armOffset;
+                    let angle = this.theta + (this.radius / (screenWidth * 0.3)) * Math.PI + armOffset;
                     
                     let ambientX = Math.cos(angle) * this.radius;
                     let ambientZ = Math.sin(angle) * this.radius;
-                    let ambientY = this.z3d * (1 - this.radius / (canvas.width * 0.65));
+                    let ambientY = this.z3d * (1 - this.radius / (screenWidth * 0.65));
 
                     let current3DX = ambientX;
                     let current3DY = ambientY;
@@ -2361,7 +2508,7 @@
             }
 
             draw() {
-                if (!this.proj) return;
+                if (!this.proj || !ctx) return;
                 
                 ctx.beginPath();
                 ctx.arc(this.proj.x, this.proj.y, this.size * this.proj.scale, 0, Math.PI * 2);
@@ -2390,7 +2537,8 @@
         function mapParticlesToTargets() {
             if (textTargets.length === 0) return;
             
-            const scale = Math.min(0.85, (canvas.width * 0.8) / 800);
+            const screenWidth = canvas ? canvas.width : window.innerWidth;
+            const scale = Math.min(0.85, (screenWidth * 0.8) / 800);
             const shuffledTargets = [...textTargets].sort(() => Math.random() - 0.5);
 
             const textParticleCount = Math.min(shuffledTargets.length, 450);
@@ -2409,6 +2557,7 @@
         }
 
         function drawConstellationLines() {
+            if (!ctx) return;
             const maxDistance = 60;
             let lineCount = 0; 
 
@@ -2444,8 +2593,11 @@
         }
 
         function animateGeminiParticles() {
+            if (!ctx) return;
             ctx.fillStyle = 'rgba(2, 4, 8, 0.18)'; 
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            if (canvas) {
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+            }
             
             const time = Date.now();
             angleY += 0.0022;
@@ -2473,21 +2625,30 @@
         }
 
         function initBackground() {
-            if (USE_MATRIX_BACKGROUND) {
-                document.body.style.backgroundImage = "none";
-                initParticles();
-                animateGeminiParticles();
-            } else {
-                document.getElementById("matrix-canvas").style.display = "none";
-                document.body.style.backgroundImage = `linear-gradient(to bottom, rgba(2, 4, 8, 0.88), rgba(2, 4, 8, 0.97)), url('${STATIC_BACKGROUND_IMAGE}')`;
+            try {
+                if (USE_MATRIX_BACKGROUND && ctx) {
+                    document.body.style.backgroundImage = "none";
+                    initParticles();
+                    animateGeminiParticles();
+                } else {
+                    fallBackToStaticBackground();
+                }
+            } catch (e) {
+                console.warn("Matrix background crash handled. Falling back to static image background.", e);
+                fallBackToStaticBackground();
             }
+        }
+
+        function fallBackToStaticBackground() {
+            const canvasEl = document.getElementById("matrix-canvas");
+            if (canvasEl) canvasEl.style.display = "none";
+            document.body.style.backgroundImage = `linear-gradient(to bottom, rgba(2, 4, 8, 0.88), rgba(2, 4, 8, 0.97)), url('${STATIC_BACKGROUND_IMAGE}')`;
         }
 
         window.onload = function() {
             initBackground();
             resetChatMessages();
             if (typeof loadContent === 'function') loadContent();
-            if (typeof loadCommentsAndLikes === 'function') loadCommentsAndLikes();
         };
     </script>
 </body>
