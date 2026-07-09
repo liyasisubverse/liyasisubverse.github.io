@@ -3,6 +3,12 @@
     {
       "title": "Joseon Attorney: A Morality",
       "episode": "EP 03",
+      "image_url": "https://image.tmdb.org/t/p/w500/r9s6F4IgFyPyjSh7n7wGMRO6Mp0.jpg",
+      "post_link": "episode_picker.html?drama_id=206715&ep=EP 03"
+    },
+    {
+      "title": "Joseon Attorney: A Morality",
+      "episode": "EP 03",
       "image_url": "https://i.ibb.co/s91hQp0L/b76aaec45143.jpg",
       "post_link": "episode_picker.html?drama_id=206715&ep=EP 03"
     },
@@ -39,7 +45,7 @@
       "status": "ONGOING",
       "imdb": "5.8",
       "total_episodes": 16,
-      "image_url": "https://i.ibb.co/s91hQp0L/b76aaec45143.jpg",
+      "image_url": "https://image.tmdb.org/t/p/w500/r9s6F4IgFyPyjSh7n7wGMRO6Mp0.jpg",
       "map_url": "https://i.ibb.co/Xx69sDVZ/81e8c3a61814.png",
       "synopsis": "\"Joseon Attorney: A Morality\" යනු ජොසොන් යුගයේ පසුබිමක දිවෙන නීතිමය සහ පලිගැනීමේ කතාවකි.",
       "genres": [
@@ -174,7 +180,7 @@
           "link": "https://liyasisubverse.github.io/subtitles/Joseon_Attorney:_A_Morality_E03.srt",
           "tg_link": "https://t.me/c/3564105068/135",
           "title": "✨️ රජ මාළිගයේ රහස් ✨️",
-          "image": "https://i.ibb.co/s91hQp0L/b76aaec45143.jpg",
+          "image": "https://image.tmdb.org/t/p/w500/r9s6F4IgFyPyjSh7n7wGMRO6Mp0.jpg",
           "synopsis": "කුමරිය සහ නීතිඥවරයාගේ අනපේක්ෂිත හමුවීම.",
           "map_url": "https://i.ibb.co/Xx69sDVZ/81e8c3a61814.png",
           "trailer": "https://www.youtube.com/embed/PxJZZVhmzc8",
@@ -216,11 +222,17 @@
     }
   },
   "config": {
-    "telegram_channel_link": "https://t.me/c/3564105068/136",
+    "telegram_channel_link": "https://t.me/+FVJpdLwtqxdjYjE1",
     "about_me_text": "අපි ඔබ වෙත ගෙන එන්නේ ගුණාත්මක බවින් ඉහළම ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි පමණි. අපගේ නිල සමාජ මාධ්‍ය ජාලයන් සමඟ එක් වී අලුත්ම අප්ඩේට්ස් එවලේම ලබාගන්න.",
     "about_me_avatar": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png",
-    "notice_text": "අපගේ සියලුම සිංහල උපසිරැසි නොමිලේ ලබාගත හැක. කිසියම් ගැටලුවක් ඇත්නම් 3-Dot මෙනුවේ ඇති Contact පිටුවෙන් අපට පණිවිඩයක් එවන්න.",
+    "notice_text": "ලබා දී ඇති උපසිරැසි වලට ගැලපෙන විඩියෝ පිටපත් ලබාගැනිමට අපගේ ටෙලිග්‍රෑම් චැනයට එකතු වෙන්න. කිසියම් ගැටලුවක් ඇත්නම් 3-Dot මෙනුවේ ඇති Contact පිටුවෙන් අපට පණිවිඩයක් එවන්න.",
     "server_status_sub": "ONLINE",
-    "server_status_bot": "ACTIVE"
+    "server_status_bot": "OFFLINE",
+    "blogger_link": "https://liyasisubverse.blogspot.com/",
+    "telegram_intro": "මෙම උපසිරැසි වලට අදාල විඩියෝ පිටපත් ලබාගැනිමට අපගේ නිල Telegram චැනලයට එකතු වෙන්න්.",
+    "about_us_text": "අපි ඔබ වෙත ගෙන එන්නේ ගුණාත්මක බවින් ඉහළම ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි පමණි. අපගේ නිල සමාජ මාධ්‍ය ජාලයන් සමඟ එක් වී අලුත්ම අප්ඩේට්ස් එවලේම ලබාගන්න.",
+    "about_us_avatar": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png",
+    "about_us_link": "https://liyasisubverse.github.io/about.html",
+    "chat_chips": "අපි ගැන ! 🍿 | නවතම  උපසිරැසි 🍿 | Blogger Link 📚 | Help Guide ❓|about us🎊"
   }
 }
