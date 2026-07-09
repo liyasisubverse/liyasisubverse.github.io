@@ -937,7 +937,7 @@
         /* 🖥️ DESKTOP-SPECIFIC RESPONSIVE OVERRIDES */
         @media (min-width: 900px) {
             .hero-hud-card, .upcoming-hud-card {
-                max-width: 100% !important; 
+                max-width: 100% !important; /* Spans fully across the banner container */
                 width: 100% !important;
             }
             .hero-title { font-size: 34px !important; }
@@ -1004,11 +1004,11 @@
 
             /* 📱 STABILIZE LIKE & DISLIKE COUNT ALIGNMENT ON MOBILE */
             .feedback-buttons {
-                flex-direction: row !important; 
+                flex-direction: row !important; /* Keep side-by-side cleanly */
                 gap: 8px !important;
             }
             .feedback-btn {
-                font-size: 9.5px !important; 
+                font-size: 9.5px !important; /* Prevents text overflow/wrapping on narrow mobile screens */
                 padding: 8px 10px !important;
                 flex: 1 !important;
             }
@@ -1028,7 +1028,7 @@
             text-align: center !important;
         }
 
-        /* 🌀 3D HOLOGRAM, CYBER-GLOW & TICKER ANIMATION KEYFRAMES (FULLY REBUILT) */
+        /* 🌀 3D HOLOGRAM, CYBER-GLOW & TICKER ANIMATION KEYFRAMES (FULLY RESTORED) */
         @keyframes logo-laser-draw {
             0%, 45%, 100% { opacity: 1; filter: drop-shadow(0 0 10px var(--neon-cyan)); }
             50%, 95% { opacity: 0; filter: drop-shadow(0 0 0px transparent); }
@@ -1221,7 +1221,7 @@
             </div>
             <div class="widget-box" style="border-left: 3.5px solid var(--neon-amber); border-right: 3.5px solid var(--neon-amber);">
                 <div class="widget-title" style="border-left-color: var(--neon-amber);"><i class="fa-solid fa-server" style="color:var(--neon-amber)"></i> සේවා තත්ත්වය (Server Status)</div>
-                <p id="server-status-widget" style="font-size:12px; margin:0; color:#ccc; line-height:1.6;">💾 උපසිරැසි සර්වර්: <span style="color:#0f0; font-weight:bold;">ONLINE</span><br>🤖 ටෙලිග්‍ර්‍රෑම් බොට්: <span style="color:#0f0; font-weight:bold;">ACTIVE</span></p>
+                <p id="server-status-widget" style="font-size:12px; margin:0; color:#ccc; line-height:1.6;">💾 උපසිරැසි සර්වර්: <span style="color:#0f0; font-weight:bold;">ONLINE</span><br>🤖 ටෙලිග්‍රෑම් බොට්: <span style="color:#0f0; font-weight:bold;">ACTIVE</span></p>
             </div>
         </div>
 
@@ -1883,7 +1883,7 @@
             const text = textInput.value.trim();
 
             if (text === "") {
-                alert("කරුණාකර ඔබේ අදහස ලියා ඉන්පසු ඇතුළත් කරන්න!");
+                alert("කරුණාකර ඔබේ അදහස ලියා ඉන්පසු ඇතුළත් කරන්න!");
                 return;
             }
 
