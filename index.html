@@ -394,15 +394,10 @@
         }
         .card-complete .badge-bottom-left { background: var(--neon-pink); color: #fff; box-shadow: 0 0 12px var(--neon-pink), 0 0 4px #fff; border-color: rgba(255,255,255,0.4); }
 
-        /* 📊 IMDb PROGRESS BAR (Value Leading, Star Left & Symmetrical Track Alignment) */
+        /* 📊 IMDb PROGRESS BAR (VALUE LEADING, STAR ON LEFT & PERFECT VERTICAL TRACK ALIGNMENT) */
         .imdb-gauge-container {
-            position: absolute;
-            right: 8px;
-            top: 8px; 
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start !important;
-            gap: 4px;
+            position: absolute; right: 8px; top: 8px; 
+            display: flex; flex-direction: column; align-items: flex-start !important; gap: 4px;
             z-index: 2; 
             background: none !important;
             border: none !important;
@@ -410,31 +405,19 @@
             padding: 0 !important;
         }
         .imdb-track {
-            width: 14px;
-            height: 26px;
+            width: 14px; height: 26px;
             background: rgba(255, 255, 255, 0.25);
-            border-radius: 3px;
-            overflow: hidden;
-            position: relative;
+            border-radius: 3px; overflow: hidden; position: relative;
             box-shadow: 0 0 8px rgba(0,0,0,0.8);
             margin-left: 14px !important; /* Shifting track exactly to align perfectly with the first digit of the rating */
         }
         .imdb-fill {
-            width: 100%;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            border-radius: 2px;
-            transition: height 0.5s ease-out;
+            width: 100%; position: absolute; bottom: 0; left: 0;
+            border-radius: 2px; transition: height 0.5s ease-out;
         }
         .imdb-value {
-            font-size: 10px;
-            font-weight: 900;
-            font-family: monospace;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start !important;
-            gap: 2px;
+            font-size: 10px; font-weight: 900; font-family: monospace;
+            display: flex; align-items: center; justify-content: flex-start !important; gap: 2px;
             margin-top: 3px;
             text-shadow: 0 0 5px rgba(0,0,0,1), 0 0 10px rgba(0,0,0,1);
             white-space: nowrap;
@@ -577,7 +560,7 @@
         .about-desc-text { color: var(--text-muted); font-size: 13.5px; line-height: 1.6; text-align: center; max-width: 700px; margin-bottom: 20px; }
         .about-subtitle { font-size: 12px; color: var(--neon-amber); text-shadow: 0 0 5px var(--neon-amber); text-transform: uppercase; margin-bottom: 10px; font-weight: bold; }
 
-        /* 🌐 GLOWING SOCIAL PLUG BOX */
+        /* 🌐 GLOWING SOCIAL PLUG BOX (WITH SHIFTING RGB FLOWING HEADER) */
         .social-plug-box { 
             background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 15px; padding: 25px; margin-top: 50px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.5); border-top: 3px solid var(--neon-pink); 
         }
@@ -649,7 +632,7 @@
         }
         .comment-input:focus { border-color: var(--neon-cyan); box-shadow: 0 0 8px rgba(0, 240, 255, 0.2); }
 
-        /* 🤖 CYBER-AI FLOATING CHATBOT WIDGET STYLES */
+        /* 🤖 CYBER-AI FLOATING CHATBOT WIDGET STYLES (RGB ROTATING ACTIVE RING) */
         #cyber-ai-bubble {
             position: fixed; bottom: 25px; right: 25px;
             width: 65px; height: 65px; border-radius: 50%;
@@ -924,7 +907,7 @@
             box-shadow: 0 0 12px rgba(0, 255, 204, 0.25), inset 0 0 8px rgba(0, 255, 204, 0.1) !important;
         }
         .feedback-btn.like-btn:hover {
-            background: rgba(255, 0, 127, 0.1) !important;
+            background: rgba(0, 255, 204, 0.1) !important;
             box-shadow: 0 0 20px #00ffcc, inset 0 0 12px rgba(0, 255, 204, 0.2) !important;
         }
 
@@ -1044,38 +1027,6 @@
             flex: 1 !important;
             text-align: center !important;
         }
-
-        /* 🌀 3D HOLOGRAM, CYBER-GLOW & TICKER ANIMATION KEYFRAMES (FULLY RESTORED) */
-        @keyframes logo-laser-draw {
-            0%, 45%, 100% { opacity: 1; filter: drop-shadow(0 0 10px var(--neon-cyan)); }
-            50%, 95% { opacity: 0; filter: drop-shadow(0 0 0px transparent); }
-        }
-
-        @keyframes tagline-fade {
-            0%, 45%, 100% { opacity: 0; }
-            50%, 95% { opacity: 1; }
-        }
-
-        @keyframes rgb-shift-text {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        @keyframes notice-breathing {
-            0%, 100% { box-shadow: 0 0 15px rgba(255, 170, 0, 0.15); border-color: rgba(255, 170, 0, 0.3); }
-            50% { box-shadow: 0 0 25px rgba(255, 170, 0, 0.35); border-color: var(--neon-amber); }
-        }
-
-        @keyframes beacon-blink {
-            0%, 100% { opacity: 0.3; transform: scale(0.9); }
-            50% { opacity: 1; transform: scale(1.15); box-shadow: 0 0 15px var(--neon-amber); }
-        }
-
-        @keyframes cyber-glow-pulse-amber {
-            0%, 100% { text-shadow: 0 0 8px var(--neon-amber), 0 0 15px rgba(255, 170, 0, 0.3); opacity: 0.9; }
-            50% { text-shadow: 0 0 14px var(--neon-amber), 0 0 28px rgba(255, 170, 0, 0.6); opacity: 1; }
-        }
     </style>
 </head>
 <body>
@@ -1101,7 +1052,7 @@
                 <a href="index.html" class="logo-wrapper" id="header-logo-container">
                     <img class="site-logo-img" src="https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/81260990-6d71-4fbb-b966-43f96215438e.png" alt="Subverse Logo">
                     <div class="coded-tagline-text">
-                        දුර්ලභ කතාමාලා වල නිවහන<br>
+                        දුර්ලභ කතා මාලා වල නිවහන<br>
                         <span style="font-size: 11px; font-weight: bold;">(The Home of Rare Series)</span>
                     </div>
                 </a>
@@ -1154,7 +1105,7 @@
             </div>
         </div>
 
-        <!-- 🚀 COMING SOON SECTION -->
+        <!-- 🚀 COMING SOON SECTION (PREMIUM FULL-WIDTH BANNER SHOWCASE) -->
         <div id="coming-soon-section-wrapper" style="display: none; margin-bottom: 35px;">
             <div class="section-bar" style="border-left-color: var(--neon-amber); background: linear-gradient(90deg, rgba(255, 170, 0, 0.15), transparent);">
                 <h2 class="section-title-neon" style="color: var(--neon-amber); text-shadow: 0 0 10px var(--neon-amber), 0 0 20px rgba(255, 170, 0, 0.4); animation: cyber-glow-pulse-amber 3s infinite ease-in-out;">ළඟදීම බලාපොරොත්තු වන්න (COMING SOON)</h2>
@@ -1164,7 +1115,7 @@
             </div>
         </div>
 
-        <!-- 🔥 TRENDING / MOST DOWNLOADED SECTION -->
+        <!-- 🔥 TRENDING / MOST DOWNLOADED SECTION (DYNAMIC AUTO-UPDATE BY IMDB) -->
         <div id="trending-section-wrapper" style="display: none; margin-bottom: 35px;">
             <div class="section-bar" style="border-left-color: var(--neon-pink); background: linear-gradient(90deg, rgba(255, 0, 127, 0.15), transparent);">
                 <h2 class="section-title-neon" style="color: var(--neon-pink); text-shadow: 0 0 10px var(--neon-pink), 0 0 20px rgba(255, 0, 127, 0.4); animation: cyber-glow-pulse-pink 3s infinite ease-in-out;">වැඩියෙන්ම බාගත කළ උපසිරැසි (MOST DOWNLOADED)</h2>
@@ -1256,6 +1207,7 @@
                     <div id="feedback-gauge-fill" style="width: 50%; height: 100%; background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan)); box-shadow: 0 0 10px var(--neon-cyan); transition: width 0.5s ease-out;"></div>
                 </div>
 
+                <!-- Like / Dislike buttons re-located underneath the progress bar split evenly to both corners -->
                 <div class="feedback-buttons">
                     <button class="feedback-btn like-btn" onclick="submitFeedback('like')">
                         <i class="fa-solid fa-thumbs-up"></i>
@@ -1283,7 +1235,7 @@
             </div>
         </div>
 
-        <!-- 🌐 GLOWING SOCIAL PLUG BOX -->
+        <!-- 🌐 GLOWING SOCIAL PLUG BOX (With custom animated RGB shifting header title & spinning RGB icons) -->
         <div class="social-plug-box">
             <div class="social-title">CONNECT WITH US ON SOCIAL NETWORKS</div>
             <div class="social-icons-wrapper" id="social-plug-links">
@@ -1295,7 +1247,7 @@
 
     </div>
 
-    <!-- 🤖 CYBER-AI FLOATING CHATBOT WIDGET -->
+    <!-- 🤖 CYBER-AI FLOATING CHATBOT WIDGET (RGB ROTATING ACTIVE RING & CUSTOM LOGO) -->
     <div id="cyber-ai-bubble" onclick="toggleAIChat()">
         <img src="https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png" class="ai-bubble-logo" alt="Liyasi AI">
     </div>
@@ -1312,14 +1264,14 @@
             <button class="chat-close-btn" onclick="toggleAIChat()"><i class="fa-solid fa-xmark"></i></button>
         </div>
         
-        <!-- Chat messages area -->
+        <!-- Chat messages area (max 2 messages visible) -->
         <div class="chat-messages" id="chat-messages">
             <!-- Initialized dynamically in Javascript -->
         </div>
         
         <!-- 💡 Suggestions Chips Scroll area (Dynamic Chips) -->
         <div class="ai-action-chips">
-            <!-- Populated dynamically via config/data.json or JS fallback -->
+            <!-- Populated dynamically via config/data.json in loadContent -->
         </div>
         
         <div class="chat-input-row">
@@ -1338,14 +1290,14 @@
         </div>
     </footer>
 
-    <!-- JAVASCRIPT LOGIC (CRASH-PROOFED & BUG-FREE) -->
+    <!-- JAVASCRIPT LOGIC -->
     <script>
         // 🌌 BACKGROUND CONFIGURATION
         const USE_MATRIX_BACKGROUND = true; 
         const STATIC_BACKGROUND_IMAGE = "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/bbfcf6e6-8bca-4883-8eb1-f93a2d1d4728.png";
 
         // 🌐 AI සර්වර් ලිපින (Hugging Face + Cloudflare Fallbacks)
-        const HUGGING_FACE_API_URL = "https://liyasisubverse1-liyasi-backend.hf.space/api/chat";
+        const HUGGING_FACE_API_URL = "https://liyasisubverse1-liyasi-backend.hf.space/api/chat"; 
         const CLOUDFLARE_WORKER_URL = "https://ask-gemini.rashmi004005g.workers.dev"; // Gemini (Fallback 1)
         const CLOUDFLARE_WORKER_URL_GROQ = "https://groq.rashmi004005g.workers.dev"; // Groq (Fallback 2)
 
@@ -1361,9 +1313,7 @@
 
         function toggleDropdown() {
             const menu = document.getElementById('threeDotMenu');
-            if (menu) {
-                menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
-            }
+            menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
         }
 
         window.onclick = function(event) {
@@ -1385,22 +1335,19 @@
             const days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
             const dayName = days[now.getDay()];
             
-            const clockEl = document.getElementById('cyberClock');
-            const dateEl = document.getElementById('cyberDate');
-            if (clockEl) {
-                clockEl.innerHTML = `
-                    <span style="font-weight: bold; animation: blink 1.2s infinite; color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan);">⏰</span> 
-                    ${timeString}
-                `;
-            }
-            if (dateEl) {
-                dateEl.innerHTML = `📅 ${year}.${month}.${day} | ${dayName}`;
-            }
+            document.getElementById('cyberClock').innerHTML = `
+                <span style="font-weight: bold; animation: blink 1.2s infinite; color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan);">⏰</span> 
+                ${timeString}
+            `;
+            
+            document.getElementById('cyberDate').innerHTML = `
+                📅 ${year}.${month}.${day} | ${dayName}
+            `;
         }
         setInterval(updateCyberClock, 1000); 
         updateCyberClock();
 
-        /* 🤖 COMPREHENSIVE OFFLINE PREVIEW DATABASE */
+        /* 🤖 COMPREHENSIVE OFFLINE PREVIEW DUMMY DATABASE WITH TESTING IMAGE METADATA */
         const offlineDummyDatabase = {
             "config": {
                 "about_me_text": "අපි ඔබ වෙත ගෙන එන්නේ ගුණාත්මක බවින් ඉහළම ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි පමණි. අපගේ නිල සමාජ මාධ්‍ය ජාලයන් සමඟ එක් වී අලුත්ම උපසිරැසි නිකුත් වූ සැනින් ලබාගන්න.",
@@ -1477,7 +1424,7 @@
         let currentSearchQuery = "";
         let originalDatabase = offlineDummyDatabase; 
 
-        /* 📄 FETCH FROM data.json */
+        /* 📄 FETCH FROM data.json - AUTOMATIC OVERRIDE ONCE LIVE */
         async function loadContent() {
             try {
                 const response = await fetch('data.json?v=' + new Date().getTime());
@@ -1487,7 +1434,7 @@
                     console.log("data.json could not be fetched. Displaying fallback dummy database.");
                 }
             } catch (e) {
-                console.log("CORS/Offline Mode Detected. Displaying robust Fallback database.");
+                console.log("CORS/Offline Mode Detected. Displaying robust SPCK Fallback database.");
             }
             renderPage();
             updateVisitorCounter();
@@ -1495,22 +1442,12 @@
         }
 
         async function updateVisitorCounter() {
-            let isAdmin = false;
-            try {
-                isAdmin = localStorage.getItem('isAdmin') === 'true';
-            } catch (e) {
-                console.warn("Could not check isAdmin status:", e);
-            }
-
-            if (isAdmin) {
+            if (localStorage.getItem('isAdmin') === 'true') {
                 console.log("Admin session: Counter skipped.");
                 try {
                     const response = await fetch(`${firebaseURL}visitorCount.json`);
                     const data = await response.json();
-                    const countEl = document.getElementById('visitor-count');
-                    if (countEl) {
-                        countEl.innerText = data !== null ? data.toLocaleString() : "0";
-                    }
+                    document.getElementById('visitor-count').innerText = data !== null ? data.toLocaleString() : "0";
                 } catch (e) { console.error("Admin view error:", e); }
                 return; 
             }
@@ -1525,14 +1462,9 @@
                     body: JSON.stringify(newCount)
                 });
 
-                const countEl = document.getElementById('visitor-count');
-                if (countEl) {
-                    countEl.innerText = newCount.toLocaleString();
-                }
+                document.getElementById('visitor-count').innerText = newCount.toLocaleString();
             } catch (error) {
-                console.error("Firebase counter failed:", error);
-                const countEl = document.getElementById('visitor-count');
-                if (countEl) countEl.innerText = "1,524";
+                console.error(error);
             }
         }
 
@@ -1547,95 +1479,76 @@
             const bloggerLink = config.blogger_link || "#";
 
             const noticeContainer = document.getElementById('notice-alert-container');
-            if (noticeContainer) {
-                if (noticeText.trim() !== "") {
-                    noticeContainer.style.display = "block";
-                    const noticeTextEl = document.getElementById('notice-alert-text');
-                    if (noticeTextEl) noticeTextEl.innerText = noticeText;
-                } else {
-                    noticeContainer.style.display = "none";
-                }
+            if (noticeText.trim() !== "") {
+                noticeContainer.style.display = "block";
+                document.getElementById('notice-alert-text').innerText = noticeText;
+            } else {
+                noticeContainer.style.display = "none";
             }
 
-            const noticeWidgetEl = document.getElementById('notice-widget-text');
-            if (noticeWidgetEl) {
-                noticeWidgetEl.innerText = noticeText || "කිසිදු සක්‍රීය විශේෂ නිවේදනයක් නොමැත.";
-            }
+            document.getElementById('notice-widget-text').innerText = noticeText || "කිසිදු සක්‍රීය විශේෂ නිවේදනයක් නොමැත.";
+            document.getElementById('server-status-widget').innerHTML = `
+                💾 උපසිරැසි සර්වර්: <span style="color:#0f0; font-weight:bold;">${subServerStatus}</span><br>
+                🤖 ටෙලිග්‍රෑම් බොට්: <span style="color:#0f0; font-weight:bold;">${botServerStatus}</span>
+            `;
 
-            const statusWidgetEl = document.getElementById('server-status-widget');
-            if (statusWidgetEl) {
-                statusWidgetEl.innerHTML = `
-                    💾 උපසිරැසි සර්වර්: <span style="color:#0f0; font-weight:bold;">${subServerStatus}</span><br>
-                    🤖 ටෙලිග්‍රෑම් බොට්: <span style="color:#0f0; font-weight:bold;">${botServerStatus}</span>
-                `;
-            }
-
-            const aboutSectionEl = document.getElementById('about-section-container');
-            if (aboutSectionEl) {
-                aboutSectionEl.innerHTML = `
-                    <h3 class="about-header-title">About Us</h3>
-                    <div class="about-avatar-wrapper">
-                        <div class="about-avatar-ring">
-                            <img src="${aboutMeAvatar}" class="about-img" alt="Avatar">
-                        </div>
-                        <div class="about-brand-name">ලියැසි SUBVERSE</div>
+            // ABOUT US WITH ROTATING RGB RING
+            document.getElementById('about-section-container').innerHTML = `
+                <h3 class="about-header-title">About Us</h3>
+                <div class="about-avatar-wrapper">
+                    <div class="about-avatar-ring">
+                        <img src="${aboutMeAvatar}" class="about-img" alt="Avatar">
                     </div>
-                    <p class="about-desc-text">${aboutMeText}</p>
-                    <span class="about-subtitle">වැඩිදුර තොරතුරු</span>
-                    <a href="about.html" class="about-btn">About Us පිටුවට පිවිසෙන්න</a>
-                `;
-            }
+                    <div class="about-brand-name">ලියැසි SUBVERSE</div>
+                </div>
+                <p class="about-desc-text">${aboutMeText}</p>
+                <span class="about-subtitle">වැඩිදුර තොරතුරු</span>
+                <a href="about.html" class="about-btn">About Us පිටුවට පිවිසෙන්න</a>
+            `;
 
-            const bloggerPromoEl = document.getElementById('blogger-visit-btn-link');
-            if (bloggerPromoEl) bloggerPromoEl.href = bloggerLink;
-
-            const telegramPlugEl = document.getElementById('tg-main-icon-link');
-            if (telegramPlugEl) telegramPlugEl.href = tgChannelLink;
+            document.getElementById('blogger-visit-btn-link').href = bloggerLink;
+            document.getElementById('tg-main-icon-link').href = tgChannelLink;
 
             const dramaArray = Object.values(originalDatabase.dramas || {});
             
-            /* Render Coming Soon Section */
+            /* Render Coming Soon Section (Dynamic Upcoming Premium Banners Showcase) */
             const upcomingDramas = dramaArray.filter(d => d.status === "UPCOMING");
             const comingSoonWrapper = document.getElementById('coming-soon-section-wrapper');
             const comingSoonGrid = document.getElementById('coming-soon-grid-container');
 
-            if (comingSoonWrapper && comingSoonGrid) {
-                if (upcomingDramas.length > 0) {
-                    comingSoonWrapper.style.display = "block";
-                    comingSoonGrid.innerHTML = "";
-                    upcomingDramas.forEach(d => {
-                        comingSoonGrid.innerHTML += createComingSoonBannerHTML(d);
-                    });
-                } else {
-                    comingSoonWrapper.style.display = "none";
-                }
+            if (upcomingDramas.length > 0) {
+                comingSoonWrapper.style.display = "block";
+                comingSoonGrid.innerHTML = "";
+                upcomingDramas.forEach(d => {
+                    comingSoonGrid.innerHTML += createComingSoonBannerHTML(d);
+                });
+            } else {
+                comingSoonWrapper.style.display = "none";
             }
 
+            // Exclude UPCOMING dramas from standard view and hero section
             const availableDramas = dramaArray.filter(d => d.status !== "UPCOMING");
 
-            /* Render Trending / Most Downloaded Section */
+            /* Render Trending / Most Downloaded Section (Dynamically Sorted by IMDb Score) */
             const trendingWrapper = document.getElementById('trending-section-wrapper');
             const trendingGrid = document.getElementById('trending-grid-container');
 
-            if (trendingWrapper && trendingGrid) {
-                if (availableDramas.length > 0) {
-                    trendingWrapper.style.display = "block";
-                    trendingGrid.innerHTML = "";
-                    const sortedByRating = [...availableDramas].sort((a, b) => parseFloat(b.imdb || 0) - parseFloat(a.imdb || 0));
-                    const topThree = sortedByRating.slice(0, 3);
-                    topThree.forEach(d => {
-                        trendingGrid.innerHTML += createCardHTML(d);
-                    });
-                } else {
-                    trendingWrapper.style.display = "none";
-                }
+            if (availableDramas.length > 0) {
+                trendingWrapper.style.display = "block";
+                trendingGrid.innerHTML = "";
+                const sortedByRating = [...availableDramas].sort((a, b) => parseFloat(b.imdb || 0) - parseFloat(a.imdb || 0));
+                const topThree = sortedByRating.slice(0, 3);
+                topThree.forEach(d => {
+                    trendingGrid.innerHTML += createCardHTML(d);
+                });
+            } else {
+                trendingWrapper.style.display = "none";
             }
 
             if (availableDramas.length > 0) {
                 const latestHeroDrama = availableDramas[availableDramas.length - 1]; 
                 
-                const heroBgBlur = document.getElementById('hero-bg-blur-img');
-                if (heroBgBlur) heroBgBlur.style.backgroundImage = `url('${latestHeroDrama.image_url}')`;
+                document.getElementById('hero-bg-blur-img').style.backgroundImage = `url('${latestHeroDrama.image_url}')`;
                 
                 let latestEp = "ONGOING";
                 if (originalDatabase.latest_updates && originalDatabase.latest_updates[0]) {
@@ -1648,39 +1561,26 @@
                 const words = (latestHeroDrama.synopsis || "").split(' ');
                 const truncatedDesc = words.length > maxWords ? words.slice(0, maxWords).join(' ') + "..." : latestHeroDrama.synopsis;
 
-                const heroEpNum = document.getElementById('hero-ep-num');
-                const heroTitleText = document.getElementById('hero-title-text');
-                const heroDescText = document.getElementById('hero-desc-text');
-                const heroBtnLink = document.getElementById('hero-btn-link');
-                const heroImdbVal = document.getElementById('hero-imdb-val');
-                const heroAuthorContainer = document.getElementById('hero-author-container');
-
-                if (heroEpNum) heroEpNum.innerText = latestEp;
-                if (heroTitleText) heroTitleText.innerText = latestHeroDrama.title;
-                if (heroDescText) heroDescText.innerText = truncatedDesc;
-                if (heroBtnLink) heroBtnLink.href = `drama_picker.html?id=${latestHeroDrama.id}`;
-                if (heroImdbVal) heroImdbVal.innerText = latestHeroDrama.imdb || "8.5";
-                if (heroAuthorContainer) {
-                    heroAuthorContainer.innerHTML = `
-                        <img src="${aboutMeAvatar}" alt="Logo" style="width: 18px; height: 18px; border-radius: 50%;">
-                        <span>Posted by ලියැසි SUBVERSE</span>
-                    `;
-                }
+                document.getElementById('hero-ep-num').innerText = latestEp;
+                document.getElementById('hero-title-text').innerText = latestHeroDrama.title;
+                document.getElementById('hero-desc-text').innerText = truncatedDesc;
+                document.getElementById('hero-btn-link').href = `drama_picker.html?id=${latestHeroDrama.id}`;
+                document.getElementById('hero-imdb-val').innerText = latestHeroDrama.imdb || "8.5";
+                document.getElementById('hero-author-container').innerHTML = `
+                    <img src="${aboutMeAvatar}" alt="Logo" style="width: 18px; height: 18px; border-radius: 50%;">
+                    <span>Posted by ලියැසි SUBVERSE</span>
+                `;
             }
 
             if (originalDatabase.latest_updates && originalDatabase.latest_updates[0]) {
                 const latest = originalDatabase.latest_updates[0];
-                const tickerTextEl = document.getElementById('ticker-text');
-                if (tickerTextEl) {
-                    tickerTextEl.innerHTML = `⚡ ${latest.title} [${latest.episode}] දැන් රිලීස් වුණා! • `;
-                }
+                document.getElementById('ticker-text').innerHTML = `⚡ ${latest.title} [${latest.episode}] දැන් රිලීස් වුණා! • `;
             }
 
             generateDynamicGenres(availableDramas);
-            renderDynamicChatChips(config, availableDramas); 
+            renderDynamicChatChips(config, availableDramas); // 💡 AI Chat Suggestion Chips Dynamic සකස් කිරීම
 
             const area = document.getElementById('dynamic-content');
-            if (!area) return;
             area.innerHTML = ""; 
 
             const filteredDramas = availableDramas.filter(d => {
@@ -1731,13 +1631,14 @@
             });
         }
 
-        /* 💡 DYNAMIC CHIPS RENDER FUNCTION */
+        /* 💡 DYNAMIC CHIPS RENDER FUNCTION - CONTROLLED BY BOT CONFIG */
         function renderDynamicChatChips(config, dramas) {
             const chipsContainer = document.querySelector('.ai-action-chips');
             if (!chipsContainer) return;
 
             let chipsHTML = "";
 
+            // 1. පයිතන් බොට් එකෙහි CONFIG එකෙහි chat_chips ඇතුළත් කර ඇත්නම් එය භාවිත කිරීම
             if (config.chat_chips) {
                 const customList = config.chat_chips.split('|');
                 customList.forEach(item => {
@@ -1746,7 +1647,9 @@
                         chipsHTML += `<div class="ai-chip" onclick="quickSend('${cleanName}')">${cleanName}</div>`;
                     }
                 });
-            } else {
+            } 
+            // 2. නැතහොත් ස්වයංක්‍රීයවම අලුත්ම ඩ්‍රාමා වලින් ගලපා සකස් කරගැනීම (Smart Fallback)
+            else {
                 if (dramas.length > 0) {
                     const lastTwo = dramas.slice(-2);
                     lastTwo.forEach(d => {
@@ -1764,7 +1667,6 @@
 
         function generateDynamicGenres(dramas) {
             const container = document.getElementById('genre-container');
-            if (!container) return;
             const genresSet = new Set();
             dramas.forEach(d => {
                 if (d.genres) d.genres.forEach(g => genresSet.add(g));
@@ -1792,7 +1694,7 @@
             container.innerHTML = html;
         }
 
-        /* 📊 CYBER CARD GENERATOR */
+        /* 📊 CYBER CARD GENERATOR (WITH VALUE LEADING, STAR ON LEFT & PERFECT VERTICAL TRACK ALIGNMENT) */
         function createCardHTML(d) {
             const isComplete = d.status === "COMPLETE";
             const categoryText = d.type || "DRAMA";
@@ -1900,53 +1802,28 @@
         }
 
         function searchDrama() {
-            const searchInput = document.getElementById('searchInput');
-            if (searchInput) {
-                currentSearchQuery = searchInput.value;
-            }
+            currentSearchQuery = document.getElementById('searchInput').value;
             renderPage();
         }
 
         function loadCommentsAndLikes() {
-            try {
-                let likes = localStorage.getItem('subverseLikes') || 124;
-                let dislikes = localStorage.getItem('subverseDislikes') || 2;
-                
-                const likeCountEl = document.getElementById('like-count');
-                const dislikeCountEl = document.getElementById('dislike-count');
-                if (likeCountEl) likeCountEl.innerText = likes;
-                if (dislikeCountEl) dislikeCountEl.innerText = dislikes;
+            let likes = localStorage.getItem('subverseLikes') || 124;
+            let dislikes = localStorage.getItem('subverseDislikes') || 2;
+            document.getElementById('like-count').innerText = likes;
+            document.getElementById('dislike-count').innerText = dislikes;
 
-                updateFeedbackBar(likes, dislikes);
+            updateFeedbackBar(likes, dislikes);
 
-                let storedComments;
-                try {
-                    storedComments = JSON.parse(localStorage.getItem('subverseComments')) || [
-                        { name: "Anonymous", text: "උපසිරැසි ඉතාම උසස් මට්ටමක පවතිනවා! ජයවේවා! ❤️" },
-                        { name: "Nipun", text: "Fantastic Cyberpunk layout and super fast download links. Highly recommended!" }
-                    ];
-                } catch(e) {
-                    storedComments = [
-                        { name: "Anonymous", text: "උපසිරැසි ඉතාම උසස් මට්ටමක පවතිනවා! ජයවේවා! ❤️" },
-                        { name: "Nipun", text: "Fantastic Cyberpunk layout and super fast download links. Highly recommended!" }
-                    ];
-                }
-
-                const listContainer = document.getElementById('comments-list');
-                if (listContainer) {
-                    listContainer.innerHTML = "";
-                    storedComments.forEach(c => {
-                        listContainer.innerHTML += `<div class="comment-item"><strong>${c.name}:</strong> ${c.text}</div>`;
-                    });
-                }
-            } catch (error) {
-                console.warn("localStorage is blocked or unavailable:", error);
-                const likeCountEl = document.getElementById('like-count');
-                const dislikeCountEl = document.getElementById('dislike-count');
-                if (likeCountEl) likeCountEl.innerText = "124";
-                if (dislikeCountEl) dislikeCountEl.innerText = "2";
-                updateFeedbackBar(124, 2);
-            }
+            let storedComments = JSON.parse(localStorage.getItem('subverseComments')) || [
+                { name: "Anonymous", text: "උපසිරැසි ඉතාම උසස් මට්ටමක පවතිනවා! ජයවේවා! ❤️" },
+                { name: "Nipun", text: "Fantastic Cyberpunk layout and super fast download links. Highly recommended!" }
+            ];
+            const listContainer = document.getElementById('comments-list');
+            
+            listContainer.innerHTML = "";
+            storedComments.forEach(c => {
+                listContainer.innerHTML += `<div class="comment-item"><strong>${c.name}:</strong> ${c.text}</div>`;
+            });
         }
 
         function updateFeedbackBar(likes, dislikes) {
@@ -1954,27 +1831,18 @@
             const d = Math.max(0, parseInt(dislikes));
             const total = l + d;
             const pct = total > 0 ? (l / total) * 100 : 50;
-            const fillEl = document.getElementById('feedback-gauge-fill');
-            if (fillEl) {
-                fillEl.style.width = pct + "%";
-            }
+            document.getElementById('feedback-gauge-fill').style.width = pct + "%";
         }
 
         function submitFeedback(type) {
-            try {
-                if (type === 'like') {
-                    let likes = parseInt(localStorage.getItem('subverseLikes') || 124) + 1;
-                    localStorage.setItem('subverseLikes', likes);
-                    const likeCountEl = document.getElementById('like-count');
-                    if (likeCountEl) likeCountEl.innerText = likes;
-                } else {
-                    let dislikes = parseInt(localStorage.getItem('subverseDislikes') || 2) + 1;
-                    localStorage.setItem('subverseDislikes', dislikes);
-                    const dislikeCountEl = document.getElementById('dislike-count');
-                    if (dislikeCountEl) dislikeCountEl.innerText = dislikes;
-                }
-            } catch (e) {
-                alert("ප්‍රතිපෝෂණ ගබඩා කිරීමට බ්‍රවුසරයේ ඉඩ නොමැත (localStorage is blocked).");
+            if (type === 'like') {
+                let likes = parseInt(localStorage.getItem('subverseLikes') || 124) + 1;
+                localStorage.setItem('subverseLikes', likes);
+                document.getElementById('like-count').innerText = likes;
+            } else {
+                let dislikes = parseInt(localStorage.getItem('subverseDislikes') || 2) + 1;
+                localStorage.setItem('subverseDislikes', dislikes);
+                document.getElementById('dislike-count').innerText = dislikes;
             }
             loadCommentsAndLikes();
         }
@@ -1982,7 +1850,6 @@
         function submitComment() {
             const nameInput = document.getElementById('commenter-name');
             const textInput = document.getElementById('comment-text');
-            if (!nameInput || !textInput) return;
 
             const name = nameInput.value.trim() || "Anonymous";
             const text = textInput.value.trim();
@@ -1992,19 +1859,13 @@
                 return;
             }
 
-            try {
-                let storedComments;
-                try {
-                    storedComments = JSON.parse(localStorage.getItem('subverseComments')) || [];
-                } catch(e) {
-                    storedComments = [];
-                }
+            let storedComments = JSON.parse(localStorage.getItem('subverseComments')) || [
+                { name: "Anonymous", text: "උපසිරැසි ඉතාම උසස් මට්ටමක පවතිනවා! ජයවේවා! ❤️" },
+                { name: "Nipun", text: "Fantastic Cyberpunk layout and super fast download links. Highly recommended!" }
+            ];
 
-                storedComments.push({ name: name, text: text });
-                localStorage.setItem('subverseComments', JSON.stringify(storedComments));
-            } catch (e) {
-                alert("අදහස් ගබඩා කිරීමට බ්‍රවුසරයේ ඉඩ නොමැත (localStorage blocked).");
-            }
+            storedComments.push({ name: name, text: text });
+            localStorage.setItem('subverseComments', JSON.stringify(storedComments));
 
             nameInput.value = "";
             textInput.value = "";
@@ -2016,7 +1877,6 @@
 
         function toggleAIChat() {
             const win = document.getElementById('cyber-ai-chat-window');
-            if (!win) return;
             if (win.style.display === 'none' || win.style.display === '') {
                 win.style.display = 'flex';
                 resetAutoCloseTimer(); 
@@ -2030,34 +1890,30 @@
 
         function resetChatMessages() {
             const container = document.getElementById('chat-messages');
-            if (container) {
-                container.innerHTML = `
-                    <div class="chat-msg-row bot-row">
-                        <img src="https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png" class="chat-bot-avatar" alt="Avatar">
-                        <div class="chat-bubble bot">Здарова! 🖐️ මම ලියැසි SUBVERSE AI සහායකයා. ඔයාට අවශ්‍ය ඕනෑම ඩ්‍රාමා එකක් ගැන, බ්ලොග් එකේ ලිපි ගැන හෝ සබ්ටයිටල් දාගන්න විදිහ ගැන මාත් එක්ක නිදහසේ කතා කරන්න! ❤️🍿</div>
-                    </div>
-                `;
-            }
+            container.innerHTML = `
+                <div class="chat-msg-row bot-row">
+                    <img src="https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png" class="chat-bot-avatar" alt="Avatar">
+                    <div class="chat-bubble bot">Здарова! 🖐️ මම ලියැසි SUBVERSE AI සහායකයා. ඔයාට අවශ්‍ය ඕනෑම ඩ්‍රාමා එකක් ගැන, බ්ලොග් එකේ ලිපි ගැන හෝ සබ්ටයිටල් දාගන්න විදිහ ගැන මාත් එක්ක නිදහසේ කතා කරන්න! ❤️🍿</div>
+                </div>
+            `;
         }
 
         function resetAutoCloseTimer() {
             clearTimeout(autoCloseTimer);
             autoCloseTimer = setTimeout(() => {
                 const win = document.getElementById('cyber-ai-chat-window');
-                if (win && win.style.display === 'flex') {
+                if (win.style.display === 'flex') {
                     toggleAIChat(); 
                 }
             }, 180000); 
         }
 
         function quickSend(question) {
-            const textInput = document.getElementById('chat-text-input');
-            if (textInput) {
-                textInput.value = question;
-                sendAIMessage();
-            }
+            document.getElementById('chat-text-input').value = question;
+            sendAIMessage();
         }
 
+        // 💡 Server Status UI එක වෙනස් කරන ශ්‍රිතය (Helper Function)
         function updateServerStatusUI(statusName, colorVar) {
             const statusEl = document.getElementById('ai-server-status');
             if (statusEl) {
@@ -2067,7 +1923,6 @@
 
         async function sendAIMessage() {
             const input = document.getElementById('chat-text-input');
-            if (!input) return;
             const text = input.value.trim();
             if (text === "") return;
             
@@ -2076,12 +1931,14 @@
             const typingId = appendChatMessage("bot", "typing...");
             
             try {
+                // 1. article_data.txt ගොනුව dynamic ලෙස කියවීම (Cloudflare Fallback සඳහා පමණි)
                 let articleData = "";
                 try {
                     const articleResponse = await fetch('article_data.txt?v=' + new Date().getTime());
                     if (articleResponse.ok) { articleData = await articleResponse.text(); }
                 } catch (err) { console.log("Could not fetch article_data.txt", err); }
 
+                // 2. data.json දත්ත Minify කිරීම (Cloudflare Fallback සඳහා)
                 let dramaContext = "";
                 if (originalDatabase && originalDatabase.dramas) {
                     let minimizedDramas = {};
@@ -2104,6 +1961,7 @@
                 
                 const configContext = originalDatabase && originalDatabase.config ? JSON.stringify(originalDatabase.config) : "";
 
+                // Cloudflare Workers සඳහා වන Prompt එක
                 const combinedPrompt = `
                 ඔබ "ලියැසි SUBVERSE" උපසිරැසි වෙබ් අඩවියේ නිල AI සහායකයා වේ. පරිශීලකයන්ට උපසිරැසි, බ්ලොග් සහ ඩ්‍රාමා ගැන සහාය වන්න.
 
@@ -2133,13 +1991,13 @@
 
                 let aiResponseText = "";
                 
-                // 🚀 Stage A: Hugging Face Space Server (Primary)
+                // 🚀 පියවර A: ප්‍රධාන වශයෙන් අපගේ නව Hugging Face Space සර්වර් එක හරහා උත්සාහ කිරීම
                 try {
                     const hfResponse = await fetch(HUGGING_FACE_API_URL, {
                         method: "POST",
                         mode: 'cors',
                         headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ message: text }) 
+                        body: JSON.stringify({ message: text }) // Hugging Face API එක බලාපොරොත්තු වන්නේ raw user message එක පමණි
                     });
                     
                     if (!hfResponse.ok) throw new Error("Hugging Face Space API limits exceeded or sleeping");
@@ -2147,14 +2005,15 @@
                     const hfData = await hfResponse.json();
                     if (hfData.reply) {
                         aiResponseText = hfData.reply;
+                        // 📡 සර්වර් තත්ත්වය සාර්ථකව පෙන්වීම (Hugging Face - Cyan Color)
                         updateServerStatusUI("HUGGING FACE (PRIMARY)", "var(--neon-cyan)");
                     } else {
                         throw new Error("Empty reply from Hugging Face");
                     }
                 } 
-                // 🚀 Stage B: Cloudflare Gemini Worker (Fallback 1)
+                // 🚀 පියවර B: Hugging Face අසාර්ථක වුවහොත්, Cloudflare Gemini Worker එක හරහා උත්සාහ කිරීම (Fallback 1)
                 catch (hfError) {
-                    console.log("Hugging Face Failed. Switching to Cloudflare Gemini...", hfError);
+                    console.log("Hugging Face Failed. Switching to Cloudflare Gemini Fallback...", hfError);
                     try {
                         const response = await fetch(CLOUDFLARE_WORKER_URL, {
                             method: "POST",
@@ -2168,14 +2027,15 @@
                         const data = await response.json();
                         if (data.reply) {
                             aiResponseText = data.reply;
+                            // 📡 සර්වර් තත්ත්වය Fallback 1 ලෙස පෙන්වීම (Cloudflare Gemini - Yellow Color)
                             updateServerStatusUI("CLOUDFLARE (GEMINI FALLBACK)", "#ffcc00");
                         } else {
                             throw new Error("No response from Gemini");
                         }
                     } 
-                    // 🚀 Stage C: Cloudflare Groq Llama 3 (Fallback 2)
+                    // 🚀 පියවර C: Cloudflare Gemini ද අසාර්ථක වුවහොත්, Cloudflare Groq Worker එක හරහා උත්සාහ කිරීම (Fallback 2)
                     catch (geminiError) {
-                        console.log("Cloudflare Gemini failed. Switching to Cloudflare Groq...", geminiError);
+                        console.log("Cloudflare Gemini failed. Switching to Cloudflare Groq Llama 3...", geminiError);
                         try {
                             const responseGroq = await fetch(CLOUDFLARE_WORKER_URL_GROQ, {
                                 method: "POST",
@@ -2187,12 +2047,13 @@
                             const dataGroq = await responseGroq.json();
                             if (dataGroq.reply) {
                                 aiResponseText = dataGroq.reply;
+                                // 📡 සර්වර් තත්ත්වය Fallback 2 ලෙස පෙන්වීම (Cloudflare Groq - Pink Color)
                                 updateServerStatusUI("CLOUDFLARE (GROQ FALLBACK)", "var(--neon-pink)");
                             } else {
                                 throw new Error("No response from Groq");
                             }
                         } catch (groqError) {
-                            console.error("All AI servers exhausted.", groqError);
+                            console.error("All AI servers failed. Uptime exhausted.", groqError);
                             updateServerStatusUI("OFFLINE (ALL SERVERS EXHAUSTED)", "#ff003c");
                         }
                     }
@@ -2215,13 +2076,12 @@
         let msgCounter = 0;
         function appendChatMessage(sender, text) {
             const container = document.getElementById('chat-messages');
-            if (!container) return;
             const id = 'msg-' + (++msgCounter);
             
-            // 💡 Q&A Limit: Keep exactly last 2 messages visible on window.
+            // 💡 1. Q&A සීමා කිරීම (එකවර පෙනෙන්නේ මැසේජ් 2ක් පමණි. පරණ ඒවා Fades Out වී සැඟවේ)
             const currentMessages = container.querySelectorAll('.chat-msg-row');
             if (currentMessages.length >= 2) {
-                for (let i = 0; i < currentMessages.length - 1; i++) {
+                for (let i = 0; i < currentMessages.length; i++) {
                     currentMessages[i].style.opacity = '0';
                     currentMessages[i].style.maxHeight = '0px';
                     currentMessages[i].style.padding = '0px';
@@ -2237,6 +2097,7 @@
             row.id = id;
             row.style.transition = "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)";
             
+            // 💡 2. Bot එකට රවුම් Avatar එකතු කිරීම
             if (sender === 'bot') {
                 const img = document.createElement('img');
                 img.src = "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png";
@@ -2247,6 +2108,7 @@
             const bubble = document.createElement('div');
             bubble.className = `chat-bubble ${sender}`;
             
+            // 💡 3. 🌀 SPECTACULAR RGB Thinking Indicator එක සකස් කිරීම
             if (text === "typing...") {
                 bubble.className = "chat-bubble bot typing";
                 bubble.innerHTML = "<span>Thinking...</span>";
@@ -2269,130 +2131,104 @@
 
         /* 🎙️ VOICE RECOGNITION SYSTEM */
         function startVoiceRecognition() {
-            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-            if (!SpeechRecognition) {
-                alert("ඔබේ බ්‍රවුසරය හඬ හඳුනාගැනීමේ පහසුකමට (Voice Recognition) සහය නොදක්වයි.");
-                return;
-            }
-
-            const recognition = new SpeechRecognition();
+            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
             recognition.lang = "si-LK"; 
             recognition.interimResults = false;
             recognition.maxAlternatives = 1;
 
             const micBtn = document.querySelector('.chat-mic-btn');
-            if (micBtn) {
-                micBtn.style.color = "var(--neon-cyan)";
-                micBtn.style.borderColor = "var(--neon-cyan)";
-                micBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i>';
-            }
+            micBtn.style.color = "var(--neon-cyan)";
+            micBtn.style.borderColor = "var(--neon-cyan)";
+            micBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i>';
 
             recognition.start();
 
             recognition.onresult = function(event) {
                 const speechResult = event.results[0][0].transcript;
-                const textInput = document.getElementById('chat-text-input');
-                if (textInput) textInput.value = speechResult;
+                document.getElementById('chat-text-input').value = speechResult;
             };
 
             recognition.onspeechend = function() {
                 recognition.stop();
-                if (micBtn) resetMicButton(micBtn);
+                resetMicButton(micBtn);
             };
 
             recognition.onerror = function(event) {
-                console.log('Voice Error: ' + event.error);
-                if (micBtn) resetMicButton(micBtn);
+                console.log('Error: ' + event.error);
+                resetMicButton(micBtn);
             };
         }
 
         function resetMicButton(btn) {
-            if (btn) {
-                btn.style.color = "var(--neon-pink)";
-                btn.style.borderColor = "var(--neon-pink)";
-                btn.innerHTML = '<i class="fa-solid fa-microphone"></i>';
-            }
+            btn.style.color = "var(--neon-pink)";
+            btn.style.borderColor = "var(--neon-pink)";
+            btn.innerHTML = '<i class="fa-solid fa-microphone"></i>';
         }
 
-        /* 🌌 ANIMATED 3D HOLOGRAM & GALAXY VORTEX PARTICLE SYSTEM (CRASH-PROOFED) */
+        /* 🌌 ANIMATED 3D HOLOGRAM & GALAXY VORTEX PARTICLE SYSTEM (HIGHLY OPTIMIZED & SCREEN-WIDE) */
         const canvas = document.getElementById("matrix-canvas");
-        const ctx = canvas ? canvas.getContext("2d") : null;
+        const ctx = canvas.getContext("2d");
         
         let particles = [];
         let textTargets = [];
-        let animationMode = "ambient"; 
+        let animationMode = "ambient"; // "ambient" (ගලායන තරංග) හෝ "text" (ලියැසි SUBVERSE)
         let modeTimer = 0;
         let transitionProgress = 0; 
 
+        // 3D කැමරා පාලනය (Slow Horizontal Cam Rotation)
         let angleX = 0.4; 
         let angleY = 0;   
         let zoom = 1.0;
 
         function resizeCanvas() {
-            try {
-                if (canvas) {
-                    canvas.width = window.innerWidth;
-                    canvas.height = window.innerHeight;
-                    textTargets = createTextTargets();
-                    mapParticlesToTargets();
-                }
-            } catch (e) {
-                console.warn("Canvas resizing error ignored for safety:", e);
-            }
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            textTargets = createTextTargets();
+            mapParticlesToTargets();
         }
         window.addEventListener("resize", resizeCanvas);
+        resizeCanvas();
 
-        // Safe execution of first resize load
-        try {
-            resizeCanvas();
-        } catch(e) {
-            console.warn("Synchronous canvas startup bypassed:", e);
-        }
-
+        // 📝 "ලියැසි SUBVERSE" אකුරු ද්විත්ව පේළිය offscreen Targets සාදාගැනීම
         function createTextTargets() {
-            try {
-                const offscreenCanvas = document.createElement('canvas');
-                const offCtx = offscreenCanvas.getContext('2d');
-                if (!offCtx) return [];
-                
-                offscreenCanvas.width = 800;
-                offscreenCanvas.height = 300;
-                
-                offCtx.fillStyle = '#000000';
-                offCtx.fillRect(0, 0, 800, 300);
-                
-                // "ලියැසි"
-                offCtx.font = "900 85px 'Segoe UI', system-ui, sans-serif";
-                offCtx.textAlign = "center";
-                offCtx.textBaseline = "middle";
-                offCtx.strokeStyle = '#ffffff';
-                offCtx.lineWidth = 3.5;
-                offCtx.strokeText("ලියැසි", 400, 100);
-                
-                // "SUBVERSE"
-                offCtx.font = "900 65px 'Share Tech Mono', monospace";
-                offCtx.lineWidth = 3;
-                offCtx.strokeText("SUBVERSE", 400, 210);
-                
-                const imgData = offCtx.getImageData(0, 0, 800, 300).data;
-                const points = [];
-                
-                const step = 4; 
-                for (let y = 0; y < 300; y += step) {
-                    for (let x = 0; x < 800; x += step) {
-                        const index = (x + y * 800) * 4;
-                        if (imgData[index] > 128) {
-                            points.push({ x: x - 400, y: y - 150 });
-                        }
+            const offscreenCanvas = document.createElement('canvas');
+            const offCtx = offscreenCanvas.getContext('2d');
+            offscreenCanvas.width = 800;
+            offscreenCanvas.height = 300;
+            
+            offCtx.fillStyle = '#000000';
+            offCtx.fillRect(0, 0, 800, 300);
+            
+            // 1 වන පේළිය: "ලියැසි" (සිංහල Outline)
+            offCtx.font = "900 85px 'Segoe UI', system-ui, sans-serif";
+            offCtx.textAlign = "center";
+            offCtx.textBaseline = "middle";
+            offCtx.strokeStyle = '#ffffff';
+            offCtx.lineWidth = 3.5;
+            offCtx.strokeText("ලියැසි", 400, 100);
+            
+            // 2 වන පේළිය: "SUBVERSE" (ඉංග්‍රීසි Outline)
+            offCtx.font = "900 65px 'Share Tech Mono', monospace";
+            offCtx.lineWidth = 3;
+            offCtx.strokeText("SUBVERSE", 400, 210);
+            
+            const imgData = offCtx.getImageData(0, 0, 800, 300).data;
+            const points = [];
+            
+            // Performance වැඩි කිරීමට පියවර (Step size = 4)
+            const step = 4; 
+            for (let y = 0; y < 300; y += step) {
+                for (let x = 0; x < 800; x += step) {
+                    const index = (x + y * 800) * 4;
+                    if (imgData[index] > 128) {
+                        points.push({ x: x - 400, y: y - 150 });
                     }
                 }
-                return points;
-            } catch (error) {
-                console.warn("Canvas fingerprinting blocked pixel rendering. Matrix fallback active.", error);
-                return []; // Gracefully returns empty targets to prevent synchronous halts
             }
+            return points;
         }
 
+        // 3D to 2D Perspective Projection
         function project3D(x, y, z) {
             let cosY = Math.cos(angleY);
             let sinY = Math.sin(angleY);
@@ -2407,11 +2243,8 @@
             let focalLength = 350;
             let depthScale = focalLength / (focalLength + z2);
             
-            const screenWidth = canvas ? canvas.width : window.innerWidth;
-            const screenHeight = canvas ? canvas.height : window.innerHeight;
-            
-            let screenX = (screenWidth / 2) + x1 * depthScale * zoom;
-            let screenY = (screenHeight / 2) + y2 * depthScale * zoom;
+            let screenX = (canvas.width / 2) + x1 * depthScale * zoom;
+            let screenY = (canvas.height / 2) + y2 * depthScale * zoom;
             
             return {
                 x: screenX,
@@ -2424,19 +2257,19 @@
         class Particle {
             constructor(id) {
                 this.id = id;
+                
+                // 🌌 35% ක් තිත් සැමවිටම මුළු තිරය පුරාම විහිදී ගමන් කරයි (Global background scatter)
                 this.isGlobalScatter = (id % 3 === 0);
                 
-                const screenWidth = canvas ? canvas.width : window.innerWidth;
-                const screenHeight = canvas ? canvas.height : window.innerHeight;
-
                 if (this.isGlobalScatter) {
-                    this.x = Math.random() * screenWidth;
-                    this.y = Math.random() * screenHeight;
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
                     this.vx = (Math.random() - 0.5) * 0.35;
                     this.vy = (Math.random() - 0.5) * 0.35;
                 } else {
+                    // ඉතිරි තිත් මන්දාකිණි වළල්ලක් සේ කැරකේ (තිරයේ ප්‍රමාණයට අනුකූලව)
                     this.theta = Math.random() * Math.PI * 2;
-                    this.radius = Math.random() * (screenWidth * 0.58) + 40; 
+                    this.radius = Math.random() * (canvas.width * 0.58) + 40; 
                     this.z3d = Math.random() * 200 - 100;
                     this.rotSpeed = (Math.random() * 0.0035 + 0.001);
                 }
@@ -2447,15 +2280,16 @@
                 this.targetX = null;
                 this.targetY = null;
                 this.targetZ = 0;
-                this.isTextParticle = false; 
+                this.isTextParticle = false; // "ලියැසි SUBVERSE" සාදන තිත්
 
                 this.alpha = Math.random() * 0.65 + 0.35;
                 
+                // Gemini/Galaxy Glowing Colors
                 const colors = [
-                    `rgba(0, 240, 255, ${this.alpha})`,   
-                    `rgba(0, 120, 255, ${this.alpha})`,   
-                    `rgba(157, 78, 221, ${this.alpha})`,  
-                    `rgba(255, 0, 127, ${this.alpha * 0.35})` 
+                    `rgba(0, 240, 255, ${this.alpha})`,   // Neon Cyan
+                    `rgba(0, 120, 255, ${this.alpha})`,   // Glowing Blue
+                    `rgba(157, 78, 221, ${this.alpha})`,  // Galaxy Purple
+                    `rgba(255, 0, 127, ${this.alpha * 0.35})` // Pink Dust
                 ];
                 this.color = colors[Math.floor(Math.random() * colors.length)];
                 this.proj = null;
@@ -2466,37 +2300,38 @@
             }
 
             update(time) {
-                const screenWidth = canvas ? canvas.width : window.innerWidth;
-                const screenHeight = canvas ? canvas.height : window.innerHeight;
-
                 if (this.isGlobalScatter) {
+                    // 1. තිරය පුරාම විහිදෙන තිත්වල සරල ගමන් රටාව (Uniform Drift)
                     this.x += this.vx;
                     this.y += this.vy;
                     
-                    if (this.x < 0) this.x = screenWidth;
-                    if (this.x > screenWidth) this.x = 0;
-                    if (this.y < 0) this.y = screenHeight;
-                    if (this.y > screenHeight) this.y = 0;
+                    // සීමාවෙන් පිටතට ගියහොත් නැවත ඇතුළත් කිරීම (Screen Wrap)
+                    if (this.x < 0) this.x = canvas.width;
+                    if (this.x > canvas.width) this.x = 0;
+                    if (this.y < 0) this.y = canvas.height;
+                    if (this.y > canvas.height) this.y = 0;
 
                     this.proj = {
                         x: this.x,
                         y: this.y,
-                        scale: 0.8 + Math.sin(time * 0.001 + this.id) * 0.2, 
+                        scale: 0.8 + Math.sin(time * 0.001 + this.id) * 0.2, // Pulse effect
                         z: 0
                     };
                 } else {
+                    // 2. මන්දාකිණි කැරකීමේ රටාව (Screen-Wide Spiral arms)
                     this.theta += this.rotSpeed;
                     let armOffset = (this.id % 2) * Math.PI;
-                    let angle = this.theta + (this.radius / (screenWidth * 0.3)) * Math.PI + armOffset;
+                    let angle = this.theta + (this.radius / (canvas.width * 0.3)) * Math.PI + armOffset;
                     
                     let ambientX = Math.cos(angle) * this.radius;
                     let ambientZ = Math.sin(angle) * this.radius;
-                    let ambientY = this.z3d * (1 - this.radius / (screenWidth * 0.65));
+                    let ambientY = this.z3d * (1 - this.radius / (canvas.width * 0.65));
 
                     let current3DX = ambientX;
                     let current3DY = ambientY;
                     let current3DZ = ambientZ;
 
+                    // 3. אකුරු මාදිලියට මාරුවීමේදී තිත් එකතු වීම (Hologram text assembly)
                     if (this.isTextParticle && this.targetX !== null) {
                         current3DX = this.lerp(ambientX, this.targetX, transitionProgress);
                         current3DY = this.lerp(ambientY, this.targetY, transitionProgress);
@@ -2508,7 +2343,7 @@
             }
 
             draw() {
-                if (!this.proj || !ctx) return;
+                if (!this.proj) return;
                 
                 ctx.beginPath();
                 ctx.arc(this.proj.x, this.proj.y, this.size * this.proj.scale, 0, Math.PI * 2);
@@ -2527,6 +2362,7 @@
             particles = [];
             textTargets = createTextTargets();
             
+            // ⚡ වේගය උපරිමව තබා ගැනීමට තිත් 800ක් (Highly Optimized Particle Count) භාවිත කරයි
             const totalParticles = 800;
             for (let i = 0; i < totalParticles; i++) {
                 particles.push(new Particle(i));
@@ -2537,13 +2373,14 @@
         function mapParticlesToTargets() {
             if (textTargets.length === 0) return;
             
-            const screenWidth = canvas ? canvas.width : window.innerWidth;
-            const scale = Math.min(0.85, (screenWidth * 0.8) / 800);
+            const scale = Math.min(0.85, (canvas.width * 0.8) / 800);
             const shuffledTargets = [...textTargets].sort(() => Math.random() - 0.5);
 
+            // තිත් 450 ක් අකුරු සෑදීමටත්, ඉතිරි තිත් සැමවිටම තිරය පුරා පසුබිමේ රඳවා ගැනීමටත් වෙන් කරයි
             const textParticleCount = Math.min(shuffledTargets.length, 450);
 
             for (let i = 0; i < particles.length; i++) {
+                // Global Scatter නොවන තිත් පමණක් අකුරු සෑදීමට භාවිත කරයි
                 if (!particles[i].isGlobalScatter && i < textParticleCount) {
                     const targetPoint = shuffledTargets[i];
                     particles[i].targetX = targetPoint.x * scale;
@@ -2556,12 +2393,12 @@
             }
         }
 
+        // 🕸️ 3D Constellation Neural Web ඇඳීමේ ප්‍රශස්ත ශ්‍රිතය (Optimized Drawing Loop)
         function drawConstellationLines() {
-            if (!ctx) return;
             const maxDistance = 60;
-            let lineCount = 0; 
+            let lineCount = 0; // ඇඳිය හැකි රේඛා ප්‍රමාණය පාලනය කිරීමට (Performance Saver)
 
-            for (let i = 0; i < particles.length; i += 3) { 
+            for (let i = 0; i < particles.length; i += 3) { // 3 බැගින් මඟහරිමින් (Optimized check)
                 const pi = particles[i];
                 if (!pi.proj || pi.isGlobalScatter) continue;
                 
@@ -2586,28 +2423,30 @@
                         ctx.stroke();
 
                         lineCount++;
-                        if (lineCount > 120) return; 
+                        if (lineCount > 120) return; // තිරයේ එකවර රේඛා 120කට වඩා ඇඳීම වළක්වයි (Anti-Lag)
                     }
                 }
             }
         }
 
         function animateGeminiParticles() {
-            if (!ctx) return;
+            // 🌀 Motion Blur Trail Effect
             ctx.fillStyle = 'rgba(2, 4, 8, 0.18)'; 
-            if (canvas) {
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-            }
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
             
             const time = Date.now();
+
+            // කැමරාව කැරකවීම (Rotational velocity)
             angleY += 0.0022;
 
+            // කාලසටහන (Animation Mode Cycle)
             modeTimer++;
             if (modeTimer > 450) { 
                 animationMode = (animationMode === "ambient") ? "text" : "ambient";
                 modeTimer = 0;
             }
 
+            // Smooth interpolation
             if (animationMode === "text") {
                 transitionProgress += (1 - transitionProgress) * 0.045; 
             } else {
@@ -2624,32 +2463,25 @@
             requestAnimationFrame(animateGeminiParticles);
         }
 
+        // Initialize background mode (Matrix or Static Image)
         function initBackground() {
-            try {
-                if (USE_MATRIX_BACKGROUND && ctx) {
-                    document.body.style.backgroundImage = "none";
-                    initParticles();
-                    animateGeminiParticles();
-                } else {
-                    fallBackToStaticBackground();
-                }
-            } catch (e) {
-                console.warn("Matrix background crash handled. Falling back to static image background.", e);
-                fallBackToStaticBackground();
+            if (USE_MATRIX_BACKGROUND) {
+                document.body.style.backgroundImage = "none";
+                initParticles();
+                animateGeminiParticles();
+            } else {
+                document.getElementById("matrix-canvas").style.display = "none";
+                document.body.style.backgroundImage = `linear-gradient(to bottom, rgba(2, 4, 8, 0.88), rgba(2, 4, 8, 0.97)), url('${STATIC_BACKGROUND_IMAGE}')`;
             }
-        }
-
-        function fallBackToStaticBackground() {
-            const canvasEl = document.getElementById("matrix-canvas");
-            if (canvasEl) canvasEl.style.display = "none";
-            document.body.style.backgroundImage = `linear-gradient(to bottom, rgba(2, 4, 8, 0.88), rgba(2, 4, 8, 0.97)), url('${STATIC_BACKGROUND_IMAGE}')`;
         }
 
         window.onload = function() {
             initBackground();
             resetChatMessages();
             if (typeof loadContent === 'function') loadContent();
+            if (typeof loadCommentsAndLikes === 'function') loadCommentsAndLikes();
         };
     </script>
 </body>
 </html>
+
