@@ -395,6 +395,42 @@
         }
         .card-complete .badge-bottom-left { background: var(--neon-pink); color: #fff; box-shadow: 0 0 12px var(--neon-pink), 0 0 4px #fff; border-color: rgba(255,255,255,0.4); }
 
+        /* 📊 IMDb PROGRESS BAR (VALUE LEADING, STAR ON LEFT & PERFECT VERTICAL TRACK ALIGNMENT) */
+        .imdb-gauge-container {
+            position: absolute; right: 8px; top: 8px; 
+            display: flex; flex-direction: column; align-items: flex-start !important; gap: 4px;
+            z-index: 2; 
+            background: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+        }
+        .imdb-track {
+            width: 14px; height: 26px;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 3px; overflow: hidden; position: relative;
+            box-shadow: 0 0 8px rgba(0,0,0,0.8);
+            margin-left: 14px !important; /* Shifting track exactly to align perfectly with the first digit of the rating */
+        }
+        .imdb-fill {
+            width: 100%; position: absolute; bottom: 0; left: 0;
+            border-radius: 2px; transition: height 0.5s ease-out;
+        }
+        .imdb-value {
+            font-size: 10px; font-weight: 900; font-family: monospace;
+            display: flex; align-items: center; justify-content: flex-start !important; gap: 2px;
+            margin-top: 3px;
+            text-shadow: 0 0 5px rgba(0,0,0,1), 0 0 10px rgba(0,0,0,1);
+            white-space: nowrap;
+            width: 100%;
+        }
+
+        .title-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,1) 40%, transparent); padding: 12px 6px; }
+        .title-overlay p { color: var(--neon-cyan); text-shadow: 0 0 6px var(--neon-cyan); margin: 0; font-size: 10.5px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: center; transition: 0.3s; }
+        .card-complete .title-overlay p { color: var(--neon-pink); text-shadow: 0 0 6px var(--neon-pink); }
+        .movie-style-card:hover .title-overlay p { color: #fff; text-shadow: 0 0 12px var(--neon-cyan), 0 0 4px #fff; }
+        .movie-style-card.card-complete:hover .title-overlay p { color: #fff; text-shadow: 0 0 12px var(--neon-pink), 0 0 4px #fff; }
+
         /* 📚 CYBER BLOGGER PROMO BANNER */
         .blogger-promo-box {
             position: relative;
@@ -597,7 +633,7 @@
         }
         .comment-input:focus { border-color: var(--neon-cyan); box-shadow: 0 0 8px rgba(0, 240, 255, 0.2); }
 
-        /* 🤖 CYBER-AI FLOATING CHATBOT WIDGET STYLES (RGB ANIMATED LOGO OVERLAY) */
+        /* 🤖 CYBER-AI FLOATING CHATBOT WIDGET STYLES (RGB ROTATING ACTIVE RING) */
         #cyber-ai-bubble {
             position: fixed; bottom: 25px; right: 25px;
             width: 65px; height: 65px; border-radius: 50%;
@@ -615,7 +651,7 @@
         #cyber-ai-bubble::before {
             content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
             background: conic-gradient(var(--neon-cyan) 0deg, var(--neon-pink) 120deg, var(--neon-amber) 240deg, var(--neon-cyan) 360deg);
-            animation: rgb-fast-rotate 2s linear infinite; z-index: 1; opacity: 1;
+            animation: rgb-fast-rotate 2.5s linear infinite; z-index: 1; opacity: 1;
         }
         #cyber-ai-bubble::after {
             content: ''; position: absolute; inset: 3.5px; background: #020408; border-radius: 50%; z-index: 2;
@@ -795,10 +831,10 @@
             gap: 8px;
             text-transform: uppercase;
             text-decoration: none;
-            white-space: nowrap !important; /* Prevents shifting and wrap glitches on mobile */
+            white-space: nowrap !important;
         }
 
-        /* Inactive Tab Buttons (Subtle themed border & white text - Visible Always) */
+        /* Inactive Tab Buttons */
         .tab-btn {
             border: 1.5px solid rgba(0, 240, 255, 0.35) !important;
             color: #ffffff !important;
@@ -1212,7 +1248,7 @@
 
     </div>
 
-    <!-- 🤖 CYBER-AI FLOATING CHATBOT WIDGET -->
+    <!-- 🤖 CYBER-AI FLOATING CHATBOT WIDGET (RGB ROTATING ACTIVE RING & CUSTOM LOGO) -->
     <div id="cyber-ai-bubble" onclick="toggleAIChat()">
         <img src="https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png" class="ai-bubble-logo" alt="Liyasi AI">
     </div>
@@ -1228,15 +1264,17 @@
             </div>
             <button class="chat-close-btn" onclick="toggleAIChat()"><i class="fa-solid fa-xmark"></i></button>
         </div>
+        
+        <!-- Chat messages area (max 2 messages visible) -->
         <div class="chat-messages" id="chat-messages">
-            <!-- Initialized in Javascript with Bot Avatar -->
+            <!-- Initialized dynamically in Javascript -->
         </div>
-        <!-- Quick Send Chips -->
+        
+        <!-- 💡 Suggestions Chips Scroll area (Dynamic Chips) -->
         <div class="ai-action-chips">
-            <div class="ai-chip" onclick="quickSend('My Demon උපසිරැසි තියෙද? 🍿')">🍿 My Demon?</div>
-            <div class="ai-chip" onclick="quickSend('Blogger කියවීම් ඉසව්ව ලින්ක් එක මොකක්ද? 📚')">📚 Blogger Link</div>
-            <div class="ai-chip" onclick="quickSend('Subverse Admin සම්බන්ධ කරගන්නේ කොහොමද? 💬')">💬 Admin Contact</div>
+            <!-- Populated dynamically via config/data.json in loadContent -->
         </div>
+        
         <div class="chat-input-row">
             <input type="text" id="chat-text-input" placeholder="පණිවිඩය ලියන්න (Type here)..." class="chat-text-input" onkeydown="if(event.key === 'Enter') sendAIMessage()">
             <button class="chat-mic-btn" onclick="startVoiceRecognition()"><i class="fa-solid fa-microphone"></i></button>
@@ -1255,12 +1293,12 @@
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        // 🌌 BACKGROUND CONFIGURATION (Switch to false to use original static background image)
+        // 🌌 BACKGROUND CONFIGURATION
         const USE_MATRIX_BACKGROUND = true; 
         const STATIC_BACKGROUND_IMAGE = "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/bbfcf6e6-8bca-4883-8eb1-f93a2d1d4728.png";
 
         // 🌐 AI සර්වර් ලිපින (Hugging Face + Cloudflare Fallbacks)
-        const HUGGING_FACE_API_URL = "https://liyasisubverse1-walpeperliyasi-backend.hf.space/api/chat"; 
+        const HUGGING_FACE_API_URL = "https://liyasisubverse1-liyasi-backend.hf.space/api/chat"; 
         const CLOUDFLARE_WORKER_URL = "https://ask-gemini.rashmi004005g.workers.dev"; // Gemini (Fallback 1)
         const CLOUDFLARE_WORKER_URL_GROQ = "https://groq.rashmi004005g.workers.dev"; // Groq (Fallback 2)
 
@@ -1310,7 +1348,7 @@
         setInterval(updateCyberClock, 1000); 
         updateCyberClock();
 
-        /* 🤖 RICH PREVIEW DUMMY DATABASE WITH TESTING IMAGE METADATA */
+        /* 🤖 COMPREHENSIVE OFFLINE PREVIEW DUMMY DATABASE WITH TESTING IMAGE METADATA */
         const offlineDummyDatabase = {
             "config": {
                 "about_me_text": "අපි ඔබ වෙත ගෙන එන්නේ ගුණාත්මක බවින් ඉහළම ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි පමණි. අපගේ නිල සමාජ මාධ්‍ය ජාලයන් සමඟ එක් වී අලුත්ම උපසිරැසි නිකුත් වූ සැනින් ලබාගන්න.",
@@ -1319,7 +1357,8 @@
                 "notice_text": "⚠️ [Preview Mode] data.json නොබැඳි බැවින් ඩමි තොරතුරු පෙන්වයි. GitHub එකට data.json අප්ලෝඩ් කළ පසු මෙය ස්වයංක්‍රීයව වෙනස් වේ!",
                 "server_status_sub": "ONLINE",
                 "server_status_bot": "ACTIVE",
-                "blogger_link": "https://yourbloggerlink.blogspot.com"
+                "blogger_link": "https://yourbloggerlink.blogspot.com",
+                "chat_chips": "My Demon 🍿 | Hidden Love 🍿 | Blogger Link 📚 | Help Guide ❓"
             },
             "latest_updates": [
                 {
@@ -1426,7 +1465,7 @@
 
                 document.getElementById('visitor-count').innerText = newCount.toLocaleString();
             } catch (error) {
-                console.error("Error updating count:", error);
+                console.error(error);
             }
         }
 
@@ -1464,7 +1503,7 @@
                     <div class="about-brand-name">ලියැසි SUBVERSE</div>
                 </div>
                 <p class="about-desc-text">${aboutMeText}</p>
-                <span class="about-subtitle">වැඩිදුර තොරතුරු</span>
+                <span class="about-subtitle">වැඩිදුර تොරතුරු</span>
                 <a href="about.html" class="about-btn">About Us පිටුවට පිවිසෙන්න</a>
             `;
 
@@ -1540,6 +1579,7 @@
             }
 
             generateDynamicGenres(availableDramas);
+            renderDynamicChatChips(config, availableDramas); // 💡 AI Chat Suggestion Chips Dynamic සකස් කිරීම
 
             const area = document.getElementById('dynamic-content');
             area.innerHTML = ""; 
@@ -1552,14 +1592,14 @@
             });
 
             if (filteredDramas.length === 0) {
-                area.innerHTML = `<p style="text-align: center; color: var(--neon-pink); font-weight: bold; margin: 50px 0;">🔍 සෙවීමට අදාළ kතාමාලා කිසිවක් හමු නොවීය.</p>`;
+                area.innerHTML = `<p style="text-align: center; color: var(--neon-pink); font-weight: bold; margin: 50px 0;">🔍 සෙවීමට අදාළ කතාමාලා කිසිවක් හමු නොවීය.</p>`;
                 return;
             }
 
             const languages = {
-                "K-DRAMA": "කොරියානු kතාමාලා (Korean Dramas)",
-                "C-DRAMA": "චීන kතාමාලා (Chinese Dramas)",
-                "J-DRAMA": "ජපන් kතාමාලා (Japanese Dramas)"
+                "K-DRAMA": "කොරියානු කතාමාලා (Korean Dramas)",
+                "C-DRAMA": "චීන කතාමාලා (Chinese Dramas)",
+                "J-DRAMA": "ජපන් කතාමාලා (Japanese Dramas)"
             };
 
             Object.entries(languages).forEach(([type, label]) => {
@@ -1592,6 +1632,40 @@
             });
         }
 
+        /* 💡 DYNAMIC CHIPS RENDER FUNCTION - CONTROLLED BY BOT CONFIG */
+        function renderDynamicChatChips(config, dramas) {
+            const chipsContainer = document.querySelector('.ai-action-chips');
+            if (!chipsContainer) return;
+
+            let chipsHTML = "";
+
+            // 1. පයිතන් බොට් එකෙහි CONFIG එකෙහි chat_chips ඇතුළත් කර ඇත්නම් එය භාවිත කිරීම
+            if (config.chat_chips) {
+                const customList = config.chat_chips.split('|');
+                customList.forEach(item => {
+                    const cleanName = item.trim();
+                    if (cleanName) {
+                        chipsHTML += `<div class="ai-chip" onclick="quickSend('${cleanName}')">${cleanName}</div>`;
+                    }
+                });
+            } 
+            // 2. නැතහොත් ස්වයංක්‍රීයවම අලුත්ම ඩ්‍රාමා වලින් ගලපා සකස් කරගැනීම (Smart Fallback)
+            else {
+                if (dramas.length > 0) {
+                    const lastTwo = dramas.slice(-2);
+                    lastTwo.forEach(d => {
+                        chipsHTML += `<div class="ai-chip" onclick="quickSend('${d.title} උපසිරැසි තියෙද? 🍿')">🍿 ${d.title.split(' ')[0]}?</div>`;
+                    });
+                }
+                if (config.blogger_link) {
+                    chipsHTML += `<div class="ai-chip" onclick="quickSend('Blogger කියවීම් ඉසව්ව ලින්ක් එක මොකක්ද? 📚')">📚 Blogger Link</div>`;
+                }
+                chipsHTML += `<div class="ai-chip" onclick="quickSend('Subverse Admin සම්බන්ධ කරගන්නේ කොහොමද? 💬')">💬 Admin Contact</div>`;
+            }
+
+            chipsContainer.innerHTML = chipsHTML;
+        }
+
         function generateDynamicGenres(dramas) {
             const container = document.getElementById('genre-container');
             const genresSet = new Set();
@@ -1601,7 +1675,7 @@
 
             const translations = {
                 "Action": "ක්‍රියාදාම (Action)",
-                "Romance": "ආදර kතා (Romance)",
+                "Romance": "ආදර කතා (Romance)",
                 "Thriller": "ත්‍රාසජනක (Thriller)",
                 "Historical": "ඓතිහාසික (Historical)",
                 "Fantasy": "මායාවී (Fantasy)",
@@ -1733,7 +1807,6 @@
             renderPage();
         }
 
-        /* 💬 INTERACTIVE COMMENTS, RATING STORAGE & NEON GAUGE SYSTEM */
         function loadCommentsAndLikes() {
             let likes = localStorage.getItem('subverseLikes') || 124;
             let dislikes = localStorage.getItem('subverseDislikes') || 2;
@@ -1783,7 +1856,7 @@
             const text = textInput.value.trim();
 
             if (text === "") {
-                alert("කරුණාකර ඔබේ අදහස ලියා ඉන්පසු ඇතුළත් කරන්න!");
+                alert("კරුණාකර ඔබේ අදහස ලියා ඉන්පසු ඇතුළත් කරන්න!");
                 return;
             }
 
@@ -1982,7 +2055,6 @@
                             }
                         } catch (groqError) {
                             console.error("All AI servers failed. Uptime exhausted.", groqError);
-                            // 📡 සර්වර් සියල්ල අසාර්ථක වූ විට පෙන්වීම (Offline - Red Color)
                             updateServerStatusUI("OFFLINE (ALL SERVERS EXHAUSTED)", "#ff003c");
                         }
                     }
@@ -2118,7 +2190,7 @@
         window.addEventListener("resize", resizeCanvas);
         resizeCanvas();
 
-        // 📝 "ලියැසි SUBVERSE" අකුරු ද්විත්ව පේළි offscreen Targets සාදාගැනීම
+        // 📝 "ලියැසි SUBVERSE" אකුරු ද්විත්ව පේළි offscreen Targets සාදාගැනීම
         function createTextTargets() {
             const offscreenCanvas = document.createElement('canvas');
             const offCtx = offscreenCanvas.getContext('2d');
@@ -2260,7 +2332,7 @@
                     let current3DY = ambientY;
                     let current3DZ = ambientZ;
 
-                    // 3. අකුරු මාදිලියට මාරුවීමේදී තිත් එකතු වීම (Hologram text assembly)
+                    // 3. אකුරු මාදිලියට මාරුවීමේදී තිත් එකතු වීම (Hologram text assembly)
                     if (this.isTextParticle && this.targetX !== null) {
                         current3DX = this.lerp(ambientX, this.targetX, transitionProgress);
                         current3DY = this.lerp(ambientY, this.targetY, transitionProgress);
@@ -2359,7 +2431,7 @@
         }
 
         function animateGeminiParticles() {
-            // 🌀 Motion Blur Trail Effect (තිත් අඩු ප්‍රමාණයකින් වැඩි දීප්තියක් පෙන්වීමට පසුබිම 18% කින් වසා දමයි)
+            // 🌀 Motion Blur Trail Effect
             ctx.fillStyle = 'rgba(2, 4, 8, 0.18)'; 
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
@@ -2413,6 +2485,5 @@
     </script>
 </body>
 </html>
-
 
 
