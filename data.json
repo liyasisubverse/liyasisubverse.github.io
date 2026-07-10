@@ -2,6 +2,12 @@
   "latest_updates": [
     {
       "title": "Doctor Lawyer",
+      "episode": "EP 01",
+      "image_url": "https://image.tmdb.org/t/p/w500/scDumcueQr2Cy5nh2s7xI6hTYOk.jpg",
+      "post_link": "episode_picker.html?drama_id=196906&ep=EP 01"
+    },
+    {
+      "title": "Doctor Lawyer",
       "episode": "upcoming",
       "image_url": "https://i.ibb.co/pBhQmmD1/Doctor-Lawyer-Episode-01.jpg",
       "post_link": "episode_picker.html?drama_id=685505&ep=EP 01"
@@ -19,6 +25,99 @@
       "synopsis": "නීතිඥයෙක් වු වෛද්‍යවරයෙක් ළඟදීම ලියැසි SUBVERSE වෙතින් සිංහල උපසිරැසි සමඟ...",
       "genres": [
         "Drama"
+      ]
+    },
+    "196906": {
+      "id": "196906",
+      "title": "Doctor Lawyer",
+      "type": "K-DRAMA",
+      "status": "ONGOING",
+      "imdb": "7.3",
+      "total_episodes": 16,
+      "image_url": "https://image.tmdb.org/t/p/w500/scDumcueQr2Cy5nh2s7xI6hTYOk.jpg",
+      "map_url": "",
+      "synopsis": "\"Doctor Lawyer\" යනු වෛද්‍ය කුමන්ත්‍රණයකට හසුවී සියල්ල අහිමි වන වෛද්‍යවරයෙක්, පසුව නීතිඥයෙකු වී යුක්තිය පතා කරන සටනකි.",
+      "genres": [
+        "Crime",
+        "Drama"
+      ],
+      "director": "Lee Yong-seok, Lee Dong-hyun",
+      "writer": "Jang Hong-chul",
+      "network": "MBC",
+      "first_air_date": "2022-06-03",
+      "runtime": "70 min",
+      "country": "South Korea",
+      "trailer": "",
+      "cast": [
+        {
+          "name": "So Ji-sub",
+          "image": "https://image.tmdb.org/t/p/w200/oEdXNo3ohtldtIW6DMFPpvMYW4g.jpg"
+        },
+        {
+          "name": "Shin Sung-rok",
+          "image": "https://image.tmdb.org/t/p/w200/6ajwIMcTc2jVFsjVOx2W0XARxpj.jpg"
+        },
+        {
+          "name": "Im Soo-hyang",
+          "image": "https://image.tmdb.org/t/p/w200/cj7d9lpRtXdo3udHBOQayGgygfP.jpg"
+        },
+        {
+          "name": "Lee Ju-bin",
+          "image": "https://image.tmdb.org/t/p/w200/rO9UM65KgxfacCY3IsrHheOFBpZ.jpg"
+        },
+        {
+          "name": "Lee Kyung-young",
+          "image": "https://image.tmdb.org/t/p/w200/aDNcLCWs7KHToiXxfG7ACwvne3l.jpg"
+        },
+        {
+          "name": "Lee Dong-ha",
+          "image": "https://image.tmdb.org/t/p/w200/oVHlBTszhai1JGdQPMg6vAm3PlM.jpg"
+        }
+      ],
+      "episodes": [
+        {
+          "episode": "EP 01",
+          "link": "https://liyasisubverse.github.io/subtitles/Doctor_Lawyer/Doctor_Lawyer_E01.srt",
+          "tg_link": "https://t.me/+FVJpdLwtqxdjYjE1",
+          "title": "✨️ පළමු සැත්කම ✨️",
+          "image": "https://image.tmdb.org/t/p/w500/scDumcueQr2Cy5nh2s7xI6hTYOk.jpg",
+          "synopsis": "දක්ෂ ශල්‍ය වෛද්‍ය හාන් යී-හන් විසින් සිදු කරන විශේෂ හෘද බද්ධය.",
+          "map_url": "",
+          "trailer": "",
+          "cast": [
+            {
+              "name": "So Ji-sub",
+              "image": "https://image.tmdb.org/t/p/w200/oEdXNo3ohtldtIW6DMFPpvMYW4g.jpg"
+            },
+            {
+              "name": "Shin Sung-rok",
+              "image": "https://image.tmdb.org/t/p/w200/6ajwIMcTc2jVFsjVOx2W0XARxpj.jpg"
+            },
+            {
+              "name": "Im Soo-hyang",
+              "image": "https://image.tmdb.org/t/p/w200/cj7d9lpRtXdo3udHBOQayGgygfP.jpg"
+            },
+            {
+              "name": "Lee Ju-bin",
+              "image": "https://image.tmdb.org/t/p/w200/rO9UM65KgxfacCY3IsrHheOFBpZ.jpg"
+            },
+            {
+              "name": "Lee Kyung-young",
+              "image": "https://image.tmdb.org/t/p/w200/aDNcLCWs7KHToiXxfG7ACwvne3l.jpg"
+            },
+            {
+              "name": "Lee Dong-ha",
+              "image": "https://image.tmdb.org/t/p/w200/oVHlBTszhai1JGdQPMg6vAm3PlM.jpg"
+            }
+          ],
+          "director": "Lee Yong-seok, Lee Dong-hyun",
+          "writer": "Jang Hong-chul",
+          "network": "MBC",
+          "first_air_date": "2022-06-03",
+          "runtime": "70 min",
+          "country": "South Korea",
+          "imdb": "7.3"
+        }
       ]
     }
   },
