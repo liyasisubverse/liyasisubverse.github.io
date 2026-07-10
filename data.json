@@ -8,6 +8,12 @@
     },
     {
       "title": "Doctor Lawyer",
+      "episode": "EP 01",
+      "image_url": "https://image.tmdb.org/t/p/w500/scDumcueQr2Cy5nh2s7xI6hTYOk.jpg",
+      "post_link": "episode_picker.html?drama_id=196906&ep=EP 01"
+    },
+    {
+      "title": "Doctor Lawyer",
       "episode": "upcoming",
       "image_url": "https://i.ibb.co/pBhQmmD1/Doctor-Lawyer-Episode-01.jpg",
       "post_link": "episode_picker.html?drama_id=685505&ep=EP 01"
