@@ -8,46 +8,17 @@
     }
   ],
   "dramas": {
-    "685505": {
-      "id": "685505",
+    "540529": {
+      "id": "540529",
       "title": "Doctor Lawyer",
       "type": "K-DRAMA",
       "status": "UPCOMING",
       "imdb": "8.5",
       "total_episodes": 16,
       "image_url": "https://i.ibb.co/pBhQmmD1/Doctor-Lawyer-Episode-01.jpg",
-      "map_url": "",
       "synopsis": "නීතිඥයෙක් වු වෛද්‍යවරයෙක් ළඟදීම ලියැසි SUBVERSE වෙතින් සිංහල උපසිරැසි සමඟ...",
       "genres": [
         "Drama"
-      ],
-      "director": "N/A",
-      "writer": "N/A",
-      "network": "N/A",
-      "first_air_date": "Upcoming",
-      "runtime": "N/A",
-      "country": "South Korea (දකුණු කොරියාව)",
-      "trailer": "",
-      "cast": [],
-      "episodes": [
-        {
-          "episode": "EP 01",
-          "link": "#",
-          "tg_link": "",
-          "title": "ළඟදීම ලියැසි SUBVERSE වෙතින් සිංහල උපසිරැසි සමඟ...",
-          "image": "https://i.ibb.co/pBhQmmD1/Doctor-Lawyer-Episode-01.jpg",
-          "synopsis": "නීතිඥයෙක් වු වෛද්‍යවරයෙක් ළඟදීම ලියැසි SUBVERSE වෙතින් සිංහල උපසිරැසි සමඟ...",
-          "map_url": "",
-          "trailer": "",
-          "cast": [],
-          "director": "N/A",
-          "writer": "N/A",
-          "network": "N/A",
-          "first_air_date": "Upcoming",
-          "runtime": "N/A",
-          "country": "South Korea (දකුණු කොරියාව)",
-          "imdb": "8.5"
-        }
       ]
     }
   },
