@@ -248,7 +248,7 @@
             position: relative; z-index: 2;
             width: 100%; height: 100%;
             display: flex; 
-            align-items: flex-start; /* 🌟 center වෙනුවට flex-start කිරීමෙන් අකුරු ඉහළට යයි */
+            align-items: flex-start; /* center වෙනුවට flex-start කිරීමෙන් අකුරු ඉහළට යයි */
             justify-content: flex-start; 
             padding: 30px 40px; /* දාරයේ සිට ලස්සන දුරකින් තැබීමට */
             box-sizing: border-box;
@@ -259,7 +259,8 @@
             border: none !important; box-shadow: none !important;
             backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
             padding: 0 !important;
-            display: flex; flex-direction: column; justify-content: center; 
+            display: flex; flex-direction: column; justify-content: flex-start; 
+            height: 100%; /* බටන් එක පහළට තල්ලු කිරීමට උපකාරී වේ */
         }
 
         /* 🖥️ [UPDATED] LARGER, MORE PROMINENT LABELS AND TITLES */
@@ -321,7 +322,7 @@
             position: relative; z-index: 2;
             width: 100%; height: 100%;
             display: flex; 
-            align-items: flex-start; /* 🌟 ඉහළටම සකසන ලදී */
+            align-items: flex-start; /* ඉහළටම සකසන ලදී */
             justify-content: flex-start; 
             padding: 25px 35px; 
             box-sizing: border-box;
@@ -332,20 +333,41 @@
             border: none !important; box-shadow: none !important;
             backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
             padding: 0 !important;
-            display: flex; flex-direction: column; justify-content: center; 
+            display: flex; flex-direction: column; justify-content: flex-start; 
+            height: 100%;
         }
-        .upcoming-badge-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+        .upcoming-badge-row { 
+            display: flex; 
+            align-items: center; 
+            flex-wrap: nowrap; 
+            gap: 10px; 
+            margin-bottom: 12px; 
+            overflow-x: auto; 
+            scrollbar-width: none;
+        }
+        .upcoming-badge-row::-webkit-scrollbar {
+            display: none;
+        }
         .upcoming-badge { 
             background: var(--neon-amber); color: #000; 
             padding: 5px 12px; font-size: 13px; font-weight: 900; 
             width: fit-content; border-radius: 4px; 
             box-shadow: 0 0 10px var(--neon-amber); letter-spacing: 0.5px; margin: 0; 
+            white-space: nowrap;
         }
         .upcoming-ep-badge { 
             background: rgba(255, 170, 0, 0.1); color: var(--neon-amber); 
             border: 1.5px solid var(--neon-amber); padding: 4.5px 10px; 
             font-size: 12px; font-weight: bold; border-radius: 4px; 
             text-shadow: 0 0 5px var(--neon-amber); box-shadow: 0 0 8px rgba(255, 170, 0, 0.3); 
+            white-space: nowrap;
+        }
+        .upcoming-imdb-badge {
+            background: rgba(2, 4, 8, 0.95); border: 1.5px solid var(--neon-amber); color: var(--neon-amber);
+            padding: 4.5px 10px; font-size: 12px; font-weight: bold; border-radius: 4px;
+            box-shadow: 0 0 10px rgba(255, 170, 0, 0.4); display: flex; align-items: center; gap: 4px;
+            text-shadow: 0 0 5px var(--neon-amber);
+            white-space: nowrap;
         }
         .upcoming-title { font-size: 28px; font-weight: 900; margin: 0 0 12px 0; text-shadow: 0 0 12px #fff; color: #fff; }
         .upcoming-desc { 
@@ -908,6 +930,12 @@
             background: rgba(0, 240, 255, 0.1) !important;
             box-shadow: 0 0 20px var(--neon-cyan), inset 0 0 12px rgba(0, 240, 255, 0.2) !important;
         }
+        
+        /* [UPDATED] Hero Button Layout Positioning */
+        .hero-btn {
+            margin-top: auto !important; /* බැනරයෙහි පහළටම ගැනීමට */
+            align-self: flex-start;
+        }
 
         /* 🟣 Purple/Violet Neon (Korean Tab / Comments Button) */
         .tab-btn-korean.active, .tab-btn-korean:hover, .comment-submit-btn {
@@ -1063,7 +1091,7 @@
             .hero-hud-card { padding: 15px; background: none !important; backdrop-filter: none !important; }
             .hero-title { font-size: 24px; margin-bottom: 5px; }
             .hero-desc { font-size: 12.5px; margin-bottom: 15px; }
-            .hero-btn { padding: 8px 16px; font-size: 11px; }
+            .hero-btn { padding: 8px 16px; font-size: 11px; margin-top: auto !important; }
 
             /* STABILIZE SECTION BAR ON MOBILE & PREVENT WRAPPING */
             .section-title-neon {
@@ -1101,6 +1129,19 @@
                 padding: 8px 10px !important;
                 flex: 1 !important;
             }
+            
+            /* [UPDATED] Coming Soon Banner - Mobile Responsive Badges */
+            .upcoming-badge-row { 
+                gap: 6px !important; 
+                margin-bottom: 8px !important; 
+                flex-wrap: nowrap !important;
+                overflow-x: auto !important;
+            }
+            .upcoming-badge { font-size: 10px !important; padding: 4px 8px !important; }
+            .upcoming-ep-badge { font-size: 9px !important; padding: 3.5px 6px !important; }
+            .upcoming-imdb-badge { font-size: 9px !important; padding: 3.5px 6px !important; }
+            .upcoming-title { font-size: 22px !important; margin-bottom: 6px !important; }
+            .upcoming-desc { font-size: 12px !important; line-height: 1.4 !important; }
         }
 
         /* 📊 UNIFORM SYMMETRICAL FEEDBACK BUTTONS FOR BOTH CORNERS */
@@ -1163,7 +1204,7 @@
         </div>
     </div>
 
-    <!-- NEON PULSING SPECIAL NOTICE BAR -->
+    <!-- NEON PULSING SPECIAL NOTICE BAR (HEADER NOTICE) -->
     <div class="notice-container-alert" id="notice-alert-container">
         <div class="notice-alert-bar">
             <div class="notice-beacon"></div>
@@ -1297,19 +1338,18 @@
                 </div>
 
                 <!-- Like / Dislike buttons re-located underneath the progress bar split evenly to both corners -->
-               <div class="feedback-buttons">
-    <button class="feedback-btn like-btn" onclick="submitFeedback('like', event)">
-        <i class="fa-solid fa-thumbs-up"></i>
-        <span>LIKE</span>
-        <span id="like-count" style="font-family: monospace; font-weight: 900; margin-left: 3px;">124</span>
-    </button>
-    <button class="feedback-btn dislike-btn" onclick="submitFeedback('dislike', event)">
-        <i class="fa-solid fa-thumbs-down"></i>
-        <span>DISLIKE</span>
-        <span id="dislike-count" style="font-family: monospace; font-weight: 900; margin-left: 3px;">2</span>
-    </button>
-      
-     </div>
+                <div class="feedback-buttons">
+                    <button class="feedback-btn like-btn" onclick="submitFeedback('like', event)">
+                        <i class="fa-solid fa-thumbs-up"></i>
+                        <span>LIKE</span>
+                        <span id="like-count" style="font-family: monospace; font-weight: 900; margin-left: 3px;">124</span>
+                    </button>
+                    <button class="feedback-btn dislike-btn" onclick="submitFeedback('dislike', event)">
+                        <i class="fa-solid fa-thumbs-down"></i>
+                        <span>DISLIKE</span>
+                        <span id="dislike-count" style="font-family: monospace; font-weight: 900; margin-left: 3px;">2</span>
+                    </button>
+                </div>
             </div>
             <div class="feedback-card" style="border-left: 3.5px solid var(--neon-pink); border-right: 3.5px solid var(--neon-pink);">
                 <div class="feedback-title"><i class="fa-solid fa-comments" style="color:var(--neon-cyan)"></i> USER FEEDBACK & COMMENTS</div>
@@ -1459,7 +1499,8 @@
                 "about_me_text": "අපි ඔබ වෙත ගෙන එන්නේ ගුණාත්මක බවින් ඉහළම ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි පමණි. අපගේ නිල සමාජ මාධ්‍ය ජාලයන් සමඟ එක් වී අලුත්ම උපසිරැසි නිකුත් වූ සැනින් ලබාගන්න.",
                 "about_me_avatar": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png",
                 "telegram_channel_link": "https://t.me/liyasi1",
-                "notice_text": "⚠️ [Preview Mode] data.json නොබැඳි බැවින් ඩමි තොරතුරු පෙන්වයි. GitHub එකට data.json අප්ලෝඩ් කළ පසු මෙය ස්වයංක්‍රීයව වෙනස් වේ!",
+                "top_notice_text": "⚡ [විශේෂ දැනුම්දීම] අපගේ නවතම සිංහල උපසිරැසි දැන් සෘජුවම බාගත කරගත හැක!",
+                "bottom_notice_text": "අපගේ සියලුම සිංහල උපසිරැසි නොමිලේ ලබාගත හැක. කිසියම් ගැටලුවක් ඇත්නම් 3-Dot මෙනුවේ ඇති Contact පිටුවෙන් අපට පණිවිඩයක් එවන්න.",
                 "server_status_sub": "ONLINE",
                 "server_status_bot": "ACTIVE",
                 "blogger_link": "https://yourbloggerlink.blogspot.com",
@@ -1554,15 +1595,33 @@
                 try {
                     const response = await fetch(`${firebaseURL}visitorCount.json`);
                     const data = await response.json();
-                    document.getElementById('visitor-count').innerText = data !== null ? data.toLocaleString() : "0";
+                    let countVal = 0;
+                    if (data !== null) {
+                        if (typeof data === 'number') {
+                            countVal = data;
+                        } else if (typeof data === 'string') {
+                            let parsed = parseInt(data);
+                            if (!isNaN(parsed)) countVal = parsed;
+                        }
+                    }
+                    document.getElementById('visitor-count').innerText = countVal.toLocaleString();
                 } catch (e) { console.error("Admin view error:", e); }
                 return;
             }
             
             try {
                 const response = await fetch(`${firebaseURL}visitorCount.json`);
-                let currentCount = await response.json();
-                let newCount = (currentCount || 0) + 1;
+                const data = await response.json();
+                let countVal = 0;
+                if (data !== null) {
+                    if (typeof data === 'number') {
+                        countVal = data;
+                    } else if (typeof data === 'string') {
+                        let parsed = parseInt(data);
+                        if (!isNaN(parsed)) countVal = parsed;
+                    }
+                }
+                let newCount = countVal + 1;
                 
                 await fetch(`${firebaseURL}visitorCount.json`, {
                     method: 'PUT',
@@ -1581,24 +1640,28 @@
             const aboutMeText = config.about_me_text || "අපි ඔබ වෙත ගෙන එන්නේ ගුණාත්මක බවින් ඉහළම ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි පමණි. අපගේ නිල සමාජ මාධ්‍ය ජාලයන් සමඟ එක් වී අලුත්ම උපසිරැසි නිකුත් වූ සැනින් ලබාගන්න.";
             const aboutMeAvatar = config.about_me_avatar || ABOUT_ME_ART_LOGO;
             const tgChannelLink = config.telegram_channel_link || "https://t.me/liyasi1";
-            const noticeText = config.notice_text || "";
+            
+            // [UPDATED] ස්වාධීන දැනුම්දීම් දෙක වෙන වෙනම ලබාගැනීම
+            const topNoticeText = config.top_notice_text || config.notice_text || "";
+            const bottomNoticeText = config.bottom_notice_text || config.notice_text || "අපගේ සියලුම සිංහල උපසිරැසි නොමිලේ ලබාගත හැක. කිසියම් ගැටලුවක් ඇත්නම් 3-Dot මෙනුවේ ඇති Contact පිටුවෙන් අපට පණිවිඩයක් එවන්න.";
+            
             const subServerStatus = config.server_status_sub || "ONLINE";
             const botServerStatus = config.server_status_bot || "ACTIVE";
             const bloggerLink = config.blogger_link || "#";
 
             const noticeContainer = document.getElementById('notice-alert-container');
             if (noticeContainer) {
-                if (noticeText && noticeText.trim() !== "") {
+                if (topNoticeText && topNoticeText.trim() !== "") {
                     noticeContainer.style.display = "block";
                     const noticeEl = document.getElementById('notice-alert-text');
-                    if (noticeEl) noticeEl.innerText = noticeText;
+                    if (noticeEl) noticeEl.innerText = topNoticeText;
                 } else {
                     noticeContainer.style.display = "none";
                 }
             }
 
             const noticeWidget = document.getElementById('notice-widget-text');
-            if (noticeWidget) noticeWidget.innerText = noticeText || "කිසිදු සක්‍රීය විශේෂ නිවේදනයක් නොමැත.";
+            if (noticeWidget) noticeWidget.innerText = bottomNoticeText;
             
             const serverStatusWidget = document.getElementById('server-status-widget');
             if (serverStatusWidget) {
@@ -1963,32 +2026,32 @@
         }
 
         async function loadCommentsAndLikes() {
-            // 1. පරණ පෙරනිමි අගයන්
             let likes = 124;
             let dislikes = 2;
 
-            // 2. Firebase Database එකෙන් සජීවීව Likes/Dislikes ගණන ලබා ගැනීම
+            // Firebase Database එකෙන් සජීවීව Likes/Dislikes ගණන ලබා ගැනීම
             try {
                 const resLikes = await fetch(`${firebaseURL}likes.json`);
                 const firebaseLikes = await resLikes.json();
-                if (firebaseLikes !== null) {
-                    likes = parseInt(firebaseLikes);
-                } else {
-                    // පළමු වතාවට Firebase එකට ඩේටා යැවීම
+                if (firebaseLikes !== null && typeof firebaseLikes !== 'object') {
+                    let parsed = parseInt(firebaseLikes);
+                    if (!isNaN(parsed)) likes = parsed;
+                } else if (firebaseLikes === null) {
                     await fetch(`${firebaseURL}likes.json`, { method: 'PUT', body: JSON.stringify(likes) });
                 }
 
                 const resDislikes = await fetch(`${firebaseURL}dislikes.json`);
                 const firebaseDislikes = await resDislikes.json();
-                if (firebaseDislikes !== null) {
-                    dislikes = parseInt(firebaseDislikes);
-                } else {
+                if (firebaseDislikes !== null && typeof firebaseDislikes !== 'object') {
+                    let parsed = parseInt(firebaseDislikes);
+                    if (!isNaN(parsed)) dislikes = parsed;
+                } else if (firebaseDislikes === null) {
                     await fetch(`${firebaseURL}dislikes.json`, { method: 'PUT', body: JSON.stringify(dislikes) });
                 }
             } catch (e) {
                 console.error("Firebase votes load error. Falling back to local storage:", e);
-                likes = parseInt(safeLocalStorage.getItem('subverseLikes') || 124);
-                dislikes = parseInt(safeLocalStorage.getItem('subverseDislikes') || 2);
+                likes = parseInt(safeLocalStorage.getItem('subverseLikes')) || 124;
+                dislikes = parseInt(safeLocalStorage.getItem('subverseDislikes')) || 2;
             }
 
             document.getElementById('like-count').innerText = likes;
@@ -1996,7 +2059,7 @@
 
             updateFeedbackBar(likes, dislikes);
 
-            // 3. පරිශීලකයින් ලියූ අදහස් (Comments) කියවීම
+            // පරිශීලකයින් ලියූ අදහස් (Comments) කියවීම
             let storedComments;
             try {
                 storedComments = JSON.parse(safeLocalStorage.getItem('subverseComments')) || [
@@ -2025,121 +2088,68 @@
             document.getElementById('feedback-gauge-fill').style.width = pct + "%";
         }
 
-        // 🌟 ලයික්/අන්ලයික් කරන විට බටන් එක තිබූ ස්ථානයේ සිටම අහසට නව තරු එකතු කරන සජීවීකරණය
-        function spawnFeedbackStar(type, startX, startY) {
-            try {
-                const id = particles.length;
-                const newStar = new Particle(id);
-                
-                newStar.isGlobalScatter = true; 
-                newStar.isTextParticle = false;
-                newStar.isFeedbackStar = true; // විශේෂ ලයික් තරුවක් ලෙස සලකුණු කිරීම
-                
-                newStar.baseSize = Math.random() * 3.5 + 2.5; // තරමක් විශාල තරුවක්
-                newStar.size = newStar.baseSize;
-                
-                // බටන් එක පිහිටි තිරයේ ලිපිනය ආරම්භක ස්ථානය ලෙස ලබා දීම
-                newStar.x = startX;
-                newStar.y = startY;
-                
-                // ඉහළට සහ දෙපැත්තට විහිදී යන ප්‍රවේගය (Magic sparkle velocity)
-                newStar.vx = (Math.random() - 0.5) * 6; 
-                newStar.vy = -(Math.random() * 6 + 4); 
-                
-                newStar.alpha = 1.0;
-                
-                if (type === 'like') {
-                    newStar.color = "#00ffcc"; // Emerald Green
-                    newStar.isSpecialGlow = true;
-                    newStar.glowColor = "#00ffcc";
-                } else {
-                    newStar.color = "#ff007f"; // Neon Pink
-                    newStar.isSpecialGlow = true;
-                    newStar.glowColor = "#ff007f";
-                }
-                
-                particles.push(newStar);
-            } catch (err) {
-                console.error("Error spawning star:", err);
+        async function submitFeedback(type, event) {
+            // එකම පුද්ගලයා නැවත නැවත Spam ක්ලික් කිරීම් වැළැක්වීම
+            if (safeLocalStorage.getItem('subverseVoted') === 'true') {
+                alert("⚠️ ඔබ දැනටමත් ඔබේ කැමැත්ත සලකුණු කර ඇත! ස්තූතියි. ❤️");
+                return;
             }
+
+            const targetNode = type === 'like' ? 'likes' : 'dislikes';
+            const countElId = type === 'like' ? 'like-count' : 'dislike-count';
+            const defaultVal = type === 'like' ? 124 : 2;
+            let currentCount = defaultVal;
+
+            try {
+                const response = await fetch(`${firebaseURL}${targetNode}.json`);
+                if (!response.ok) throw new Error("Firebase response not OK");
+                let globalCount = await response.json();
+                
+                let parsedCount = (globalCount !== null && typeof globalCount !== 'object') ? parseInt(globalCount) : NaN;
+                currentCount = (!isNaN(parsedCount) ? parsedCount : defaultVal) + 1;
+
+                // Firebase Realtime Database එකට අලුත්ම අගය අප්ලෝඩ් කිරීම
+                await fetch(`${firebaseURL}${targetNode}.json`, {
+                    method: 'PUT',
+                    body: JSON.stringify(currentCount)
+                });
+
+                document.getElementById(countElId).innerText = currentCount;
+                safeLocalStorage.setItem('subverseVoted', 'true');
+                safeLocalStorage.setItem(`subverse${type.charAt(0).toUpperCase() + type.slice(1)}s`, currentCount);
+
+            } catch (error) {
+                console.error("Firebase submit error:", error);
+                let key = `subverse${type.charAt(0).toUpperCase() + type.slice(1)}s`;
+                let storedVal = parseInt(safeLocalStorage.getItem(key));
+                let localVal = (!isNaN(storedVal) ? storedVal : defaultVal) + 1;
+                
+                safeLocalStorage.setItem(key, localVal);
+                document.getElementById(countElId).innerText = localVal;
+            }
+            
+            // බටන් එක ක්ලික් කළ විට නියෝන් ආලෝකය දිලිසීමේ සජීවීකරණය පමණක් ඉතිරි කරන ලදී (තරු ඉවත් කරන ලදී)
+            const btn = document.querySelector(`.feedback-btn.${type}-btn`);
+            if (btn) {
+                btn.style.transform = "scale(1.18)";
+                btn.style.transition = "all 0.22s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+                if (type === 'like') {
+                    btn.style.boxShadow = "0 0 25px #00ffcc, inset 0 0 10px #00ffcc";
+                    btn.style.borderColor = "#00ffcc";
+                } else {
+                    btn.style.boxShadow = "0 0 25px #ff007f, inset 0 0 10px #ff007f";
+                    btn.style.borderColor = "#ff007f";
+                }
+                setTimeout(() => {
+                    btn.style.transform = "scale(1)";
+                    btn.style.boxShadow = "";
+                    btn.style.borderColor = "";
+                }, 350);
+            }
+
+            // ගෝලීය ප්‍රතිශත තීරුව (Progress Bar) යාවත්කාලීන කිරීම
+            loadCommentsAndLikes();
         }
-
-async function submitFeedback(type, event) {
-    // 🌟 එකම පුද්ගලයා නැවත නැවත Spam ක්ලික් කිරීම් වැළැක්වීම (One vote per browser)
-    if (safeLocalStorage.getItem('subverseVoted') === 'true') {
-        alert("⚠️ ඔබ දැනටමත් ඔබේ කැමැත්ත සලකුණු කර ඇත! ස්තූතියි. ❤️");
-        return;
-    }
-
-    const targetNode = type === 'like' ? 'likes' : 'dislikes';
-    const countElId = type === 'like' ? 'like-count' : 'dislike-count';
-    const defaultVal = type === 'like' ? 124 : 2;
-    let currentCount = defaultVal;
-
-    try {
-        // සජීවීව පවතින ගෝලීය අගය සර්වර් එකෙන් ලබා ගැනීම
-        const response = await fetch(`${firebaseURL}${targetNode}.json`);
-        if (!response.ok) throw new Error("Firebase response not OK");
-        let globalCount = await response.json();
-        
-        let parsedCount = (globalCount !== null && typeof globalCount !== 'object') ? parseInt(globalCount) : NaN;
-        currentCount = (!isNaN(parsedCount) ? parsedCount : defaultVal) + 1;
-
-        // Firebase Realtime Database එකට අලුත්ම අගය අප්ලෝඩ් කිරීම
-        await fetch(`${firebaseURL}${targetNode}.json`, {
-            method: 'PUT',
-            body: JSON.stringify(currentCount)
-        });
-
-        document.getElementById(countElId).innerText = currentCount;
-        safeLocalStorage.setItem('subverseVoted', 'true'); // ඡන්දය ලබාදුන් බව සලකුණු කිරීම
-        safeLocalStorage.setItem(`subverse${type.charAt(0).toUpperCase() + type.slice(1)}s`, currentCount);
-
-    } catch (error) {
-        console.error("Firebase submit error:", error);
-        // සර්වර් එක අවුල් වුවහොත් දේශීයව පමණක් සේව් කර පෙන්වීම (Fallback)
-        let key = `subverse${type.charAt(0).toUpperCase() + type.slice(1)}s`;
-        let storedVal = parseInt(safeLocalStorage.getItem(key));
-        let localVal = (!isNaN(storedVal) ? storedVal : defaultVal) + 1;
-        
-        safeLocalStorage.setItem(key, localVal);
-        document.getElementById(countElId).innerText = localVal;
-    }
-    
-    // 🌟 2. ක්ලික් කළ බොත්තම පිහිටි තැනින්ම තරු සාදා ඉහළට විහිදුවීම
-    let startX = canvas.width / 2;
-    let startY = canvas.height * 0.8;
-    if (event && event.currentTarget) {
-        const rect = event.currentTarget.getBoundingClientRect();
-        startX = rect.left + rect.width / 2;
-        startY = rect.top + rect.height / 2;
-    }
-
-    // බටන් එක ක්ලික් කළ විට නියෝන් ආලෝකය දිලිසීමේ සජීවීකරණය
-    const btn = document.querySelector(`.feedback-btn.${type}-btn`);
-    if (btn) {
-        btn.style.transform = "scale(1.18)";
-        btn.style.transition = "all 0.22s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
-        if (type === 'like') {
-            btn.style.boxShadow = "0 0 25px #00ffcc, inset 0 0 10px #00ffcc";
-            btn.style.borderColor = "#00ffcc";
-        } else {
-            btn.style.boxShadow = "0 0 25px #ff007f, inset 0 0 10px #ff007f";
-            btn.style.borderColor = "#ff007f";
-        }
-        setTimeout(() => {
-            btn.style.transform = "scale(1)";
-            btn.style.boxShadow = "";
-            btn.style.borderColor = "";
-        }, 350);
-    }
-
-    // අහසට තරුව යැවීම
-    spawnFeedbackStar(type, startX, startY);
-
-    // ගෝලීය ප්‍රතිශත තීරුව (Progress Bar) යාවත්කාලීන කිරීම
-    loadCommentsAndLikes();
-}
 
         function submitComment() {
             const nameInput = document.getElementById('commenter-name');
@@ -2214,7 +2224,7 @@ async function submitFeedback(type, event) {
             sendAIMessage();
         }
 
-        // 💡 Server Status UI එක වෙනස් කරන ශ්‍රිතය (Helper Function)
+        // Server Status UI එක වෙනස් කරන ශ්‍රිතය (Helper Function)
         function updateServerStatusUI(statusName, colorVar) {
             const statusEl = document.getElementById('ai-server-status');
             if (statusEl) {
@@ -2232,14 +2242,14 @@ async function submitFeedback(type, event) {
             const typingId = appendChatMessage("bot", "typing...");
             
             try {
-                // 1. article_data.txt ගොනුව dynamic ලෙස කියවීම (Cloudflare Fallback සඳහා පමණි)
+                // article_data.txt ගොනුව dynamic ලෙස කියවීම (Cloudflare Fallback සඳහා පමණි)
                 let articleData = "";
                 try {
                     const articleResponse = await fetch('article_data.txt?v=' + new Date().getTime());
                     if (articleResponse.ok) { articleData = await articleResponse.text(); }
                 } catch (err) { console.log("Could not fetch article_data.txt", err); }
 
-                // 2. data.json දත්ත Minify කිරීම (Cloudflare Fallback සඳහා)
+                // data.json දත්ත Minify කිරීම (Cloudflare Fallback සඳහා)
                 let dramaContext = "";
                 if (originalDatabase && originalDatabase.dramas) {
                     let minimizedDramas = {};
@@ -2292,7 +2302,7 @@ async function submitFeedback(type, event) {
 
                 let aiResponseText = "";
                 
-                // 🚀 පියවර A: ප්‍රධාන වශයෙන් අපගේ Hugging Face Space සර්වර් එක හරහා උත්සාහ කිරීම
+                // පියවර A: ප්‍රධාන වශයෙන් Hugging Face Space සර්වර් එක හරහා උත්සාහ කිරීම
                 try {
                     const hfResponse = await fetch(HUGGING_FACE_API_URL, {
                         method: "POST",
@@ -2311,7 +2321,7 @@ async function submitFeedback(type, event) {
                         throw new Error("Empty reply");
                     }
                 } 
-                // 🚀 පියවර B: Cloudflare Gemini Fallback
+                // පියවර B: Cloudflare Gemini Fallback
                 catch (hfError) {
                     console.log("Hugging Face Failed. Switching to Cloudflare Gemini Fallback...", hfError);
                     try {
@@ -2332,7 +2342,7 @@ async function submitFeedback(type, event) {
                             throw new Error("No response");
                         }
                     } 
-                    // 🚀 පියවර C: Cloudflare Groq Fallback
+                    // පියවර C: Cloudflare Groq Fallback
                     catch (geminiError) {
                         console.log("Cloudflare Gemini failed. Switching to Cloudflare Groq Llama 3...", geminiError);
                         try {
@@ -2483,7 +2493,7 @@ async function submitFeedback(type, event) {
         window.addEventListener("resize", resizeCanvas);
         resizeCanvas();
 
-        // 📝 "ලියැසි SUBVERSE" අකුරු ද්විත්ව පේළිය offscreen Targets සාදාගැනීම
+        // "ලියැසි SUBVERSE" අකුරු ද්විත්ව පේළිය offscreen Targets සාදාගැනීම
         function createTextTargets() {
             const offscreenCanvas = document.createElement('canvas');
             const offCtx = offscreenCanvas.getContext('2d');
@@ -2592,7 +2602,7 @@ async function submitFeedback(type, event) {
             }
 
             update(time) {
-                // 🌟 තරු දිලිසෙන ආකාරය (Twinkle Effect)
+                // තරු දිලිසෙන ආකාරය (Twinkle Effect)
                 this.size = this.baseSize * (0.65 + Math.sin(time * 0.004 + this.id) * 0.35);
 
                 if (this.isGlobalScatter) {
@@ -2621,7 +2631,7 @@ async function submitFeedback(type, event) {
                     let ambientProj = project3D(ambientX, ambientY, ambientZ);
 
                     if (this.isTextParticle && this.targetX !== null) {
-                        // 🌟 [UPDATED] අකුරු එකතු වන විට 3D ඇලවීම සහ කැරකීම සම්පූර්ණයෙන්ම නැති වී
+                        // අකුරු එකතු වන විට 3D ඇලවීම සහ කැරකීම සම්පූර්ණයෙන්ම නැති වී
                         // කෙළින්ම (Flat 2D) තිරය මැදට සුමටව එකතු කිරීමේ සූත්‍රය
                         const flatX = (canvas.width / 2) + this.targetX;
                         const flatY = (canvas.height / 2) + this.targetY;
@@ -2644,7 +2654,7 @@ async function submitFeedback(type, event) {
                 const r = this.size * this.proj.scale;
                 
                 ctx.beginPath();
-                // 🌟 තරු හැඩය නිර්මාණය කිරීම (4-pointed diamond star path)
+                // තරු හැඩය නිර්මාණය කිරීම (4-pointed diamond star path)
                 ctx.moveTo(this.proj.x, this.proj.y - r);
                 ctx.lineTo(this.proj.x + r * 0.28, this.proj.y - r * 0.28);
                 ctx.lineTo(this.proj.x + r, this.proj.y);
@@ -2693,7 +2703,7 @@ async function submitFeedback(type, event) {
                     particles[i].targetZ = 0;
                     particles[i].isTextParticle = true;
 
-                    // 🌈 හෙඩර් එකේ ටයිටල් එකේ පාට මාරුවන පරිදි අකුරුවලට RGB Gradient එකක් දීම
+                    // හෙඩර් එකේ ටයිටල් එකේ පාට මාරුවන පරිදි අකුරුවලට RGB Gradient එකක් දීම
                     let pct = (targetPoint.x + 350) / 700;
                     pct = Math.max(0, Math.min(1, pct));
                     
@@ -2779,7 +2789,7 @@ async function submitFeedback(type, event) {
 
             drawConstellationLines();
             
-            // 🌈 [UPDATED] අකුරු කෙලින්ම, පැහැදිලිව සහ RGB වර්ණ රටාවන්ගෙන් බැබළීමට සලස්වන කොටස
+            // අකුරු කෙලින්ම, පැහැදිලිව සහ RGB වර්ණ රටාවන්ගෙන් බැබළීමට සලස්වන කොටස
             if (transitionProgress > 0.01) {
                 ctx.save();
                 ctx.globalAlpha = transitionProgress; 
@@ -2873,5 +2883,3 @@ async function submitFeedback(type, event) {
     </script>
 </body>
 </html>
-
-
