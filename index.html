@@ -1297,18 +1297,19 @@
                 </div>
 
                 <!-- Like / Dislike buttons re-located underneath the progress bar split evenly to both corners -->
-                <div class="feedback-buttons">
-                    <button class="feedback-btn like-btn" onclick="submitFeedback('like')">
-                        <i class="fa-solid fa-thumbs-up"></i>
-                        <span>LIKE</span>
-                        <span id="like-count" style="font-family: monospace; font-weight: 900; margin-left: 3px;">124</span>
-                    </button>
-                    <button class="feedback-btn dislike-btn" onclick="submitFeedback('dislike')">
-                        <i class="fa-solid fa-thumbs-down"></i>
-                        <span>DISLIKE</span>
-                        <span id="dislike-count" style="font-family: monospace; font-weight: 900; margin-left: 3px;">2</span>
-                    </button>
-                </div>
+               <div class="feedback-buttons">
+    <button class="feedback-btn like-btn" onclick="submitFeedback('like', event)">
+        <i class="fa-solid fa-thumbs-up"></i>
+        <span>LIKE</span>
+        <span id="like-count" style="font-family: monospace; font-weight: 900; margin-left: 3px;">124</span>
+    </button>
+    <button class="feedback-btn dislike-btn" onclick="submitFeedback('dislike', event)">
+        <i class="fa-solid fa-thumbs-down"></i>
+        <span>DISLIKE</span>
+        <span id="dislike-count" style="font-family: monospace; font-weight: 900; margin-left: 3px;">2</span>
+           </button>
+      </div>
+      
             </div>
             <div class="feedback-card" style="border-left: 3.5px solid var(--neon-pink); border-right: 3.5px solid var(--neon-pink);">
                 <div class="feedback-title"><i class="fa-solid fa-comments" style="color:var(--neon-cyan)"></i> USER FEEDBACK & COMMENTS</div>
@@ -1547,33 +1548,41 @@
             try { loadCommentsAndLikes(); } catch (err) { console.error("Comments error:", err); }
         }
         
-        async function updateVisitorCounter() {
-            if (safeLocalStorage.getItem('isAdmin') === 'true') {
-                console.log("Admin session: Counter skipped.");
-                try {
-                    const response = await fetch(`${firebaseURL}visitorCount.json`);
-                    const data = await response.json();
-                    document.getElementById('visitor-count').innerText = data !== null ? data.toLocaleString() : "0";
-                } catch (e) { console.error("Admin view error:", e); }
-                return;
-            }
-            
-            try {
-                const response = await fetch(`${firebaseURL}visitorCount.json`);
-                let currentCount = await response.json();
-                let newCount = (currentCount || 0) + 1;
-                
-                await fetch(`${firebaseURL}visitorCount.json`, {
-                    method: 'PUT',
-                    body: JSON.stringify(newCount)
-                });
-                
-                document.getElementById('visitor-count').innerText = newCount.toLocaleString();
-            } catch (error) {
-                console.error("Visitor count error:", error);
-                document.getElementById('visitor-count').innerText = "1,000+";
-            }
+async function updateVisitorCounter() {
+    if (safeLocalStorage.getItem('isAdmin') === 'true') {
+        console.log("Admin session: Counter skipped.");
+        try {
+            const response = await fetch(`${firebaseURL}visitorCount.json`);
+            if (!response.ok) throw new Error("Firebase response not OK");
+            const data = await response.json();
+            let countVal = (data !== null && typeof data === 'number') ? data : (parseInt(data) || 0);
+            document.getElementById('visitor-count').innerText = countVal.toLocaleString();
+        } catch (e) { console.error("Admin view error:", e); }
+        return;
+    }
+    
+    try {
+        const response = await fetch(`${firebaseURL}visitorCount.json`);
+        if (!response.ok) throw new Error("Firebase response not OK");
+        let currentCount = await response.json();
+        
+        let countVal = 0;
+        if (currentCount !== null && typeof currentCount !== 'object') {
+            countVal = parseInt(currentCount) || 0;
         }
+        let newCount = countVal + 1;
+        
+        await fetch(`${firebaseURL}visitorCount.json`, {
+            method: 'PUT',
+            body: JSON.stringify(newCount)
+        });
+        
+        document.getElementById('visitor-count').innerText = newCount.toLocaleString();
+    } catch (error) {
+        console.error("Visitor count error:", error);
+        document.getElementById('visitor-count').innerText = "1,000+";
+    }
+}
 
         function renderPage() {
             const config = originalDatabase.config || {};
@@ -1962,60 +1971,57 @@
         }
 
         async function loadCommentsAndLikes() {
-            // 1. පරණ පෙරනිමි අගයන්
-            let likes = 124;
-            let dislikes = 2;
+    let likes = 124;
+    let dislikes = 2;
 
-            // 2. Firebase Database එකෙන් සජීවීව Likes/Dislikes ගණන ලබා ගැනීම
-            try {
-                const resLikes = await fetch(`${firebaseURL}likes.json`);
-                const firebaseLikes = await resLikes.json();
-                if (firebaseLikes !== null) {
-                    likes = parseInt(firebaseLikes);
-                } else {
-                    // පළමු වතාවට Firebase එකට ඩේටා යැවීම
-                    await fetch(`${firebaseURL}likes.json`, { method: 'PUT', body: JSON.stringify(likes) });
-                }
-
-                const resDislikes = await fetch(`${firebaseURL}dislikes.json`);
-                const firebaseDislikes = await resDislikes.json();
-                if (firebaseDislikes !== null) {
-                    dislikes = parseInt(firebaseDislikes);
-                } else {
-                    await fetch(`${firebaseURL}dislikes.json`, { method: 'PUT', body: JSON.stringify(dislikes) });
-                }
-            } catch (e) {
-                console.error("Firebase votes load error. Falling back to local storage:", e);
-                likes = parseInt(safeLocalStorage.getItem('subverseLikes') || 124);
-                dislikes = parseInt(safeLocalStorage.getItem('subverseDislikes') || 2);
-            }
-
-            document.getElementById('like-count').innerText = likes;
-            document.getElementById('dislike-count').innerText = dislikes;
-
-            updateFeedbackBar(likes, dislikes);
-
-            // 3. පරිශීලකයින් ලියූ අදහස් (Comments) කියවීම
-            let storedComments;
-            try {
-                storedComments = JSON.parse(safeLocalStorage.getItem('subverseComments')) || [
-                    { name: "Anonymous", text: "උපසිරැසි ඉතාම උසස් මට්ටමක පවතිනවා! ජයවේවා! ❤️" },
-                    { name: "Nipun", text: "Fantastic Cyberpunk layout and super fast download links. Highly recommended!" }
-                ];
-            } catch (e) {
-                storedComments = [
-                    { name: "Anonymous", text: "උපසිරැසි ඉතාම උසස් මට්ටමක පවතිනවා! ජයවේවා! ❤️" }
-                ];
-            }
-            const listContainer = document.getElementById('comments-list');
-            if (listContainer) {
-                listContainer.innerHTML = "";
-                storedComments.forEach(c => {
-                    listContainer.innerHTML += `<div class="comment-item"><strong>${c.name}:</strong> ${c.text}</div>`;
-                });
-            }
+    try {
+        const resLikes = await fetch(`${firebaseURL}likes.json`);
+        if (!resLikes.ok) throw new Error("Firebase response not OK");
+        const firebaseLikes = await resLikes.json();
+        if (firebaseLikes !== null && typeof firebaseLikes !== 'object') {
+            likes = parseInt(firebaseLikes) || 124;
+        } else if (firebaseLikes === null) {
+            await fetch(`${firebaseURL}likes.json`, { method: 'PUT', body: JSON.stringify(likes) });
         }
 
+        const resDislikes = await fetch(`${firebaseURL}dislikes.json`);
+        if (!resDislikes.ok) throw new Error("Firebase response not OK");
+        const firebaseDislikes = await resDislikes.json();
+        if (firebaseDislikes !== null && typeof firebaseDislikes !== 'object') {
+            dislikes = parseInt(firebaseDislikes) || 2;
+        } else if (firebaseDislikes === null) {
+            await fetch(`${firebaseURL}dislikes.json`, { method: 'PUT', body: JSON.stringify(dislikes) });
+        }
+    } catch (e) {
+        console.error("Firebase votes load error. Falling back to local storage:", e);
+        likes = parseInt(safeLocalStorage.getItem('subverseLikes') || 124);
+        dislikes = parseInt(safeLocalStorage.getItem('subverseDislikes') || 2);
+    }
+
+    document.getElementById('like-count').innerText = likes;
+    document.getElementById('dislike-count').innerText = dislikes;
+
+    updateFeedbackBar(likes, dislikes);
+
+    let storedComments;
+    try {
+        storedComments = JSON.parse(safeLocalStorage.getItem('subverseComments')) || [
+            { name: "Anonymous", text: "උපසිරැසි ඉතාම උසස් මට්ටමක පවතිනවා! ජයවේවා! ❤️" },
+            { name: "Nipun", text: "Fantastic Cyberpunk layout and super fast download links. Highly recommended!" }
+        ];
+    } catch (e) {
+        storedComments = [
+            { name: "Anonymous", text: "උපසිරැසි ඉතාම උසස් මට්ටමක පවතිනවා! ජයවේවා! ❤️" }
+        ];
+    }
+    const listContainer = document.getElementById('comments-list');
+    if (listContainer) {
+        listContainer.innerHTML = "";
+        storedComments.forEach(c => {
+            listContainer.innerHTML += `<div class="comment-item"><strong>${c.name}:</strong> ${c.text}</div>`;
+        });
+    }
+}
         function updateFeedbackBar(likes, dislikes) {
             const l = Math.max(0, parseInt(likes));
             const d = Math.max(0, parseInt(dislikes));
