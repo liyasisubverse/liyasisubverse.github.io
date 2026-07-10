@@ -1734,7 +1734,48 @@
                 }
             }
 
-            if (availableDramas.length > 0) {
+            // [FULLY AUTOMATIC HERO BANNER UPDATE LOGIC]
+            if (originalDatabase.latest_updates && originalDatabase.latest_updates[0]) {
+                const latestUpdate = originalDatabase.latest_updates[0]; 
+                
+                const bgBlur = document.getElementById('hero-bg-blur-img');
+                if (bgBlur && latestUpdate.image_url) {
+                    bgBlur.style.backgroundImage = `url('${latestUpdate.image_url}')`;
+                }
+                
+                const heroEp = document.getElementById('hero-ep-num');
+                if (heroEp) heroEp.innerText = latestUpdate.episode;
+                
+                const heroTitle = document.getElementById('hero-title-text');
+                if (heroTitle) heroTitle.innerText = latestUpdate.title || "No Title";
+                
+                let latestHeroDrama = availableDramas.find(d => d.title === latestUpdate.title) || availableDramas[availableDramas.length - 1];
+                
+                const maxWords = 15;
+                const synopsisText = latestHeroDrama ? (latestHeroDrama.synopsis || "") : "";
+                const words = synopsisText.split(' ');
+                const truncatedDesc = words.length > maxWords ? words.slice(0, maxWords).join(' ') + "..." : synopsisText;
+
+                const heroDesc = document.getElementById('hero-desc-text');
+                if (heroDesc) heroDesc.innerText = truncatedDesc;
+                
+                const heroBtn = document.getElementById('hero-btn-link');
+                if (heroBtn) {
+                    heroBtn.href = latestUpdate.post_link || `drama_picker.html?id=${latestHeroDrama ? (latestHeroDrama.id || '') : ''}`;
+                }
+                
+                const heroImdb = document.getElementById('hero-imdb-val');
+                if (heroImdb) heroImdb.innerText = latestHeroDrama ? (latestHeroDrama.imdb || "8.5") : "8.5";
+                
+                const heroAuthor = document.getElementById('hero-author-container');
+                if (heroAuthor) {
+                    heroAuthor.innerHTML = `
+                        <img src="${aboutMeAvatar}" alt="Logo" style="width: 18px; height: 18px; border-radius: 50%;">
+                        <span>Posted by ලියැසි SUBVERSE</span>
+                    `;
+                }
+            } else if (availableDramas.length > 0) {
+                // Fallback rendering
                 const latestHeroDrama = availableDramas[availableDramas.length - 1]; 
                 
                 const bgBlur = document.getElementById('hero-bg-blur-img');
@@ -1742,24 +1783,17 @@
                     bgBlur.style.backgroundImage = `url('${latestHeroDrama.image_url}')`;
                 }
                 
-                let latestEp = "ONGOING";
-                if (originalDatabase.latest_updates && originalDatabase.latest_updates[0]) {
-                    latestEp = originalDatabase.latest_updates[0].episode;
-                } else {
-                    latestEp = latestHeroDrama.status === "COMPLETE" ? `EP ${latestHeroDrama.total_episodes || ''}` : "ONGOING";
-                }
+                const heroEp = document.getElementById('hero-ep-num');
+                if (heroEp) heroEp.innerText = latestHeroDrama.status === "COMPLETE" ? `EP ${latestHeroDrama.total_episodes || ''}` : "ONGOING";
+                
+                const heroTitle = document.getElementById('hero-title-text');
+                if (heroTitle) heroTitle.innerText = latestHeroDrama.title || "No Title";
                 
                 const maxWords = 15;
                 const synopsisText = latestHeroDrama.synopsis || "";
                 const words = synopsisText.split(' ');
                 const truncatedDesc = words.length > maxWords ? words.slice(0, maxWords).join(' ') + "..." : synopsisText;
 
-                const heroEp = document.getElementById('hero-ep-num');
-                if (heroEp) heroEp.innerText = latestEp;
-                
-                const heroTitle = document.getElementById('hero-title-text');
-                if (heroTitle) heroTitle.innerText = latestHeroDrama.title || "No Title";
-                
                 const heroDesc = document.getElementById('hero-desc-text');
                 if (heroDesc) heroDesc.innerText = truncatedDesc;
                 
@@ -1803,7 +1837,7 @@
                 });
 
                 if (filteredDramas.length === 0) {
-                    area.innerHTML = `<p style="text-align: center; color: var(--neon-pink); font-weight: bold; margin: 50px 0;">🔍 සෙවීමට අදාළ කතාමාලා කිසිවක් හමු නොවීය.</p>`;
+                    area.innerHTML = `<p style="text-align: center; color: var(--neon-pink); font-weight: bold; margin: 50px 0;">🔍 සෙවීමට අදාළ kතාමාලා කිසිවක් හමු නොවීය.</p>`;
                     return;
                 }
 
@@ -2089,7 +2123,6 @@
         }
 
         async function submitFeedback(type, event) {
-            // එකම පුද්ගලයා නැවත නැවත Spam ක්ලික් කිරීම් වැළැක්වීම
             if (safeLocalStorage.getItem('subverseVoted') === 'true') {
                 alert("⚠️ ඔබ දැනටමත් ඔබේ කැමැත්ත සලකුණු කර ඇත! ස්තූතියි. ❤️");
                 return;
@@ -2108,7 +2141,6 @@
                 let parsedCount = (globalCount !== null && typeof globalCount !== 'object') ? parseInt(globalCount) : NaN;
                 currentCount = (!isNaN(parsedCount) ? parsedCount : defaultVal) + 1;
 
-                // Firebase Realtime Database එකට අලුත්ම අගය අප්ලෝඩ් කිරීම
                 await fetch(`${firebaseURL}${targetNode}.json`, {
                     method: 'PUT',
                     body: JSON.stringify(currentCount)
@@ -2128,7 +2160,6 @@
                 document.getElementById(countElId).innerText = localVal;
             }
             
-            // බටන් එක ක්ලික් කළ විට නියෝන් ආලෝකය දිලිසීමේ සජීවීකරණය පමණක් ඉතිරි කරන ලදී (තරු ඉවත් කරන ලදී)
             const btn = document.querySelector(`.feedback-btn.${type}-btn`);
             if (btn) {
                 btn.style.transform = "scale(1.18)";
@@ -2147,7 +2178,6 @@
                 }, 350);
             }
 
-            // ගෝලීය ප්‍රතිශත තීරුව (Progress Bar) යාවත්කාලීන කිරීම
             loadCommentsAndLikes();
         }
 
@@ -2204,7 +2234,7 @@
             container.innerHTML = `
                 <div class="chat-msg-row bot-row">
                     <img src="https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png" class="chat-bot-avatar" alt="Avatar">
-                    <div class="chat-bubble bot">Здарова! 🖐️ මම ලියැසි SUBVERSE AI සහායකයා. ඔයාට අවශ්‍ය ඕනෑම ඩ්‍රාමා එකක් ගැන, බ්ලොග් එකේ ලිපි ගැන හෝ සබ්ටයිටල් දාගන්න විදිහ ගැන මාත් එක්ක නිදහසේ කතා කරන්න! ❤️🍿</div>
+                    <div class="chat-bubble bot">Здарова! 🖐️ මම ලියැසි SUBVERSE AI සහායකයා. ඔයාට අවශ්‍ය ඕනෑම ඩ්‍රාමා එකක් ගැන, බ්ලොග් එකේ ලිපි ගැන හෝ සබ්ටයිටල් දාගන්න විදිහ ගැන මාත් එක්ක නිදහසේ kතා කරන්න! ❤️🍿</div>
                 </div>
             `;
         }
@@ -2224,7 +2254,6 @@
             sendAIMessage();
         }
 
-        // Server Status UI එක වෙනස් කරන ශ්‍රිතය (Helper Function)
         function updateServerStatusUI(statusName, colorVar) {
             const statusEl = document.getElementById('ai-server-status');
             if (statusEl) {
@@ -2242,14 +2271,12 @@
             const typingId = appendChatMessage("bot", "typing...");
             
             try {
-                // article_data.txt ගොනුව dynamic ලෙස කියවීම (Cloudflare Fallback සඳහා පමණි)
                 let articleData = "";
                 try {
                     const articleResponse = await fetch('article_data.txt?v=' + new Date().getTime());
                     if (articleResponse.ok) { articleData = await articleResponse.text(); }
                 } catch (err) { console.log("Could not fetch article_data.txt", err); }
 
-                // data.json දත්ත Minify කිරීම (Cloudflare Fallback සඳහා)
                 let dramaContext = "";
                 if (originalDatabase && originalDatabase.dramas) {
                     let minimizedDramas = {};
@@ -2272,7 +2299,6 @@
                 
                 const configContext = originalDatabase && originalDatabase.config ? JSON.stringify(originalDatabase.config) : "";
 
-                // Cloudflare Workers සඳහා වන Prompt එක
                 const combinedPrompt = `
                 ඔබ "ලියැසි SUBVERSE" උපසිරැසි වෙබ් අඩවියේ නිල AI සහායකයා වේ. පරිශීලකයන්ට උපසිරැසි, බ්ලොග් සහ ඩ්‍රාමා ගැන සහාය වන්න.
 
@@ -2302,7 +2328,6 @@
 
                 let aiResponseText = "";
                 
-                // පියවර A: ප්‍රධාන වශයෙන් Hugging Face Space සර්වර් එක හරහා උත්සාහ කිරීම
                 try {
                     const hfResponse = await fetch(HUGGING_FACE_API_URL, {
                         method: "POST",
@@ -2321,7 +2346,6 @@
                         throw new Error("Empty reply");
                     }
                 } 
-                // පියවර B: Cloudflare Gemini Fallback
                 catch (hfError) {
                     console.log("Hugging Face Failed. Switching to Cloudflare Gemini Fallback...", hfError);
                     try {
@@ -2342,7 +2366,6 @@
                             throw new Error("No response");
                         }
                     } 
-                    // පියවර C: Cloudflare Groq Fallback
                     catch (geminiError) {
                         console.log("Cloudflare Gemini failed. Switching to Cloudflare Groq Llama 3...", geminiError);
                         try {
@@ -2519,7 +2542,6 @@
             const imgData = offCtx.getImageData(0, 0, 800, 300).data;
             const points = [];
             
-            // Performance වැඩි කිරීමට පියවර (Step size = 4)
             const step = 4; 
             for (let y = 0; y < 300; y += step) {
                 for (let x = 0; x < 800; x += step) {
@@ -2584,15 +2606,14 @@
                 this.alpha = Math.random() * 0.65 + 0.35;
                 
                 const colors = [
-                    `rgba(0, 240, 255, ${this.alpha})`,   // Neon Cyan
-                    `rgba(0, 120, 255, ${this.alpha})`,   // Glowing Blue
-                    `rgba(157, 78, 221, ${this.alpha})`,  // Galaxy Purple
-                    `rgba(255, 0, 127, ${this.alpha * 0.35})` // Pink Dust
+                    `rgba(0, 240, 255, ${this.alpha})`,   
+                    `rgba(0, 120, 255, ${this.alpha})`,   
+                    `rgba(157, 78, 221, ${this.alpha})`,  
+                    `rgba(255, 0, 127, ${this.alpha * 0.35})` 
                 ];
                 this.color = colors[Math.floor(Math.random() * colors.length)];
                 this.proj = null;
                 
-                // විශේෂ සජීවීකරණ තරු සඳහා විචල්‍යයන්
                 this.isSpecialGlow = false;
                 this.glowColor = null;
             }
@@ -2602,7 +2623,6 @@
             }
 
             update(time) {
-                // තරු දිලිසෙන ආකාරය (Twinkle Effect)
                 this.size = this.baseSize * (0.65 + Math.sin(time * 0.004 + this.id) * 0.35);
 
                 if (this.isGlobalScatter) {
@@ -2631,8 +2651,6 @@
                     let ambientProj = project3D(ambientX, ambientY, ambientZ);
 
                     if (this.isTextParticle && this.targetX !== null) {
-                        // අකුරු එකතු වන විට 3D ඇලවීම සහ කැරකීම සම්පූර්ණයෙන්ම නැති වී
-                        // කෙළින්ම (Flat 2D) තිරය මැදට සුමටව එකතු කිරීමේ සූත්‍රය
                         const flatX = (canvas.width / 2) + this.targetX;
                         const flatY = (canvas.height / 2) + this.targetY;
                         
@@ -2654,7 +2672,6 @@
                 const r = this.size * this.proj.scale;
                 
                 ctx.beginPath();
-                // තරු හැඩය නිර්මාණය කිරීම (4-pointed diamond star path)
                 ctx.moveTo(this.proj.x, this.proj.y - r);
                 ctx.lineTo(this.proj.x + r * 0.28, this.proj.y - r * 0.28);
                 ctx.lineTo(this.proj.x + r, this.proj.y);
@@ -2703,24 +2720,23 @@
                     particles[i].targetZ = 0;
                     particles[i].isTextParticle = true;
 
-                    // හෙඩර් එකේ ටයිටල් එකේ පාට මාරුවන පරිදි අකුරුවලට RGB Gradient එකක් දීම
                     let pct = (targetPoint.x + 350) / 700;
                     pct = Math.max(0, Math.min(1, pct));
                     
                     let r, g, b;
                     if (pct < 0.33) {
                         let t = pct / 0.33;
-                        r = Math.floor(255 * (1 - t) + 0 * t);      // Pink -> Cyan
+                        r = Math.floor(255 * (1 - t) + 0 * t);      
                         g = Math.floor(0 * (1 - t) + 240 * t);
                         b = Math.floor(127 * (1 - t) + 255 * t);
                     } else if (pct < 0.66) {
                         let t = (pct - 0.33) / 0.33;
-                        r = Math.floor(0 * (1 - t) + 255 * t);      // Cyan -> Amber
+                        r = Math.floor(0 * (1 - t) + 255 * t);      
                         g = Math.floor(240 * (1 - t) + 170 * t);
                         b = Math.floor(255 * (1 - t) + 0 * t);
                     } else {
                         let t = (pct - 0.66) / 0.34;
-                        r = Math.floor(255 * (1 - t) + 157 * t);    // Amber -> Purple
+                        r = Math.floor(255 * (1 - t) + 157 * t);    
                         g = Math.floor(170 * (1 - t) + 78 * t);
                         b = Math.floor(0 * (1 - t) + 221 * t);
                     }
@@ -2789,7 +2805,6 @@
 
             drawConstellationLines();
             
-            // අකුරු කෙලින්ම, පැහැදිලිව සහ RGB වර්ණ රටාවන්ගෙන් බැබළීමට සලස්වන කොටස
             if (transitionProgress > 0.01) {
                 ctx.save();
                 ctx.globalAlpha = transitionProgress; 
@@ -2811,7 +2826,6 @@
                 grad.addColorStop(0.5, col2);
                 grad.addColorStop(1, col3);
 
-                // --- 1 වන පේළිය: "ලියැසි" ---
                 ctx.font = `900 ${85 * scale}px 'Segoe UI', system-ui, sans-serif`;
                 
                 ctx.shadowColor = col1;
@@ -2829,7 +2843,6 @@
                 ctx.fillText("ලියැසි", centerX, centerY - 50 * scale);
                 ctx.globalAlpha = transitionProgress;
 
-                // --- 2 වන පේළිය: "SUBVERSE" ---
                 ctx.font = `900 ${58 * scale}px 'Share Tech Mono', monospace`;
                 
                 ctx.shadowColor = col3;
