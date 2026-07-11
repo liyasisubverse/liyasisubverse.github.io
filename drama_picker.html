@@ -12,13 +12,11 @@
       gtag('config', 'G-WQ65HDS0TE');
     </script>
     <title>ලියැසි SUBVERSE - උපසිරැසි කවුළුව</title>
-<!-- 🌟 FAVICON LINK (අලුතින්ම එකතු කරන කේතය) 👇 -->
+    <!-- 🌟 FAVICON LINK -->
     <link rel="icon" type="image/png" href="favicon.png">
 
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
-    
         const HEADER_BANNER_LOGO = "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/81260990-6d71-4fbb-b966-43f96215438e.png"; 
         const ABOUT_ME_ART_LOGO = "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png";       
         const firebaseURL = "https://subverse-b897d-default-rtdb.firebaseio.com/"; 
@@ -45,7 +43,6 @@
             color: var(--text-main);
             font-family: 'Segoe UI', system-ui, sans-serif;
             margin: 0; padding: 0; min-height: 100vh;
-            /* 🏞️ CHANGE YOUR CUSTOM BACKGROUND IMAGE HERE 👇 */
             background-image: linear-gradient(to bottom, rgba(2, 4, 8, 0.88), rgba(2, 4, 8, 0.97)), 
                               url('https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/bbfcf6e6-8bca-4883-8eb1-f93a2d1d4728.png');
             background-attachment: fixed; background-size: cover; background-position: center;
@@ -112,7 +109,6 @@
 
         .main-container { max-width: 1300px; margin: 20px auto; padding: 0 15px; box-sizing: border-box; }
 
-        /* 📋 UNIFIED VERTICAL LAYOUT FOR DESKTOP & MOBILE */
         .drama-details-container {
             display: flex;
             flex-direction: column;
@@ -124,7 +120,6 @@
             text-align: center;
         }
 
-        /* 📋 POSTER NEON BARS WITH FIXED WIDTH */
         .detail-poster-wrapper {
             position: relative; border-radius: 12px; overflow: hidden;
             border-left: 4px solid var(--neon-cyan);
@@ -147,7 +142,6 @@
             }
         }
         
-        /* 🖼️ FIXED: PREVENT ZOOMING AND CROP */
         .detail-poster-img { width: 100%; height: 100%; object-fit: contain; background: #000; }
         .poster-img { width: 100%; height: 100%; object-fit: contain; background: #000; opacity: 0.8; }
 
@@ -158,7 +152,6 @@
             box-shadow: 0 0 10px rgba(255, 170, 0, 0.3); display: flex; align-items: center; gap: 4px; z-index: 2;
         }
 
-        /* 💫 TOP BADGES LAYOUT ROW */
         .details-top-badges-row {
             display: flex;
             justify-content: center;
@@ -168,7 +161,6 @@
             width: 100%;
         }
 
-        /* 💫 LEFT COLUMN (POSTER + GENRES UNDER) */
         .detail-left-column {
             display: flex;
             flex-direction: column;
@@ -197,14 +189,12 @@
         .info-spec-label { color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); font-weight: bold; }
         .info-spec-value { color: #fff; font-weight: 800; text-align: right; }
 
-        /* 💾 EPISODES SECTION */
         .episodes-section {
             background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px;
             padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); margin-bottom: 30px;
             backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
         }
 
-        /* 🃏 MOVIE STYLE EPISODE CARD */
         .episodes-grid-cards {
             display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; margin-top: 20px;
         }
@@ -222,7 +212,6 @@
         .title-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,1) 40%, transparent); padding: 12px 6px; }
         .title-overlay p { color: var(--neon-cyan); text-shadow: 0 0 6px var(--neon-cyan); margin: 0; font-size: 10.5px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: center; }
 
-        /* BUTTONS LIST */
         .episodes-grid-buttons { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; margin-top: 20px; }
         .ep-btn {
             background: rgba(2, 4, 8, 0.6); border: 1px solid var(--glass-border); color: #ccc;
@@ -234,11 +223,9 @@
         .ep-btn.active-pink { border-color: var(--neon-pink); color: var(--neon-pink); text-shadow: 0 0 5px var(--neon-pink); }
         .ep-btn.active-pink:hover { background: rgba(255, 0, 127, 0.1); box-shadow: 0 0 15px var(--neon-pink); }
 
-        /* ABOUT US GLASS BOX STYLE */
         .about-section { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 15px; padding: 30px; margin-top: 50px; display: flex; align-items: center; gap: 25px; border-right: 4px solid var(--neon-pink); }
         .about-img { width: 90px; height: 90px; border-radius: 50%; border: 3px solid var(--neon-pink); box-shadow: 0 0 15px var(--neon-pink); object-fit: cover; }
 
-        /* ✍️ CYBERPUNK CHROME BUTTONS FOR DRAMA NAVIGATION */
         .download-btn {
             position: relative; width: 100%; max-width: 280px; height: 48px; text-align: center; text-transform: uppercase;
             font-weight: 900; font-size: 11.5px; padding: 13px 16px; border-radius: 6px; text-decoration: none;
@@ -269,7 +256,6 @@
             transform: skewX(-20deg); animation: lightning-sweep 4s infinite linear; z-index: 2; pointer-events: none;
         }
 
-        /* 🇱🇰 VOTE / USER CHOICE PANEL */
         .sl-vote-container {
             border: 1px solid var(--glass-border); background: rgba(0,0,0,0.3);
             border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 25px;
@@ -291,7 +277,6 @@
         .vote-btn-custom.vote-dislike:hover { background: rgba(255, 0, 127, 0.15); box-shadow: 0 0 15px rgba(255, 0, 127, 0.3); }
         .vote-count { background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 11px; }
 
-        /* SOCIAL MEDIA PLUG */
         .social-plug-box { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 15px; padding: 25px; margin-top: 50px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.5); border-top: 3px solid var(--neon-pink); }
         .social-title { font-size: 13px; font-weight: 800; color: var(--text-main); text-shadow: 0 0 8px var(--neon-pink); margin-bottom: 20px; letter-spacing: 1px; text-transform: uppercase; }
         .social-icons-wrapper { display: flex; justify-content: center; gap: 25px; }
@@ -299,14 +284,12 @@
         .social-btn {
             position: relative; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
             text-decoration: none; transition: all 0.3s ease; background: #020408; color: #fff;
-            /* 🛡️ WebKit Clip Leak Fix on Picker 👇 */
             transform: translateZ(0);
             -webkit-transform: translateZ(0);
             will-change: transform;
             overflow: hidden;
             border: none;
         }
-        /* 💫 SLEEK SINGLE-COLOR FAST CHASE FOR SOCIAL BUTTONS 👇 */
         .social-btn::before {
             content: ''; position: absolute; top: -20%; left: -20%; width: 140%; height: 140%;
             background: conic-gradient(var(--neon-cyan) 0deg, transparent 40%, transparent 100%);
@@ -316,16 +299,8 @@
         }
         .social-btn::after { 
             content: ''; position: absolute; 
-            inset: 1.5px; /* Extremely thin! */
+            inset: 1.5px; 
             background: #020408; border-radius: 50%; z-index: -1; transition: background 0.3s ease; 
-        }
-        @keyframes rgb-rotate { 
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); } 
-        }
-        @-webkit-keyframes rgb-rotate { 
-            0% { -webkit-transform: rotate(0deg); }
-            100% { -webkit-transform: rotate(360deg); } 
         }
 
         .social-btn i { transition: all 0.3s ease; position: relative; z-index: 2; }
@@ -344,13 +319,10 @@
 
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-        /* 📱 RESPONSIVE TUNING */
         @media (max-width: 768px) {
-            /* 🎀 CONVERT TO COLUMN LAYOUT TO PREVENT COLLAPSE 👇 */
             .drama-details-container { 
                 padding: 20px !important; 
             }
-            /* 🎀 STABLE POSTER HEIGHT AND WIDTH TO PREVENT MOB COLLAPSE 👇 */
             .detail-poster-wrapper { 
                 width: 280px !important; 
                 height: 420px !important; 
@@ -384,9 +356,7 @@
                         <a href="disclaimer.html"><i class="fa-solid fa-triangle-exclamation"></i> Disclaimer</a>
                         <a href="dmca.html"><i class="fa-solid fa-scale-balanced"></i> DMCA</a>
                         <a href="request.html"><i class="fa-solid fa-film"></i> Request Drama</a>
-
-
-           <a href="about.html" class="sub-nav-item"><i class="fa-solid fa-address-card"></i> About Us</a>             
+                        <a href="about.html" class="sub-nav-item"><i class="fa-solid fa-address-card"></i> About Us</a>             
                     </div>
                 </div>
                 <a href="index.html" class="logo-wrapper" id="header-logo-container"></a>
@@ -670,10 +640,6 @@
 
             if (currentDramaIndex !== -1 && dramaKeys.length > 1) {
                 navWrapper.style.display = 'block';
-                
-                if (currentEpIndex > -1) { // Fallback check or simple logic
-                     // Handled safely via indexes below
-                }
 
                 if (currentDramaIndex > 0) {
                     const prevId = dramaKeys[currentDramaIndex - 1];
@@ -715,33 +681,63 @@
                 `;
             }
 
+            // Render Overall Drama Vote Section
+            renderOverallVoteSection();
+        }
+
+        // Render Overall Vote Section (Like/Dislike panel for the entire Drama)
+        function renderOverallVoteSection() {
+            const wrapper = document.getElementById('overall-vote-section');
+            if (!wrapper) return;
+            wrapper.style.display = "block";
+            wrapper.innerHTML = `
+                <h3 style="color: var(--neon-cyan); text-shadow: 0 0 8px var(--neon-cyan); font-size: 14px; font-weight: 900; text-transform: uppercase; border-left: 3px solid var(--neon-cyan); padding-left: 10px; margin: 0 0 15px 0;">🇱🇰 මෙම කතාමාලාවට ඔබේ මනාපය පළ කරන්න (Rate This Drama)</h3>
+                <div class="sl-vote-container" data-id="${dramaUniqueVoteId}" style="margin-top:0;">
+                    <div class="sl-vote-title">ඔබ මෙම කතාමාලාවට කැමතිද? (Do you like this drama?)</div>
+                    <div class="neon-bar-wrapper">
+                        <div class="neon-bar-track">
+                            <div id="drama-vote-bar" class="neon-bar-fill" style="width: 50%;"></div>
+                        </div>
+                    </div>
+                    <div class="sl-vote-buttons">
+                        <button class="vote-btn-custom vote-like" onclick="handleSLVote('like', this)">
+                            👍 LIKE <span class="vote-count sl-like-cnt">0</span>
+                        </button>
+                        <button class="vote-btn-custom vote-dislike" onclick="handleSLVote('dislike', this)">
+                            👎 DISLIKE <span class="vote-count sl-dislike-cnt">0</span>
+                        </button>
+                    </div>
+                </div>
+            `;
             loadVotes();
         }
 
+        // 📡 FIREBASE REAL-TIME VOTING LOAD (NULL-SAFE & ROBUST)
         async function loadVotes() {
             try {
                 const res = await fetch(firebaseURL + "votes.json");
-                const data = await res.json();
-                if (!data) return;
-
-                document.querySelectorAll('.sl-vote-container').forEach(container => {
-                    const id = container.getAttribute('data-id');
-                    if (data[id]) {
-                        const likes = data[id].like || 0;
-                        const dislikes = data[id].dislike || 0;
+                if (res.ok) {
+                    const data = await res.json();
+                    
+                    document.querySelectorAll('.sl-vote-container').forEach(container => {
+                        const id = container.getAttribute('data-id');
+                        
+                        // Firebase දත්ත මකා දැමුවත් බිඳවැටෙන්නේ නැති වීමට Null-Safety යොදා ඇත
+                        const likes = (data && data[id] && data[id].like !== undefined) ? parseInt(data[id].like) : 0;
+                        const dislikes = (data && data[id] && data[id].dislike !== undefined) ? parseInt(data[id].dislike) : 0;
 
                         const likeEl = container.querySelector('.sl-like-cnt');
                         const dislikeEl = container.querySelector('.sl-dislike-cnt');
-                        if(likeEl) likeEl.innerText = likes;
-                        if(dislikeEl) dislikeEl.innerText = dislikes;
+                        if (likeEl) likeEl.innerText = likes;
+                        if (dislikeEl) dislikeEl.innerText = dislikes;
 
                         const total = likes + dislikes;
                         const fillEl = container.querySelector('.neon-bar-fill');
-                        if (fillEl && total > 0) {
-                            fillEl.style.width = ((likes / total) * 100) + '%';
+                        if (fillEl) {
+                            fillEl.style.width = (total > 0 ? ((likes / total) * 100) : 50) + '%';
                         }
-                    }
-                });
+                    });
+                }
             } catch(e) {
                 console.error("Error loading votes:", e);
             }
@@ -750,14 +746,21 @@
         async function handleSLVote(type, btn) {
             const container = btn.closest('.sl-vote-container');
             const id = container.getAttribute('data-id');
-            if (localStorage.getItem('voted_' + id)) {
-                alert("ඔබ දැනටමත් මනාපය ලබා දී ඇත!");
+            const voteLocalStorageKey = 'voted_' + id;
+            
+            if (localStorage.getItem(voteLocalStorageKey) === 'true') {
+                alert("⚠️ ඔබ දැනටමත් ඔබේ මනාපය පළ කර ඇත! ❤️");
                 return;
             }
 
             try {
                 const res = await fetch(`${firebaseURL}votes/${id}.json`);
-                const currentData = await res.json() || { like: 0, dislike: 0 };
+                let currentData = { like: 0, dislike: 0 };
+                if (res.ok) {
+                    const temp = await res.json();
+                    if (temp !== null) currentData = temp;
+                }
+                
                 let newLikes = currentData.like || 0;
                 let newDislikes = currentData.dislike || 0;
 
@@ -770,28 +773,24 @@
                     body: JSON.stringify({ [type]: type === 'like' ? newLikes : newDislikes })
                 });
 
-                localStorage.setItem('voted_' + id, 'true');
-                const likeEl = container.querySelector('.sl-like-cnt');
-                const dislikeEl = container.querySelector('.sl-dislike-cnt');
-                if(likeEl) likeEl.innerText = newLikes;
-                if(dislikeEl) dislikeEl.innerText = newDislikes;
-
-                const total = newLikes + newDislikes;
-                const fillEl = container.querySelector('.neon-bar-fill');
-                if (fillEl && total > 0) {
-                    fillEl.style.width = ((newLikes / total) * 100) + '%';
-                }
+                localStorage.setItem(voteLocalStorageKey, 'true');
+                loadVotes(); // Reload all votes with fresh database records
             } catch(e) {
                 console.error("Error updating vote:", e);
+                alert("⚠️ සන්නිවේදන දෝෂයකි. කරුණාකර නැවත උත්සාහ කරන්න.");
             }
         }
 
         function showNotFound() {
             document.getElementById('drama-details-wrapper').innerHTML = `
-                <div style="grid-column: span 2; text-align: center; padding: 80px 0;">
-                    <i class="fa-solid fa-triangle-exclamation" style="font-size: 48px; color: var(--neon-pink); text-shadow: 0 0 15px var(--neon-pink); margin-bottom: 20px;"></i>
+                <div style="grid-column: span 2; text-align: center; padding: 80px 0; color: var(--neon-pink);">
+                    <i class="fa-solid fa-triangle-exclamation" style="font-size: 48px; text-shadow: 0 0 15px var(--neon-pink); margin-bottom: 20px;"></i>
                     <h2 style="font-size: 20px; font-weight: bold; margin-bottom: 10px;">Drama Not Found</h2>
                     <p style="color: var(--text-muted); margin-bottom: 25px;">The requested drama ID could not be found in the system.</p>
+                    <a href="index.html" class="download-btn" style="max-width: 200px; margin: 0 auto;">
+                        <span class="btn-sheen-sweep"></span>
+                        <span style="position:relative; z-index:3;"><i class="fa-solid fa-house"></i> Home</span>
+                    </a>
                 </div>
             `;
             document.getElementById('episodes-section-wrapper').style.display = 'none';
