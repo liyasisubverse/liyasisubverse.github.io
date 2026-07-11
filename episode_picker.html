@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ලියැසි SUBVERSE - උපසිරැසි බාගත කිරීමේ කවුළුව</title>
-<!-- 🌟 FAVICON LINK (අලුතින්ම එකතු කරන කේතය) 👇 -->
+    
+    <!-- 🌟 FAVICON LINK -->
     <link rel="icon" type="image/png" href="favicon.png">
-
-
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -20,7 +19,7 @@
       gtag('config', 'G-WQ65HDS0TE');
     </script>
 
-        <!-- 🌐 WEBSITE CONFIGURATIONS -->
+    <!-- 🌐 WEBSITE CONFIGURATIONS -->
     <script>
         const HEADER_BANNER_LOGO = "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/81260990-6d71-4fbb-b966-43f96215438e.png"; 
         const ABOUT_ME_ART_LOGO = "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png";       
@@ -48,7 +47,6 @@
             color: var(--text-main);
             font-family: 'Segoe UI', system-ui, sans-serif;
             margin: 0; padding: 0; min-height: 100vh;
-            /* 🏞️ CHANGE YOUR CUSTOM BACKGROUND IMAGE HERE 👇 */
             background-image: linear-gradient(to bottom, rgba(2, 4, 8, 0.88), rgba(2, 4, 8, 0.97)), 
                               url('https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/bbfcf6e6-8bca-4883-8eb1-f93a2d1d4728.png');
             background-attachment: fixed; background-size: cover; background-position: center;
@@ -126,7 +124,6 @@
             padding-left: 10px; margin: 0 0 15px 0; letter-spacing: 1px;
         }
 
-        /* 🎀 UNIFIED VERTICAL LAYOUT FOR DESKTOP & MOBILE */
         .drama-details-container {
             display: flex;
             flex-direction: column;
@@ -138,7 +135,6 @@
             text-align: center;
         }
 
-        /* 🎀 DOUBLE NEON BARS ON POSTER (LEFT & RIGHT) WITH FIXED ASSETS */
         .detail-poster-wrapper {
             position: relative; border-radius: 12px; overflow: hidden;
             border-left: 4px solid var(--neon-cyan);
@@ -161,7 +157,6 @@
             }
         }
 
-        /* 🖼️ FIXED: PREVENT ZOOMING AND CROP */
         .detail-poster-img { width: 100%; height: 100%; object-fit: contain; background: #000; }
 
         .rating-bar-vertical {
@@ -171,7 +166,6 @@
             box-shadow: 0 0 10px rgba(255, 170, 0, 0.3); display: flex; align-items: center; gap: 4px; z-index: 2;
         }
 
-        /* 💫 TOP BADGES LAYOUT ROW */
         .details-top-badges-row {
             display: flex;
             justify-content: center;
@@ -181,7 +175,6 @@
             width: 100%;
         }
 
-        /* 💫 LEFT COLUMN (POSTER + GENRES UNDER) */
         .detail-left-column {
             display: flex;
             flex-direction: column;
@@ -205,7 +198,6 @@
             width: 100%;
         }
 
-        /* 📋 METADATA DYNAMIC VERTICAL SPECS SHEET 👇 */
         .info-spec-list { 
             list-style: none; 
             padding: 0; 
@@ -225,7 +217,6 @@
         .info-spec-label { color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); font-weight: bold; }
         .info-spec-value { color: #fff; font-weight: 800; text-align: right; }
 
-        /* 🌈 ROTATING SINGLE-COLOR SLIM CONIC NEON CAST CIRCLES WITH HEAD CROP */
         .cast-grid-box { display: grid; grid-template-columns: repeat(6, 1fr); gap: 15px; margin-top: 15px; }
         .cast-member-item { display: flex; flex-direction: column; align-items: center; text-align: center; }
         
@@ -233,12 +224,10 @@
             position: relative; width: 65px; height: 65px; border-radius: 50%; overflow: hidden; 
             z-index: 1; border: none; display: flex; align-items: center; justify-content: center;
             margin-bottom: 8px;
-            /* 🛡️ WebKit Clip Leak Fix on Cast circles 👇 */
             transform: translateZ(0);
             -webkit-transform: translateZ(0);
             will-change: transform;
         }
-        /* 💫 SLEEK SINGLE-COLOR FAST CHASE FOR CAST CIRCLES 👇 */
         .cast-img-container::before {
             content: ''; position: absolute; top: -20%; left: -20%; width: 140%; height: 140%;
             background: conic-gradient(var(--neon-cyan) 0deg, transparent 40%, transparent 100%);
@@ -248,11 +237,10 @@
         }
         .cast-img-container::after { 
             content: ''; position: absolute; 
-            inset: 1.5px; /* Extremely thin! */
+            inset: 1.5px; 
             background: #020408; border-radius: 50%; z-index: -1; 
         }
         
-        /* Fixed head-focusing face crop 👇 */
         .cast-img-container img { 
             width: calc(100% - 3px); height: calc(100% - 3px); 
             object-fit: cover; object-position: top center; 
@@ -264,7 +252,6 @@
         .map-responsive-box { width: 100%; text-align: center; margin-top: 10px; border-radius: 12px; overflow: hidden; border: 1px solid var(--glass-border); }
         .map-responsive-box img { max-width: 100%; height: auto; display: block; margin: 0 auto; opacity: 0.9; }
 
-        /* IMDB/TMDB SCALE RATING */
         .imdb-wrapper { margin-bottom: 20px; }
         .imdb-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
         .imdb-title-zone { display: flex; align-items: center; gap: 8px; }
@@ -274,11 +261,6 @@
         .imdb-bar-track { height: 6px; background: rgba(255, 255, 255, 0.05); border-radius: 4px; overflow: hidden; }
         .imdb-bar-fill { height: 100%; background: var(--neon-amber); box-shadow: 0 0 10px var(--neon-amber); transition: 1s ease-out; }
 
-        /* ABOUT US GLASS BOX STYLE */
-        .about-section { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 15px; padding: 30px; margin-top: 50px; display: flex; align-items: center; gap: 25px; border-right: 4px solid var(--neon-pink); }
-        .about-img { width: 90px; height: 90px; border-radius: 50%; border: 3px solid var(--neon-pink); box-shadow: 0 0 15px var(--neon-pink); object-fit: cover; }
-
-        /* 🇱🇰 VOTE / USER CHOICE PANEL */
         .sl-vote-container {
             border: 1px solid var(--glass-border); background: rgba(0,0,0,0.3);
             border-radius: 12px; padding: 20px; text-align: center; margin-top: 25px;
@@ -300,7 +282,6 @@
         .vote-btn-custom.vote-dislike:hover { background: rgba(255, 0, 127, 0.15); box-shadow: 0 0 15px rgba(255, 0, 127, 0.3); }
         .vote-count { background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 11px; }
 
-        /* ✍️ NEON HEADER LABEL STYLE 👇 */
         .neon-header-text {
             font-size: 14px; font-weight: 900; text-align: center; text-transform: uppercase;
             letter-spacing: 2px; color: var(--neon-cyan);
@@ -311,27 +292,24 @@
             color: var(--neon-pink); text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink);
         }
         @keyframes neonHeaderPulse {
-            0% { opacity: 0.85; text-shadow: 0 0 8px currentColor; }
-            100% { opacity: 1; text-shadow: 0 0 18px currentColor, 0 0 25px currentColor; }
+            0% { opacity: 0.85; text-shadow: 0 0 8px  currentColor; }
+            100% { opacity: 1; text-shadow: 0 0 18px  currentColor, 0 0 25px  currentColor; }
         }
 
-        /* ✍️ GLASS DARK - SWEEPING ELECTRIC DOWNLOAD BUTTONS WITH CHASING BORDER 👇 */
         .download-box { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 15px; }
         .download-btn {
             position: relative; width: 100%; max-width: 280px; height: 48px; text-align: center; text-transform: uppercase;
             font-weight: 900; font-size: 11.5px; padding: 13px 16px; border-radius: 6px; text-decoration: none;
             transition: 0.3s; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
             overflow: hidden; z-index: 1; 
-            background: transparent !important; /* Transparent to let pseudo-borders work */
+            background: transparent !important;
             border: none !important;
             color: #ffffff !important;                     
-            white-space: nowrap;                           /* Single line text */
-            /* 🛡️ WebKit Clip Leak Fix */
+            white-space: nowrap;                           
             transform: translateZ(0);
             -webkit-transform: translateZ(0);
             will-change: transform;
         }
-        /* Chasing Dark Blue/Cyan neon border for the button! */
         .download-btn::before {
             content: ''; position: absolute; top: -150%; left: -50%; width: 200%; height: 400%;
             background: conic-gradient(#0055ff 0deg, transparent 40%, transparent 100%);
@@ -343,7 +321,6 @@
             background: rgba(6, 11, 25, 0.95); border-radius: 4px; z-index: -1;
             transition: background 0.3s ease;
         }
-        /* Electric lightning sweep sheen */
         .btn-sheen-sweep {
             position: absolute; top: 0; left: -150%; width: 50%; height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05) 10%, rgba(255, 255, 255, 0.9) 50%, rgba(0, 240, 255, 0.4) 60%, transparent);
@@ -354,7 +331,6 @@
             background: conic-gradient(#0088cc 0deg, transparent 40%, transparent 100%);
         }
 
-        /* 📂 CATEGORY/GENRE CHOICE PANEL WITH RESPONSIVE ALIGNMENT 👇 */
         .cat-vote-wrapper {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -362,12 +338,11 @@
         }
         @media (max-width: 600px) {
             .cat-vote-wrapper {
-                grid-template-columns: 1fr !important; /* Stack single column on mobile */
+                grid-template-columns: 1fr !important;
                 gap: 10px;
             }
         }
 
-        /* 💬 CUSTOM FIREBASE REAL-TIME COMMENT BOX */
         .comment-card {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--glass-border);
@@ -412,7 +387,6 @@
             min-height: 80px;
         }
 
-        /* 🌐 GLOWING SOCIAL MEDIA PLUG BOX */
         .social-plug-box {
             background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 15px;
             padding: 25px; margin-top: 50px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.5); border-top: 3px solid var(--neon-pink);
@@ -424,14 +398,12 @@
             position: relative; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
             text-decoration: none; transition: all 0.3s ease; background: var(--glass-bg); border: 1px solid var(--glass-border);
             color: #fff;
-            /* 🛡️ WebKit Clip Leak Fix on Picker 👇 */
             transform: translateZ(0);
             -webkit-transform: translateZ(0);
             will-change: transform;
             overflow: hidden;
             border: none;
         }
-        /* 💫 SLEEK SINGLE-COLOR FAST CHASE FOR SOCIAL BUTTONS 👇 */
         .social-btn::before {
             content: ''; position: absolute; top: -20%; left: -20%; width: 140%; height: 140%;
             background: conic-gradient(var(--neon-cyan) 0deg, transparent 40%, transparent 100%);
@@ -441,7 +413,7 @@
         }
         .social-btn::after { 
             content: ''; position: absolute; 
-            inset: 1.5px; /* Extremely thin! */
+            inset: 1.5px; 
             background: #020408; border-radius: 50%; z-index: -1; transition: background 0.3s ease; 
         }
         @keyframes rgb-rotate { 
@@ -469,13 +441,10 @@
 
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-        /* 📱 RESPONSIVE TUNING */
         @media (max-width: 768px) {
-            /* 🎀 CONVERT TO COLUMN LAYOUT TO PREVENT COLLAPSE 👇 */
             .drama-details-container { 
                 padding: 20px !important; 
             }
-            /* 🎀 STABLE POSTER HEIGHT AND WIDTH TO PREVENT MOB COLLAPSE 👇 */
             .detail-poster-wrapper { 
                 width: 280px !important; 
                 height: 420px !important; 
@@ -507,13 +476,12 @@
                         <a href="disclaimer.html"><i class="fa-solid fa-triangle-exclamation"></i> Disclaimer</a>
                         <a href="dmca.html"><i class="fa-solid fa-scale-balanced"></i> DMCA</a>
                         <a href="request.html"><i class="fa-solid fa-film"></i> Request Drama</a>
-
-<a href="about.html" class="sub-nav-item"><i class="fa-solid fa-address-card"></i> About Us</a>
-
-                        
+                        <a href="about.html"><i class="fa-solid fa-address-card"></i> About Us</a>
                     </div>
                 </div>
-                <a href="index.html" class="logo-wrapper" id="header-logo-container"></a>
+                <a href="index.html" class="logo-wrapper" id="header-logo-container">
+                    <img class="site-logo-img" src="https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/81260990-6d71-4fbb-b966-43f96215438e.png" alt="Logo">
+                </a>
             </div>
             <div class="live-clock" id="cyberClock">🤖 [SECURED TIME DATALINK]</div>
         </div>
@@ -527,7 +495,6 @@
     <div class="sub-nav-container">
         <div class="sub-nav-bar">
             <a href="index.html" class="sub-nav-item"><i class="fa-solid fa-house"></i> Home</a>
-        
         </div>
         <div class="sub-nav-ticker">
             <div class="sub-nav-ticker-text">✨️ දුර්ලභ කතා මාලා වල නිවහන {The Home of Rare Series}   ✨️</div>
@@ -539,7 +506,7 @@
         
         <!-- DYNAMIC DETAILED HERO BLOCK -->
         <div class="drama-details-container" id="drama-details-wrapper">
-            <p style="text-align: center; color: var(--neon-cyan); grid-column: span 2; padding: 50px 0;">🤖 [SYSTEM RETRIEVING DATA...]</p>
+            <p style="text-align: center; color: var(--neon-cyan); padding: 50px 0;">🤖 [SYSTEM RETRIEVING DATA...]</p>
         </div>
 
         <!-- 🎭 CAST & CREW DYNAMIC HOLDER -->
@@ -557,7 +524,7 @@
         <!-- 📥 DOWNLOAD BOX CONTAINER -->
         <div class="glass-section-custom" id="download-section-wrapper" style="display:none;"></div>
 
-        <!-- ⬅️    ➡️ NAVIGATION BUTTONS CONTAINER (INSERTED SEPARATELY) -->
+        <!-- ⬅️   ➡️ NAVIGATION BUTTONS CONTAINER -->
         <div class="glass-section-custom" id="episode-navigation-wrapper" style="display:none; text-align: center; margin-bottom: 25px;">
             <div style="display: flex; justify-content: center; gap: 20px; align-items: center;">
                 <a id="prev-episode-btn" class="download-btn" href="#" style="max-width: 180px; margin: 0;">
@@ -571,95 +538,32 @@
             </div>
         </div>
 
-        <!-- 📂 CATEGORY/GENRE CHOICE PANEL (RESTORED BEAUTIFULLY) 👇 -->
+        <!-- 📂 CATEGORY/GENRE CHOICE PANEL -->
         <div class="glass-section-custom" id="genre-vote-wrapper" style="display:none;">
-            <h3>📂 ඔබට වැඩිපුරම අවශ්‍ය කුමන ප්‍රභේදද?</h3>
-            <div class="cat-vote-wrapper">
-                <div class="sl-vote-container" data-id="cat_fantasy" style="margin-top:0;">
-                    <div class="sl-vote-title"><b>🔮 Fantasy (මායාවී)</b></div>
-                    <div class="neon-bar-wrapper"><div class="neon-bar-track"><div class="neon-bar-fill"></div></div></div>
-                    <div class="sl-vote-buttons">
-                        <div class="vote-btn-custom vote-like" onclick="handleSLVote('like', this)">👍 <span class="vote-count sl-like-cnt">0</span></div>
-                        <div class="vote-btn-custom vote-dislike" onclick="handleSLVote('dislike', this)">👎 <span class="vote-count sl-dislike-cnt">0</span></div>
-                    </div>
-                </div>
-                <div class="sl-vote-container" data-id="cat_sci_fi" style="margin-top:0;">
-                    <div class="sl-vote-title"><b>🚀 Sci-Fi (විද්‍යා ප්‍රබන්ධ)</b></div>
-                    <div class="neon-bar-wrapper"><div class="neon-bar-track"><div class="neon-bar-fill"></div></div></div>
-                    <div class="sl-vote-buttons">
-                        <div class="vote-btn-custom vote-like" onclick="handleSLVote('like', this)">👍 <span class="vote-count sl-like-cnt">0</span></div>
-                        <div class="vote-btn-custom vote-dislike" onclick="handleSLVote('dislike', this)">👎 <span class="vote-count sl-dislike-cnt">0</span></div>
-                    </div>
-                </div>
-                <div class="sl-vote-container" data-id="cat_romance" style="margin-top:0;">
-                    <div class="sl-vote-title"><b>💖 Romance (රොමැන්ස්)</b></div>
-                    <div class="neon-bar-wrapper"><div class="neon-bar-track"><div class="neon-bar-fill"></div></div></div>
-                    <div class="sl-vote-buttons">
-                        <div class="vote-btn-custom vote-like" onclick="handleSLVote('like', this)">👍 <span class="vote-count sl-like-cnt">0</span></div>
-                        <div class="vote-btn-custom vote-dislike" onclick="handleSLVote('dislike', this)">👎 <span class="vote-count sl-dislike-cnt">0</span></div>
-                    </div>
-                </div>
-                <div class="sl-vote-container" data-id="cat_action" style="margin-top:0;">
-                    <div class="sl-vote-title"><b>⚔️ Action (ක්‍රියාදාම)</b></div>
-                    <div class="neon-bar-wrapper"><div class="neon-bar-track"><div class="neon-bar-fill"></div></div></div>
-                    <div class="sl-vote-buttons">
-                        <div class="vote-btn-custom vote-like" onclick="handleSLVote('like', this)">👍 <span class="vote-count sl-like-cnt">0</span></div>
-                        <div class="vote-btn-custom vote-dislike" onclick="handleSLVote('dislike', this)">👎 <span class="vote-count sl-dislike-cnt">0</span></div>
-                    </div>
-                </div>
-                <div class="sl-vote-container" data-id="cat_legal" style="margin-top:0;">
-                    <div class="sl-vote-title"><b>⚖️ Legal/Mystery (නීතිමය/අභිරහස්)</b></div>
-                    <div class="neon-bar-wrapper"><div class="neon-bar-track"><div class="neon-bar-fill"></div></div></div>
-                    <div class="sl-vote-buttons">
-                        <div class="vote-btn-custom vote-like" onclick="handleSLVote('like', this)">👍 <span class="vote-count sl-like-cnt">0</span></div>
-                        <div class="vote-btn-custom vote-dislike" onclick="handleSLVote('dislike', this)">👎 <span class="vote-count sl-dislike-cnt">0</span></div>
-                    </div>
-                </div>
-                <div class="sl-vote-container" data-id="cat_historical" style="margin-top:0;">
-                    <div class="sl-vote-title"><b>🏛️ Historical (ඓතිහාසික)</b></div>
-                    <div class="neon-bar-wrapper"><div class="neon-bar-track"><div class="neon-bar-fill"></div></div></div>
-                    <div class="sl-vote-buttons">
-                        <div class="vote-btn-custom vote-like" onclick="handleSLVote('like', this)">👍 <span class="vote-count sl-like-cnt">0</span></div>
-                        <div class="vote-btn-custom vote-dislike" onclick="handleSLVote('dislike', this)">👎 <span class="vote-count sl-dislike-cnt">0</span></div>
-                    </div>
-                </div>
+            <h3>📂 ඔබට වැඩිපුරම අවශ්‍ය කුමන ප්‍රභේදද? (Vote for Genre)</h3>
+            <div class="cat-vote-wrapper" id="genre-vote-container">
+                <!-- Genre voting items will be populated dynamically -->
             </div>
         </div>
 
-        <!-- 💬 CUSTOM FIREBASE REAL-TIME COMMENT BOX -->
-        <div class="glass-section-custom">
-            <h3>💬 අදහස් සහ ප්‍රතිචාර (Comments & Reviews)</h3>
-            
-            <!-- Form to add new comment -->
-            <div style="margin-bottom: 30px;">
-                <input type="text" id="comment-author" class="comment-input-field" placeholder="ඔබේ නම (Your Name)..." required>
-                <textarea id="comment-message" class="comment-input-field" placeholder="ඔබේ අදහස මෙතන ලියන්න (Write your comment)..." required></textarea>
-                <button class="download-btn" id="submit-comment-btn" onclick="submitComment()" style="width: 100%; max-width: 100%; height: auto; padding: 14px;">
-                    <span class="btn-sheen-sweep"></span>
-                    <i class="fa-solid fa-comments" style="position:relative; z-index:3;"></i>
-                    <span style="position:relative; z-index:3;">අදහස් දක්වන්න (Submit Comment)</span>
+        <!-- 💬 REAL-TIME COMMENTS SECTION -->
+        <div class="glass-section-custom" id="comments-section-wrapper">
+            <h3>💬 අදහස් සහ ප්‍රතිචාර (Comments)</h3>
+            <div id="comments-list-container">
+                <p style="font-size:12px; color:var(--text-muted);">ප්‍රතිචාර පූරණය වෙමින් පවතී...</p>
+            </div>
+            <div style="margin-top: 20px;">
+                <input type="text" id="commenter-name-input" placeholder="ඔබේ නම (Name)" class="comment-input-field">
+                <textarea id="comment-text-input" placeholder="ඔබේ අදහස මෙතැන ලියන්න (Write your comment)..." class="comment-input-field"></textarea>
+                <button class="vote-btn-custom vote-like" style="max-width: 150px; display:flex; margin: 10px 0 0 0;" onclick="submitEpisodeComment()">
+                    <i class="fa-solid fa-paper-plane"></i> SUBMIT
                 </button>
-            </div>
-            
-            <!-- List of existing comments -->
-            <div id="comments-list"></div>
-        </div>
-
-        <!-- ABOUT US GLASS BOX (Moved beautifully to the bottom, above social networks & footer) -->
-        <div class="about-section" id="about-us-section-wrapper" style="display:none; margin-top: 30px;"></div>
-
-        <!-- 🌐 GLOWING SOCIAL MEDIA PLUG -->
-        <div class="social-plug-box">
-            <div class="social-title">CONNECT WITH US ON SOCIAL NETWORKS</div>
-            <div class="social-icons-wrapper">
-                <a href="#" target="_blank" class="social-btn facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="#" target="_blank" class="social-btn youtube"><i class="fa-brands fa-youtube"></i></a>
-                <a href="https://t.me/liyasi1" target="_blank" class="social-btn telegram" id="tg-config-link"><i class="fa-brands fa-telegram"></i></a>
             </div>
         </div>
 
     </div>
 
+    <!-- FOOTER -->
     <footer>
         <div class="footer-content">
             <div class="footer-brand"><span class="sinhala">ලියැසි</span><span class="english">SUBVERSE</span></div>
@@ -668,8 +572,17 @@
         </div>
     </footer>
 
-    <!-- JAVASCRIPT RENDERING ENGINE -->
+    <!-- JAVASCRIPT LOGIC -->
     <script>
+        const safeLocalStorage = {
+            getItem: function(key) {
+                try { return localStorage.getItem(key); } catch (e) { return null; }
+            },
+            setItem: function(key, value) {
+                try { localStorage.setItem(key, value); } catch (e) {}
+            }
+        };
+
         function toggleDropdown() {
             const menu = document.getElementById('threeDotMenu');
             menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
@@ -682,529 +595,527 @@
             }
         }
 
+        /* ⏰ REAL-TIME SECURED CLOCK */
         function updateCyberClock() {
             const now = new Date();
-            const options = { timeZone: "Asia/Colombo", hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            const options = { timeZone: "Asia/Colombo", hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit' };
             const timeString = now.toLocaleTimeString('en-US', options);
-            const year = now.getFullYear(); const month = String(now.getMonth() + 1).padStart(2, '0'); const day = String(now.getDate()).padStart(2, '0');
-            document.getElementById('cyberClock').innerHTML = `
-                <span style="font-family: 'Courier New', monospace; letter-spacing: 1px;">
-                    <span style="color: var(--neon-pink); font-weight: bold; animation: blink 1.2s infinite;">🤖 [SYSTEM ACTIVE]</span> 
-                    📅 ${year}.${month}.${day} | ⏰ ${timeString}
-                </span>
-            `;
+            document.getElementById('cyberClock').innerText = `⏰ ${timeString} [LKA]`;
         }
-        setInterval(updateCyberClock, 1000); updateCyberClock();
+        setInterval(updateCyberClock, 1000);
+        updateCyberClock();
 
+        /* PARSE QUERY PARAMETERS */
         const urlParams = new URLSearchParams(window.location.search);
         const dramaId = urlParams.get('drama_id');
-        const episodeNum = urlParams.get('ep');
+        const epNum = urlParams.get('ep'); // e.g. "EP 01"
 
-        let episodeUniqueId = `ep_${dramaId}_${episodeNum}`;
+        let currentDrama = null;
+        let currentEpisode = null;
 
-        async function loadEpisodeDetails() {
+        async function initPage() {
+            if (!dramaId || !epNum) {
+                showError("⚠️ Drama / Episode Not Found", "The requested episode data could not be parsed.");
+                return;
+            }
+
             try {
                 const response = await fetch('data.json?v=' + new Date().getTime());
                 if (response.ok) {
                     const database = await response.json();
-                    const drama = database.dramas[dramaId];
-                    if (drama) {
-                        const episode = drama.episodes.find(e => e.episode === episodeNum);
-                        if (episode) {
-                            renderEpisodeDetails(drama, episode, database.config || {});
-                        } else {
-                            showNotFound();
-                        }
-                    } else {
-                        showNotFound();
+                    currentDrama = database.dramas ? database.dramas[dramaId] : null;
+                    if (currentDrama) {
+                        currentEpisode = (currentDrama.episodes || []).find(e => e.episode === epNum);
                     }
                 }
             } catch (e) {
-                showNotFound();
+                console.error("Failed to load database:", e);
             }
+
+            if (!currentDrama || !currentEpisode) {
+                showError("⚠️ Drama / Episode Not Found", "The requested drama ID or episode could not be retrieved from the system.");
+                return;
+            }
+
+            document.title = `${currentDrama.title || ''} ${epNum} - ලියැසි SUBVERSE`;
+            const tickerEl = document.getElementById('ticker-text');
+            if (tickerEl) tickerEl.innerHTML = `⚡ ${currentDrama.title || ''} [${epNum}] උපසිරැසි දැන් බාගත කරගත හැක! • `;
+
+            renderDramaDetails();
+            renderCast();
+            renderMap();
+            renderTrailer();
+            renderVotePanel();
+            renderDownloadBox();
+            setupNavigation();
+            renderGenreVotes();
+            
+            // Firebase Real-time loadings
+            loadClicksAndVotes();
+            loadComments();
+            loadGenreVoteData();
         }
 
-        function renderEpisodeDetails(drama, ep, config) {
-            document.getElementById('header-logo-container').innerHTML = `<img class="site-logo-img" src="${HEADER_BANNER_LOGO}" alt="Subverse Logo">`;
-            document.title = `${drama.title} - ${ep.episode} - සිංහල උපසිරැසි | ලියැසි SUBVERSE`;
-
-            // Dynamically update the search description for Google/Telegram!
-            let metaDesc = document.querySelector('meta[name="description"]');
-            if (!metaDesc) {
-                metaDesc = document.createElement('meta');
-                metaDesc.name = 'description';
-                document.head.appendChild(metaDesc);
-            }
-            metaDesc.content = ep.synopsis ? ep.synopsis.substring(0, 150) : `${drama.title} හි ${ep.episode} කොටස සිංහල උපසිරැසි සමඟ නොමිලේ බාගත කරගන්න.`;
-            // Global Config overrides
-            if (config.telegram_channel_link) {
-                document.getElementById('tg-config-link').href = config.telegram_channel_link;
-            }
-
-            // Dynamic background dynamic blur
-            document.body.style.backgroundImage = `linear-gradient(to bottom, rgba(2, 4, 8, 0.9), rgba(2, 4, 8, 0.98)), url('${ep.image || drama.image_url}')`;
-            document.getElementById('ticker-text').innerHTML = `⚡ ${drama.title} [${ep.episode}] උපසිරැසි දැන් සූදානම්! • `;
-
-            // Rating color algorithm
-            const rating = parseFloat(ep.imdb || drama.imdb) || 0.0;
-            let ratingColor = "#ffaa00"; let ratingShadow = "rgba(255, 170, 0, 0.4)";
-            if (rating >= 8.5) { ratingColor = "#00ff66"; ratingShadow = "rgba(0, 255, 102, 0.4)"; }
-            else if (rating >= 7.5) { ratingColor = "#ffaa00"; ratingShadow = "rgba(255, 170, 0, 0.4)"; }
-            else { ratingColor = "#ff007f"; ratingShadow = "rgba(255, 0, 127, 0.4)"; }
-
-            const isComplete = drama.status === "COMPLETE";
-            const statusColor = isComplete ? "var(--neon-pink)" : "var(--neon-cyan)";
-            const statusShadow = isComplete ? "var(--neon-pink)" : "var(--neon-cyan)";
-
-            // Populate Info details with optimized structural layout
+        function showError(title, desc) {
             document.getElementById('drama-details-wrapper').innerHTML = `
-                <!-- 1. Top Badges Row -->
-                <div class="details-top-badges-row">
-                    <span style="background: ${statusColor}; color: #000; box-shadow: 0 0 10px ${statusColor}; border: 1px solid rgba(255,255,255,0.4); padding: 4px 12px; font-size: 11px; font-weight: 900; border-radius: 4px; text-transform: uppercase;">${drama.status}</span>
-                    <span style="background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: #fff; padding: 4px 12px; font-size: 11px; font-weight: bold; border-radius: 4px;">${drama.type}</span>
-                    <span style="background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: #fff; padding: 4px 12px; font-size: 11px; font-weight: bold; border-radius: 4px;">${drama.total_episodes || '?'} EPISODES</span>
+                <div style="text-align: center; padding: 50px 20px; color: var(--neon-pink);">
+                    <h2 style="text-shadow: 0 0 10px var(--neon-pink);">${title}</h2>
+                    <p style="color: #ccc; font-size: 14px; margin-top: 10px;">${desc}</p>
+                    <a href="index.html" class="download-btn" style="margin-top: 20px; max-width: 200px;">
+                        <span class="btn-sheen-sweep"></span>
+                        <span style="position:relative; z-index:3;"><i class="fa-solid fa-house"></i> Home</span>
+                    </a>
                 </div>
+            `;
+        }
 
-                <!-- 2. Left Column (Poster + Rating + Genres list below) -->
+        function renderDramaDetails() {
+            const wrapper = document.getElementById('drama-details-wrapper');
+            const genreBadges = (currentDrama.genres || []).map(g => `<span class="genre-tag-badge">${g}</span>`).join('');
+            
+            wrapper.innerHTML = `
                 <div class="detail-left-column">
                     <div class="detail-poster-wrapper">
-                        <img class="detail-poster-img" src="${ep.image || drama.image_url}" alt="Poster">
-                        <div class="rating-bar-vertical" style="border-right-color: ${ratingColor}; color: ${ratingColor}; text-shadow: 0 0 8px ${ratingColor}; box-shadow: 0 0 10px ${ratingShadow};">
-                            <i class="fa-solid fa-star" style="font-size: 8px;"></i>
-                            <span>${rating}</span>
+                        <div class="rating-bar-vertical">
+                            <i class="fa-solid fa-star" style="font-size:9px;"></i> ${currentEpisode.imdb || currentDrama.imdb || '8.5'}
                         </div>
+                        <img class="detail-poster-img" src="${currentEpisode.image || currentDrama.image_url}" alt="Poster">
                     </div>
-                    <!-- Genres list placed directly under poster -->
-                    <div class="genres-row-container">
-                        ${drama.genres ? drama.genres.map(g => `<span class="genre-tag-badge">${g}</span>`).join('') : ''}
-                    </div>
+                    <div class="genres-row-container">${genreBadges}</div>
                 </div>
-
-                <!-- 3. Right Column (Title + Spec List + Synopsis) -->
                 <div class="detail-info-wrapper">
-                    <h1 style="font-size: 28px; font-weight: 900; margin: 0 0 15px 0; text-shadow: 0 0 10px #fff; text-transform: uppercase;">${drama.title}</h1>
-                    <h2 style="font-size: 18px; font-weight: 800; color: ${statusColor}; text-shadow: 0 0 8px ${statusColor}; margin: 0 0 20px 0; text-transform: uppercase;">${ep.episode}: ${ep.title}</h2>
-
+                    <div class="details-top-badges-row">
+                        <span class="genre-tag-badge" style="background: rgba(0, 240, 255, 0.1); border-color: var(--neon-cyan); color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan);">${currentDrama.type || 'DRAMA'}</span>
+                        <span class="genre-tag-badge" style="background: rgba(255, 0, 127, 0.1); border-color: var(--neon-pink); color: var(--neon-pink); text-shadow: 0 0 5px var(--neon-pink);">${currentDrama.status || 'ONGOING'}</span>
+                        <span class="genre-tag-badge" style="background: rgba(255, 170, 0, 0.1); border-color: var(--neon-amber); color: var(--neon-amber); text-shadow: 0 0 5px var(--neon-amber);">${epNum}</span>
+                    </div>
+                    <h2 class="neon-header-text" style="font-size: 26px; margin: 0 0 15px 0;">${currentDrama.title || ''}</h2>
+                    <h4 style="color: var(--neon-cyan); text-shadow:0 0 5px var(--neon-cyan); margin: 0 0 20px 0;">${currentEpisode.title || ''}</h4>
+                    
                     <ul class="info-spec-list">
-                        <li class="info-spec-item"><span class="info-spec-label">Director:</span> <span class="info-spec-value">${ep.director || drama.director || 'N/A'}</span></li>
-                        <li class="info-spec-item"><span class="info-spec-label">Writer:</span> <span class="info-spec-value">${ep.writer || drama.writer || 'N/A'}</span></li>
-                        <li class="info-spec-item"><span class="info-spec-label">Network:</span> <span class="info-spec-value">${ep.network || drama.network || 'N/A'}</span></li>
-                        <li class="info-spec-item"><span class="info-spec-label">Country:</span> <span class="info-spec-value">${ep.country || drama.country || 'N/A'}</span></li>
-                        <li class="info-spec-item"><span class="info-spec-label">Air Date:</span> <span class="info-spec-value">${ep.first_air_date || drama.first_air_date || 'N/A'}</span></li>
-                        <li class="info-spec-item"><span class="info-spec-label">Runtime:</span> <span class="info-spec-value">${ep.runtime || drama.runtime || 'N/A'}</span></li>
+                        <li class="info-spec-item"><span class="info-spec-label">Director:</span><span class="info-spec-value">${currentEpisode.director || currentDrama.director || 'N/A'}</span></li>
+                        <li class="info-spec-item"><span class="info-spec-label">Writer:</span><span class="info-spec-value">${currentEpisode.writer || currentDrama.writer || 'N/A'}</span></li>
+                        <li class="info-spec-item"><span class="info-spec-label">Network:</span><span class="info-spec-value">${currentEpisode.network || currentDrama.network || 'N/A'}</span></li>
+                        <li class="info-spec-item"><span class="info-spec-label">First Aired:</span><span class="info-spec-value">${currentEpisode.first_air_date || currentDrama.first_air_date || 'N/A'}</span></li>
+                        <li class="info-spec-item"><span class="info-spec-label">Runtime:</span><span class="info-spec-value">${currentEpisode.runtime || currentDrama.runtime || 'N/A'}</span></li>
+                        <li class="info-spec-item"><span class="info-spec-label">Country:</span><span class="info-spec-value">${currentEpisode.country || currentDrama.country || 'N/A'}</span></li>
                     </ul>
 
-                    <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); padding: 20px; border-radius: 10px; line-height: 1.8; color: #ccc; font-size: 13.5px;">
-                        <h3 style="color: ${statusColor}; text-shadow: 0 0 5px ${statusColor}; margin: 0 0 10px 0; font-size: 14px; text-transform: uppercase; font-weight: 900;">කතා සාරාංශය (Synopsis)</h3>
-                        <p style="margin: 0;">${ep.synopsis || drama.synopsis || 'කතා සාරාංශයක් ඇතුළත් කර නොමැත.'}</p>
-                    </div>
+                    <p style="font-size: 13.5px; line-height: 1.6; color: #ccc; text-align: justify; margin: 0;">${currentEpisode.synopsis || currentDrama.synopsis || ''}</p>
                 </div>
             `;
+        }
 
-            // Cast Section with RGB rotating circles
-            const castToUse = ep.cast || drama.cast;
-            if (castToUse && castToUse.length > 0) {
-                const castSection = document.getElementById('cast-section-wrapper');
-                castSection.style.display = 'block';
-                castSection.innerHTML = `
-                    <h3><u>CAST (ප්‍රධාන නළු නිළියන්)</u></h3>
-                    <div class="cast-grid-box">
-                        ${castToUse.map(c => `
-                            <div class="cast-member-item">
-                                <div class="cast-img-container">
-                                    <img src="${c.image}" alt="${c.name}">
-                                </div>
-                                <span class="cast-member-name">${c.name}</span>
-                            </div>
-                        `).join('')}
-                    </div>
-                `;
-            }
+        function renderCast() {
+            const section = document.getElementById('cast-section-wrapper');
+            const cast = currentEpisode.cast || currentDrama.cast || [];
+            if (cast.length === 0) return;
 
-            // Map Section
-            const mapToUse = ep.map_url || drama.map_url;
-            if (mapToUse) {
-                const mapSection = document.getElementById('map-section-wrapper');
-                mapSection.style.display = 'block';
-                mapSection.innerHTML = `
-                    <h3><u>STORY MAP (සබඳතා පවුර)</u></h3>
-                    <div class="map-responsive-box">
-                        <img src="${mapToUse}" alt="Story Map">
-                    </div>
-                `;
-            }
-
-            // Trailer Section
-            const trailerToUse = ep.trailer || drama.trailer;
-            if (trailerToUse) {
-                const trailerSection = document.getElementById('trailer-section-wrapper');
-                trailerSection.style.display = 'block';
-                trailerSection.innerHTML = `
-                    <h3><u>OFFICIAL TRAILER</u></h3>
-                    <div class="video-responsive-box">
-                        <iframe src="${trailerToUse}" style="border: none;" allowfullscreen></iframe>
-                    </div>
-                `;
-            }
-
-            // Vote Section
-            const voteSection = document.getElementById('vote-section-wrapper');
-            voteSection.style.display = 'block';
-            voteSection.innerHTML = `
-                <h3>RATINGS &amp; REVIEWS</h3>
-                <div class="imdb-wrapper">
-                    <div class="imdb-header">
-                        <div class="imdb-title-zone">
-                            <span class="imdb-badge">TMDB</span>
-                            <span class="imdb-stars">⭐⭐⭐⭐⭐</span>
+            section.style.display = "block";
+            let castHTML = `<h3>🎭 ප්‍රධාන නළු නිළියන් (Cast & Crew)</h3><div class="cast-grid-box">`;
+            cast.forEach(c => {
+                castHTML += `
+                    <div class="cast-member-item">
+                        <div class="cast-img-container">
+                            <img src="${c.image}" alt="${c.name}" loading="lazy">
                         </div>
-                        <span class="imdb-score">${rating}/10</span>
+                        <span class="cast-member-name">${c.name}</span>
                     </div>
-                    <div class="imdb-bar-track"><div class="imdb-bar-fill" style="width: ${rating * 10}%;"></div></div>
+                `;
+            });
+            castHTML += `</div>`;
+            section.innerHTML = castHTML;
+        }
+
+        function renderMap() {
+            const section = document.getElementById('map-section-wrapper');
+            const mapUrl = currentEpisode.map_url || currentDrama.map_url;
+            if (!mapUrl) return;
+
+            section.style.display = "block";
+            section.innerHTML = `
+                <h3>🗺️ කතාවේ සිතියම (Story Relationship Map)</h3>
+                <div class="map-responsive-box">
+                    <img src="${mapUrl}" alt="Relationship Map" loading="lazy">
                 </div>
-                <div class="sl-vote-container" data-id="${episodeUniqueId}">
-                    <div class="sl-vote-title">🇱🇰 ඔබේ මනාපය (USERS' CHOICE)</div>
+            `;
+        }
+
+        function renderTrailer() {
+            const section = document.getElementById('trailer-section-wrapper');
+            const trailerUrl = currentEpisode.trailer || currentDrama.trailer;
+            if (!trailerUrl) return;
+
+            section.style.display = "block";
+            section.innerHTML = `
+                <h3>🍿 නිල පූර්ව ප්‍රචාරක පටය (Official Trailer)</h3>
+                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius:12px; border:1px solid var(--glass-border);">
+                    <iframe src="${trailerUrl}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen loading="lazy"></iframe>
+                </div>
+            `;
+        }
+
+        function renderVotePanel() {
+            const wrapper = document.getElementById('vote-section-wrapper');
+            wrapper.style.display = "block";
+            wrapper.innerHTML = `
+                <h3>🇱🇰 මෙම කොටස (Episode) පිළිබඳ ඔබේ මනාපය (Rate This Episode)</h3>
+                <div class="sl-vote-container" style="margin-top:0;">
+                    <div class="sl-vote-title">ඔබ මෙම කොටසට කැමතිද? (Do you like this episode?)</div>
                     <div class="neon-bar-wrapper">
-                        <div class="neon-bar-track"><div class="neon-bar-fill"></div></div>
+                        <div class="neon-bar-track">
+                            <div id="ep-vote-bar" class="neon-bar-fill" style="width: 50%;"></div>
+                        </div>
                     </div>
                     <div class="sl-vote-buttons">
-                        <div class="vote-btn-custom vote-like" onclick="handleSLVote('like', this)">👍 බලන්න වටිනවා <span class="vote-count sl-like-cnt">0</span></div>
-                        <div class="vote-btn-custom vote-dislike" onclick="handleSLVote('dislike', this)">👎 වැඩක් නෑ <span class="vote-count sl-dislike-cnt">0</span></div>
+                        <button class="vote-btn-custom vote-like" onclick="submitEpisodeVote('likes')">
+                            👍 LIKE <span class="vote-count" id="ep-like-count">0</span>
+                        </button>
+                        <button class="vote-btn-custom vote-dislike" onclick="submitEpisodeVote('dislikes')">
+                            👎 DISLIKE <span class="vote-count" id="ep-dislike-count">0</span>
+                        </button>
                     </div>
                 </div>
             `;
+        }
 
-            // Download Box Section (Glass Dark Sweeping-Electric buttons with rotating blue borders)
-            const downloadSection = document.getElementById('download-section-wrapper');
-            downloadSection.style.display = 'block';
-            downloadSection.innerHTML = `
-                <h3>DOWNLOAD LINKS</h3>
-                <div class="neon-header-text">👇DIRECT SUBTITLE👇</div>
+        function renderDownloadBox() {
+            const wrapper = document.getElementById('download-section-wrapper');
+            wrapper.style.display = "block";
+            wrapper.innerHTML = `
+                <h3>📥 උපසිරැසි සහ වීඩියෝ ලබාගැනීමේ කවුළුව (Subtitle & Video Download)</h3>
                 <div class="download-box">
-                    <a class="download-btn" href="${ep.link}" onclick="forceDownload(event, this, '${drama.title.replace(/ /g, '_')}_${ep.episode}.srt', '${episodeUniqueId}')">
+                    <a href="${currentEpisode.link || '#'}" target="_blank" class="download-btn" onclick="trackDownload('sub')">
                         <span class="btn-sheen-sweep"></span>
-                        <i class="fa-solid fa-download" style="position:relative; z-index:3;"></i>
-                        <span style="position:relative; z-index:3; margin-right:5px;">GET SUBTITLE</span>
-                        <span id="sub-count-display" style="background: rgba(0, 0, 0, 0.2); border-radius: 10px; font-size: 0.9em; padding: 2px 6px; position:relative; z-index:3;">0</span>
+                        <i class="fa-solid fa-download"></i> උපසිරැසි ලබාගන්න (SUBTITLE)
                     </a>
-                </div>
-                <div class="neon-header-text pink" style="margin-top:35px;">👇VIDEO FILE LINK👇</div>
-                <div class="download-box" style="margin-top:0;">
-                    <a class="download-btn tg-video" href="${ep.tg_link || '#'}" onclick="trackTelegramClick('${episodeUniqueId}', this)" target="_blank">
+                    <div style="font-size: 11.5px; color: var(--text-muted); margin-bottom: 10px;">
+                        බාගත කිරීම් ගණන (Subtitle Downloads): <span id="sub-count-ui" style="color: var(--neon-cyan); font-weight: bold; font-family: monospace;">0</span>
+                    </div>
+
+                    <a href="${currentEpisode.tg_link || '#'}" target="_blank" class="download-btn tg-video" onclick="trackDownload('tg')">
                         <span class="btn-sheen-sweep"></span>
-                        <i class="fa-brands fa-telegram" style="position:relative; z-index:3;"></i>
-                        <span style="position:relative; z-index:3; margin-right:5px;">TELEGRAM LINK</span>
-                        <span id="tg-count-display" style="background: rgba(0, 0, 0, 0.2); border-radius: 10px; font-size: 0.9em; padding: 2px 6px; position:relative; z-index:3;">0</span>
+                        <i class="fa-brands fa-telegram"></i> ටෙලිග්‍රෑම් වීඩියෝව (TELEGRAM)
                     </a>
+                    <div style="font-size: 11.5px; color: var(--text-muted);">
+                        නැරඹුම් වාර ගණන (Telegram Clicks): <span id="tg-count-ui" style="color: var(--neon-pink); font-weight: bold; font-family: monospace;">0</span>
+                    </div>
                 </div>
             `;
+        }
 
-            // ⬅️➡️ DYNAMIC NEXT/PREVIOUS NAVIGATION LOGIC
-            const currentEpIndex = drama.episodes.findIndex(e => e.episode === ep.episode);
-            const prevEpBtn = document.getElementById('prev-episode-btn');
-            const nextEpBtn = document.getElementById('next-episode-btn');
-            const navWrapper = document.getElementById('episode-navigation-wrapper');
+        function setupNavigation() {
+            const episodes = currentDrama.episodes || [];
+            if (episodes.length <= 1) return;
 
-            if (currentEpIndex !== -1 && drama.episodes.length > 1) {
-                navWrapper.style.display = 'block';
-                
-                if (currentEpIndex > 0) {
-                    const prevEp = drama.episodes[currentEpIndex - 1];
-                    prevEpBtn.href = `episode_picker.html?drama_id=${dramaId}&ep=${prevEp.episode}`;
-                    prevEpBtn.style.opacity = '1';
-                    prevEpBtn.style.pointerEvents = 'auto';
-                } else {
-                    prevEpBtn.style.opacity = '0.3';
-                    prevEpBtn.style.pointerEvents = 'none';
-                    prevEpBtn.removeAttribute('href');
-                }
+            const currentIndex = episodes.findIndex(e => e.episode === epNum);
+            if (currentIndex === -1) return;
 
-                if (currentEpIndex < drama.episodes.length - 1) {
-                    const nextEp = drama.episodes[currentEpIndex + 1];
-                    nextEpBtn.href = `episode_picker.html?drama_id=${dramaId}&ep=${nextEp.episode}`;
-                    nextEpBtn.style.opacity = '1';
-                    nextEpBtn.style.pointerEvents = 'auto';
-                } else {
-                    nextEpBtn.style.opacity = '0.3';
-                    nextEpBtn.style.pointerEvents = 'none';
-                    nextEpBtn.removeAttribute('href');
-                }
+            document.getElementById('episode-navigation-wrapper').style.display = "block";
+            const prevBtn = document.getElementById('prev-episode-btn');
+            const nextBtn = document.getElementById('next-episode-btn');
+
+            if (currentIndex > 0) {
+                prevBtn.style.display = "inline-flex";
+                prevBtn.href = `episode_picker.html?drama_id=${dramaId}&ep=${episodes[currentIndex - 1].episode}`;
             } else {
-                navWrapper.style.display = 'none';
+                prevBtn.style.display = "none";
             }
 
-            // Restore category vote panel
-            document.getElementById('genre-vote-wrapper').style.display = 'block';
+            if (currentIndex < episodes.length - 1) {
+                nextBtn.style.display = "inline-flex";
+                nextBtn.href = `episode_picker.html?drama_id=${dramaId}&ep=${episodes[currentIndex + 1].episode}`;
+            } else {
+                nextBtn.style.display = "none";
+            }
+        }
 
-            // About Us dynamic render above footer (MATCHING THE HOME PAGE DESIGN)
-            const aboutUsSection = document.getElementById('about-us-section-wrapper');
-            if (aboutUsSection) {
-                aboutUsSection.style.display = 'flex';
-                const aboutMeText = config.about_me_text || "අපි ඔබ වෙත ගෙන එන්නේ ගුණාත්මක බවින් ඉහළම ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි පමණි. අපගේ නිල සමාජ මාධ්‍ය ජාලයන් සමඟ එක් වී අලුත්ම අප්ඩේට්ස් එවලේම ලබාගන්න.";
-                const aboutMeAvatar = config.about_me_avatar || ABOUT_ME_ART_LOGO;
-                aboutUsSection.innerHTML = `
-                    <img src="${aboutMeAvatar}" class="about-img" alt="Avatar">
-                    <div style="text-align: left;">
-                        <h3 style="color: var(--neon-pink); margin: 0 0 10px 0; text-transform: uppercase;">ලියැසි SUBVERSE (About Us)</h3>
-                        <p style="color: var(--text-muted); font-size: 13px; line-height: 1.6; margin: 0;">${aboutMeText}</p>
+        function renderGenreVotes() {
+            const wrapper = document.getElementById('genre-vote-wrapper');
+            wrapper.style.display = "block";
+            
+            const genres = [
+                { id: "cat_fantasy", title: "🔮 Fantasy (මායාවී)" },
+                { id: "cat_sci_fi", title: "🚀 Sci-Fi (විද්‍යා ප්‍රබන්ධ)" },
+                { id: "cat_romance", title: "💖 Romance (ආදර කතා)" },
+                { id: "cat_comedy", title: "😂 Comedy (හාස්‍යමය)" },
+                { id: "cat_thriller", title: "🔪 Thriller / Action (ත්‍රාසජනක)" }
+            ];
+
+            const container = document.getElementById('genre-vote-container');
+            container.innerHTML = "";
+            genres.forEach(g => {
+                container.innerHTML += `
+                    <div class="sl-vote-container" data-id="${g.id}" style="margin-top:0;">
+                        <div class="sl-vote-title"><b>${g.title}</b></div>
+                        <div class="neon-bar-wrapper">
+                            <div class="neon-bar-track">
+                                <div id="genre-bar-${g.id}" class="neon-bar-fill" style="width: 50%;"></div>
+                            </div>
+                        </div>
+                        <div class="sl-vote-buttons">
+                            <button class="vote-btn-custom vote-like" onclick="submitGenreVote('${g.id}', 'likes')">
+                                👍 <span class="vote-count" id="genre-${g.id}-likes">0</span>
+                            </button>
+                            <button class="vote-btn-custom vote-dislike" onclick="submitGenreVote('${g.id}', 'dislikes')">
+                                👎 <span class="vote-count" id="genre-${g.id}-dislikes">0</span>
+                            </button>
+                        </div>
                     </div>
                 `;
-            }
-
-            loadVotes();
+            });
         }
 
-        async function forceDownload(event, element, filename, showId) {
-            const originalUrl = element.href;
-            if (originalUrl === "#" || originalUrl === "") return;
-            event.preventDefault();
+        /* -------------------------------------------------------------
+           📡 FIREBASE REAL-TIME SYNC LOGIC (NULL-SAFE & ROBUST)
+        ------------------------------------------------------------- */
+        const epClean = epNum ? epNum.replace(' ', '_') : "EP_00";
+
+        async function loadClicksAndVotes() {
+            if (!dramaId) return;
             
-            const spanEl = element.querySelector('#sub-count-display');
-            let currentCount = spanEl ? parseInt(spanEl.innerText) || 0 : 0;
-            element.innerHTML = '⏳ Downloading...';
-            let newCount = currentCount;
-
-            // Increment Firebase subtitle downloads
-            if (!localStorage.getItem('downloaded_sub_' + showId)) {
-                try {
-                    const res = await fetch(`${firebaseURL}votes/${showId}.json`);
-                    const currentData = await res.json() || {};
-                    newCount = (currentData.sub_count || 0) + 1;
-                    await fetch(`${firebaseURL}votes/${showId}.json`, {
-                        method: 'PATCH',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ sub_count: newCount })
-                    });
-                    localStorage.setItem('downloaded_sub_' + showId, 'true');
-                } catch(e) {
-                    console.error("Firebase update failed", e);
-                    newCount = currentCount + 1;
-                }
-            }
-
+            // 📥 Load Clicks (Subtitle & Telegram Clicks)
             try {
-                const response = await fetch(originalUrl);
-                if(!response.ok) throw new Error("HTTP Status: " + response.status);
-                const blob = await response.blob();
-                const blobUrl = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = blobUrl;
-                a.download = filename;
-                document.body.appendChild(a);
-                a.click();
-                a.remove();
-                window.URL.revokeObjectURL(blobUrl);
-            } catch (e) {
-                console.error("Direct download failed, falling back to new tab", e);
-                window.open(originalUrl, '_blank');
-            } finally {
-                element.innerHTML = `<i class="fa-solid fa-download"></i> GET SUBTITLE <span id="sub-count-display" style="background: rgba(0, 0, 0, 0.2); border-radius: 10px; font-size: 0.9em; margin-left: 5px; padding: 2px 6px;">${newCount}</span>`;
-            }
-        }
-
-        async function trackTelegramClick(showId, element) {
-            if (element.href === "#" || element.href === "") return;
-            if (!localStorage.getItem('clicked_tg_' + showId)) {
-                try {
-                    const res = await fetch(`${firebaseURL}votes/${showId}.json`);
-                    const currentData = await res.json() || {};
-                    let newCount = (currentData.tg_count || 0) + 1;
-                    await fetch(`${firebaseURL}votes/${showId}.json`, {
-                        method: 'PATCH',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ tg_count: newCount })
-                    });
-                    const tgSpan = element.querySelector('#tg-count-display');
-                    if(tgSpan) tgSpan.innerText = newCount;
-                    localStorage.setItem('clicked_tg_' + showId, 'true');
-                } catch(e) {
-                    console.error("Telegram count update failed", e);
-                }
-            }
-        }
-
-        async function loadVotes() {
-            try {
-                const res = await fetch(firebaseURL + "votes.json");
-                const data = await res.json();
-                if (!data) return;
-
-                document.querySelectorAll('.sl-vote-container').forEach(container => {
-                    const id = container.getAttribute('data-id');
-                    if (data[id]) {
-                        const likes = data[id].like || 0;
-                        const dislikes = data[id].dislike || 0;
-
-                        if (id === episodeUniqueId) {
-                            const subCountEl = document.getElementById('sub-count-display');
-                            const tgCountEl = document.getElementById('tg-count-display');
-                            if(subCountEl) subCountEl.innerText = data[id].sub_count || 0;
-                            if(tgCountEl) tgCountEl.innerText = data[id].tg_count || 0;
-                        }
-
-                        const likeEl = container.querySelector('.sl-like-cnt');
-                        const dislikeEl = container.querySelector('.sl-dislike-cnt');
-                        if(likeEl) likeEl.innerText = likes;
-                        if(dislikeEl) dislikeEl.innerText = dislikes;
-
-                        const total = likes + dislikes;
-                        const fillEl = container.querySelector('.neon-bar-fill');
-                        if (fillEl && total > 0) {
-                            fillEl.style.width = ((likes / total) * 100) + '%';
-                        }
+                const res = await fetch(`${firebaseURL}clicks/${dramaId}/${epClean}.json`);
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data !== null) {
+                        document.getElementById('sub-count-ui').innerText = data.sub !== undefined ? data.sub : 0;
+                        document.getElementById('tg-count-ui').innerText = data.tg !== undefined ? data.tg : 0;
                     }
-                });
-            } catch(e) {
-                console.error("Error loading votes:", e);
-            }
-        }
-
-        async function handleSLVote(type, btn) {
-            const container = btn.closest('.sl-vote-container');
-            const id = container.getAttribute('data-id');
-            if (localStorage.getItem('voted_' + id)) {
-                alert("ඔබ දැනටමත් මනාපය ලබා දී ඇත!");
-                return;
-            }
-
-            try {
-                const res = await fetch(`${firebaseURL}votes/${id}.json`);
-                const currentData = await res.json() || { like: 0, dislike: 0 };
-                let newLikes = currentData.like || 0;
-                let newDislikes = currentData.dislike || 0;
-
-                if (type === 'like') newLikes++;
-                if (type === 'dislike') newDislikes++;
-
-                await fetch(`${firebaseURL}votes/${id}.json`, {
-                    method: 'PATCH',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ [type]: type === 'like' ? newLikes : newDislikes })
-                });
-
-                localStorage.setItem('voted_' + id, 'true');
-                const likeEl = container.querySelector('.sl-like-cnt');
-                const dislikeEl = container.querySelector('.sl-dislike-cnt');
-                if(likeEl) likeEl.innerText = newLikes;
-                if(dislikeEl) dislikeEl.innerText = newDislikes;
-
-                const total = newLikes + newDislikes;
-                const fillEl = container.querySelector('.neon-bar-fill');
-                if (fillEl && total > 0) {
-                    fillEl.style.width = ((newLikes / total) * 100) + '%';
                 }
-            } catch(e) {
-                console.error("Error updating vote:", e);
+            } catch (e) {
+                console.error("Failed to load clicks:", e);
+            }
+
+            // 👍 Load Episode Likes & Dislikes
+            try {
+                const res = await fetch(`${firebaseURL}likes/${dramaId}/${epClean}.json`);
+                if (res.ok) {
+                    const data = await res.json();
+                    const l = (data !== null && data.likes !== undefined) ? parseInt(data.likes) : 0;
+                    const d = (data !== null && data.dislikes !== undefined) ? parseInt(data.dislikes) : 0;
+                    
+                    document.getElementById('ep-like-count').innerText = l;
+                    document.getElementById('ep-dislike-count').innerText = d;
+                    updateEpisodeVoteBar(l, d);
+                }
+            } catch (e) {
+                console.error("Failed to load votes:", e);
             }
         }
 
-        async function submitComment() {
-            const authorInput = document.getElementById('comment-author');
-            const messageInput = document.getElementById('comment-message');
-            const submitBtn = document.getElementById('submit-comment-btn');
-            
-            const author = authorInput.value.trim();
-            const message = messageInput.value.trim();
-            
-            if (!author || !message) {
-                alert("කරුණාකර නම සහ ඔබේ අදහස ඇතුළත් කරන්න!");
+        async function trackDownload(type) {
+            if (!dramaId) return;
+            // බ්‍රව්සරයේ ක්ලික් කිරීම නිවැරදිව සිදු වීමට ටිකක් ප්‍රමාද කර API එකට යැවීම
+            const countUrl = `${firebaseURL}clicks/${dramaId}/${epClean}/${type}.json`;
+            try {
+                const res = await fetch(countUrl);
+                let count = 0;
+                if (res.ok) {
+                    const val = await res.json();
+                    if (val !== null) count = parseInt(val) || 0;
+                }
+                count++;
+                
+                await fetch(countUrl, {
+                    method: 'PUT',
+                    body: JSON.stringify(count)
+                });
+                
+                const uiEl = document.getElementById(`${type}-count-ui`);
+                if (uiEl) uiEl.innerText = count;
+            } catch (e) {
+                console.error("Firebase update failed:", e);
+            }
+        }
+
+        async function submitEpisodeVote(type) {
+            const voteKey = `voted_${dramaId}_${epClean}`;
+            if (safeLocalStorage.getItem(voteKey) === 'true') {
+                alert("⚠️ ඔබ දැනටමත් මෙම කොටස සඳහා මනාපය පළ කර ඇත! ❤️");
                 return;
             }
-            
-            submitBtn.disabled = true;
-            submitBtn.innerText = "⏳ යැවෙමින් පවතී...";
+
+            if (!dramaId) return;
+            const voteUrl = `${firebaseURL}likes/${dramaId}/${epClean}/${type}.json`;
+            try {
+                const res = await fetch(voteUrl);
+                let count = 0;
+                if (res.ok) {
+                    const val = await res.json();
+                    if (val !== null) count = parseInt(val) || 0;
+                }
+                count++;
+
+                await fetch(voteUrl, {
+                    method: 'PUT',
+                    body: JSON.stringify(count)
+                });
+
+                safeLocalStorage.setItem(voteKey, 'true');
+                loadClicksAndVotes(); // reload data
+            } catch (e) {
+                console.error("Vote submission failed:", e);
+            }
+        }
+
+        function updateEpisodeVoteBar(l, d) {
+            const bar = document.getElementById('ep-vote-bar');
+            if (!bar) return;
+            const total = l + d;
+            const pct = total > 0 ? (l / total) * 100 : 50;
+            bar.style.width = pct + "%";
+        }
+
+        // 📂 GENRE VOTING SYNC WITH FIREBASE
+        async function loadGenreVoteData() {
+            try {
+                const res = await fetch(`${firebaseURL}genre_votes.json`);
+                if (res.ok) {
+                    const data = await res.json();
+                    const genres = ["cat_fantasy", "cat_sci_fi", "cat_romance", "cat_comedy", "cat_thriller"];
+                    
+                    genres.forEach(gid => {
+                        const gData = data ? data[gid] : null;
+                        const l = (gData && gData.likes !== undefined) ? parseInt(gData.likes) : 0;
+                        const d = (gData && gData.dislikes !== undefined) ? parseInt(gData.dislikes) : 0;
+                        
+                        const elLikes = document.getElementById(`genre-${gid}-likes`);
+                        const elDislikes = document.getElementById(`genre-${gid}-dislikes`);
+                        if (elLikes) elLikes.innerText = l;
+                        if (elDislikes) elDislikes.innerText = d;
+                        
+                        const bar = document.getElementById(`genre-bar-${gid}`);
+                        if (bar) {
+                            const total = l + d;
+                            const pct = total > 0 ? (l / total) * 100 : 50;
+                            bar.style.width = pct + "%";
+                        }
+                    });
+                }
+            } catch (e) {
+                console.error("Failed to load genre votes:", e);
+            }
+        }
+
+        async function submitGenreVote(gid, type) {
+            const voteKey = `voted_genre_${gid}`;
+            if (safeLocalStorage.getItem(voteKey) === 'true') {
+                alert("⚠️ ඔබ දැනටමත් මෙම ප්‍රභේදය සඳහා මනාපය පළ කර ඇත! ❤️");
+                return;
+            }
+
+            const voteUrl = `${firebaseURL}genre_votes/${gid}/${type}.json`;
+            try {
+                const res = await fetch(voteUrl);
+                let count = 0;
+                if (res.ok) {
+                    const val = await res.json();
+                    if (val !== null) count = parseInt(val) || 0;
+                }
+                count++;
+
+                await fetch(voteUrl, {
+                    method: 'PUT',
+                    body: JSON.stringify(count)
+                });
+
+                safeLocalStorage.setItem(voteKey, 'true');
+                loadGenreVoteData(); // reload data
+            } catch (e) {
+                console.error("Genre vote submission failed:", e);
+            }
+        }
+
+        // 💬 FIREBASE COMMENT SECTION (ROBUST & NULL-SAFE)
+        async function loadComments() {
+            if (!dramaId) return;
+            const container = document.getElementById('comments-list-container');
             
             try {
-                const payload = {
-                    author: author,
-                    message: message,
-                    timestamp: Date.now()
-                };
-                
-                const res = await fetch(`${firebaseURL}comments/${episodeUniqueId}.json`, {
+                const res = await fetch(`${firebaseURL}comments/${dramaId}/${epClean}.json`);
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data === null || typeof data !== 'object') {
+                        container.innerHTML = `<p style="font-size:12px; color:var(--text-muted); text-align:center;">තවමත් කිසිදු ප්‍රතිචාරයක් නොමැත. පළමු ප්‍රතිචාරය ඔබේ කරන්න! 💬</p>`;
+                        return;
+                    }
+                    
+                    container.innerHTML = "";
+                    // Firebase REST API push keys ව්‍යුහය ඇරේ එකක් බවට හැරවීම
+                    const commentsArray = Object.keys(data).map(key => data[key]);
+                    // කාලය අනුව පැරණි ඒවා මුලට එන සේ සකස් කිරීම
+                    commentsArray.sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
+
+                    commentsArray.forEach(c => {
+                        const dateStr = c.timestamp ? new Date(c.timestamp).toLocaleDateString('si-LK') : "";
+                        const timeStr = c.timestamp ? new Date(c.timestamp).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) : "";
+                        
+                        container.innerHTML += `
+                            <div class="comment-card">
+                                <div class="comment-header">
+                                    <span>👤 ${c.name || 'Anonymous'}</span>
+                                    <span>📅 ${dateStr} ${timeStr}</span>
+                                </div>
+                                <div class="comment-body">${c.text || ''}</div>
+                            </div>
+                        `;
+                    });
+                }
+            } catch (e) {
+                console.error("Failed to load comments:", e);
+                container.innerHTML = `<p style="font-size:12px; color:var(--neon-pink); text-align:center;">⚠️ ප්‍රතිචාර පූරණය කිරීම තාවකාලිකව අඩාල වී ඇත.</p>`;
+            }
+        }
+
+        async function submitEpisodeComment() {
+            const nameInput = document.getElementById('commenter-name-input');
+            const textInput = document.getElementById('comment-text-input');
+            
+            const name = nameInput.value.trim() || "Anonymous User";
+            const text = textInput.value.trim();
+
+            if (text === "") {
+                alert("කරුණාකර ඔබේ අදහස ලියා ඉන්පසු සබ්මිට් කරන්න!");
+                return;
+            }
+
+            if (!dramaId) return;
+
+            const payload = {
+                name: name,
+                text: text,
+                timestamp: Date.now()
+            };
+
+            try {
+                // Firebase POST එක මඟින් අලුත් කමෙන්ට් එකක් පහසුවෙන් එකතු කිරීම
+                const res = await fetch(`${firebaseURL}comments/${dramaId}/${epClean}.json`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
                 });
-                
+
                 if (res.ok) {
-                    messageInput.value = '';
-                    loadComments();
+                    nameInput.value = "";
+                    textInput.value = "";
+                    loadComments(); // reload list
                 } else {
-                    alert("අදහස පළ කිරීමට නොහැකි විය. නැවත උත්සාහ කරන්න.");
+                    alert("⚠️ කමෙන්ට් එක ඇතුළත් කිරීම අසාර්ථකයි! කරුණාකර නැවත උත්සාහ කරන්න.");
                 }
             } catch (e) {
-                console.error("Comment submission failed", e);
-                alert("සම්බන්ධතා දෝෂයක්. නැවත උත්සාහ කරන්න.");
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = "💬 අදහස් දක්වන්න (Submit Comment)";
+                console.error("Error submitting comment:", e);
+                alert("⚠️ සන්නිවේදන දෝෂයකි. කරුණාකර නැවත උත්සාහ කරන්න.");
             }
         }
 
-        async function loadComments() {
-            const commentsList = document.getElementById('comments-list');
-            if (!commentsList) return;
-            commentsList.innerHTML = `<p style="text-align: center; color: var(--text-muted); font-size: 12px;">⏳ අදහස් පූරණය වෙමින් පවතී...</p>`;
-            
-            try {
-                const res = await fetch(`${firebaseURL}comments/${episodeUniqueId}.json`);
-                const data = await res.json();
-                if (!data) {
-                    commentsList.innerHTML = `<p style="text-align: center; color: var(--text-muted); font-size: 12px;">💬 තවමත් කිසිදු අදහසක් පළ කර නොමැත. ඔබේ අදහස මුලින්ම පළ කරන්න!</p>`;
-                    return;
-                }
-                
-                commentsList.innerHTML = '';
-                const commentsArray = Object.values(data);
-                commentsArray.sort((a, b) => b.timestamp - a.timestamp); // latest first
-                
-                commentsArray.forEach(c => {
-                    const dateObj = new Date(c.timestamp);
-                    const formattedDate = dateObj.toLocaleDateString('en-US', { timeZone: "Asia/Colombo" }) + ' | ' + dateObj.toLocaleTimeString('en-US', { timeZone: "Asia/Colombo", hour: '2-digit', minute: '2-digit' });
-                    
-                    commentsList.innerHTML += `
-                        <div class="comment-card">
-                            <div class="comment-header">
-                                <span>👤 ${escapeHTML(c.author)}</span>
-                                <span style="color:var(--text-muted); font-weight:normal;">📅 ${formattedDate}</span>
-                            </div>
-                            <div class="comment-body">${escapeHTML(c.message)}</div>
-                        </div>
-                    `;
-                });
-            } catch (e) {
-                console.error("Failed to load comments", e);
-                commentsList.innerHTML = `<p style="text-align: center; color: var(--neon-pink); font-size: 12px;">❌ අදහස් පූරණය කිරීම අසාර්ථක විය.</p>`;
-            }
+        // Initialize Page on DOM Loaded
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", initPage);
+        } else {
+            initPage();
         }
-
-        function escapeHTML(str) {
-            return str.replace(/[&<>'"]/g, 
-                tag => ({
-                    '&': '&amp;',
-                    '<': '&lt;',
-                    '>': '&gt;',
-                    "'": '&#39;',
-                    '"': '&quot;'
-                }[tag] || tag)
-            );
-        }
-
-        function showNotFound() {
-            document.getElementById('drama-details-wrapper').innerHTML = `
-                <div style="grid-column: span 2; text-align: center; padding: 80px 0;">
-                    <i class="fa-solid fa-triangle-exclamation" style="font-size: 48px; color: var(--neon-pink); text-shadow: 0 0 15px var(--neon-pink); margin-bottom: 20px;"></i>
-                    <h2 style="font-size: 20px; font-weight: bold; margin-bottom: 10px;">Episode Not Found</h2>
-                    <p style="color: var(--text-muted); margin-bottom: 25px;">The system could not retrieve data for the requested ID.</p>
-                </div>
-            `;
-        }
-
-        window.onload = function() {
-            loadEpisodeDetails();
-            loadComments();
-        };
     </script>
 </body>
 </html>
