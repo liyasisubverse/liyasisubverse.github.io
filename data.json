@@ -1,1 +1,21 @@
-
+{
+  "latest_updates": [],
+  "dramas": {
+    "196906": {
+      "id": "196906",
+      "title": "Doctor Lawyer",
+      "type": "K-DRAMA",
+      "status": "UPCOMING",
+      "imdb": "7.3",
+      "total_episodes": 16,
+      "image_url": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/7a1d6bbd-5534-4df7-9a74-24786062591f.png",
+      "synopsis": "ළඟදීම ලියැසි SUBVERSE වෙතින් සිංහල උපසිරැසි සමඟ සෘජුවම බාගත කරගන්න.",
+      "genres": [
+        "Crime",
+        "Drama"
+      ],
+      "episodes": []
+    }
+  },
+  "config": {}
+}
