@@ -6,7 +6,7 @@
     <title>ලියැසි SUBVERSE - උපසිරැසි බාගත කිරීමේ කවුළුව</title>
     
     <!-- 🌟 FAVICON LINK -->
-    <link class="fav-icon" rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" href="favicon.png">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Segoe+UI:wght@400;600;800;900&display=swap" rel="stylesheet">
@@ -53,19 +53,20 @@
             background-attachment: fixed; background-size: cover; background-position: center;
         }
 
+        /* HEADER AREA */
         header {
             background: var(--glass-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            border-bottom: 2px solid rgba(0, 240, 255, 0.25); padding: 10px 20px;
+            border-bottom: 2px solid rgba(0, 240, 255, 0.25); padding: 12px 20px;
             position: sticky; top: 0; z-index: 1000;
         }
         .header-container {
             max-width: 1300px; margin: 0 auto;
-            display: flex; justify-content: space-between; align-items: center;
+            display: flex; align-items: center; justify-content: flex-start; gap: 20px;
         }
         .header-left-zone { display: flex; align-items: center; gap: 15px; width: 100%; }
         
         .three-dot-wrapper { position: relative; display: inline-block; }
-        .three-dot-btn { background: none; border: none; color: white; font-size: 18px; cursor: pointer; padding: 8px 12px; transition: 0.3s; }
+        .three-dot-btn { background: none; border: none; color: white; font-size: 20px; cursor: pointer; padding: 8px 12px; transition: 0.3s; }
         .three-dot-btn:hover { color: var(--neon-cyan); text-shadow: 0 0 8px var(--neon-cyan); }
         
         .dropdown-menu {
@@ -95,6 +96,7 @@
             z-index: 1; 
             animation: logo-laser-draw 20s infinite ease-in-out;
         }
+        /* Lightning Sweep on Logo */
         .logo-wrapper::after {
             content: ''; position: absolute; top: 0; left: -150%; width: 80%; height: 100%;
             background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.1) 20%, rgba(255, 255, 255, 0.9) 50%, rgba(0, 240, 255, 0.4) 55%, transparent);
@@ -102,7 +104,12 @@
             animation: lightning-sweep 20s infinite ease-in-out; 
             z-index: 2; pointer-events: none;
         }
+        @keyframes lightning-sweep { 
+            0%, 50%, 100% { left: -150%; } 
+            20% { left: 150%; } 
+        }
 
+        /* ROBOTIC TWO-LINE NEON GRADIENT TAGLINE */
         .coded-tagline-text {
             position: absolute;
             left: 0; width: 100%;
@@ -128,7 +135,7 @@
         .ticker-text { display: inline-block; white-space: nowrap; animation: marquee 25s linear infinite; font-size: 11px; font-weight: 700; text-shadow: 0 0 5px var(--neon-pink); }
         @keyframes marquee { 0% { transform: translateX(100vw); } 100% { transform: translateX(-100%); } }
 
-        /* 📅 SUB-NAV CLOCK & DATE SPLIT */
+        /* 📅 SUB-NAV, CLOCK & DATE SPLIT */
         .sub-nav-container { max-width: 1300px; margin: 20px auto 0 auto; padding: 0 15px; box-sizing: border-box; }
         .sub-nav-bar { 
             display: flex; justify-content: space-between; align-items: center; gap: 15px; 
@@ -155,6 +162,8 @@
             padding: 6px 12px; border-radius: 5px; display: flex; align-items: center; gap: 6px;
             white-space: nowrap;
         }
+        .sub-nav-ticker { overflow: hidden; display: flex; justify-content: center; margin-top: 10px; margin-bottom: 20px; }
+        .sub-nav-ticker-text { display: inline-block; white-space: nowrap; animation: marquee 20s linear infinite; font-size: 14px; font-weight: 700; color: var(--neon-cyan); text-shadow: 0 0 10px var(--neon-cyan); }
 
         .main-container { max-width: 1300px; margin: 20px auto; padding: 0 15px; box-sizing: border-box; }
 
@@ -239,10 +248,26 @@
             text-shadow: 0 0 5px var(--neon-purple); padding: 4px 12px; font-size: 11px; font-weight: 800; border-radius: 20px; text-transform: uppercase;
         }
 
-        .detail-info-wrapper { width: 100%; }
+        .detail-info-wrapper {
+            width: 100%;
+        }
 
-        .info-spec-list { list-style: none; padding: 0; margin: 0 0 25px 0; display: flex; flex-direction: column; gap: 12px; }
-        .info-spec-item { font-size: 13.5px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
+        .info-spec-list { 
+            list-style: none; 
+            padding: 0; 
+            margin: 0 0 25px 0; 
+            display: flex;
+            flex-direction: column; 
+            gap: 12px; 
+        }
+        .info-spec-item { 
+            font-size: 13.5px; 
+            border-bottom: 1px solid rgba(255,255,255,0.05); 
+            padding-bottom: 8px; 
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+        }
         .info-spec-label { color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); font-weight: bold; }
         .info-spec-value { color: #fff; font-weight: 800; text-align: right; }
 
@@ -270,9 +295,12 @@
             background: #020408; border-radius: 50%; z-index: -1; 
         }
         
+        /* 📸 [UPDATED] PERFECT VERTICAL CROP FOR FACES ON CAST CIRCLES */
         .cast-img-container img { 
+            position: absolute;
             width: calc(100% - 3px); height: calc(100% - 3px); 
-            object-fit: cover; object-position: top center; 
+            object-fit: cover; 
+            object-position: top center; /* Centers face dynamically */
             border-radius: 50%; position: relative; z-index: 1; 
         }
 
@@ -308,9 +336,12 @@
             text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan);
             margin: 25px 0 15px 0; animation: neonHeaderPulse 2s infinite alternate;
         }
+        .neon-header-text.pink {
+            color: var(--neon-pink); text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink);
+        }
         @keyframes neonHeaderPulse {
-            0% { opacity: 0.85; text-shadow: 0 0 8px currentColor; }
-            100% { opacity: 1; text-shadow: 0 0 18px currentColor, 0 0 25px currentColor; }
+            0% { opacity: 0.85; text-shadow: 0 0 8px  currentColor; }
+            100% { opacity: 1; text-shadow: 0 0 18px  currentColor, 0 0 25px  currentColor; }
         }
 
         .download-box { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 15px; }
@@ -348,7 +379,11 @@
             background: conic-gradient(#0088cc 0deg, transparent 40%, transparent 100%);
         }
 
-        .cat-vote-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .cat-vote-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
         @media (max-width: 600px) {
             .cat-vote-wrapper {
                 grid-template-columns: 1fr !important;
@@ -357,18 +392,48 @@
         }
 
         .comment-card {
-            background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: 8px;
-            padding: 15px; margin-bottom: 15px; position: relative; border-left: 3px solid var(--neon-cyan);
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            position: relative;
+            border-left: 3px solid var(--neon-cyan);
             text-align: left;
         }
-        .comment-header { display: flex; justify-content: space-between; font-size: 12px; color: var(--neon-cyan); margin-bottom: 8px; font-weight: bold; }
-        .comment-body { font-size: 13px; line-height: 1.6; color: #ddd; }
-        .comment-input-field {
-            width: 100%; background: rgba(0, 0, 0, 0.5); border: 1px solid var(--glass-border); border-radius: 6px;
-            color: #fff; padding: 12px; font-size: 13px; margin-bottom: 12px; outline: none; transition: 0.3s;
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--neon-cyan);
+            margin-bottom: 8px;
+            font-weight: bold;
         }
-        .comment-input-field:focus { border-color: var(--neon-cyan); box-shadow: 0 0 10px rgba(0, 240, 255, 0.3); }
-        textarea.comment-input-field { resize: vertical; min-height: 80px; }
+        .comment-body {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #ddd;
+        }
+        .comment-input-field {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--glass-border);
+            border-radius: 6px;
+            color: #fff;
+            padding: 12px;
+            font-size: 13px;
+            margin-bottom: 12px;
+            outline: none;
+            transition: 0.3s;
+        }
+        .comment-input-field:focus {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+        }
+        textarea.comment-input-field {
+            resize: vertical;
+            min-height: 80px;
+        }
 
         .social-plug-box {
             background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 15px;
@@ -380,15 +445,24 @@
         .social-btn {
             position: relative; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
             text-decoration: none; transition: all 0.3s ease; background: var(--glass-bg); border: 1px solid var(--glass-border);
-            color: #fff; transform: translateZ(0); -webkit-transform: translateZ(0); will-change: transform; overflow: hidden; border: none;
+            color: #fff;
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+            will-change: transform;
+            overflow: hidden;
+            border: none;
         }
         .social-btn::before {
             content: ''; position: absolute; top: -20%; left: -20%; width: 140%; height: 140%;
             background: conic-gradient(var(--neon-cyan) 0deg, transparent 40%, transparent 100%);
-            animation: rgb-rotate 1.5s linear infinite; -webkit-animation: rgb-rotate 1.5s linear infinite; z-index: -2;
+            animation: rgb-rotate 1.5s linear infinite; 
+            -webkit-animation: rgb-rotate 1.5s linear infinite;
+            z-index: -2;
         }
         .social-btn::after { 
-            content: ''; position: absolute; inset: 1.5px; background: #020408; border-radius: 50%; z-index: -1; transition: background 0.3s ease; 
+            content: ''; position: absolute; 
+            inset: 1.5px; 
+            background: #020408; border-radius: 50%; z-index: -1; transition: background 0.3s ease; 
         }
         @keyframes rgb-rotate { 
             0% { transform: rotate(0deg); }
@@ -417,21 +491,28 @@
 
         /* 📱 RESPONSIVE TUNING */
         @media (max-width: 768px) {
-            .drama-details-container { padding: 20px !important; }
-            .detail-poster-wrapper { width: 280px !important; height: 420px !important; max-width: 92% !important; }
+            .drama-details-container { 
+                padding: 20px !important; 
+            }
+            .detail-poster-wrapper { 
+                width: 280px !important; 
+                height: 420px !important; 
+                max-width: 92% !important; 
+            }
             .info-spec-list { grid-template-columns: 1fr; }
             .cast-grid-box { grid-template-columns: repeat(3, 1fr); gap: 10px; }
             .about-section { flex-direction: column; text-align: center; }
         }
         @media (max-width: 600px) {
-            .header-container { flex-direction: row !important; justify-content: space-between !important; align-items: center !important; width: 100%; }
-            .live-clock { display: flex !important; font-size: 9px !important; padding: 4px 8px !important; letter-spacing: 0px !important; border-width: 1px !important; }
+            .header-container { flex-direction: row !important; justify-content: space-between !important; align-items: center !important; width: 100%; gap: 10px; }
             .site-logo-img { height: 32px !important; }
-            .sub-nav-bar { gap: 10px; padding: 8px; }
+            .sub-nav-bar { flex-direction: row !important; justify-content: space-between !important; gap: 8px; padding: 10px 12px; }
             .sub-nav-item { font-size: 11px; padding: 6px 12px; }
+            .sub-nav-clock { font-size: 10px !important; padding: 5px 10px !important; }
+            .sub-nav-date { font-size: 10px !important; padding: 5px 10px !important; }
         }
 
-        /* 🤖 CYBER-AI FLOATING CHATBOT WIDGET STYLES (RGB ROTATING ACTIVE RING) */
+        /* 🤖 CYBER-AI CHATBOT WIDGET STYLES (RGB ROTATING ACTIVE RING) */
         #cyber-ai-bubble {
             position: fixed; bottom: 25px; right: 25px;
             width: 65px; height: 65px; border-radius: 50%;
@@ -488,19 +569,38 @@
             max-height: 280px; 
             scroll-behavior: smooth;
         }
-        .chat-messages::-webkit-scrollbar { width: 5px; }
-        .chat-messages::-webkit-scrollbar-thumb { background: var(--neon-cyan); border-radius: 3px; }
+        .chat-messages::-webkit-scrollbar {
+            width: 5px;
+        }
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: var(--neon-cyan);
+            border-radius: 3px;
+        }
 
-        .chat-msg-row { display: flex; gap: 10px; align-items: flex-end; width: 100%; transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+        .chat-msg-row {
+            display: flex; gap: 10px; align-items: flex-end; width: 100%;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
         .chat-msg-row.bot-row { justify-content: flex-start; }
         .chat-msg-row.user-row { justify-content: flex-end; }
 
-        .chat-bot-avatar { width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid var(--neon-cyan); box-shadow: 0 0 5px var(--neon-cyan); object-fit: cover; }
-        .chat-bubble { padding: 10px 14px; border-radius: 12px; font-size: 12px; line-height: 1.5; max-width: 75% !important; word-wrap: break-word; position: relative; }
+        .chat-bot-avatar {
+            width: 28px; height: 28px; border-radius: 50%;
+            border: 1.5px solid var(--neon-cyan); box-shadow: 0 0 5px var(--neon-cyan);
+            object-fit: cover;
+        }
+
+        .chat-bubble {
+            padding: 10px 14px; border-radius: 12px; font-size: 12px; line-height: 1.5;
+            max-width: 75% !important; word-wrap: break-word;
+            position: relative;
+        }
 
         .chat-bubble.bot {
             background: rgba(0, 240, 255, 0.05); border: 1.5px solid rgba(0, 240, 255, 0.25);
-            color: #fff; align-self: flex-start; font-weight: 600; animation: text-rgb-glow 6s infinite linear;
+            color: #fff; align-self: flex-start;
+            font-weight: 600;
+            animation: text-rgb-glow 6s infinite linear;
         }
         @keyframes text-rgb-glow {
             0%, 100% { text-shadow: 0 0 5px var(--neon-cyan), 0 0 10px rgba(0, 240, 255, 0.3); }
@@ -508,30 +608,90 @@
             66% { text-shadow: 0 0 5px var(--neon-amber), 0 0 10px rgba(255, 170, 0, 0.3); }
         }
 
-        .chat-bubble.user { background: rgba(255, 0, 127, 0.08); border: 1.5px solid var(--neon-pink); color: #fff; align-self: flex-end; box-shadow: inset 0 0 5px rgba(255, 0, 127, 0.1); }
+        .chat-bubble.user {
+            background: rgba(255, 0, 127, 0.08); border: 1.5px solid var(--neon-pink);
+            color: #fff; align-self: flex-end;
+            box-shadow: inset 0 0 5px rgba(255, 0, 127, 0.1);
+        }
 
         .chat-bubble.bot.typing {
-            position: relative; background: #020408 !important; border: none !important; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; border-radius: 10px; padding: 10px 18px; box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+            position: relative;
+            background: #020408 !important;
+            border: none !important;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center; justify-content: center;
+            border-radius: 10px;
+            padding: 10px 18px;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
         }
         .chat-bubble.bot.typing::before {
-            content: ''; position: absolute; top: -150%; left: -150%; width: 400%; height: 400%; background: conic-gradient(var(--neon-cyan) 0deg, var(--neon-pink) 180deg, var(--neon-cyan) 360deg); animation: rgb-fast-rotate 1.2s linear infinite; z-index: 1;
+            content: ''; position: absolute; top: -150%; left: -150%; width: 400%; height: 400%;
+            background: conic-gradient(var(--neon-cyan) 0deg, var(--neon-pink) 180deg, var(--neon-cyan) 360deg);
+            animation: rgb-fast-rotate 1.2s linear infinite;
+            z-index: 1;
         }
-        .chat-bubble.bot.typing::after { content: ''; position: absolute; inset: 2.2px; background: #020408; border-radius: 8px; z-index: 2; }
-        .chat-bubble.bot.typing span { position: relative; z-index: 3; color: #fff; font-weight: bold; animation: blink 1.2s infinite; letter-spacing: 1px; font-family: 'Share Tech Mono', monospace; text-shadow: 0 0 5px var(--neon-cyan); }
+        .chat-bubble.bot.typing::after {
+            content: ''; position: absolute; inset: 2.2px; background: #020408; border-radius: 8px; z-index: 2;
+        }
+        .chat-bubble.bot.typing span {
+            position: relative; z-index: 3;
+            color: #fff; font-weight: bold;
+            animation: blink 1.2s infinite;
+            letter-spacing: 1px;
+            font-family: 'Share Tech Mono', monospace;
+            text-shadow: 0 0 5px var(--neon-cyan);
+        }
 
-        .ai-action-chips { display: flex; gap: 6px; padding: 8px 12px; overflow-x: auto; background: rgba(0,0,0,0.2); border-top: 1px solid rgba(255,255,255,0.05); scrollbar-width: none; }
+        .ai-action-chips {
+            display: flex; gap: 6px; padding: 8px 12px;
+            overflow-x: auto; background: rgba(0,0,0,0.2);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            scrollbar-width: none;
+        }
         .ai-action-chips::-webkit-scrollbar { display: none; }
-        .ai-chip { background: rgba(0, 240, 255, 0.05); border: 1px solid rgba(0, 240, 255, 0.3); color: #ccc; font-size: 11px; padding: 6px 10px; border-radius: 15px; cursor: pointer; white-space: nowrap; transition: 0.2s; }
-        .ai-chip:hover { border-color: var(--neon-cyan); color: var(--neon-cyan); box-shadow: 0 0 10px rgba(0, 240, 255, 0.3); }
+        .ai-chip {
+            background: rgba(0, 240, 255, 0.05); border: 1px solid rgba(0, 240, 255, 0.3);
+            color: #ccc; font-size: 11px; padding: 6px 10px; border-radius: 15px;
+            cursor: pointer; white-space: nowrap; transition: 0.2s;
+        }
+        .ai-chip:hover {
+            border-color: var(--neon-cyan); color: var(--neon-cyan);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+        }
 
-        .chat-input-row { padding: 10px; border-top: 1.5px solid rgba(0, 240, 255, 0.15); display: flex; gap: 8px; background: rgba(6, 11, 25, 0.9); align-items: center; }
-        .chat-text-input { flex: 1; background: rgba(0,0,0,0.5); border: 1.5px solid var(--glass-border); color: #fff; padding: 8px 12px; border-radius: 6px; font-size: 12px; outline: none; transition: 0.3s; }
+        .chat-input-row {
+            padding: 10px; border-top: 1.5px solid rgba(0, 240, 255, 0.15);
+            display: flex; gap: 8px; background: rgba(6, 11, 25, 0.9);
+            align-items: center;
+        }
+        .chat-text-input {
+            flex: 1; background: rgba(0,0,0,0.5); border: 1.5px solid var(--glass-border);
+            color: #fff; padding: 8px 12px; border-radius: 6px; font-size: 12px; outline: none;
+            transition: 0.3s;
+        }
         .chat-text-input:focus { border-color: var(--neon-cyan); box-shadow: 0 0 8px rgba(0, 240, 255, 0.3); }
         
-        .chat-mic-btn { background: none; border: 1.5px solid var(--neon-pink); color: var(--neon-pink); width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 12px; transition: 0.3s; box-shadow: 0 0 5px rgba(255, 0, 127, 0.2); }
-        .chat-mic-btn:hover { background: rgba(255, 0, 127, 0.1); box-shadow: 0 0 10px var(--neon-pink); }
-        .chat-send-btn { background: var(--neon-cyan); color: #000; border: none; padding: 8px 15px; border-radius: 6px; font-size: 12px; font-weight: 800; cursor: pointer; transition: 0.2s; box-shadow: 0 0 8px rgba(0, 240, 255, 0.3); }
-        .chat-send-btn:hover { box-shadow: 0 0 15px var(--neon-cyan); transform: scale(1.05); }
+        .chat-mic-btn {
+            background: none; border: 1.5px solid var(--neon-pink); color: var(--neon-pink);
+            width: 32px; height: 32px; border-radius: 50%; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; font-size: 12px;
+            transition: 0.3s; box-shadow: 0 0 5px rgba(255, 0, 127, 0.2);
+        }
+        .chat-mic-btn:hover {
+            background: rgba(255, 0, 127, 0.1);
+            box-shadow: 0 0 10px var(--neon-pink);
+        }
+
+        .chat-send-btn {
+            background: var(--neon-cyan); color: #000; border: none;
+            padding: 8px 15px; border-radius: 6px; font-size: 12px; font-weight: 800; cursor: pointer;
+            transition: 0.2s; box-shadow: 0 0 8px rgba(0, 240, 255, 0.3);
+        }
+        .chat-send-btn:hover {
+            box-shadow: 0 0 15px var(--neon-cyan);
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
@@ -547,10 +707,10 @@
                         <a href="disclaimer.html"><i class="fa-solid fa-triangle-exclamation"></i> Disclaimer</a>
                         <a href="dmca.html"><i class="fa-solid fa-scale-balanced"></i> DMCA</a>
                         <a href="request.html"><i class="fa-solid fa-film"></i> Request Drama</a>
-                        <a href="about.html" class="sub-nav-item"><i class="fa-solid fa-address-card"></i> About Us</a>
+                        <a href="about.html"><i class="fa-solid fa-address-card"></i> About Us</a>
                     </div>
                 </div>
-                <!-- Alternating Logo & Tagline Structure -->
+                <!-- Alternating Logo & Coded Tagline -->
                 <a href="index.html" class="logo-wrapper" id="header-logo-container">
                     <img class="site-logo-img" src="https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/81260990-6d71-4fbb-b966-43f96215438e.png" alt="Subverse Logo">
                     <div class="coded-tagline-text">
@@ -562,11 +722,12 @@
         </div>
     </header>
 
+    <!-- TOP TICKER BAR -->
     <div class="ticker-wrapper">
         <div class="ticker-text" id="ticker-text">⚡ Loading Subtitle Terminal...</div>
     </div>
 
-    <!-- SUB-NAVIGATION BAR (CLOCK & DATE SPLIT) -->
+    <!-- SUB-NAVIGATION BAR -->
     <div class="sub-nav-container">
         <div class="sub-nav-bar">
             <div class="sub-nav-clock" id="cyberClock">⏰ 00:00:00 AM</div>
@@ -601,16 +762,16 @@
         <!-- 📥 DOWNLOAD BOX CONTAINER -->
         <div class="glass-section-custom" id="download-section-wrapper" style="display:none;"></div>
 
-        <!-- ⬅️   ➡️ NAVIGATION BUTTONS CONTAINER -->
+        <!-- ⬅️   ➡️ NAVIGATION BUTTONS CONTAINER (PERFECTLY ON ONE LINE) -->
         <div class="glass-section-custom" id="episode-navigation-wrapper" style="display:none; text-align: center; margin-bottom: 25px;">
-            <div style="display: flex; justify-content: center; gap: 20px; align-items: center;">
-                <a id="prev-episode-btn" class="download-btn" href="#" style="max-width: 180px; margin: 0;">
+            <div style="display: flex; justify-content: center; gap: 20px; align-items: center; flex-direction: row; flex-wrap: nowrap; width: 100%;">
+                <a id="prev-episode-btn" class="download-btn" href="#" style="max-width: 180px; margin: 0; flex: 1;">
                     <span class="btn-sheen-sweep"></span>
-                    <span style="position:relative; z-index:3;">⬅️ Previous</span>
+                    <span style="position:relative; z-index:3;"><i class="fa-solid fa-arrow-left"></i> Previous</span>
                 </a>
-                <a id="next-episode-btn" class="download-btn" href="#" style="max-width: 180px; margin: 0;">
+                <a id="next-episode-btn" class="download-btn" href="#" style="max-width: 180px; margin: 0; flex: 1;">
                     <span class="btn-sheen-sweep"></span>
-                    <span style="position:relative; z-index:3;">Next ➡️</span>
+                    <span style="position:relative; z-index:3;">Next <i class="fa-solid fa-arrow-right"></i></span>
                 </a>
             </div>
         </div>
@@ -618,10 +779,12 @@
         <!-- 📂 CATEGORY/GENRE CHOICE PANEL -->
         <div class="glass-section-custom" id="genre-vote-wrapper" style="display:none;">
             <h3>📂 ඔබට වැඩිපුරම අවශ්‍ය කුමන ප්‍රභේදද? (Vote for Genre)</h3>
-            <div class="cat-vote-wrapper" id="genre-vote-container"></div>
+            <div class="cat-vote-wrapper" id="genre-vote-container">
+                <!-- Genre voting items populated dynamically -->
+            </div>
         </div>
 
-        <!-- 💬 DUAL-MODE COMMENTS SECTION (ROBUST & NULL-SAFE) -->
+        <!-- 💬 COMMENTS SECTION -->
         <div class="glass-section-custom" id="comments-section-wrapper">
             <h3>💬 අදහස් සහ ප්‍රතිචාර (Comments)</h3>
             <div id="comments-list-container">
@@ -637,6 +800,15 @@
         </div>
 
     </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand"><span class="sinhala">ලියැසි</span><span class="english">SUBVERSE</span></div>
+            <p class="footer-description">ලියැසි SUBVERSE වෙතින් උසස්ම තත්ත්වයේ ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි නොමිලේ ලබාගත හැක.</p>
+            <div class="footer-credits">&copy; 2026 ලියැසි SUBVERSE. All Rights Reserved.</div>
+        </div>
+    </footer>
 
     <!-- 🤖 CYBER-AI FLOATING CHATBOT WIDGET -->
     <div id="cyber-ai-bubble" onclick="toggleAIChat()">
@@ -654,8 +826,13 @@
             <button class="chat-close-btn" onclick="toggleAIChat()"><i class="fa-solid fa-xmark"></i></button>
         </div>
         
-        <div class="chat-messages" id="chat-messages"></div>
-        <div class="ai-action-chips"></div>
+        <div class="chat-messages" id="chat-messages">
+            <!-- Initialized dynamically in Javascript -->
+        </div>
+        
+        <div class="ai-action-chips">
+            <!-- Populated dynamically via config/data.json in loadContent -->
+        </div>
         
         <div class="chat-input-row">
             <input type="text" id="chat-text-input" placeholder="පණිවිඩය ලියන්න (Type here)..." class="chat-text-input" onkeydown="if(event.key === 'Enter') sendAIMessage()">
@@ -663,15 +840,6 @@
             <button class="chat-send-btn" onclick="sendAIMessage()">SEND</button>
         </div>
     </div>
-
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-brand"><span class="sinhala">ලියැසි</span><span class="english">SUBVERSE</span></div>
-            <p class="footer-description">ලියැසි SUBVERSE වෙතින් උසස්ම තත්ත්වයේ ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි නොමිලේ ලබාගත හැක.</p>
-            <div class="footer-credits">&copy; 2026 ලියැසි SUBVERSE. All Rights Reserved.</div>
-        </div>
-    </footer>
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
@@ -696,7 +864,7 @@
             }
         }
 
-        /* ⏰ REAL-TIME SECURED SPLIT CLOCK & DATE */
+        /* ⏰ REAL-TIME SECURED SPLIT CLOCK */
         function updateCyberClock() {
             const now = new Date();
             const options = { timeZone: "Asia/Colombo", hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit' };
@@ -708,20 +876,14 @@
             const days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
             const dayName = days[now.getDay()];
             
-            const clockEl = document.getElementById('cyberClock');
-            if (clockEl) {
-                clockEl.innerHTML = `
-                    <span style="font-weight: bold; animation: blink 1.2s infinite; color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan);">⏰</span> 
-                    ${timeString}
-                `;
-            }
+            document.getElementById('cyberClock').innerHTML = `
+                <span style="font-weight: bold; animation: blink 1.2s infinite; color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan);">⏰</span> 
+                ${timeString}
+            `;
             
-            const dateEl = document.getElementById('cyberDate');
-            if (dateEl) {
-                dateEl.innerHTML = `
-                    📅 ${year}.${month}.${day} | ${dayName}
-                `;
-            }
+            document.getElementById('cyberDate').innerHTML = `
+                📅 ${year}.${month}.${day} | ${dayName}
+            `;
         }
         setInterval(updateCyberClock, 1000);
         updateCyberClock();
@@ -731,9 +893,9 @@
         const dramaId = urlParams.get('drama_id');
         const epNum = urlParams.get('ep'); // e.g. "EP 01"
 
+        let originalDatabase = null; // Global reference for chatbot integration
         let currentDrama = null;
         let currentEpisode = null;
-        let originalDatabase = null;
 
         async function initPage() {
             if (!dramaId || !epNum) {
@@ -772,6 +934,9 @@
             setupNavigation();
             renderGenreVotes();
             
+            // Populating chatbot dynamic chips
+            renderDynamicChatChips(originalDatabase ? originalDatabase.config : {}, Object.values(originalDatabase ? originalDatabase.dramas : {}));
+
             // Firebase Real-time loadings
             loadClicksAndVotes();
             loadComments();
@@ -1149,56 +1314,43 @@
             }
         }
 
-        // 💬 DUAL-MODE FIREBASE & LOCAL COMMENT SECTION (ROBUST & NULL-SAFE)
+        // 💬 FIREBASE COMMENT SECTION
         async function loadComments() {
             if (!dramaId) return;
             const container = document.getElementById('comments-list-container');
-            let allComments = [];
             
-            // 1. Firebase Comments
             try {
                 const res = await fetch(`${firebaseURL}comments/${dramaId}/${epClean}.json`);
                 if (res.ok) {
                     const data = await res.json();
-                    if (data !== null && typeof data === 'object') {
-                        allComments = Object.keys(data).map(key => data[key]);
+                    if (data === null || typeof data !== 'object') {
+                        container.innerHTML = `<p style="font-size:12px; color:var(--text-muted); text-align:center;">තවමත් කිසිදු ප්‍රතිචාරයක් නොමැත. පළමු ප්‍රතිචාරය ඔබේ කරන්න! 💬</p>`;
+                        return;
                     }
+                    
+                    container.innerHTML = "";
+                    const commentsArray = Object.keys(data).map(key => data[key]);
+                    commentsArray.sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
+
+                    commentsArray.forEach(c => {
+                        const dateStr = c.timestamp ? new Date(c.timestamp).toLocaleDateString('si-LK') : "";
+                        const timeStr = c.timestamp ? new Date(c.timestamp).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) : "";
+                        
+                        container.innerHTML += `
+                            <div class="comment-card">
+                                <div class="comment-header">
+                                    <span>👤 ${c.name || 'Anonymous'}</span>
+                                    <span>📅 ${dateStr} ${timeStr}</span>
+                                </div>
+                                <div class="comment-body">${c.text || ''}</div>
+                            </div>
+                        `;
+                    });
                 }
             } catch (e) {
-                console.error("Failed to load comments from Firebase:", e);
+                console.error("Failed to load comments:", e);
+                container.innerHTML = `<p style="font-size:12px; color:var(--neon-pink); text-align:center;">⚠️ ප්‍රතිචාර පූරණය කිරීම තාවකාලිකව අඩාල වී ඇත.</p>`;
             }
-
-            // 2. Local Fallback Comments
-            try {
-                const localKey = `local_comments_${dramaId}_${epClean}`;
-                const localComments = JSON.parse(safeLocalStorage.getItem(localKey)) || [];
-                allComments = allComments.concat(localComments);
-            } catch (e) {
-                console.error("Failed to load local comments:", e);
-            }
-
-            if (allComments.length === 0) {
-                container.innerHTML = `<p style="font-size:12px; color:var(--text-muted); text-align:center;">තවමත් කිසිදු ප්‍රතිචාරයක් නොමැත. පළමු ප්‍රතිචාරය ඔබේ කරන්න! 💬</p>`;
-                return;
-            }
-
-            container.innerHTML = "";
-            allComments.sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
-
-            allComments.forEach(c => {
-                const dateStr = c.timestamp ? new Date(c.timestamp).toLocaleDateString('si-LK') : "";
-                const timeStr = c.timestamp ? new Date(c.timestamp).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) : "";
-                
-                container.innerHTML += `
-                    <div class="comment-card">
-                        <div class="comment-header">
-                            <span>👤 ${c.name || 'Anonymous'}</span>
-                            <span>📅 ${dateStr} ${timeStr}</span>
-                        </div>
-                        <div class="comment-body">${c.text || ''}</div>
-                    </div>
-                `;
-            });
         }
 
         async function submitEpisodeComment() {
@@ -1221,7 +1373,6 @@
                 timestamp: Date.now()
             };
 
-            let firebaseSuccess = false;
             try {
                 const res = await fetch(`${firebaseURL}comments/${dramaId}/${epClean}.json`, {
                     method: 'POST',
@@ -1230,40 +1381,19 @@
                 });
 
                 if (res.ok) {
-                    firebaseSuccess = true;
+                    nameInput.value = "";
+                    textInput.value = "";
+                    loadComments();
+                } else {
+                    alert("⚠️ කමෙන්ට් එක ඇතුළත් කිරීම අසාර්ථකයි! කරුණාකර නැවත උත්සාහ කරන්න.");
                 }
             } catch (e) {
-                console.error("Error submitting comment to Firebase:", e);
+                console.error("Error submitting comment:", e);
+                alert("⚠️ සන්නිවේදන දෝෂයකි. කරුණාකර නැවත උත්සාහ කරන්න.");
             }
-
-            // Local fallback logic if firebase write failed (CORS/Expired Rules)
-            if (!firebaseSuccess) {
-                try {
-                    const localKey = `local_comments_${dramaId}_${epClean}`;
-                    let localComments = JSON.parse(safeLocalStorage.getItem(localKey)) || [];
-                    localComments.push(payload);
-                    safeLocalStorage.setItem(localKey, JSON.stringify(localComments));
-                    console.log("Comment saved locally (Firebase fallback).");
-                } catch (err) {
-                    console.error("Local storage save failed:", err);
-                }
-            }
-
-            nameInput.value = "";
-            textInput.value = "";
-            loadComments(); // reload list
         }
 
-        // Initialize Page on DOM Loaded
-        if (document.readyState === "loading") {
-            document.addEventListener("DOMContentLoaded", initPage);
-        } else {
-            initPage();
-        }
-    </script>
-
-    <!-- 🤖 CYBER-AI CHATBOT SCRIPT LOGIC -->
-    <script>
+        /* 🤖 CYBER-AI CHATBOT FUNCTIONALITY (FULLY MODULE COMPATIBLE) */
         let autoCloseTimer;
         const HUGGING_FACE_API_URL = "https://liyasisubverse1-liyasi-backend.hf.space/api/chat"; 
         const CLOUDFLARE_WORKER_URL = "https://ask-gemini.rashmi004005g.workers.dev"; 
@@ -1275,7 +1405,7 @@
                 win.style.display = 'flex';
                 resetAutoCloseTimer(); 
                 updateServerStatusUI("ONLINE", "var(--neon-cyan)");
-                if (document.getElementById('chat-messages').children.length === 0) {
+                if (document.getElementById('chat-messages').children.length <= 1) {
                     resetChatMessages();
                 }
             } else {
@@ -1333,7 +1463,7 @@
                 } catch (err) {}
 
                 let dramaContext = "";
-                const dbToUse = originalDatabase;
+                const dbToUse = (typeof originalDatabase !== 'undefined' && originalDatabase) ? originalDatabase : (typeof database !== 'undefined' ? database : null);
                 if (dbToUse && dbToUse.dramas) {
                     let minimizedDramas = {};
                     for (let key in dbToUse.dramas) {
@@ -1352,7 +1482,7 @@
 
                 const combinedPrompt = `
                 ඔබ "ලියැසි SUBVERSE" උපසිරැසි වෙබ් අඩවියේ නිල AI සහායකයා වේ. පරිශීලකයන්ට උපසිරැසි, බ්ලොග් සහ ඩ්‍රාමා ගැන සහාය වන්න.
-                ⚠️ පෞරුෂය: Friendly Sinhala Youth Admin. "ඔයා", "යාලුවා", "සහෝ" වචන භාවිත කරන්න.
+                ⚠️ පෞරුෂය: Friendly Sinhala Youth Admin. "ඔයා", "යාලුවා", "සහෝ" වැනි ලෙන්ගතු වචන භාවිත කරන්න.
                 [වෙබ් අඩවියේ මූලික තොරතුරු]: ${configContext}
                 [උපසිරැසි ලැයිස්තුව]: ${dramaContext}
                 [ලිපි තොරතුරු]: ${articleData}
@@ -1493,6 +1623,99 @@
             btn.style.color = "var(--neon-pink)";
             btn.style.borderColor = "var(--neon-pink)";
             btn.innerHTML = '<i class="fa-solid fa-microphone"></i>';
+        }
+
+        function renderDynamicChatChips(config, dramas) {
+            try {
+                const chipsContainer = document.querySelector('.ai-action-chips');
+                if (!chipsContainer) return;
+
+                let chipsHTML = "";
+
+                if (config && config.chat_chips) {
+                    const customList = config.chat_chips.split('|');
+                    customList.forEach(item => {
+                        const cleanName = item.trim();
+                        if (cleanName) {
+                            chipsHTML += `<div class="ai-chip" onclick="quickSend('${cleanName}')">${cleanName}</div>`;
+                        }
+                    });
+                } 
+                else {
+                    if (dramas && dramas.length > 0) {
+                        const lastTwo = dramas.slice(-2);
+                        lastTwo.forEach(d => {
+                            if (d && d.title) {
+                                const titleText = d.title;
+                                const shortTitle = titleText.split(' ')[0] || "Drama";
+                                chipsHTML += `<div class="ai-chip" onclick="quickSend('${titleText} උපසිරැසි තියෙද? 🍿')">🍿 ${shortTitle}?</div>`;
+                            }
+                        });
+                    }
+                    if (config && config.blogger_link) {
+                        chipsHTML += `<div class="ai-chip" onclick="quickSend('Blogger කියවීම් ඉසව්ව ලින්ක් එක මොකක්ද? 📚')">📚 Blogger Link</div>`;
+                    }
+                    chipsHTML += `<div class="ai-chip" onclick="quickSend('Subverse Admin සම්බන්ධ කරගන්නේ කොහොමද? 💬')">💬 Admin Contact</div>`;
+                }
+
+                chipsContainer.innerHTML = chipsHTML;
+            } catch (err) {
+                console.error("Error in renderDynamicChatChips:", err);
+            }
+        }
+
+        /* 🎆 HEADER LOGO RESTORED KEYFRAME ANIMATIONS */
+        const styleSheet = document.createElement("style");
+        styleSheet.innerText = `
+            @keyframes logo-laser-draw {
+                0%, 35%, 100% {
+                    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                    opacity: 1;
+                    filter: drop-shadow(0 0 8px var(--neon-cyan)) brightness(1);
+                }
+                40% {
+                    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+                    opacity: 0.5;
+                }
+                45%, 90% {
+                    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+                    opacity: 0;
+                }
+                91% {
+                    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+                    opacity: 0.5;
+                }
+                95% {
+                    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                    opacity: 1;
+                    filter: drop-shadow(0 0 20px var(--neon-cyan)) brightness(1.6);
+                }
+            }
+            @keyframes tagline-fade {
+                0%, 40%, 95%, 100% {
+                    opacity: 0;
+                    transform: scale(0.95);
+                    pointer-events: none;
+                }
+                45%, 90% {
+                    opacity: 1;
+                    transform: scale(1);
+                    pointer-events: auto;
+                }
+            }
+            @keyframes rgb-shift-text {
+                0% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+                100% { background-position: 0% 50%; }
+            }
+        `;
+        document.head.appendChild(styleSheet);
+
+        // Initialize Page on DOM Loaded
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", initPage);
+        } else {
+            initPage();
         }
     </script>
 </body>
