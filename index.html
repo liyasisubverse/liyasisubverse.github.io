@@ -1298,7 +1298,7 @@
                 </div>
                 <div>
                     <h3 class="blogger-info-heading">ලියැසි කියවීම් ඉසව්ව (Sinhala Drama Stories)</h3>
-                    <p class="blogger-info-desc">ඩ්‍රාමා නරඹන්න කලින් හෝ නැරඹූ පසු එහි සම්පූර්ණ කතාව සිංහලෙන්ම කියවන්න අපේ Blogger අඩවියට පිවිසෙන්න.</p>
+                    <p class="blogger-info-desc">ඩ්‍රාමා නරඹන්න කලින් හෝ නැරඹූ පසු එහි සම්පූර්ණ කතාවසිංහලෙන්ම කියවන්න අපේ Blogger අඩවියට පිවිසෙන්න.</p>
                 </div>
             </div>
             <a href="#" target="_blank" class="blogger-visit-btn" id="blogger-visit-btn-link">
@@ -1570,8 +1570,9 @@
         let activeGenre = "ALL";
         let currentSearchQuery = "";
         let originalDatabase = offlineDummyDatabase; 
+        let upcomingDatabase = null; // 📅 ස්වාධීන upcoming.json සඳහා අලුත් විචල්‍යය
 
-        /* 📄 FETCH FROM data.json */
+        /* 📄 FETCH FROM data.json & upcoming.json */
         async function loadContent() {
             try {
                 const response = await fetch('data.json?v=' + new Date().getTime());
@@ -1582,6 +1583,18 @@
                 }
             } catch (e) {
                 console.log("CORS/Offline Mode Detected. Using SPCK Fallback.");
+            }
+
+            // 📅 upcoming.json ගොනුව ස්වාධීනව කියවා ගැනීම
+            try {
+                const upResponse = await fetch('upcoming.json?v=' + new Date().getTime());
+                if (upResponse.ok) {
+                    upcomingDatabase = await upResponse.json(); 
+                } else {
+                    console.log("upcoming.json could not be fetched.");
+                }
+            } catch (e) {
+                console.log("Could not fetch upcoming.json");
             }
             
             try { renderPage(); } catch (err) { console.error("Render error:", err); }
@@ -1696,16 +1709,18 @@
 
             const dramaArray = Object.values(originalDatabase.dramas || {});
             
-            /* Render Coming Soon Section */
-            const upcomingDramas = dramaArray.filter(d => d && d.status === "UPCOMING");
+            /* Render Coming Soon Section (ස්වාධීන upcoming.json භාවිතයෙන්) */
             const comingSoonWrapper = document.getElementById('coming-soon-section-wrapper');
             const comingSoonGrid = document.getElementById('coming-soon-grid-container');
 
             if (comingSoonWrapper && comingSoonGrid) {
-                if (upcomingDramas.length > 0) {
+                if (upcomingDatabase && upcomingDatabase.title) {
+                    comingSoonWrapper.style.display = "block";
+                    comingSoonGrid.innerHTML = createComingSoonBannerHTML(upcomingDatabase);
+                } else if (upcomingDatabase && Array.isArray(upcomingDatabase) && upcomingDatabase.length > 0) {
                     comingSoonWrapper.style.display = "block";
                     comingSoonGrid.innerHTML = "";
-                    upcomingDramas.forEach(d => {
+                    upcomingDatabase.forEach(d => {
                         if (d) comingSoonGrid.innerHTML += createComingSoonBannerHTML(d);
                     });
                 } else {
@@ -1713,7 +1728,7 @@
                 }
             }
 
-            // Exclude UPCOMING dramas
+            // Exclude UPCOMING dramas (ආරක්ෂිත පෙරහනක් ලෙස)
             const availableDramas = dramaArray.filter(d => d && d.status !== "UPCOMING");
 
             /* Render Trending Section */
@@ -2381,7 +2396,7 @@
                                 aiResponseText = dataGroq.reply;
                                 updateServerStatusUI("CLOUDFLARE (GROQ FALLBACK)", "var(--neon-pink)");
                             } else {
-                                throw new Error("No response from Groq");
+                                text = "No response from Groq";
                             }
                         } catch (groqError) {
                             console.error("All AI servers failed.", groqError);
