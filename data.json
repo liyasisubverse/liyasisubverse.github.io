@@ -67,6 +67,22 @@
         }
       ],
       "map_url": ""
+    },
+    "93405": {
+      "id": "93405",
+      "title": "Squid Game",
+      "type": "K-DRAMA",
+      "status": "UPCOMING",
+      "imdb": "7.9",
+      "total_episodes": 9,
+      "image_url": null,
+      "synopsis": "ජීවිතයත් මරණයත් අතර සෙල්ලම නැවතත් ඇරඹේ. ළඟදීම ලියැසි SUBVERSE වෙතින් සිංහල උපසිරැසි සමඟින්...",
+      "genres": [
+        "Action & Adventure",
+        "Mystery",
+        "Drama"
+      ],
+      "episodes": []
     }
   },
   "config": {}
