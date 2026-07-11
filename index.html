@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="si">
 <head>
@@ -43,7 +44,6 @@
     <style>
         /* 🎨 PREMIUM CYBERPUNK PALETTE */
         :root {
-            /* 🌌 SOFT AMBIENT SPACE-BLUE BACKGROUND DEFINITION */
             --bg-main: #020408;
             --neon-cyan: #00f0ff;
             --neon-pink: #ff007f;
@@ -51,18 +51,17 @@
             --neon-purple: #9d4edd;
             --text-main: #ffffff;
             --text-muted: #94a3b8;
-            --glass-bg: rgba(6, 11, 25, 0.7);
+            --glass-bg: rgba(6, 11, 25, 0.75);
             --glass-border: rgba(0, 240, 255, 0.15);
         }
 
         html {
-            /* 🌌 පසුබිම් වර්ණය HTML එකට ලබා දීමෙන් 3D කැන්වසය නිවැරදිව උඩට මතුවේ */
             background: radial-gradient(circle at center, #051329 0%, #020408 100%);
             min-height: 100vh;
         }
 
         body {
-            background: transparent !important; /* Body එක විනිවිද පෙනෙන (Transparent) කරන ලදී */
+            background: transparent !important; 
             color: var(--text-main);
             font-family: 'Segoe UI', system-ui, sans-serif;
             margin: 0; padding: 0; min-height: 100vh;
@@ -80,11 +79,12 @@
             pointer-events: none;
         }
 
-        /* HEADER AREA */
+        /* 🛑 HEADER AREA - INDIVIDUALLY STICKY AT TOP */
         header {
-            background: var(--glass-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            background: rgba(2, 4, 8, 0.9); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
             border-bottom: 2px solid rgba(0, 240, 255, 0.25); padding: 12px 20px;
             position: sticky; top: 0; z-index: 1000;
+            box-sizing: border-box;
         }
         .header-container {
             max-width: 1300px; margin: 0 auto;
@@ -153,18 +153,25 @@
             opacity: 0; z-index: 1;
         }
 
-        /* TOP DYNAMIC TICKER */
+        /* 🛑 TOP DYNAMIC TICKER - INDIVIDUALLY STICKY UNDER HEADER */
         .ticker-wrapper {
-            background: rgba(255, 0, 127, 0.12); border-bottom: 1px solid rgba(255, 0, 127, 0.25);
-            overflow: hidden; padding: 6px 0; position: relative;
+            background: rgba(6, 11, 25, 0.95); border-bottom: 1px solid rgba(255, 0, 127, 0.25);
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            overflow: hidden; padding: 6px 0; 
+            position: sticky; top: 91px; z-index: 999;
             -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
             mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+            box-sizing: border-box;
         }
         .ticker-text { display: inline-block; white-space: nowrap; animation: marquee 25s linear infinite; font-size: 11px; font-weight: 700; text-shadow: 0 0 5px var(--neon-pink); }
         @keyframes marquee { 0% { transform: translateX(100vw); } 100% { transform: translateX(-100%); } }
 
-        /* 📅 SUB-NAV, CLOCK & DATE SPLIT */
-        .sub-nav-container { max-width: 1300px; margin: 20px auto 0 auto; padding: 0 15px; box-sizing: border-box; }
+        /* 🛑 📅 SUB-NAV, CLOCK & DATE SPLIT - INDIVIDUALLY STICKY UNDER TICKER */
+        .sub-nav-container { 
+            max-width: 1300px; margin: 0 auto; padding: 10px 15px; box-sizing: border-box; 
+            position: sticky; top: 121px; z-index: 998;
+            background: rgba(2, 4, 8, 0.9); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+        }
         .sub-nav-bar { 
             display: flex; justify-content: space-between; align-items: center; gap: 15px; 
             background: rgba(255, 255, 255, 0.02); padding: 10px 20px; border-radius: 10px;
@@ -191,10 +198,12 @@
             white-space: nowrap;
         }
 
-        /* 🚨 NEON PULSING SPECIAL NOTICE BAR */
+        /* 🛑 🚨 NEON PULSING SPECIAL NOTICE BAR - INDIVIDUALLY STICKY UNDER SUB-NAV */
         .notice-container-alert {
-            max-width: 1300px; margin: 15px auto 0 auto; padding: 0 15px; box-sizing: border-box;
+            max-width: 1300px; margin: 0 auto; padding: 8px 15px; box-sizing: border-box;
             display: none;
+            position: sticky; top: 192px; z-index: 997;
+            background: rgba(2, 4, 8, 0.9); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
         }
         .notice-alert-bar {
             background: rgba(255, 170, 0, 0.1); border: 1px solid var(--neon-amber);
@@ -216,7 +225,7 @@
         /* MAIN CONTAINER */
         .main-container { max-width: 1300px; margin: 20px auto; padding: 0 15px; box-sizing: border-box; }
 
-        /* 📺 [UPDATED] SINGLE LAYER CYBER BANNER WITH ROTATING RGB BORDER (CYAN SPECTRUM) */
+        /* 📺 SINGLE LAYER CYBER BANNER WITH ROTATING RGB BORDER */
         .hero-banner {
             position: relative;
             width: 100%; height: 380px; border-radius: 12px; overflow: hidden; margin-top: 0; margin-bottom: 30px;
@@ -239,7 +248,7 @@
         .hero-bg-blur {
             position: absolute; inset: 2.5px;
             background-size: cover; background-position: center;
-            filter: brightness(0.55); /* No blur! High-definition single layer */
+            filter: brightness(0.55); 
             z-index: 1;
             border-radius: 10px;
             transition: background-image 0.5s ease-in-out;
@@ -248,9 +257,9 @@
             position: relative; z-index: 2;
             width: 100%; height: 100%;
             display: flex; 
-            align-items: flex-start; /* center වෙනුවට flex-start කිරීමෙන් අකුරු ඉහළට යයි */
+            align-items: flex-start; 
             justify-content: flex-start; 
-            padding: 30px 40px; /* දාරයේ සිට ලස්සන දුරකින් තැබීමට */
+            padding: 30px 40px; 
             box-sizing: border-box;
             background: linear-gradient(90deg, rgba(2, 4, 8, 0.92) 0%, rgba(2, 4, 8, 0.65) 50%, rgba(2, 4, 8, 0.1) 100%);
         }
@@ -260,10 +269,10 @@
             backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
             padding: 0 !important;
             display: flex; flex-direction: column; justify-content: flex-start; 
-            height: 100%; /* බටන් එක පහළට තල්ලු කිරීමට උපකාරී වේ */
+            height: 100%; 
         }
 
-        /* 🖥️ [UPDATED] LARGER, MORE PROMINENT LABELS AND TITLES */
+        /* 🖥️ LABELS AND TITLES */
         .hero-badge-row { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
         .hero-badge { 
             background: var(--neon-pink); color: #fff; 
@@ -284,14 +293,14 @@
             text-shadow: 0 0 5px var(--neon-amber);
         }
 
-        .hero-title { font-size: 32px; font-weight: 900; margin: 0 0 12px 0; text-shadow: 0 0 12px #fff; color: #fff; }
-        .hero-desc { 
-            font-size: 14px; color: var(--neon-cyan); text-shadow: 0 0 8px rgba(0, 240, 255, 0.4); line-height: 1.6; margin: 0 0 20px 0;
-        }
-        .hero-author { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--neon-cyan); margin-bottom: 20px; }
+        .hero-title { font-size: 32px; font-weight: 900; margin: 0 0 6px 0; text-shadow: 0 0 12px #fff; color: #fff; }
+        .hero-author { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--neon-cyan); margin-bottom: 15px; }
         .hero-author img { width: 18px; height: 18px; border-radius: 50%; border: 1px solid var(--neon-cyan); }
+        .hero-desc { 
+            font-size: 14px; color: var(--neon-cyan); text-shadow: 0 0 8px rgba(0, 240, 255, 0.4); line-height: 1.6; margin: auto 0 15px 0;
+        }
 
-        /* 🚀 [UPDATED] SINGLE LAYER COMING SOON BANNER WITH ROTATING RGB BORDER (AMBER SPECTRUM) */
+        /* 🚀 SINGLE LAYER COMING SOON BANNER WITH ROTATING RGB BORDER (AMBER SPECTRUM) */
         .upcoming-banner {
             position: relative;
             width: 100%; height: 280px; border-radius: 12px; overflow: hidden; margin-top: 0; margin-bottom: 25px;
@@ -314,7 +323,7 @@
         .upcoming-bg-blur {
             position: absolute; inset: 2.5px;
             background-size: cover; background-position: center;
-            filter: brightness(0.55); /* No blur! High-definition single layer */
+            filter: brightness(0.55); 
             z-index: 1;
             border-radius: 10px;
         }
@@ -322,7 +331,7 @@
             position: relative; z-index: 2;
             width: 100%; height: 100%;
             display: flex; 
-            align-items: flex-start; /* ඉහළටම සකසන ලදී */
+            align-items: flex-start; 
             justify-content: flex-start; 
             padding: 25px 35px; 
             box-sizing: border-box;
@@ -371,7 +380,7 @@
         }
         .upcoming-title { font-size: 28px; font-weight: 900; margin: 0 0 12px 0; text-shadow: 0 0 12px #fff; color: #fff; }
         .upcoming-desc { 
-            font-size: 13.5px; color: var(--neon-amber); text-shadow: 0 0 8px rgba(255, 170, 0, 0.4); line-height: 1.5; margin: 0;
+            font-size: 13.5px; color: var(--neon-amber); text-shadow: 0 0 8px rgba(255, 170, 0, 0.4); line-height: 1.5; margin: auto 0 0 0; /* Align to bottom of the box */
         }
 
         /* 🎛️ CONTROL ZONE */
@@ -477,7 +486,7 @@
             background: rgba(255, 255, 255, 0.25);
             border-radius: 3px; overflow: hidden; position: relative;
             box-shadow: 0 0 8px rgba(0,0,0,0.8);
-            margin-left: 14px !important; /* Shifting track exactly to align perfectly with the first digit of the rating */
+            margin-left: 14px !important; 
         }
         .imdb-fill {
             width: 100%; position: absolute; bottom: 0; left: 0;
@@ -700,7 +709,7 @@
         }
         .comment-input:focus { border-color: var(--neon-cyan); box-shadow: 0 0 8px rgba(0, 240, 255, 0.2); }
 
-        /* 🤖 CYBER-AI FLOATING CHATBOT WIDGET STYLES (RGB ROTATING ACTIVE RING) */
+        /* 🤖 CYBER-AI FLOATING CHATBOT WIDGET STYLES */
         #cyber-ai-bubble {
             position: fixed; bottom: 25px; right: 25px;
             width: 65px; height: 65px; border-radius: 50%;
@@ -833,7 +842,7 @@
             text-shadow: 0 0 5px var(--neon-cyan);
         }
 
-        /* 💡 Suggestion Chips for quick AI actions */
+        /* 💡 Suggestion Chips */
         .ai-action-chips {
             display: flex; gap: 6px; padding: 8px 12px;
             overflow-x: auto; background: rgba(0,0,0,0.2);
@@ -884,7 +893,7 @@
             transform: scale(1.05);
         }
 
-        /* 🌟 GLOBAL UNIFORM NEON BUTTON STYLES WITH ROUNDED CORNERS (BORDER-RADIUS: 10px) */
+        /* 🌟 GLOBAL UNIFORM NEON BUTTON STYLES WITH ROUNDED CORNERS */
         .tab-btn, .hero-btn, .feedback-btn, .comment-submit-btn, .blogger-visit-btn, .about-btn {
             background: rgba(2, 4, 8, 0.6) !important;
             border-radius: 10px !important; 
@@ -919,7 +928,7 @@
             color: #ffffff !important;
         }
 
-        /* 🔵 Cyan Neon (Default / ALL tab / Hero Button) */
+        /* 🔵 Cyan Neon */
         .tab-btn.active, .tab-btn:hover, .hero-btn {
             border: 1.5px solid var(--neon-cyan) !important;
             color: var(--neon-cyan) !important;
@@ -931,13 +940,12 @@
             box-shadow: 0 0 20px var(--neon-cyan), inset 0 0 12px rgba(0, 240, 255, 0.2) !important;
         }
         
-        /* [UPDATED] Hero Button Layout Positioning */
         .hero-btn {
-            margin-top: auto !important; /* බැනරයෙහි පහළටම ගැනීමට */
+            margin-top: auto !important; 
             align-self: flex-start;
         }
 
-        /* 🟣 Purple/Violet Neon (Korean Tab / Comments Button) */
+        /* 🟣 Purple/Violet Neon */
         .tab-btn-korean.active, .tab-btn-korean:hover, .comment-submit-btn {
             border: 1.5px solid var(--neon-purple) !important;
             color: var(--neon-purple) !important;
@@ -949,7 +957,7 @@
             box-shadow: 0 0 20px var(--neon-purple), inset 0 0 12px rgba(157, 78, 221, 0.2) !important;
         }
 
-        /* 🟡 Amber/Orange Neon (Chinese Tab / Blogger Button) */
+        /* 🟡 Amber/Orange Neon */
         .tab-btn-chinese.active, .tab-btn-chinese:hover, .blogger-visit-btn {
             border: 1.5px solid var(--neon-amber) !important;
             color: var(--neon-amber) !important;
@@ -961,7 +969,7 @@
             box-shadow: 0 0 20px var(--neon-amber), inset 0 0 12px rgba(255, 170, 0, 0.2) !important;
         }
 
-        /* 💗 Pink/Red Neon (Japanese Tab / About Button / Feedback Dislike) */
+        /* 💗 Pink/Red Neon */
         .tab-btn-japanese.active, .tab-btn-japanese:hover, .about-btn, .feedback-btn.dislike-btn {
             border: 1.5px solid var(--neon-pink) !important;
             color: var(--neon-pink) !important;
@@ -973,7 +981,7 @@
             box-shadow: 0 0 20px var(--neon-pink), inset 0 0 12px rgba(255, 0, 127, 0.2) !important;
         }
 
-        /* 💚 Emerald Green Neon (Feedback Like Button) */
+        /* 💚 Emerald Green Neon */
         .feedback-btn.like-btn {
             border: 1.5px solid #00ffcc !important;
             color: #00ffcc !important;
@@ -996,7 +1004,7 @@
 
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-        /* 🌀 ROTATION & TRANSLATION KEYFRAMES (RGB LIGHT ROTATION) */
+        /* 🌀 ROTATION & TRANSLATION KEYFRAMES */
         @keyframes rgb-fast-rotate {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
@@ -1054,7 +1062,7 @@
         /* 🖥️ DESKTOP-SPECIFIC RESPONSIVE OVERRIDES */
         @media (min-width: 900px) {
             .hero-hud-card, .upcoming-hud-card {
-                max-width: 550px !important; /* Spans partially on desktop to reveal background */
+                max-width: 550px !important; 
                 width: 100% !important;
             }
             .hero-title { font-size: 34px !important; }
@@ -1064,6 +1072,41 @@
         }
 
         @media (max-width: 600px) {
+            /* 🛑 MOBILE STICKY STABILITY OFFSETS - FULLY INDEPENDENT BARS */
+            header {
+                position: sticky !important;
+                top: 0 !important;
+                z-index: 1000 !important;
+            }
+            .ticker-wrapper {
+                position: sticky !important;
+                top: 79px !important; /* Header outer height = 79px + 2px border = 81px */
+                z-index: 999 !important;
+                background: rgba(6, 11, 25, 0.95) !important;
+                backdrop-filter: blur(10px) !important;
+                -webkit-backdrop-filter: blur(10px) !important;
+            }
+            .sub-nav-container {
+                position: sticky !important;
+                top: 109px !important; /* 81px + 30px ticker = 111px approx */
+                z-index: 998 !important;
+                padding: 10px 15px !important;
+                background: rgba(2, 4, 8, 0.9) !important;
+                backdrop-filter: blur(10px) !important;
+                -webkit-backdrop-filter: blur(10px) !important;
+                margin: 0 auto !important;
+            }
+            .notice-container-alert {
+                position: sticky !important;
+                top: 175px !important; /* 111px + ~65px sub-nav = 175px approx */
+                z-index: 997 !important;
+                padding: 5px 15px !important;
+                background: rgba(2, 4, 8, 0.9) !important;
+                backdrop-filter: blur(10px) !important;
+                -webkit-backdrop-filter: blur(10px) !important;
+                margin: 0 auto !important;
+            }
+
             .header-container { flex-direction: row !important; justify-content: space-between !important; align-items: center !important; width: 100%; gap: 10px; }
             .three-dot-btn { font-size: 18px; padding: 6px 10px; }
             
@@ -1077,6 +1120,19 @@
             .sub-nav-clock { font-size: 10px !important; padding: 5px 10px !important; }
             .sub-nav-date { font-size: 10px !important; padding: 5px 10px !important; }
             
+            /* 📱 STABILIZE MOBILE SEARCH BOX PLACEHOLDER */
+            .search-box {
+                padding: 8px 15px !important;
+            }
+            .search-box i {
+                margin-right: 8px !important;
+                font-size: 14px !important;
+            }
+            .search-box input {
+                font-size: 11.5px !important; 
+                padding: 4px 0 !important;
+            }
+
             .genre-list { 
                 flex-wrap: nowrap !important; 
                 overflow-x: auto !important; 
@@ -1090,10 +1146,10 @@
             .hero-banner-content { padding: 15px 20px !important; }
             .hero-hud-card { padding: 15px; background: none !important; backdrop-filter: none !important; }
             .hero-title { font-size: 24px; margin-bottom: 5px; }
-            .hero-desc { font-size: 12.5px; margin-bottom: 15px; }
+            .hero-author { margin-bottom: 10px !important; }
+            .hero-desc { font-size: 12.5px; margin-bottom: 15px !important; margin-top: auto !important; }
             .hero-btn { padding: 8px 16px; font-size: 11px; margin-top: auto !important; }
 
-            /* STABILIZE SECTION BAR ON MOBILE & PREVENT WRAPPING */
             .section-title-neon {
                 font-size: 11px !important;
                 letter-spacing: 0.5px !important;
@@ -1119,18 +1175,17 @@
             .widget-box p { font-size: 11px !important; line-height: 1.4 !important; }
             #visitor-count { font-size: 20px !important; margin-top: 5px !important; }
 
-            /* 📱 STABILIZE LIKE & DISLIKE COUNT ALIGNMENT ON MOBILE */
             .feedback-buttons {
-                flex-direction: row !important; /* Keep side-by-side cleanly */
+                flex-direction: row !important; 
                 gap: 8px !important;
             }
             .feedback-btn {
-                font-size: 9.5px !important; /* Prevents text overflow/wrapping on narrow mobile screens */
+                font-size: 9.5px !important; 
                 padding: 8px 10px !important;
                 flex: 1 !important;
             }
             
-            /* [UPDATED] Coming Soon Banner - Mobile Responsive Badges */
+            /* Coming Soon Banner - Mobile Responsive Badges */
             .upcoming-badge-row { 
                 gap: 6px !important; 
                 margin-bottom: 8px !important; 
@@ -1141,10 +1196,9 @@
             .upcoming-ep-badge { font-size: 9px !important; padding: 3.5px 6px !important; }
             .upcoming-imdb-badge { font-size: 9px !important; padding: 3.5px 6px !important; }
             .upcoming-title { font-size: 22px !important; margin-bottom: 6px !important; }
-            .upcoming-desc { font-size: 12px !important; line-height: 1.4 !important; }
+            .upcoming-desc { font-size: 12px !important; line-height: 1.4 !important; margin-top: auto !important; }
         }
 
-        /* 📊 UNIFORM SYMMETRICAL FEEDBACK BUTTONS FOR BOTH CORNERS */
         .feedback-buttons {
             display: flex !important;
             justify-content: space-between !important;
@@ -1204,7 +1258,7 @@
         </div>
     </div>
 
-    <!-- NEON PULSING SPECIAL NOTICE BAR (HEADER NOTICE) -->
+    <!-- NEON PULSING SPECIAL NOTICE BAR -->
     <div class="notice-container-alert" id="notice-alert-container">
         <div class="notice-alert-bar">
             <div class="notice-beacon"></div>
@@ -1227,15 +1281,16 @@
                             <i class="fa-solid fa-star" style="font-size: 8px; margin-right: 2px;"></i> <span id="hero-imdb-val">8.5</span>
                         </div>
                     </div>
+                    <!-- REARRANGED ORDER: Title -> Author -> Desc -> Button -->
                     <h1 class="hero-title" id="hero-title-text">Loading...</h1>
-                    <p class="hero-desc" id="hero-desc-text">දත්ත ලබාගනිමින් පවතී...</p>
                     <div class="hero-author" id="hero-author-container"></div>
+                    <p class="hero-desc" id="hero-desc-text">දත්ත ලබාගනිමින් පවතී...</p>
                     <a href="#" class="hero-btn" id="hero-btn-link"><i class="fa-solid fa-download"></i> උපසිරැසි ලබාගන්න</a>
                 </div>
             </div>
         </div>
 
-        <!-- 🚀 COMING SOON SECTION (PREMIUM FULL-WIDTH BANNER SHOWCASE) -->
+        <!-- 🚀 COMING SOON SECTION -->
         <div id="coming-soon-section-wrapper" style="display: none; margin-bottom: 35px;">
             <div class="section-bar" style="border-left-color: var(--neon-amber); background: linear-gradient(90deg, rgba(255, 170, 0, 0.15), transparent);">
                 <h2 class="section-title-neon" style="color: var(--neon-amber); text-shadow: 0 0 10px var(--neon-amber), 0 0 20px rgba(255, 170, 0, 0.4); animation: cyber-glow-pulse-amber 3s infinite ease-in-out;">ළඟදීම බලාපොරොත්තු වන්න (COMING SOON)</h2>
@@ -1245,13 +1300,13 @@
             </div>
         </div>
 
-        <!-- 🔥 TRENDING / MOST DOWNLOADED SECTION (DYNAMIC AUTO-UPDATE BY IMDB) -->
+        <!-- 🔥 TRENDING / MOST DOWNLOADED SECTION -->
         <div id="trending-section-wrapper" style="display: none; margin-bottom: 35px;">
             <div class="section-bar" style="border-left-color: var(--neon-pink); background: linear-gradient(90deg, rgba(255, 0, 127, 0.15), transparent);">
                 <h2 class="section-title-neon" style="color: var(--neon-pink); text-shadow: 0 0 10px var(--neon-pink), 0 0 20px rgba(255, 0, 127, 0.4); animation: cyber-glow-pulse-pink 3s infinite ease-in-out;">වැඩියෙන්ම බාගත කළ උපසිරැසි (MOST DOWNLOADED)</h2>
             </div>
             <div class="drama-grid" id="trending-grid-container">
-                <!-- Dynamically populated top 3 popular dramas -->
+                <!-- Dynamically populated top popular dramas sorted automatically by Firebase counts -->
             </div>
         </div>
 
@@ -1337,7 +1392,7 @@
                     <div id="feedback-gauge-fill" style="width: 50%; height: 100%; background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan)); box-shadow: 0 0 10px var(--neon-cyan); transition: width 0.5s ease-out;"></div>
                 </div>
 
-                <!-- Like / Dislike buttons re-located underneath the progress bar split evenly to both corners -->
+                <!-- Like / Dislike buttons -->
                 <div class="feedback-buttons">
                     <button class="feedback-btn like-btn" onclick="submitFeedback('like', event)">
                         <i class="fa-solid fa-thumbs-up"></i>
@@ -1423,7 +1478,7 @@
         const USE_MATRIX_BACKGROUND = true; 
         const STATIC_BACKGROUND_IMAGE = "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/bbfcf6e6-8bca-4883-8eb1-f93a2d1d4728.png";
 
-        // 🛡️ LOCAL STORAGE SAFETY WRAPPER (ඩෙක්ස්ටොප් ක්‍රෑෂ් වීම් වළක්වයි)
+        // 🛡️ LOCAL STORAGE SAFETY WRAPPER 
         const safeLocalStorage = {
             getItem: function(key) {
                 try {
@@ -1447,7 +1502,7 @@
         const CLOUDFLARE_WORKER_URL = "https://ask-gemini.rashmi004005g.workers.dev"; // Gemini (Fallback 1)
         const CLOUDFLARE_WORKER_URL_GROQ = "https://groq.rashmi004005g.workers.dev"; // Groq (Fallback 2)
 
-        /* 🛡️ ANTI-THEFT PROTECTION (DISABLE RIGHT-CLICK, F12, CTRL+U, CTRL+SHIFT+I) */
+        /* 🛡️ ANTI-THEFT PROTECTION */
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
         });
@@ -1493,7 +1548,7 @@
         setInterval(updateCyberClock, 1000); 
         updateCyberClock();
 
-        /* 🤖 COMPREHENSIVE OFFLINE PREVIEW DUMMY DATABASE WITH TESTING IMAGE METADATA */
+        /* 🤖 COMPREHENSIVE OFFLINE PREVIEW DUMMY DATABASE */
         const offlineDummyDatabase = {
             "config": {
                 "about_me_text": "අපි ඔබ වෙත ගෙන එන්නේ ගුණාත්මක බවින් ඉහළම ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි පමණි. අපගේ නිල සමාජ මාධ්‍ය ජාලයන් සමඟ එක් වී අලුත්ම උපසිරැසි නිකුත් වූ සැනින් ලබාගන්න.",
@@ -1570,9 +1625,9 @@
         let activeGenre = "ALL";
         let currentSearchQuery = "";
         let originalDatabase = offlineDummyDatabase; 
-        let upcomingDatabase = null; // 📅 ස්වාධීන upcoming.json සඳහා අලුත් විචල්‍යය
+        let upcomingDatabase = null; 
 
-        /* 📄 FETCH FROM data.json & upcoming.json */
+        /* 📄 FETCH FROM data.json & upcoming.json + FIREBASE DOWNLOADS */
         async function loadContent() {
             try {
                 const response = await fetch('data.json?v=' + new Date().getTime());
@@ -1595,6 +1650,25 @@
                 }
             } catch (e) {
                 console.log("Could not fetch upcoming.json");
+            }
+
+            // 🔥 Fetch relative download counts dynamically from Firebase RTDB
+            try {
+                const dlResponse = await fetch(`${firebaseURL}downloads.json`);
+                if (dlResponse.ok) {
+                    const downloadCounts = await dlResponse.json();
+                    if (downloadCounts && originalDatabase && originalDatabase.dramas) {
+                        Object.keys(originalDatabase.dramas).forEach(key => {
+                            if (downloadCounts[key]) {
+                                originalDatabase.dramas[key].download_count = downloadCounts[key];
+                            } else {
+                                originalDatabase.dramas[key].download_count = 0;
+                            }
+                        });
+                    }
+                }
+            } catch (err) {
+                console.warn("Could not retrieve downloads from Firebase, falling back to IMDb sorted mode.", err);
             }
             
             try { renderPage(); } catch (err) { console.error("Render error:", err); }
@@ -1654,7 +1728,6 @@
             const aboutMeAvatar = config.about_me_avatar || ABOUT_ME_ART_LOGO;
             const tgChannelLink = config.telegram_channel_link || "https://t.me/liyasi1";
             
-            // [UPDATED] ස්වාධීන දැනුම්දීම් දෙක වෙන වෙනම ලබාගැනීම
             const topNoticeText = config.top_notice_text || config.notice_text || "";
             const bottomNoticeText = config.bottom_notice_text || config.notice_text || "අපගේ සියලුම සිංහල උපසිරැසි නොමිලේ ලබාගත හැක. කිසියම් ගැටලුවක් ඇත්නම් 3-Dot මෙනුවේ ඇති Contact පිටුවෙන් අපට පණිවිඩයක් එවන්න.";
             
@@ -1709,7 +1782,7 @@
 
             const dramaArray = Object.values(originalDatabase.dramas || {});
             
-            /* Render Coming Soon Section (ස්වාධීන upcoming.json භාවිතයෙන්) */
+            /* Render Coming Soon Section (upcoming.json) */
             const comingSoonWrapper = document.getElementById('coming-soon-section-wrapper');
             const comingSoonGrid = document.getElementById('coming-soon-grid-container');
 
@@ -1728,10 +1801,10 @@
                 }
             }
 
-            // Exclude UPCOMING dramas (ආරක්ෂිත පෙරහනක් ලෙස)
+            // Exclude UPCOMING dramas
             const availableDramas = dramaArray.filter(d => d && d.status !== "UPCOMING");
 
-            /* Render Trending Section */
+            /* Render Trending Section - AUTO UPDATE BASED ON RELATIVE FIREBASE DOWNLOADS */
             const trendingWrapper = document.getElementById('trending-section-wrapper');
             const trendingGrid = document.getElementById('trending-grid-container');
 
@@ -1739,8 +1812,18 @@
                 if (availableDramas.length > 0) {
                     trendingWrapper.style.display = "block";
                     trendingGrid.innerHTML = "";
-                    const sortedByRating = [...availableDramas].sort((a, b) => parseFloat(b.imdb || 0) - parseFloat(a.imdb || 0));
-                    const topThree = sortedByRating.slice(0, 3);
+                    
+                    // Sort descending by Firebase download_count, falling back to IMDb rating if equal
+                    const sortedByDownloads = [...availableDramas].sort((a, b) => {
+                        const dlA = parseInt(a.download_count || 0);
+                        const dlB = parseInt(b.download_count || 0);
+                        if (dlB !== dlA) {
+                            return dlB - dlA;
+                        }
+                        return parseFloat(b.imdb || 0) - parseFloat(a.imdb || 0);
+                    });
+                    
+                    const topThree = sortedByDownloads.slice(0, 3);
                     topThree.forEach(d => {
                         if (d) trendingGrid.innerHTML += createCardHTML(d);
                     });
@@ -1749,7 +1832,7 @@
                 }
             }
 
-            // [FULLY AUTOMATIC HERO BANNER UPDATE LOGIC]
+            // FULLY AUTOMATIC HERO BANNER UPDATE LOGIC
             if (originalDatabase.latest_updates && originalDatabase.latest_updates[0]) {
                 const latestUpdate = originalDatabase.latest_updates[0]; 
                 
@@ -1852,7 +1935,7 @@
                 });
 
                 if (filteredDramas.length === 0) {
-                    area.innerHTML = `<p style="text-align: center; color: var(--neon-pink); font-weight: bold; margin: 50px 0;">🔍 සෙවීමට අදාළ kතාමාලා කිසිවක් හමු නොවීය.</p>`;
+                    area.innerHTML = `<p style="text-align: center; color: var(--neon-pink); font-weight: bold; margin: 50px 0;">🔍 සෙවීමට අදාළ කතාමාලා කිසිවක් හමු නොවීය.</p>`;
                     return;
                 }
 
@@ -1893,7 +1976,7 @@
             }
         }
 
-        /* 💡 DYNAMIC CHIPS RENDER FUNCTION - CONTROLLED BY BOT CONFIG */
+        /* 💡 DYNAMIC CHIPS RENDER FUNCTION */
         function renderDynamicChatChips(config, dramas) {
             try {
                 const chipsContainer = document.querySelector('.ai-action-chips');
@@ -1962,7 +2045,7 @@
             container.innerHTML = html;
         }
 
-        /* 📊 CYBER CARD GENERATOR (WITH VALUE LEADING, STAR ON LEFT & PERFECT VERTICAL TRACK ALIGNMENT) */
+        /* 📊 CYBER CARD GENERATOR */
         function createCardHTML(d) {
             const isComplete = d.status === "COMPLETE";
             const categoryText = d.type || "DRAMA";
@@ -2078,7 +2161,6 @@
             let likes = 124;
             let dislikes = 2;
 
-            // Firebase Database එකෙන් සජීවීව Likes/Dislikes ගණන ලබා ගැනීම
             try {
                 const resLikes = await fetch(`${firebaseURL}likes.json`);
                 const firebaseLikes = await resLikes.json();
@@ -2108,7 +2190,6 @@
 
             updateFeedbackBar(likes, dislikes);
 
-            // පරිශීලකයින් ලියූ අදහස් (Comments) කියවීම
             let storedComments;
             try {
                 storedComments = JSON.parse(safeLocalStorage.getItem('subverseComments')) || [
@@ -2228,7 +2309,7 @@
             loadCommentsAndLikes();
         }
 
-        /* 🤖 CYBER-AI CHATBOT FUNCTIONALITY WITH ROBUST MULTI-SERVER FAILOVER */
+        /* 🤖 CYBER-AI CHATBOT FUNCTIONALITY */
         let autoCloseTimer;
 
         function toggleAIChat() {
@@ -2249,7 +2330,7 @@
             container.innerHTML = `
                 <div class="chat-msg-row bot-row">
                     <img src="https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png" class="chat-bot-avatar" alt="Avatar">
-                    <div class="chat-bubble bot">Здарова! 🖐️ මම ලියැසි SUBVERSE AI සහායකයා. ඔයාට අවශ්‍ය ඕනෑම ඩ්‍රාමා එකක් ගැන, බ්ලොග් එකේ ලිපි ගැන හෝ සබ්ටයිටල් දාගන්න විදිහ ගැන මාත් එක්ක නිදහසේ kතා කරන්න! ❤️🍿</div>
+                    <div class="chat-bubble bot">Здарова! 🖐️ මම ලියැසි SUBVERSE AI සහායකයා. ඔයාට අවශ්‍ය ඕනෑම ඩ්‍රාමා එකක් ගැන, බ්ලොග් එකේ ලිපි ගැන හෝ සබ්ටයිටල් දාගන්න විදිහ ගැන මාත් එක්ක නිදහසේ කතා කරන්න! ❤️🍿</div>
                 </div>
             `;
         }
@@ -2321,24 +2402,11 @@
                 - ඉතාමත් මිත්‍රශීලී, කාරුණික සහ ලෙන්ගතු තරුණ පරිපාලකයෙකු (Friendly Youth Sinhala Admin) මෙන් කතා කරන්න.
                 - පරිශීලකයාට ආමන්ත්‍රණය කිරීමට "ඔයා", "යාලුවා", "සහෝ" වැනි වචන භාවිත කරන්න. 
                 - පිළිතුරුවලට අලංකාර ඉමෝජි (🍿, ❤️, ✨, 🎬) එකතු කරන්න.
-                - ඉතා දිගු ඡේද ලියනවා වෙනුවට කෙටියෙන්, පැහැදිලිව, කියවීමට ආශා හිතෙන පරිදි කරුණු වශයෙන් ලියා දක්වන්න.
+                - ඉතා දිගු ඡේද ලියනවා වෙනුවට කෙටියෙන්, පැහැදිලිව, කරුණු වශයෙන් ලියා දක්වන්න.
 
                 ⚠️ ලින්ක්ස් ලබා දීමේදී අනුගමනය කළ යුතු විශේෂ නීති:
-                1. යම් කෙනෙක් කිසියම් ඩ්‍රාමා එකක එපිසෝඩ් එකක් බාගත කරගැනීමට ලින්ක් එකක් ඇසුවහොත්, [උපසිරැසි සහ ඩ්‍රාමා ලැයිස්තුව] හි ඇති "link" (උපසිරැසි ලින්ක් එක) හෝ "tg_link" (ටෙලිග්‍රෑම් විඩියෝ ලින්ක් එක) සොයාගෙන එය අනිවාර්යයෙන්ම ලබා දෙන්න.
-                2. බ්ලොගර් (Blogger) අඩවිය ගැන හෝ බ්ලොග් එකට පිවිසීමට ලින්ක් එකක් ඇසුවහොත් [වෙබ් අඩවියේ මූලික තොරතුරු] හි ඇති "blogger_link" එක ලබා දෙන්න.
-                3. හැමවිටම ලින්ක් ලබා දීමේදී පරිශීලකයාට ක්ලික් කළ හැකි වන පරිදි [ලින්ක් එකේ නම](URL ලින්ක් එක) ආකාරයටම සකසා ලබා දෙන්න. (උදාහරණයක් ලෙස: \`[Doctor Lawyer 01 කොටස බාගත කරගන්න](https://...)\` හෝ \`[අපගේ බ්ලොග් අඩවියට පිවිසෙන්න](https://...)\` ලෙස ලබා දෙන්න). කිසිවිටක සාමාන්‍ය plain text එකක් ලෙස ලින්ක් ලබා නොදෙන්න.
-
-                [වෙබ් අඩවියේ මූලික තොරතුරු]:
-                ${configContext}
-
-                [උපසිරැසි සහ ඩ්‍රාමා ලැයිස්තුව]:
-                ${dramaContext}
-
-                [බ්ලොගර් සහ ලිපිවල අමතර විස්තර (article_data.txt)]:
-                ${articleData}
-
-                [පරිශීලකයාගේ ප්‍රශ්නය]:
-                ${text}
+                1. යම් කෙනෙක් කිසියම් ඩ්‍රාමා එකක එපිසෝඩ් එකක් බාගත කරගැනීමට ලින්ක් එකක් ඇසුවහොත්, "link" හෝ "tg_link" සොයාගෙන එය [ලින්ක් එකේ නම](URL ලින්ක් එක) ආකාරයටම සකසා ලබා දෙන්න.
+                2. බ්ලොගර් ගැන ඇසුවහොත් "blogger_link" එක ලබා දෙන්න.
                 `;
 
                 let aiResponseText = "";
@@ -2507,17 +2575,16 @@
             btn.innerHTML = '<i class="fa-solid fa-microphone"></i>';
         }
 
-        /* 🌌 ANIMATED 3D HOLOGRAM & GALAXY VORTEX PARTICLE SYSTEM (HIGHLY OPTIMIZED & SCREEN-WIDE) */
+        /* 🌌 ANIMATED 3D HOLOGRAM PARTICLE SYSTEM */
         const canvas = document.getElementById("matrix-canvas");
         const ctx = canvas.getContext("2d");
         
         let particles = [];
         let textTargets = [];
-        let animationMode = "ambient"; // "ambient" (ගලායන තරංග) හෝ "text" (ලියැසි SUBVERSE)
+        let animationMode = "ambient"; 
         let modeTimer = 0;
         let transitionProgress = 0; 
 
-        // 3D කැමරා පාලනය (Slow Horizontal Cam Rotation)
         let angleX = 0.25; 
         let angleY = 0;   
         let zoom = 1.7;
@@ -2531,7 +2598,6 @@
         window.addEventListener("resize", resizeCanvas);
         resizeCanvas();
 
-        // "ලියැසි SUBVERSE" අකුරු ද්විත්ව පේළිය offscreen Targets සාදාගැනීම
         function createTextTargets() {
             const offscreenCanvas = document.createElement('canvas');
             const offCtx = offscreenCanvas.getContext('2d');
@@ -2541,15 +2607,13 @@
             offCtx.fillStyle = '#000000';
             offCtx.fillRect(0, 0, 800, 300);
             
-            // 1 වන පේළිය: "ලියැසි" (සිංහල Outline)
-            offCtx.font = "900 85px 'Segoe UI', system-ui, sans-serif";
+            offCtx.font = "900 85px 'Segoe UI', sans-serif";
             offCtx.textAlign = "center";
             offCtx.textBaseline = "middle";
             offCtx.strokeStyle = '#ffffff';
             offCtx.lineWidth = 3.5;
             offCtx.strokeText("ලියැසි", 400, 100);
             
-            // 2 වන පේළිය: "SUBVERSE" (ඉංග්‍රීසි Outline)
             offCtx.font = "900 58px 'Share Tech Mono', monospace";
             offCtx.lineWidth = 3;
             offCtx.strokeText("SUBVERSE", 400, 210);
@@ -2569,7 +2633,6 @@
             return points;
         }
 
-        // 3D to 2D Perspective Projection
         function project3D(x, y, z) {
             let cosY = Math.cos(angleY);
             let sinY = Math.sin(angleY);
@@ -2841,7 +2904,7 @@
                 grad.addColorStop(0.5, col2);
                 grad.addColorStop(1, col3);
 
-                ctx.font = `900 ${85 * scale}px 'Segoe UI', system-ui, sans-serif`;
+                ctx.font = `900 ${85 * scale}px 'Segoe UI', sans-serif`;
                 
                 ctx.shadowColor = col1;
                 ctx.shadowBlur = 20 * scale;
