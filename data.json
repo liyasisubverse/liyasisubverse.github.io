@@ -176,5 +176,12 @@
     "server_status_bot": "ACTIVE",
     "blogger_link": "https://liyasisubverse.blogspot.com",
     "chat_chips": "Blogger Link 📚 | Help Guide ❓"
+  },
+  "upcoming": {
+    "title": "Doctor Lawyer",
+    "image_url": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/7a1d6bbd-5534-4df7-9a74-24786062591f.png",
+    "release_date": "2022-06-03",
+    "synopsis": "The heartwarming story of a genius surgeon who becomes a lawyer specializing in medical crimes after losing a patient to a surgical malpractice. Cathartic and suspenseful, this medical and legal drama paints the courtroom like an operating room, where a life may end or be given a fresh start.",
+    "status": "COMING SOON"
   }
 }
