@@ -8,6 +8,12 @@
     },
     {
       "title": "Doctor Lawyer",
+      "episode": "EP 03",
+      "image_url": "https://i.ibb.co/pBhQmmD1/Doctor-Lawyer-Episode-01.jpg",
+      "post_link": "episode_picker.html?drama_id=196906&ep=EP 03"
+    },
+    {
+      "title": "Doctor Lawyer",
       "episode": "EP 02",
       "image_url": "https://i.ibb.co/pBhQmmD1/Doctor-Lawyer-Episode-01.jpg",
       "post_link": "episode_picker.html?drama_id=196906&ep=EP 02"
@@ -28,7 +34,7 @@
       "imdb": "7.3",
       "total_episodes": 16,
       "image_url": "https://i.ibb.co/pBhQmmD1/Doctor-Lawyer-Episode-01.jpg",
-      "map_url": "",
+      "map_url": "https://i.ibb.co/LhxzBVJh/5eca8750a194.png",
       "synopsis": "\"Doctor Lawyer\" යනු වෛද්‍ය කුමන්ත්‍රණයකට හසුවී සියල්ල අහිමි වන වෛද්‍යවරයෙක්, පසුව නීතිඥයෙකු වී යුක්තිය පතා කරන සටනකි.",
       "genres": [
         "Crime",
@@ -161,7 +167,7 @@
           "title": "✨️ නැවත පැමිණීම ✨️",
           "image": "https://i.ibb.co/pBhQmmD1/Doctor-Lawyer-Episode-01.jpg",
           "synopsis": "වසර පහකට පසු යී-හන් වෛද්‍ය නීතිඥයෙකු ලෙස නැවත පැමිණෙයි.",
-          "map_url": "",
+          "map_url": "https://i.ibb.co/LhxzBVJh/5eca8750a194.png",
           "trailer": "",
           "cast": [
             {
