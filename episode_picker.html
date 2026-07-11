@@ -59,10 +59,20 @@
             overflow-x: hidden;
         }
 
+        /* 📌 STICKY TOP BAR (HEADER + SUB-NAV) */
+        .sticky-top-bar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 2px solid rgba(0, 240, 255, 0.25);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+        }
+
         header {
-            background: var(--glass-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            border-bottom: 2px solid rgba(0, 240, 255, 0.25); padding: 12px 20px;
-            position: sticky; top: 0; z-index: 1000;
+            padding: 12px 20px 5px 20px;
         }
         .header-container {
             max-width: 1300px; margin: 0 auto;
@@ -124,20 +134,11 @@
             opacity: 0; z-index: 1;
         }
 
-        .ticker-wrapper {
-            background: rgba(255, 0, 127, 0.12); border-bottom: 1px solid rgba(255, 0, 127, 0.25);
-            overflow: hidden; padding: 6px 0; position: relative;
-            -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-            mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-        }
-        .ticker-text { display: inline-block; white-space: nowrap; animation: marquee 25s linear infinite; font-size: 11px; font-weight: 700; text-shadow: 0 0 5px var(--neon-pink); }
-        @keyframes marquee { 0% { transform: translateX(100vw); } 100% { transform: translateX(-100%); } }
-
         /* 📅 SUB-NAV, CLOCK & DATE SPLIT */
-        .sub-nav-container { max-width: 1300px; margin: 20px auto 0 auto; padding: 0 15px; box-sizing: border-box; }
+        .sub-nav-container { max-width: 1300px; margin: 0 auto; padding: 5px 15px 12px 15px; box-sizing: border-box; }
         .sub-nav-bar { 
             display: flex; justify-content: space-between; align-items: center; gap: 15px; 
-            background: rgba(255, 255, 255, 0.02); padding: 10px 20px; border-radius: 10px;
+            background: rgba(255, 255, 255, 0.02); padding: 8px 20px; border-radius: 10px;
             border: 1px solid rgba(255,255,255,0.05);
         }
         .sub-nav-item {
@@ -160,6 +161,15 @@
             padding: 6px 12px; border-radius: 5px; display: flex; align-items: center; gap: 6px;
             white-space: nowrap;
         }
+
+        .ticker-wrapper {
+            background: rgba(255, 0, 127, 0.12); border-bottom: 1px solid rgba(255, 0, 127, 0.25);
+            overflow: hidden; padding: 6px 0; position: relative;
+            -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+        }
+        .ticker-text { display: inline-block; white-space: nowrap; animation: marquee 25s linear infinite; font-size: 11px; font-weight: 700; text-shadow: 0 0 5px var(--neon-pink); }
+        @keyframes marquee { 0% { transform: translateX(100vw); } 100% { transform: translateX(-100%); } }
 
         .main-container { max-width: 1300px; margin: 20px auto; padding: 0 15px; box-sizing: border-box; }
 
@@ -615,6 +625,40 @@
         }
         .chat-send-btn:hover { box-shadow: 0 0 15px var(--neon-cyan); transform: scale(1.05); }
 
+        /* 🌀 KEYFRAMES */
+        @keyframes logo-laser-draw {
+            0%, 35%, 100% {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                opacity: 1;
+                filter: drop-shadow(0 0 8px var(--neon-cyan)) brightness(1);
+            }
+            40% {
+                clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+                opacity: 0.5;
+            }
+            45%, 90% {
+                clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+                opacity: 0;
+            }
+            91% {
+                clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+                opacity: 0.5;
+            }
+            95% {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                opacity: 1;
+                filter: drop-shadow(0 0 20px var(--neon-cyan)) brightness(1.6);
+            }
+        }
+        @keyframes tagline-fade {
+            0%, 40%, 95%, 100% { opacity: 0; transform: scale(0.95); pointer-events: none; }
+            45%, 90% { opacity: 1; transform: scale(1); pointer-events: auto; }
+        }
+        @keyframes rgb-shift-text {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
         @keyframes rgb-fast-rotate {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
@@ -636,9 +680,12 @@
         .footer-description { font-size: 13px; color: #fff; text-shadow: 0 0 5px var(--neon-pink); line-height: 1.6; margin-bottom: 25px; }
         .footer-credits { font-size: 11px; color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px; }
 
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
         @media (max-width: 768px) {
             .drama-details-container { padding: 20px !important; }
             .detail-poster-wrapper { width: 280px !important; height: 420px !important; max-width: 92% !important; }
+            .info-spec-list { grid-template-columns: 1fr; }
             .cast-grid-box { grid-template-columns: repeat(3, 1fr); gap: 10px; }
             .cat-vote-wrapper { grid-template-columns: 1fr !important; gap: 10px; }
         }
@@ -657,43 +704,46 @@
 </head>
 <body>
 
-    <!-- NAVIGATION HEADER -->
-    <header>
-        <div class="header-container">
-            <div class="header-left-zone">
-                <div class="three-dot-wrapper">
-                    <button class="three-dot-btn" onclick="toggleDropdown()"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-                    <div class="dropdown-menu" id="threeDotMenu">
-                        <a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact Us</a>
-                        <a href="disclaimer.html"><i class="fa-solid fa-triangle-exclamation"></i> Disclaimer</a>
-                        <a href="dmca.html"><i class="fa-solid fa-scale-balanced"></i> DMCA</a>
-                        <a href="request.html"><i class="fa-solid fa-film"></i> Request Drama</a>
-                        <a href="about.html"><i class="fa-solid fa-address-card"></i> About Us</a>
+    <!-- 📌 STICKY TOP BAR (HEADER + SUB-NAV) -->
+    <div class="sticky-top-bar">
+        <!-- NAVIGATION HEADER -->
+        <header>
+            <div class="header-container">
+                <div class="header-left-zone">
+                    <div class="three-dot-wrapper">
+                        <button class="three-dot-btn" onclick="toggleDropdown()"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                        <div class="dropdown-menu" id="threeDotMenu">
+                            <a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact Us</a>
+                            <a href="disclaimer.html"><i class="fa-solid fa-triangle-exclamation"></i> Disclaimer</a>
+                            <a href="dmca.html"><i class="fa-solid fa-scale-balanced"></i> DMCA</a>
+                            <a href="request.html"><i class="fa-solid fa-film"></i> Request Drama</a>
+                            <a href="about.html"><i class="fa-solid fa-address-card"></i> About Us</a>
+                        </div>
                     </div>
+                    <!-- Alternating Logo & Coded Tagline -->
+                    <a href="index.html" class="logo-wrapper" id="header-logo-container">
+                        <img class="site-logo-img" src="https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/81260990-6d71-4fbb-b966-43f96215438e.png" alt="Subverse Logo">
+                        <div class="coded-tagline-text">
+                            දුර්ලභ කතා මාලා වල නිවහන<br>
+                            <span style="font-size: 11px; font-weight: bold;">(The Home of Rare Series)</span>
+                        </div>
+                    </a>
                 </div>
-                <!-- Alternating Logo & Coded Tagline -->
-                <a href="index.html" class="logo-wrapper" id="header-logo-container">
-                    <img class="site-logo-img" src="https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/81260990-6d71-4fbb-b966-43f96215438e.png" alt="Subverse Logo">
-                    <div class="coded-tagline-text">
-                        දුර්ලභ කතා මාලා වල නිවහන<br>
-                        <span style="font-size: 11px; font-weight: bold;">(The Home of Rare Series)</span>
-                    </div>
-                </a>
+            </div>
+        </header>
+
+        <!-- SUB-NAVIGATION BAR -->
+        <div class="sub-nav-container">
+            <div class="sub-nav-bar">
+                <div class="sub-nav-clock" id="cyberClock">⏰ 00:00:00 AM</div>
+                <a href="index.html" class="sub-nav-item active"><i class="fa-solid fa-house"></i> Home</a>
+                <div class="sub-nav-date" id="cyberDate">📅 Loading...</div>
             </div>
         </div>
-    </header>
+    </div>
 
     <div class="ticker-wrapper">
         <div class="ticker-text" id="ticker-text">⚡ Loading Subtitle Terminal...</div>
-    </div>
-
-    <!-- SUB-NAVIGATION BAR -->
-    <div class="sub-nav-container">
-        <div class="sub-nav-bar">
-            <div class="sub-nav-clock" id="cyberClock">⏰ 00:00:00 AM</div>
-            <a href="index.html" class="sub-nav-item active"><i class="fa-solid fa-house"></i> Home</a>
-            <div class="sub-nav-date" id="cyberDate">📅 Loading...</div>
-        </div>
     </div>
 
     <!-- MAIN BODY CONTAINER -->
@@ -1611,12 +1661,7 @@
             btn.innerHTML = '<i class="fa-solid fa-microphone"></i>';
         }
 
-        // Initialize Page on DOM Loaded
-        if (document.readyState === "loading") {
-            document.addEventListener("DOMContentLoaded", initPage);
-        } else {
-            initPage();
-        }
+        window.onload = initPage;
     </script>
 </body>
 </html>
