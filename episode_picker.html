@@ -6,9 +6,10 @@
     <title>ලියැසි SUBVERSE - උපසිරැසි බාගත කිරීමේ කවුළුව</title>
     
     <!-- 🌟 FAVICON LINK -->
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link class="fav-icon" rel="icon" type="image/png" href="favicon.png">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Segoe+UI:wght@400;600;800;900&display=swap" rel="stylesheet">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQ65HDS0TE"></script>
@@ -61,7 +62,7 @@
             max-width: 1300px; margin: 0 auto;
             display: flex; justify-content: space-between; align-items: center;
         }
-        .header-left-zone { display: flex; align-items: center; gap: 15px; }
+        .header-left-zone { display: flex; align-items: center; gap: 15px; width: 100%; }
         
         .three-dot-wrapper { position: relative; display: inline-block; }
         .three-dot-btn { background: none; border: none; color: white; font-size: 18px; cursor: pointer; padding: 8px 12px; transition: 0.3s; }
@@ -75,21 +76,47 @@
         .dropdown-menu a { display: flex; align-items: center; gap: 8px; color: white; padding: 10px 15px; text-decoration: none; font-size: 13px; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.05); transition: 0.2s; }
         .dropdown-menu a:hover { background: rgba(0,240,255,0.1); color: var(--neon-cyan); }
 
-        .logo-wrapper { display: flex; align-items: center; gap: 10px; text-decoration: none; position: relative; overflow: hidden; border-radius: 4px; }
+        /* 🌟 ENLARGED ALTERNATING LOGO & TAGLINE */
+        .logo-wrapper { 
+            position: relative; 
+            width: 500px; 
+            height: 65px; 
+            text-decoration: none; 
+            display: flex; 
+            align-items: center; 
+            overflow: hidden;
+            margin: 0 auto; 
+        }
+        .site-logo-img { 
+            position: absolute;
+            left: 0; right: 0; top: 0; bottom: 0;
+            height: 50px; width: auto; 
+            margin: auto;
+            z-index: 1; 
+            animation: logo-laser-draw 20s infinite ease-in-out;
+        }
         .logo-wrapper::after {
             content: ''; position: absolute; top: 0; left: -150%; width: 80%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.1) 20%, rgba(255, 255, 255, 0.9) 50%, rgba(0, 240, 255, 0.4) 55%, rgba(0, 240, 255, 0.1) 60%, transparent);
-            transform: skewX(-25deg); animation: lightning-sweep 4.5s infinite linear; z-index: 2; pointer-events: none;
+            background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.1) 20%, rgba(255, 255, 255, 0.9) 50%, rgba(0, 240, 255, 0.4) 55%, transparent);
+            transform: skewX(-25deg); 
+            animation: lightning-sweep 20s infinite ease-in-out; 
+            z-index: 2; pointer-events: none;
         }
-        @keyframes lightning-sweep { 0% { left: -150%; } 25% { left: 150%; } 100% { left: 150%; } }
-        .site-logo-img { height: 40px; width: auto; border-radius: 0; border: none; box-shadow: none; position: relative; z-index: 1; }
 
-        .live-clock {
-            font-family: 'Courier New', monospace; font-size: 13px; font-weight: 900;
-            color: var(--neon-cyan); text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px rgba(0, 240, 255, 0.5);
-            background: rgba(0, 240, 255, 0.03); padding: 6px 12px; border-radius: 6px; border: 2px solid var(--neon-cyan);
-            box-shadow: inset 0 0 8px rgba(0, 240, 255, 0.2), 0 0 12px rgba(0, 240, 255, 0.3);
-            display: flex; align-items: center; gap: 8px; letter-spacing: 0.5px;
+        .coded-tagline-text {
+            position: absolute;
+            left: 0; width: 100%;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 15px; font-weight: bold; line-height: 1.3;
+            letter-spacing: 0.8px;
+            text-align: center;
+            background: linear-gradient(90deg, #ff007f, #00f0ff, #ffaa00, #9d4edd, #ff007f);
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5), 0 0 20px rgba(255, 0, 127, 0.3);
+            animation: tagline-fade 20s infinite ease-in-out, rgb-shift-text 6s linear infinite;
+            opacity: 0; z-index: 1;
         }
 
         .ticker-wrapper {
@@ -101,15 +128,33 @@
         .ticker-text { display: inline-block; white-space: nowrap; animation: marquee 25s linear infinite; font-size: 11px; font-weight: 700; text-shadow: 0 0 5px var(--neon-pink); }
         @keyframes marquee { 0% { transform: translateX(100vw); } 100% { transform: translateX(-100%); } }
 
+        /* 📅 SUB-NAV CLOCK & DATE SPLIT */
         .sub-nav-container { max-width: 1300px; margin: 20px auto 0 auto; padding: 0 15px; box-sizing: border-box; }
-        .sub-nav-bar { background: none; border: none; box-shadow: none; padding: 10px; display: flex; justify-content: center; gap: 20px; }
+        .sub-nav-bar { 
+            display: flex; justify-content: space-between; align-items: center; gap: 15px; 
+            background: rgba(255, 255, 255, 0.02); padding: 10px 20px; border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
         .sub-nav-item {
             color: var(--text-main); text-decoration: none; font-size: 13px; font-weight: 800;
             padding: 8px 18px; border-radius: 5px; transition: 0.3s; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px;
         }
         .sub-nav-item:hover, .sub-nav-item.active { color: var(--neon-cyan); background: rgba(0, 240, 255, 0.1); text-shadow: 0 0 12px var(--neon-cyan); border: 1px solid rgba(0, 240, 255, 0.2); }
-        .sub-nav-ticker { overflow: hidden; display: flex; justify-content: center; margin-top: 10px; margin-bottom: 20px; }
-        .sub-nav-ticker-text { display: inline-block; white-space: nowrap; animation: marquee 20s linear infinite; font-size: 14px; font-weight: 700; color: var(--neon-cyan); text-shadow: 0 0 10px var(--neon-cyan); }
+        
+        .sub-nav-clock {
+            font-family: 'Courier New', monospace; font-size: 12px; font-weight: bold;
+            color: var(--neon-cyan); text-shadow: 0 0 8px var(--neon-cyan);
+            background: rgba(0, 240, 255, 0.05); border: 1px solid var(--neon-cyan);
+            padding: 6px 12px; border-radius: 5px; display: flex; align-items: center; gap: 6px;
+            white-space: nowrap;
+        }
+        .sub-nav-date {
+            font-family: 'Courier New', monospace; font-size: 12px; font-weight: bold;
+            color: var(--neon-pink); text-shadow: 0 0 8px var(--neon-pink);
+            background: rgba(255, 0, 127, 0.05); border: 1px solid var(--neon-pink);
+            padding: 6px 12px; border-radius: 5px; display: flex; align-items: center; gap: 6px;
+            white-space: nowrap;
+        }
 
         .main-container { max-width: 1300px; margin: 20px auto; padding: 0 15px; box-sizing: border-box; }
 
@@ -194,26 +239,10 @@
             text-shadow: 0 0 5px var(--neon-purple); padding: 4px 12px; font-size: 11px; font-weight: 800; border-radius: 20px; text-transform: uppercase;
         }
 
-        .detail-info-wrapper {
-            width: 100%;
-        }
+        .detail-info-wrapper { width: 100%; }
 
-        .info-spec-list { 
-            list-style: none; 
-            padding: 0; 
-            margin: 0 0 25px 0; 
-            display: flex;
-            flex-direction: column; 
-            gap: 12px; 
-        }
-        .info-spec-item { 
-            font-size: 13.5px; 
-            border-bottom: 1px solid rgba(255,255,255,0.05); 
-            padding-bottom: 8px; 
-            display: flex;
-            justify-content: space-between; 
-            align-items: center;
-        }
+        .info-spec-list { list-style: none; padding: 0; margin: 0 0 25px 0; display: flex; flex-direction: column; gap: 12px; }
+        .info-spec-item { font-size: 13.5px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
         .info-spec-label { color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); font-weight: bold; }
         .info-spec-value { color: #fff; font-weight: 800; text-align: right; }
 
@@ -252,15 +281,6 @@
         .map-responsive-box { width: 100%; text-align: center; margin-top: 10px; border-radius: 12px; overflow: hidden; border: 1px solid var(--glass-border); }
         .map-responsive-box img { max-width: 100%; height: auto; display: block; margin: 0 auto; opacity: 0.9; }
 
-        .imdb-wrapper { margin-bottom: 20px; }
-        .imdb-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-        .imdb-title-zone { display: flex; align-items: center; gap: 8px; }
-        .imdb-badge { background: var(--neon-amber); color: #000; font-weight: 900; font-size: 10px; padding: 2px 6px; border-radius: 3px; }
-        .imdb-stars { color: var(--neon-amber); font-size: 12px; }
-        .imdb-score { color: #fff; font-weight: bold; font-size: 14px; }
-        .imdb-bar-track { height: 6px; background: rgba(255, 255, 255, 0.05); border-radius: 4px; overflow: hidden; }
-        .imdb-bar-fill { height: 100%; background: var(--neon-amber); box-shadow: 0 0 10px var(--neon-amber); transition: 1s ease-out; }
-
         .sl-vote-container {
             border: 1px solid var(--glass-border); background: rgba(0,0,0,0.3);
             border-radius: 12px; padding: 20px; text-align: center; margin-top: 25px;
@@ -288,12 +308,9 @@
             text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan);
             margin: 25px 0 15px 0; animation: neonHeaderPulse 2s infinite alternate;
         }
-        .neon-header-text.pink {
-            color: var(--neon-pink); text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink);
-        }
         @keyframes neonHeaderPulse {
-            0% { opacity: 0.85; text-shadow: 0 0 8px  currentColor; }
-            100% { opacity: 1; text-shadow: 0 0 18px  currentColor, 0 0 25px  currentColor; }
+            0% { opacity: 0.85; text-shadow: 0 0 8px currentColor; }
+            100% { opacity: 1; text-shadow: 0 0 18px currentColor, 0 0 25px currentColor; }
         }
 
         .download-box { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 15px; }
@@ -331,11 +348,7 @@
             background: conic-gradient(#0088cc 0deg, transparent 40%, transparent 100%);
         }
 
-        .cat-vote-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
+        .cat-vote-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         @media (max-width: 600px) {
             .cat-vote-wrapper {
                 grid-template-columns: 1fr !important;
@@ -344,48 +357,18 @@
         }
 
         .comment-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--glass-border);
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 15px;
-            position: relative;
-            border-left: 3px solid var(--neon-cyan);
+            background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: 8px;
+            padding: 15px; margin-bottom: 15px; position: relative; border-left: 3px solid var(--neon-cyan);
             text-align: left;
         }
-        .comment-header {
-            display: flex;
-            justify-content: space-between;
-            font-size: 12px;
-            color: var(--neon-cyan);
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-        .comment-body {
-            font-size: 13px;
-            line-height: 1.6;
-            color: #ddd;
-        }
+        .comment-header { display: flex; justify-content: space-between; font-size: 12px; color: var(--neon-cyan); margin-bottom: 8px; font-weight: bold; }
+        .comment-body { font-size: 13px; line-height: 1.6; color: #ddd; }
         .comment-input-field {
-            width: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--glass-border);
-            border-radius: 6px;
-            color: #fff;
-            padding: 12px;
-            font-size: 13px;
-            margin-bottom: 12px;
-            outline: none;
-            transition: 0.3s;
+            width: 100%; background: rgba(0, 0, 0, 0.5); border: 1px solid var(--glass-border); border-radius: 6px;
+            color: #fff; padding: 12px; font-size: 13px; margin-bottom: 12px; outline: none; transition: 0.3s;
         }
-        .comment-input-field:focus {
-            border-color: var(--neon-cyan);
-            box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
-        }
-        textarea.comment-input-field {
-            resize: vertical;
-            min-height: 80px;
-        }
+        .comment-input-field:focus { border-color: var(--neon-cyan); box-shadow: 0 0 10px rgba(0, 240, 255, 0.3); }
+        textarea.comment-input-field { resize: vertical; min-height: 80px; }
 
         .social-plug-box {
             background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 15px;
@@ -397,24 +380,15 @@
         .social-btn {
             position: relative; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
             text-decoration: none; transition: all 0.3s ease; background: var(--glass-bg); border: 1px solid var(--glass-border);
-            color: #fff;
-            transform: translateZ(0);
-            -webkit-transform: translateZ(0);
-            will-change: transform;
-            overflow: hidden;
-            border: none;
+            color: #fff; transform: translateZ(0); -webkit-transform: translateZ(0); will-change: transform; overflow: hidden; border: none;
         }
         .social-btn::before {
             content: ''; position: absolute; top: -20%; left: -20%; width: 140%; height: 140%;
             background: conic-gradient(var(--neon-cyan) 0deg, transparent 40%, transparent 100%);
-            animation: rgb-rotate 1.5s linear infinite; 
-            -webkit-animation: rgb-rotate 1.5s linear infinite;
-            z-index: -2;
+            animation: rgb-rotate 1.5s linear infinite; -webkit-animation: rgb-rotate 1.5s linear infinite; z-index: -2;
         }
         .social-btn::after { 
-            content: ''; position: absolute; 
-            inset: 1.5px; 
-            background: #020408; border-radius: 50%; z-index: -1; transition: background 0.3s ease; 
+            content: ''; position: absolute; inset: 1.5px; background: #020408; border-radius: 50%; z-index: -1; transition: background 0.3s ease; 
         }
         @keyframes rgb-rotate { 
             0% { transform: rotate(0deg); }
@@ -441,15 +415,10 @@
 
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
+        /* 📱 RESPONSIVE TUNING */
         @media (max-width: 768px) {
-            .drama-details-container { 
-                padding: 20px !important; 
-            }
-            .detail-poster-wrapper { 
-                width: 280px !important; 
-                height: 420px !important; 
-                max-width: 92% !important; 
-            }
+            .drama-details-container { padding: 20px !important; }
+            .detail-poster-wrapper { width: 280px !important; height: 420px !important; max-width: 92% !important; }
             .info-spec-list { grid-template-columns: 1fr; }
             .cast-grid-box { grid-template-columns: repeat(3, 1fr); gap: 10px; }
             .about-section { flex-direction: column; text-align: center; }
@@ -461,6 +430,108 @@
             .sub-nav-bar { gap: 10px; padding: 8px; }
             .sub-nav-item { font-size: 11px; padding: 6px 12px; }
         }
+
+        /* 🤖 CYBER-AI FLOATING CHATBOT WIDGET STYLES (RGB ROTATING ACTIVE RING) */
+        #cyber-ai-bubble {
+            position: fixed; bottom: 25px; right: 25px;
+            width: 65px; height: 65px; border-radius: 50%;
+            background: var(--bg-main);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; z-index: 9999;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .ai-bubble-logo {
+            width: 53px; height: 53px; border-radius: 50%; object-fit: cover;
+            position: relative; z-index: 3;
+        }
+        #cyber-ai-bubble::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: conic-gradient(var(--neon-cyan) 0deg, var(--neon-pink) 120deg, var(--neon-amber) 240deg, var(--neon-cyan) 360deg);
+            animation: rgb-fast-rotate 2.5s linear infinite; z-index: 1; opacity: 1;
+        }
+        #cyber-ai-bubble::after {
+            content: ''; position: absolute; inset: 3.5px; background: #020408; border-radius: 50%; z-index: 2;
+        }
+        #cyber-ai-bubble:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 0 25px var(--neon-pink);
+        }
+
+        #cyber-ai-chat-window {
+            position: fixed; bottom: 100px; right: 25px;
+            width: 360px; height: 480px; border-radius: 15px;
+            background: rgba(4, 8, 16, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 2px solid var(--neon-cyan); box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+            display: none; flex-direction: column; overflow: hidden;
+            z-index: 9998; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        @media (max-width: 450px) {
+            #cyber-ai-chat-window {
+                width: calc(100% - 40px); height: 420px; right: 20px; bottom: 95px;
+            }
+        }
+        .chat-header {
+            background: linear-gradient(90deg, rgba(0, 240, 255, 0.15), rgba(255, 0, 127, 0.15));
+            border-bottom: 2px solid var(--neon-cyan); padding: 12px 15px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .chat-header h3 { margin: 0; font-size: 13px; font-weight: 900; letter-spacing: 1px; color: #fff; text-shadow: 0 0 8px var(--neon-cyan); }
+        .chat-close-btn { background: none; border: none; color: #ff007f; cursor: pointer; font-size: 16px; transition: 0.2s; }
+        .chat-close-btn:hover { transform: scale(1.2); text-shadow: 0 0 8px var(--neon-pink); }
+        
+        .chat-messages {
+            flex: 1; padding: 15px; overflow-y: auto;
+            display: flex; flex-direction: column; gap: 12px;
+            background: rgba(0, 0, 0, 0.4);
+            max-height: 280px; 
+            scroll-behavior: smooth;
+        }
+        .chat-messages::-webkit-scrollbar { width: 5px; }
+        .chat-messages::-webkit-scrollbar-thumb { background: var(--neon-cyan); border-radius: 3px; }
+
+        .chat-msg-row { display: flex; gap: 10px; align-items: flex-end; width: 100%; transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+        .chat-msg-row.bot-row { justify-content: flex-start; }
+        .chat-msg-row.user-row { justify-content: flex-end; }
+
+        .chat-bot-avatar { width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid var(--neon-cyan); box-shadow: 0 0 5px var(--neon-cyan); object-fit: cover; }
+        .chat-bubble { padding: 10px 14px; border-radius: 12px; font-size: 12px; line-height: 1.5; max-width: 75% !important; word-wrap: break-word; position: relative; }
+
+        .chat-bubble.bot {
+            background: rgba(0, 240, 255, 0.05); border: 1.5px solid rgba(0, 240, 255, 0.25);
+            color: #fff; align-self: flex-start; font-weight: 600; animation: text-rgb-glow 6s infinite linear;
+        }
+        @keyframes text-rgb-glow {
+            0%, 100% { text-shadow: 0 0 5px var(--neon-cyan), 0 0 10px rgba(0, 240, 255, 0.3); }
+            33% { text-shadow: 0 0 5px var(--neon-pink), 0 0 10px rgba(255, 0, 127, 0.3); }
+            66% { text-shadow: 0 0 5px var(--neon-amber), 0 0 10px rgba(255, 170, 0, 0.3); }
+        }
+
+        .chat-bubble.user { background: rgba(255, 0, 127, 0.08); border: 1.5px solid var(--neon-pink); color: #fff; align-self: flex-end; box-shadow: inset 0 0 5px rgba(255, 0, 127, 0.1); }
+
+        .chat-bubble.bot.typing {
+            position: relative; background: #020408 !important; border: none !important; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; border-radius: 10px; padding: 10px 18px; box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+        }
+        .chat-bubble.bot.typing::before {
+            content: ''; position: absolute; top: -150%; left: -150%; width: 400%; height: 400%; background: conic-gradient(var(--neon-cyan) 0deg, var(--neon-pink) 180deg, var(--neon-cyan) 360deg); animation: rgb-fast-rotate 1.2s linear infinite; z-index: 1;
+        }
+        .chat-bubble.bot.typing::after { content: ''; position: absolute; inset: 2.2px; background: #020408; border-radius: 8px; z-index: 2; }
+        .chat-bubble.bot.typing span { position: relative; z-index: 3; color: #fff; font-weight: bold; animation: blink 1.2s infinite; letter-spacing: 1px; font-family: 'Share Tech Mono', monospace; text-shadow: 0 0 5px var(--neon-cyan); }
+
+        .ai-action-chips { display: flex; gap: 6px; padding: 8px 12px; overflow-x: auto; background: rgba(0,0,0,0.2); border-top: 1px solid rgba(255,255,255,0.05); scrollbar-width: none; }
+        .ai-action-chips::-webkit-scrollbar { display: none; }
+        .ai-chip { background: rgba(0, 240, 255, 0.05); border: 1px solid rgba(0, 240, 255, 0.3); color: #ccc; font-size: 11px; padding: 6px 10px; border-radius: 15px; cursor: pointer; white-space: nowrap; transition: 0.2s; }
+        .ai-chip:hover { border-color: var(--neon-cyan); color: var(--neon-cyan); box-shadow: 0 0 10px rgba(0, 240, 255, 0.3); }
+
+        .chat-input-row { padding: 10px; border-top: 1.5px solid rgba(0, 240, 255, 0.15); display: flex; gap: 8px; background: rgba(6, 11, 25, 0.9); align-items: center; }
+        .chat-text-input { flex: 1; background: rgba(0,0,0,0.5); border: 1.5px solid var(--glass-border); color: #fff; padding: 8px 12px; border-radius: 6px; font-size: 12px; outline: none; transition: 0.3s; }
+        .chat-text-input:focus { border-color: var(--neon-cyan); box-shadow: 0 0 8px rgba(0, 240, 255, 0.3); }
+        
+        .chat-mic-btn { background: none; border: 1.5px solid var(--neon-pink); color: var(--neon-pink); width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 12px; transition: 0.3s; box-shadow: 0 0 5px rgba(255, 0, 127, 0.2); }
+        .chat-mic-btn:hover { background: rgba(255, 0, 127, 0.1); box-shadow: 0 0 10px var(--neon-pink); }
+        .chat-send-btn { background: var(--neon-cyan); color: #000; border: none; padding: 8px 15px; border-radius: 6px; font-size: 12px; font-weight: 800; cursor: pointer; transition: 0.2s; box-shadow: 0 0 8px rgba(0, 240, 255, 0.3); }
+        .chat-send-btn:hover { box-shadow: 0 0 15px var(--neon-cyan); transform: scale(1.05); }
     </style>
 </head>
 <body>
@@ -476,14 +547,18 @@
                         <a href="disclaimer.html"><i class="fa-solid fa-triangle-exclamation"></i> Disclaimer</a>
                         <a href="dmca.html"><i class="fa-solid fa-scale-balanced"></i> DMCA</a>
                         <a href="request.html"><i class="fa-solid fa-film"></i> Request Drama</a>
-                        <a href="about.html"><i class="fa-solid fa-address-card"></i> About Us</a>
+                        <a href="about.html" class="sub-nav-item"><i class="fa-solid fa-address-card"></i> About Us</a>
                     </div>
                 </div>
+                <!-- Alternating Logo & Tagline Structure -->
                 <a href="index.html" class="logo-wrapper" id="header-logo-container">
-                    <img class="site-logo-img" src="https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/81260990-6d71-4fbb-b966-43f96215438e.png" alt="Logo">
+                    <img class="site-logo-img" src="https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/81260990-6d71-4fbb-b966-43f96215438e.png" alt="Subverse Logo">
+                    <div class="coded-tagline-text">
+                        දුර්ලභ කතා මාලා වල නිවහන<br>
+                        <span style="font-size: 11px; font-weight: bold;">(The Home of Rare Series)</span>
+                    </div>
                 </a>
             </div>
-            <div class="live-clock" id="cyberClock">🤖 [SECURED TIME DATALINK]</div>
         </div>
     </header>
 
@@ -491,10 +566,12 @@
         <div class="ticker-text" id="ticker-text">⚡ Loading Subtitle Terminal...</div>
     </div>
 
-    <!-- SUB-NAVIGATION BAR -->
+    <!-- SUB-NAVIGATION BAR (CLOCK & DATE SPLIT) -->
     <div class="sub-nav-container">
         <div class="sub-nav-bar">
+            <div class="sub-nav-clock" id="cyberClock">⏰ 00:00:00 AM</div>
             <a href="index.html" class="sub-nav-item"><i class="fa-solid fa-house"></i> Home</a>
+            <div class="sub-nav-date" id="cyberDate">📅 Loading...</div>
         </div>
         <div class="sub-nav-ticker">
             <div class="sub-nav-ticker-text">✨️ දුර්ලභ කතා මාලා වල නිවහන {The Home of Rare Series}   ✨️</div>
@@ -541,12 +618,10 @@
         <!-- 📂 CATEGORY/GENRE CHOICE PANEL -->
         <div class="glass-section-custom" id="genre-vote-wrapper" style="display:none;">
             <h3>📂 ඔබට වැඩිපුරම අවශ්‍ය කුමන ප්‍රභේදද? (Vote for Genre)</h3>
-            <div class="cat-vote-wrapper" id="genre-vote-container">
-                <!-- Genre voting items will be populated dynamically -->
-            </div>
+            <div class="cat-vote-wrapper" id="genre-vote-container"></div>
         </div>
 
-        <!-- 💬 REAL-TIME COMMENTS SECTION -->
+        <!-- 💬 DUAL-MODE COMMENTS SECTION (ROBUST & NULL-SAFE) -->
         <div class="glass-section-custom" id="comments-section-wrapper">
             <h3>💬 අදහස් සහ ප්‍රතිචාර (Comments)</h3>
             <div id="comments-list-container">
@@ -561,6 +636,32 @@
             </div>
         </div>
 
+    </div>
+
+    <!-- 🤖 CYBER-AI FLOATING CHATBOT WIDGET -->
+    <div id="cyber-ai-bubble" onclick="toggleAIChat()">
+        <img src="https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png" class="ai-bubble-logo" alt="Liyasi AI">
+    </div>
+    
+    <div id="cyber-ai-chat-window">
+        <div class="chat-header">
+            <div>
+                <h3>🤖 SUBVERSE AI ASSISTANT</h3>
+                <div id="ai-server-status" style="font-size: 10px; margin-top: 3px; color: #aaa; font-family: monospace;">
+                    📡 Server: <span style="color:#00f0ff; font-weight:bold; text-shadow: 0 0 5px #00f0ff;">Checking Status...</span>
+                </div>
+            </div>
+            <button class="chat-close-btn" onclick="toggleAIChat()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        
+        <div class="chat-messages" id="chat-messages"></div>
+        <div class="ai-action-chips"></div>
+        
+        <div class="chat-input-row">
+            <input type="text" id="chat-text-input" placeholder="පණිවිඩය ලියන්න (Type here)..." class="chat-text-input" onkeydown="if(event.key === 'Enter') sendAIMessage()">
+            <button class="chat-mic-btn" onclick="startVoiceRecognition()"><i class="fa-solid fa-microphone"></i></button>
+            <button class="chat-send-btn" onclick="sendAIMessage()">SEND</button>
+        </div>
     </div>
 
     <!-- FOOTER -->
@@ -595,12 +696,32 @@
             }
         }
 
-        /* ⏰ REAL-TIME SECURED CLOCK */
+        /* ⏰ REAL-TIME SECURED SPLIT CLOCK & DATE */
         function updateCyberClock() {
             const now = new Date();
             const options = { timeZone: "Asia/Colombo", hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit' };
             const timeString = now.toLocaleTimeString('en-US', options);
-            document.getElementById('cyberClock').innerText = `⏰ ${timeString} [LKA]`;
+            const year = now.getFullYear(); 
+            const month = String(now.getMonth() + 1).padStart(2, '0'); 
+            const day = String(now.getDate()).padStart(2, '0');
+            
+            const days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+            const dayName = days[now.getDay()];
+            
+            const clockEl = document.getElementById('cyberClock');
+            if (clockEl) {
+                clockEl.innerHTML = `
+                    <span style="font-weight: bold; animation: blink 1.2s infinite; color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan);">⏰</span> 
+                    ${timeString}
+                `;
+            }
+            
+            const dateEl = document.getElementById('cyberDate');
+            if (dateEl) {
+                dateEl.innerHTML = `
+                    📅 ${year}.${month}.${day} | ${dayName}
+                `;
+            }
         }
         setInterval(updateCyberClock, 1000);
         updateCyberClock();
@@ -612,6 +733,7 @@
 
         let currentDrama = null;
         let currentEpisode = null;
+        let originalDatabase = null;
 
         async function initPage() {
             if (!dramaId || !epNum) {
@@ -622,8 +744,8 @@
             try {
                 const response = await fetch('data.json?v=' + new Date().getTime());
                 if (response.ok) {
-                    const database = await response.json();
-                    currentDrama = database.dramas ? database.dramas[dramaId] : null;
+                    originalDatabase = await response.json();
+                    currentDrama = originalDatabase.dramas ? originalDatabase.dramas[dramaId] : null;
                     if (currentDrama) {
                         currentEpisode = (currentDrama.episodes || []).find(e => e.episode === epNum);
                     }
@@ -874,7 +996,7 @@
         async function loadClicksAndVotes() {
             if (!dramaId) return;
             
-            // 📥 Load Clicks (Subtitle & Telegram Clicks)
+            // 📥 Load Clicks
             try {
                 const res = await fetch(`${firebaseURL}clicks/${dramaId}/${epClean}.json`);
                 if (res.ok) {
@@ -907,7 +1029,6 @@
 
         async function trackDownload(type) {
             if (!dramaId) return;
-            // බ්‍රව්සරයේ ක්ලික් කිරීම නිවැරදිව සිදු වීමට ටිකක් ප්‍රමාද කර API එකට යැවීම
             const countUrl = `${firebaseURL}clicks/${dramaId}/${epClean}/${type}.json`;
             try {
                 const res = await fetch(countUrl);
@@ -954,7 +1075,7 @@
                 });
 
                 safeLocalStorage.setItem(voteKey, 'true');
-                loadClicksAndVotes(); // reload data
+                loadClicksAndVotes();
             } catch (e) {
                 console.error("Vote submission failed:", e);
             }
@@ -1022,51 +1143,62 @@
                 });
 
                 safeLocalStorage.setItem(voteKey, 'true');
-                loadGenreVoteData(); // reload data
+                loadGenreVoteData();
             } catch (e) {
                 console.error("Genre vote submission failed:", e);
             }
         }
 
-        // 💬 FIREBASE COMMENT SECTION (ROBUST & NULL-SAFE)
+        // 💬 DUAL-MODE FIREBASE & LOCAL COMMENT SECTION (ROBUST & NULL-SAFE)
         async function loadComments() {
             if (!dramaId) return;
             const container = document.getElementById('comments-list-container');
+            let allComments = [];
             
+            // 1. Firebase Comments
             try {
                 const res = await fetch(`${firebaseURL}comments/${dramaId}/${epClean}.json`);
                 if (res.ok) {
                     const data = await res.json();
-                    if (data === null || typeof data !== 'object') {
-                        container.innerHTML = `<p style="font-size:12px; color:var(--text-muted); text-align:center;">තවමත් කිසිදු ප්‍රතිචාරයක් නොමැත. පළමු ප්‍රතිචාරය ඔබේ කරන්න! 💬</p>`;
-                        return;
+                    if (data !== null && typeof data === 'object') {
+                        allComments = Object.keys(data).map(key => data[key]);
                     }
-                    
-                    container.innerHTML = "";
-                    // Firebase REST API push keys ව්‍යුහය ඇරේ එකක් බවට හැරවීම
-                    const commentsArray = Object.keys(data).map(key => data[key]);
-                    // කාලය අනුව පැරණි ඒවා මුලට එන සේ සකස් කිරීම
-                    commentsArray.sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
-
-                    commentsArray.forEach(c => {
-                        const dateStr = c.timestamp ? new Date(c.timestamp).toLocaleDateString('si-LK') : "";
-                        const timeStr = c.timestamp ? new Date(c.timestamp).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) : "";
-                        
-                        container.innerHTML += `
-                            <div class="comment-card">
-                                <div class="comment-header">
-                                    <span>👤 ${c.name || 'Anonymous'}</span>
-                                    <span>📅 ${dateStr} ${timeStr}</span>
-                                </div>
-                                <div class="comment-body">${c.text || ''}</div>
-                            </div>
-                        `;
-                    });
                 }
             } catch (e) {
-                console.error("Failed to load comments:", e);
-                container.innerHTML = `<p style="font-size:12px; color:var(--neon-pink); text-align:center;">⚠️ ප්‍රතිචාර පූරණය කිරීම තාවකාලිකව අඩාල වී ඇත.</p>`;
+                console.error("Failed to load comments from Firebase:", e);
             }
+
+            // 2. Local Fallback Comments
+            try {
+                const localKey = `local_comments_${dramaId}_${epClean}`;
+                const localComments = JSON.parse(safeLocalStorage.getItem(localKey)) || [];
+                allComments = allComments.concat(localComments);
+            } catch (e) {
+                console.error("Failed to load local comments:", e);
+            }
+
+            if (allComments.length === 0) {
+                container.innerHTML = `<p style="font-size:12px; color:var(--text-muted); text-align:center;">තවමත් කිසිදු ප්‍රතිචාරයක් නොමැත. පළමු ප්‍රතිචාරය ඔබේ කරන්න! 💬</p>`;
+                return;
+            }
+
+            container.innerHTML = "";
+            allComments.sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
+
+            allComments.forEach(c => {
+                const dateStr = c.timestamp ? new Date(c.timestamp).toLocaleDateString('si-LK') : "";
+                const timeStr = c.timestamp ? new Date(c.timestamp).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) : "";
+                
+                container.innerHTML += `
+                    <div class="comment-card">
+                        <div class="comment-header">
+                            <span>👤 ${c.name || 'Anonymous'}</span>
+                            <span>📅 ${dateStr} ${timeStr}</span>
+                        </div>
+                        <div class="comment-body">${c.text || ''}</div>
+                    </div>
+                `;
+            });
         }
 
         async function submitEpisodeComment() {
@@ -1089,8 +1221,8 @@
                 timestamp: Date.now()
             };
 
+            let firebaseSuccess = false;
             try {
-                // Firebase POST එක මඟින් අලුත් කමෙන්ට් එකක් පහසුවෙන් එකතු කිරීම
                 const res = await fetch(`${firebaseURL}comments/${dramaId}/${epClean}.json`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -1098,16 +1230,28 @@
                 });
 
                 if (res.ok) {
-                    nameInput.value = "";
-                    textInput.value = "";
-                    loadComments(); // reload list
-                } else {
-                    alert("⚠️ කමෙන්ට් එක ඇතුළත් කිරීම අසාර්ථකයි! කරුණාකර නැවත උත්සාහ කරන්න.");
+                    firebaseSuccess = true;
                 }
             } catch (e) {
-                console.error("Error submitting comment:", e);
-                alert("⚠️ සන්නිවේදන දෝෂයකි. කරුණාකර නැවත උත්සාහ කරන්න.");
+                console.error("Error submitting comment to Firebase:", e);
             }
+
+            // Local fallback logic if firebase write failed (CORS/Expired Rules)
+            if (!firebaseSuccess) {
+                try {
+                    const localKey = `local_comments_${dramaId}_${epClean}`;
+                    let localComments = JSON.parse(safeLocalStorage.getItem(localKey)) || [];
+                    localComments.push(payload);
+                    safeLocalStorage.setItem(localKey, JSON.stringify(localComments));
+                    console.log("Comment saved locally (Firebase fallback).");
+                } catch (err) {
+                    console.error("Local storage save failed:", err);
+                }
+            }
+
+            nameInput.value = "";
+            textInput.value = "";
+            loadComments(); // reload list
         }
 
         // Initialize Page on DOM Loaded
@@ -1115,6 +1259,240 @@
             document.addEventListener("DOMContentLoaded", initPage);
         } else {
             initPage();
+        }
+    </script>
+
+    <!-- 🤖 CYBER-AI CHATBOT SCRIPT LOGIC -->
+    <script>
+        let autoCloseTimer;
+        const HUGGING_FACE_API_URL = "https://liyasisubverse1-liyasi-backend.hf.space/api/chat"; 
+        const CLOUDFLARE_WORKER_URL = "https://ask-gemini.rashmi004005g.workers.dev"; 
+        const CLOUDFLARE_WORKER_URL_GROQ = "https://groq.rashmi004005g.workers.dev"; 
+
+        function toggleAIChat() {
+            const win = document.getElementById('cyber-ai-chat-window');
+            if (win.style.display === 'none' || win.style.display === '') {
+                win.style.display = 'flex';
+                resetAutoCloseTimer(); 
+                updateServerStatusUI("ONLINE", "var(--neon-cyan)");
+                if (document.getElementById('chat-messages').children.length === 0) {
+                    resetChatMessages();
+                }
+            } else {
+                win.style.display = 'none';
+                clearTimeout(autoCloseTimer);
+            }
+        }
+
+        function resetChatMessages() {
+            const container = document.getElementById('chat-messages');
+            container.innerHTML = `
+                <div class="chat-msg-row bot-row">
+                    <img src="https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png" class="chat-bot-avatar" alt="Avatar">
+                    <div class="chat-bubble bot">Здарова! 🖐️ මම ලියැසි SUBVERSE AI සහායකයා. ඔයාට අවශ්‍ය ඕනෑම ඩ්‍රාමා එකක් ගැන, බ්ලොග් එකේ ලිපි ගැන හෝ සබ්ටයිටල් දාගන්න විදිහ ගැන මාත් එක්ක නිදහසේ kතා කරන්න! ❤️🍿</div>
+                </div>
+            `;
+        }
+
+        function resetAutoCloseTimer() {
+            clearTimeout(autoCloseTimer);
+            autoCloseTimer = setTimeout(() => {
+                const win = document.getElementById('cyber-ai-chat-window');
+                if (win.style.display === 'flex') {
+                    toggleAIChat(); 
+                }
+            }, 180000); 
+        }
+
+        function quickSend(question) {
+            document.getElementById('chat-text-input').value = question;
+            sendAIMessage();
+        }
+
+        function updateServerStatusUI(statusName, colorVar) {
+            const statusEl = document.getElementById('ai-server-status');
+            if (statusEl) {
+                statusEl.innerHTML = `📡 Server: <span style="color:${colorVar}; font-weight:bold; text-shadow: 0 0 5px ${colorVar};">${statusName}</span>`;
+            }
+        }
+
+        async function sendAIMessage() {
+            const input = document.getElementById('chat-text-input');
+            const text = input.value.trim();
+            if (text === "") return;
+            
+            input.value = "";
+            appendChatMessage("user", text);
+            const typingId = appendChatMessage("bot", "typing...");
+            
+            try {
+                let articleData = "";
+                try {
+                    const articleResponse = await fetch('article_data.txt?v=' + new Date().getTime());
+                    if (articleResponse.ok) { articleData = await articleResponse.text(); }
+                } catch (err) {}
+
+                let dramaContext = "";
+                const dbToUse = originalDatabase;
+                if (dbToUse && dbToUse.dramas) {
+                    let minimizedDramas = {};
+                    for (let key in dbToUse.dramas) {
+                        let drama = dbToUse.dramas[key];
+                        minimizedDramas[drama.title] = {
+                            id: drama.id,
+                            type: drama.type,
+                            status: drama.status,
+                            imdb: drama.imdb
+                        };
+                    }
+                    dramaContext = JSON.stringify(minimizedDramas);
+                }
+                
+                const configContext = (dbToUse && dbToUse.config) ? JSON.stringify(dbToUse.config) : "";
+
+                const combinedPrompt = `
+                ඔබ "ලියැසි SUBVERSE" උපසිරැසි වෙබ් අඩවියේ නිල AI සහායකයා වේ. පරිශීලකයන්ට උපසිරැසි, බ්ලොග් සහ ඩ්‍රාමා ගැන සහාය වන්න.
+                ⚠️ පෞරුෂය: Friendly Sinhala Youth Admin. "ඔයා", "යාලුවා", "සහෝ" වචන භාවිත කරන්න.
+                [වෙබ් අඩවියේ මූලික තොරතුරු]: ${configContext}
+                [උපසිරැසි ලැයිස්තුව]: ${dramaContext}
+                [ලිපි තොරතුරු]: ${articleData}
+                [පරිශීලකයාගේ ප්‍රශ්නය]: ${text}
+                `;
+
+                let aiResponseText = "";
+                
+                try {
+                    const hfResponse = await fetch(HUGGING_FACE_API_URL, {
+                        method: "POST",
+                        mode: 'cors',
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ message: text }) 
+                    });
+                    if (hfResponse.ok) {
+                        const hfData = await hfResponse.json();
+                        aiResponseText = hfData.reply || "";
+                        updateServerStatusUI("HUGGING FACE (PRIMARY)", "var(--neon-cyan)");
+                    } else { throw new Error("HF Limits"); }
+                } 
+                catch (hfError) {
+                    try {
+                        const response = await fetch(CLOUDFLARE_WORKER_URL, {
+                            method: "POST",
+                            mode: 'cors',
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ message: combinedPrompt })
+                        });
+                        if (response.ok) {
+                            const data = await response.json();
+                            aiResponseText = data.reply || "";
+                            updateServerStatusUI("CLOUDFLARE (GEMINI FALLBACK)", "#ffcc00");
+                        } else { throw new Error("Gemini Limits"); }
+                    } 
+                    catch (geminiError) {
+                        try {
+                            const responseGroq = await fetch(CLOUDFLARE_WORKER_URL_GROQ, {
+                                method: "POST",
+                                mode: 'cors',
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({ message: combinedPrompt })
+                            });
+                            const dataGroq = await responseGroq.json();
+                            aiResponseText = dataGroq.reply || "";
+                            updateServerStatusUI("CLOUDFLARE (GROQ FALLBACK)", "var(--neon-pink)");
+                        } catch (groqError) {
+                            updateServerStatusUI("OFFLINE", "#ff003c");
+                        }
+                    }
+                }
+
+                removeChatMessage(typingId);
+                if (aiResponseText) {
+                    appendChatMessage("bot", aiResponseText);
+                } else {
+                    appendChatMessage("bot", "සමාවෙන්න සහෝ, මට සේවාදායකය සමඟ සම්බන්ධ වීමට අපහසු වුණා. 😢");
+                }
+            } catch (e) {
+                removeChatMessage(typingId);
+                appendChatMessage("bot", "⚠️ දෝෂයකි: " + e.message);
+                updateServerStatusUI("ERROR", "#ff003c");
+            }
+        }
+        
+        let msgCounter = 0;
+        function appendChatMessage(sender, text) {
+            const container = document.getElementById('chat-messages');
+            const id = 'msg-' + (++msgCounter);
+            
+            const currentMessages = container.querySelectorAll('.chat-msg-row');
+            if (currentMessages.length >= 15) {
+                currentMessages[0].remove();
+            }
+
+            const row = document.createElement('div');
+            row.className = `chat-msg-row ${sender}-row`;
+            row.id = id;
+            
+            if (sender === 'bot') {
+                const img = document.createElement('img');
+                img.src = "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png";
+                img.className = "chat-bot-avatar";
+                row.appendChild(img);
+            }
+            
+            const bubble = document.createElement('div');
+            bubble.className = `chat-bubble ${sender}`;
+            if (text === "typing...") {
+                bubble.className = "chat-bubble bot typing";
+                bubble.innerHTML = "<span>Thinking...</span>";
+            } else {
+                bubble.innerHTML = text;
+            }
+            
+            row.appendChild(bubble);
+            container.appendChild(row);
+            container.scrollTop = container.scrollHeight;
+            
+            resetAutoCloseTimer(); 
+            return id;
+        }
+
+        function removeChatMessage(id) {
+            const el = document.getElementById(id);
+            if (el) el.remove();
+        }
+
+        function startVoiceRecognition() {
+            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = "si-LK"; 
+            recognition.interimResults = false;
+            recognition.maxAlternatives = 1;
+
+            const micBtn = document.querySelector('.chat-mic-btn');
+            micBtn.style.color = "var(--neon-cyan)";
+            micBtn.style.borderColor = "var(--neon-cyan)";
+            micBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i>';
+
+            recognition.start();
+
+            recognition.onresult = function(event) {
+                const speechResult = event.results[0][0].transcript;
+                document.getElementById('chat-text-input').value = speechResult;
+            };
+
+            recognition.onspeechend = function() {
+                recognition.stop();
+                resetMicButton(micBtn);
+            };
+
+            recognition.onerror = function() {
+                resetMicButton(micBtn);
+            };
+        }
+
+        function resetMicButton(btn) {
+            btn.style.color = "var(--neon-pink)";
+            btn.style.borderColor = "var(--neon-pink)";
+            btn.innerHTML = '<i class="fa-solid fa-microphone"></i>';
         }
     </script>
 </body>
