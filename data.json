@@ -1,1 +1,22 @@
-
+{
+  "latest_updates": [],
+  "dramas": {
+    "407386": {
+      "id": "407386",
+      "title": "Doctor Lawyer",
+      "type": "K-DRAMA",
+      "status": "UPCOMING",
+      "imdb": "8.5",
+      "image_url": "https://i.ibb.co/chYM5WS1/Gemini-Copy.png",
+      "synopsis": "ළඟදීම ලියැසි SUBVERSE වෙතින් සිංහල උපසිරැසි සමඟ සෘජුවම බාගත කරගන්න."
+    }
+  },
+  "config": {
+    "top_notice_text": "⚡ [විශේෂ දැනුම්දීම] අපගේ නවතම සිංහල උපසිරැසි දැන් සෘජුවම බාගත කරගත හැක!",
+    "bottom_notice_text": "අදල විඩියෝ පට ලබාගැනිමට ටෙලිග්‍රෑම් චැනලයට එකතු වෙන්න",
+    "server_status_sub": "ONLINE",
+    "server_status_bot": "ACTIVE",
+    "blogger_link": "https://liyasisubverse.blogspot.com",
+    "chat_chips": "Blogger Link 📚 | Help Guide ❓"
+  }
+}
