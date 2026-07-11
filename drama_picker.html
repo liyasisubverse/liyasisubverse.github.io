@@ -17,10 +17,16 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Segoe+UI:wght@400;600;800;900&display=swap" rel="stylesheet">
+    
     <script>
         const HEADER_BANNER_LOGO = "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/81260990-6d71-4fbb-b966-43f96215438e.png"; 
         const ABOUT_ME_ART_LOGO = "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png";       
         const firebaseURL = "https://subverse-b897d-default-rtdb.firebaseio.com/"; 
+        
+        // AI Chat URLs
+        const HUGGING_FACE_API_URL = "https://liyasisubverse1-liyasi-backend.hf.space/api/chat"; 
+        const CLOUDFLARE_WORKER_URL = "https://ask-gemini.rashmi004005g.workers.dev"; 
+        const CLOUDFLARE_WORKER_URL_GROQ = "https://groq.rashmi004005g.workers.dev"; 
     </script>
     <style>
         /* 🎨 PREMIUM CYBERPUNK PALETTE */
@@ -47,6 +53,7 @@
             background-image: linear-gradient(to bottom, rgba(2, 4, 8, 0.88), rgba(2, 4, 8, 0.97)), 
                               url('https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/bbfcf6e6-8bca-4883-8eb1-f93a2d1d4728.png');
             background-attachment: fixed; background-size: cover; background-position: center;
+            overflow-x: hidden;
         }
 
         header {
@@ -56,7 +63,7 @@
         }
         .header-container {
             max-width: 1300px; margin: 0 auto;
-            display: flex; align-items: center; justify-content: space-between; gap: 20px;
+            display: flex; align-items: center; justify-content: flex-start; gap: 20px;
         }
         .header-left-zone { display: flex; align-items: center; gap: 15px; width: 100%; }
         
@@ -91,7 +98,6 @@
             z-index: 1; 
             animation: logo-laser-draw 20s infinite ease-in-out;
         }
-        /* Lightning Sweep on Logo */
         .logo-wrapper::after {
             content: ''; position: absolute; top: 0; left: -150%; width: 80%; height: 100%;
             background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.1) 20%, rgba(255, 255, 255, 0.9) 50%, rgba(0, 240, 255, 0.4) 55%, transparent);
@@ -99,12 +105,6 @@
             animation: lightning-sweep 20s infinite ease-in-out; 
             z-index: 2; pointer-events: none;
         }
-        @keyframes lightning-sweep { 
-            0%, 50%, 100% { left: -150%; } 
-            20% { left: 150%; } 
-        }
-
-        /* ROBOTIC TWO-LINE NEON GRADIENT TAGLINE */
         .coded-tagline-text {
             position: absolute;
             left: 0; width: 100%;
@@ -121,33 +121,42 @@
             opacity: 0; z-index: 1;
         }
 
-        .live-clock {
-            font-family: 'Courier New', monospace; font-size: 12px; font-weight: 900;
-            color: var(--neon-cyan); text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px rgba(0, 240, 255, 0.5);
-            background: rgba(0, 240, 255, 0.03); padding: 6px 12px; border-radius: 6px; border: 2px solid var(--neon-cyan);
-            box-shadow: inset 0 0 8px rgba(0, 240, 255, 0.2), 0 0 12px rgba(0, 240, 255, 0.3);
-            display: flex; align-items: center; gap: 8px; letter-spacing: 0.5px;
-            white-space: nowrap;
-        }
-
         .ticker-wrapper {
             background: rgba(255, 0, 127, 0.12); border-bottom: 1px solid rgba(255, 0, 127, 0.25);
-            overflow: hidden; padding: 5px 0; position: relative;
+            overflow: hidden; padding: 6px 0; position: relative;
             -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
             mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
         }
         .ticker-text { display: inline-block; white-space: nowrap; animation: marquee 25s linear infinite; font-size: 11px; font-weight: 700; text-shadow: 0 0 5px var(--neon-pink); }
         @keyframes marquee { 0% { transform: translateX(100vw); } 100% { transform: translateX(-100%); } }
 
+        /* 📅 SUB-NAV, CLOCK & DATE SPLIT */
         .sub-nav-container { max-width: 1300px; margin: 20px auto 0 auto; padding: 0 15px; box-sizing: border-box; }
-        .sub-nav-bar { background: none; border: none; box-shadow: none; padding: 10px; display: flex; justify-content: center; gap: 20px; }
+        .sub-nav-bar { 
+            display: flex; justify-content: space-between; align-items: center; gap: 15px; 
+            background: rgba(255, 255, 255, 0.02); padding: 10px 20px; border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
         .sub-nav-item {
             color: var(--text-main); text-decoration: none; font-size: 13px; font-weight: 800;
-            padding: 8px 18px; border-radius: 5px; transition: 0.3s; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px;
+            padding: 8px 22px; border-radius: 5px; transition: 0.3s; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px;
         }
         .sub-nav-item:hover, .sub-nav-item.active { color: var(--neon-cyan); background: rgba(0, 240, 255, 0.1); text-shadow: 0 0 12px var(--neon-cyan); border: 1px solid rgba(0, 240, 255, 0.2); }
-        .sub-nav-ticker { overflow: hidden; display: flex; justify-content: center; margin-top: 10px; margin-bottom: 20px; }
-        .sub-nav-ticker-text { display: inline-block; white-space: nowrap; animation: marquee 20s linear infinite; font-size: 14px; font-weight: 700; color: var(--neon-cyan); text-shadow: 0 0 10px var(--neon-cyan); }
+        
+        .sub-nav-clock {
+            font-family: 'Courier New', monospace; font-size: 12px; font-weight: bold;
+            color: var(--neon-cyan); text-shadow: 0 0 8px var(--neon-cyan);
+            background: rgba(0, 240, 255, 0.05); border: 1px solid var(--neon-cyan);
+            padding: 6px 12px; border-radius: 5px; display: flex; align-items: center; gap: 6px;
+            white-space: nowrap;
+        }
+        .sub-nav-date {
+            font-family: 'Courier New', monospace; font-size: 12px; font-weight: bold;
+            color: var(--neon-pink); text-shadow: 0 0 8px var(--neon-pink);
+            background: rgba(255, 0, 127, 0.05); border: 1px solid var(--neon-pink);
+            padding: 6px 12px; border-radius: 5px; display: flex; align-items: center; gap: 6px;
+            white-space: nowrap;
+        }
 
         .main-container { max-width: 1300px; margin: 20px auto; padding: 0 15px; box-sizing: border-box; }
 
@@ -226,7 +235,7 @@
             width: 100%;
         }
 
-        /* 📝 FIXED SPEC LIST STYLE (Alignment correctly balanced start-to-end) */
+        /* 🛠️ INFO SPEC LIST ALIGNMENT FIX */
         .info-spec-list { 
             list-style: none; 
             padding: 0; 
@@ -241,21 +250,11 @@
             padding-bottom: 8px; 
             display: flex;
             justify-content: space-between; 
-            align-items: flex-start;
-            gap: 15px;
+            align-items: center;
+            width: 100%;
         }
-        .info-spec-label { 
-            color: var(--neon-cyan); 
-            text-shadow: 0 0 5px var(--neon-cyan); 
-            font-weight: bold; 
-            white-space: nowrap;
-        }
-        .info-spec-value { 
-            color: #fff; 
-            font-weight: 800; 
-            text-align: left;
-            max-width: 70%;
-        }
+        .info-spec-label { color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); font-weight: bold; text-align: left; }
+        .info-spec-value { color: #fff; font-weight: 800; text-align: right; }
 
         .episodes-section {
             background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px;
@@ -291,89 +290,6 @@
         .ep-btn.active-pink { border-color: var(--neon-pink); color: var(--neon-pink); text-shadow: 0 0 5px var(--neon-pink); }
         .ep-btn.active-pink:hover { background: rgba(255, 0, 127, 0.1); box-shadow: 0 0 15px var(--neon-pink); }
 
-        /* 🏠 ABOUT US GLASS BOX (Updated completely symmetrically with neon bars on both sides) */
-        .about-section { 
-            background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 15px; padding: 30px; margin-top: 50px; 
-            display: flex; flex-direction: column; align-items: center; 
-            border-left: 4px solid var(--neon-pink); border-right: 4px solid var(--neon-pink); 
-            position: relative;
-        }
-        .about-header-title {
-            align-self: flex-start;
-            font-size: 16px; font-weight: 900; color: var(--neon-pink);
-            text-shadow: 0 0 8px var(--neon-pink); text-transform: uppercase;
-            margin: 0 0 20px 0;
-        }
-        .about-avatar-wrapper {
-            display: flex; flex-direction: column; align-items: center; margin-bottom: 15px;
-        }
-        
-        /* 🌀 ABOUT US AVATAR ROTATING RGB RING */
-        .about-avatar-ring {
-            position: relative;
-            width: 110px; height: 110px;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            overflow: hidden;
-            margin-bottom: 15px;
-        }
-        .about-avatar-ring::before {
-            content: '';
-            position: absolute;
-            width: 200%; height: 200%;
-            background: conic-gradient(var(--neon-cyan) 0deg, var(--neon-pink) 180deg, var(--neon-cyan) 360deg);
-            animation: rgb-fast-rotate 4s linear infinite;
-            z-index: 1;
-        }
-        .about-avatar-ring::after {
-            content: '';
-            position: absolute;
-            inset: 3px; 
-            background: #020408; 
-            border-radius: 50%;
-            z-index: 2;
-        }
-        .about-img { 
-            position: relative;
-            width: 100px; height: 100px; 
-            border-radius: 50%; 
-            object-fit: cover; 
-            z-index: 3;
-            border: none !important;
-            box-shadow: none !important;
-        }
-
-        .about-brand-name { font-size: 18px; font-weight: bold; color: #fff; text-shadow: 0 0 8px var(--neon-cyan); margin-bottom: 15px; }
-        .about-desc-text { color: var(--text-muted); font-size: 13.5px; line-height: 1.6; text-align: center; max-width: 700px; margin-bottom: 20px; }
-        .about-subtitle { font-size: 12px; color: var(--neon-amber); text-shadow: 0 0 5px var(--neon-amber); text-transform: uppercase; margin-bottom: 10px; font-weight: bold; }
-
-        /* 🌟 GLOBAL UNIFORM NEON BUTTON STYLES WITH ROUNDED CORNERS (BORDER-RADIUS: 10px) */
-        .tab-btn, .hero-btn, .feedback-btn, .comment-submit-btn, .blogger-visit-btn, .about-btn {
-            background: rgba(2, 4, 8, 0.6) !important;
-            border-radius: 10px !important; 
-            font-weight: 800;
-            padding: 10px 22px;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            text-transform: uppercase;
-            text-decoration: none;
-            white-space: nowrap !important;
-        }
-        .about-btn {
-            border: 1.5px solid var(--neon-pink) !important;
-            color: var(--neon-pink) !important;
-            text-shadow: 0 0 10px var(--neon-pink), 0 0 20px rgba(255, 0, 127, 0.4) !important;
-            box-shadow: 0 0 12px rgba(255, 0, 127, 0.25), inset 0 0 8px rgba(255, 0, 127, 0.1) !important;
-        }
-        .about-btn:hover {
-            background: rgba(255, 0, 127, 0.1) !important;
-            box-shadow: 0 0 20px var(--neon-pink), inset 0 0 12px rgba(255, 0, 127, 0.2) !important;
-        }
-
         .download-btn {
             position: relative; width: 100%; max-width: 280px; height: 48px; text-align: center; text-transform: uppercase;
             font-weight: 900; font-size: 11.5px; padding: 13px 16px; border-radius: 6px; text-decoration: none;
@@ -404,6 +320,14 @@
             transform: skewX(-20deg); animation: lightning-sweep 4s infinite linear; z-index: 2; pointer-events: none;
         }
 
+        /* ⬅️ ➡️ PREV/NEXT BUTTONS ALIGNMENT */
+        .episode-nav-container {
+            display: flex; justify-content: space-between; gap: 15px; align-items: center; width: 100%;
+        }
+        .episode-nav-container .download-btn {
+            flex: 1; margin: 0; max-width: 100%;
+        }
+
         .sl-vote-container {
             border: 1px solid var(--glass-border); background: rgba(0,0,0,0.3);
             border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 25px;
@@ -425,12 +349,67 @@
         .vote-btn-custom.vote-dislike:hover { background: rgba(255, 0, 127, 0.15); box-shadow: 0 0 15px rgba(255, 0, 127, 0.3); }
         .vote-count { background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 11px; }
 
-        /* 🌐 GLOWING SOCIAL PLUG BOX (WITH SHIFTING RGB FLOWING HEADER) */
+        /* 🏠 ABOUT US GLASS BOX */
+        .about-section { 
+            background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 15px; padding: 30px; margin-top: 50px; 
+            display: flex; flex-direction: column; align-items: center; 
+            border-left: 4px solid var(--neon-pink); border-right: 4px solid var(--neon-pink); 
+            position: relative;
+        }
+        .about-header-title {
+            align-self: flex-start;
+            font-size: 16px; font-weight: 900; color: var(--neon-pink);
+            text-shadow: 0 0 8px var(--neon-pink); text-transform: uppercase;
+            margin: 0 0 20px 0;
+        }
+        .about-avatar-wrapper {
+            display: flex; flex-direction: column; align-items: center; margin-bottom: 15px;
+        }
+        .about-avatar-ring {
+            position: relative;
+            width: 110px; height: 110px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+        .about-avatar-ring::before {
+            content: '';
+            position: absolute;
+            width: 200%; height: 200%;
+            background: conic-gradient(var(--neon-cyan) 0deg, var(--neon-pink) 180deg, var(--neon-cyan) 360deg);
+            animation: rgb-fast-rotate 4s linear infinite;
+            z-index: 1;
+        }
+        .about-avatar-ring::after {
+            content: '';
+            position: absolute;
+            inset: 3px; 
+            background: #020408; 
+            border-radius: 50%;
+            z-index: 2;
+        }
+        .about-img { 
+            position: relative;
+            width: 100px; height: 100px; 
+            border-radius: 50%; 
+            object-fit: cover; 
+            z-index: 3;
+        }
+        .about-brand-name { font-size: 18px; font-weight: bold; color: #fff; text-shadow: 0 0 8px var(--neon-cyan); margin-bottom: 15px; }
+        .about-desc-text { color: var(--text-muted); font-size: 13.5px; line-height: 1.6; text-align: center; max-width: 700px; margin-bottom: 20px; }
+        .about-subtitle { font-size: 12px; color: var(--neon-amber); text-shadow: 0 0 5px var(--neon-amber); text-transform: uppercase; margin-bottom: 10px; font-weight: bold; }
+        .about-btn {
+            background: rgba(2, 4, 8, 0.6); border-radius: 10px; font-weight: 800; padding: 10px 22px;
+            border: 1.5px solid var(--neon-pink); color: var(--neon-pink); text-shadow: 0 0 10px var(--neon-pink);
+            text-decoration: none; transition: 0.3s;
+        }
+        .about-btn:hover { background: rgba(255, 0, 127, 0.1); box-shadow: 0 0 20px var(--neon-pink); }
+
+        /* 🌐 GLOWING SOCIAL PLUG BOX */
         .social-plug-box { 
             background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 15px; padding: 25px; margin-top: 50px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.5); border-top: 3px solid var(--neon-pink); 
         }
-        
-        /* Flowing RGB text animation for Social Title Header */
         .social-title { 
             font-family: 'Share Tech Mono', monospace;
             font-size: 14px; font-weight: 800; 
@@ -444,36 +423,28 @@
             margin-bottom: 25px;
         }
         .social-icons-wrapper { display: flex; justify-content: center; gap: 25px; }
-        
         .social-btn {
             position: relative; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            text-decoration: none; transition: all 0.3s ease; background: #020408; color: #fff;
-            transform: translateZ(0);
-            -webkit-transform: translateZ(0);
-            will-change: transform;
-            overflow: hidden;
-            border: none;
+            text-decoration: none; transition: all 0.3s ease; background: var(--glass-bg); 
+            transform: translateZ(0); -webkit-transform: translateZ(0); will-change: transform;
+            overflow: hidden; border: none;
         }
         .social-btn::before {
-            content: ''; position: absolute; top: -20%; left: -20%; width: 140%; height: 140%;
-            background: conic-gradient(var(--neon-cyan) 0deg, transparent 40%, transparent 100%);
-            animation: rgb-rotate 1.5s linear infinite; 
-            -webkit-animation: rgb-rotate 1.5s linear infinite;
-            z-index: -2;
+            content: ''; display: block; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: conic-gradient(var(--neon-cyan) 0deg, var(--neon-pink) 120deg, var(--neon-purple) 240deg, var(--neon-cyan) 360deg);
+            animation: rgb-fast-rotate 1.5s linear infinite; z-index: -2; transform-origin: center center;
         }
         .social-btn::after { 
-            content: ''; position: absolute; 
-            inset: 1.5px; 
+            content: ''; position: absolute; inset: 1.5px; 
             background: #020408; border-radius: 50%; z-index: -1; transition: background 0.3s ease; 
         }
-
         .social-btn i { transition: all 0.3s ease; position: relative; z-index: 2; }
         .social-btn.facebook i { color: #1877f2; text-shadow: 0 0 10px #1877f2, 0 0 20px #1877f2; }
         .social-btn.youtube i { color: #ff0000; text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000; }
         .social-btn.telegram i { color: #0088cc; text-shadow: 0 0 10px #0088cc, 0 0 20px #0088cc; }
-        .social-btn:hover { border-color: var(--neon-cyan); box-shadow: 0 0 15px var(--neon-cyan); }
+        .social-btn:hover { box-shadow: 0 0 15px var(--neon-cyan); }
 
-        /* 🤖 CYBER-AI FLOATING CHATBOT WIDGET STYLES (RGB ROTATING ACTIVE RING) */
+        /* 🤖 CYBER-AI FLOATING CHATBOT WIDGET STYLES */
         #cyber-ai-bubble {
             position: fixed; bottom: 25px; right: 25px;
             width: 65px; height: 65px; border-radius: 50%;
@@ -530,38 +501,19 @@
             max-height: 280px; 
             scroll-behavior: smooth;
         }
-        .chat-messages::-webkit-scrollbar {
-            width: 5px;
-        }
-        .chat-messages::-webkit-scrollbar-thumb {
-            background: var(--neon-cyan);
-            border-radius: 3px;
-        }
+        .chat-messages::-webkit-scrollbar { width: 5px; }
+        .chat-messages::-webkit-scrollbar-thumb { background: var(--neon-cyan); border-radius: 3px; }
 
-        .chat-msg-row {
-            display: flex; gap: 10px; align-items: flex-end; width: 100%;
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+        .chat-msg-row { display: flex; gap: 10px; align-items: flex-end; width: 100%; transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
         .chat-msg-row.bot-row { justify-content: flex-start; }
         .chat-msg-row.user-row { justify-content: flex-end; }
 
-        .chat-bot-avatar {
-            width: 28px; height: 28px; border-radius: 50%;
-            border: 1.5px solid var(--neon-cyan); box-shadow: 0 0 5px var(--neon-cyan);
-            object-fit: cover;
-        }
+        .chat-bot-avatar { width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid var(--neon-cyan); box-shadow: 0 0 5px var(--neon-cyan); object-fit: cover; }
+        .chat-bubble { padding: 10px 14px; border-radius: 12px; font-size: 12px; line-height: 1.5; max-width: 75% !important; word-wrap: break-word; position: relative; }
 
-        .chat-bubble {
-            padding: 10px 14px; border-radius: 12px; font-size: 12px; line-height: 1.5;
-            max-width: 75% !important; word-wrap: break-word;
-            position: relative;
-        }
-
-        /* ✍️ TEXT FONT ONLY RGB GLOW ANIMATION FOR BOT RESPONSES */
         .chat-bubble.bot {
             background: rgba(0, 240, 255, 0.05); border: 1.5px solid rgba(0, 240, 255, 0.25);
-            color: #fff; align-self: flex-start;
-            font-weight: 600;
+            color: #fff; align-self: flex-start; font-weight: 600;
             animation: text-rgb-glow 6s infinite linear;
         }
         @keyframes text-rgb-glow {
@@ -572,67 +524,34 @@
 
         .chat-bubble.user {
             background: rgba(255, 0, 127, 0.08); border: 1.5px solid var(--neon-pink);
-            color: #fff; align-self: flex-end;
-            box-shadow: inset 0 0 5px rgba(255, 0, 127, 0.1);
+            color: #fff; align-self: flex-end; box-shadow: inset 0 0 5px rgba(255, 0, 127, 0.1);
         }
 
-        /* 🌀 SPECTACULAR RGB ROTATING THINKING INDICATOR */
         .chat-bubble.bot.typing {
-            position: relative;
-            background: #020408 !important;
-            border: none !important;
-            overflow: hidden;
-            display: inline-flex;
-            align-items: center; justify-content: center;
-            border-radius: 10px;
-            padding: 10px 18px;
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+            position: relative; background: #020408 !important; border: none !important; overflow: hidden;
+            display: inline-flex; align-items: center; justify-content: center; border-radius: 10px;
+            padding: 10px 18px; box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
         }
         .chat-bubble.bot.typing::before {
             content: ''; position: absolute; top: -150%; left: -150%; width: 400%; height: 400%;
             background: conic-gradient(var(--neon-cyan) 0deg, var(--neon-pink) 180deg, var(--neon-cyan) 360deg);
-            animation: rgb-fast-rotate 1.2s linear infinite;
-            z-index: 1;
+            animation: rgb-fast-rotate 1.2s linear infinite; z-index: 1;
         }
         .chat-bubble.bot.typing::after {
             content: ''; position: absolute; inset: 2.2px; background: #020408; border-radius: 8px; z-index: 2;
         }
         .chat-bubble.bot.typing span {
-            position: relative; z-index: 3;
-            color: #fff; font-weight: bold;
-            animation: blink 1.2s infinite;
-            letter-spacing: 1px;
-            font-family: 'Share Tech Mono', monospace;
-            text-shadow: 0 0 5px var(--neon-cyan);
-        }
-
-        /* 💡 Suggestion Chips for quick AI actions */
-        .ai-action-chips {
-            display: flex; gap: 6px; padding: 8px 12px;
-            overflow-x: auto; background: rgba(0,0,0,0.2);
-            border-top: 1px solid rgba(255,255,255,0.05);
-            scrollbar-width: none;
-        }
-        .ai-action-chips::-webkit-scrollbar { display: none; }
-        .ai-chip {
-            background: rgba(0, 240, 255, 0.05); border: 1px solid rgba(0, 240, 255, 0.3);
-            color: #ccc; font-size: 11px; padding: 6px 10px; border-radius: 15px;
-            cursor: pointer; white-space: nowrap; transition: 0.2s;
-        }
-        .ai-chip:hover {
-            border-color: var(--neon-cyan); color: var(--neon-cyan);
-            box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+            position: relative; z-index: 3; color: #fff; font-weight: bold; animation: blink 1.2s infinite;
+            letter-spacing: 1px; font-family: 'Share Tech Mono', monospace; text-shadow: 0 0 5px var(--neon-cyan);
         }
 
         .chat-input-row {
             padding: 10px; border-top: 1.5px solid rgba(0, 240, 255, 0.15);
-            display: flex; gap: 8px; background: rgba(6, 11, 25, 0.9);
-            align-items: center;
+            display: flex; gap: 8px; background: rgba(6, 11, 25, 0.9); align-items: center;
         }
         .chat-text-input {
             flex: 1; background: rgba(0,0,0,0.5); border: 1.5px solid var(--glass-border);
-            color: #fff; padding: 8px 12px; border-radius: 6px; font-size: 12px; outline: none;
-            transition: 0.3s;
+            color: #fff; padding: 8px 12px; border-radius: 6px; font-size: 12px; outline: none; transition: 0.3s;
         }
         .chat-text-input:focus { border-color: var(--neon-cyan); box-shadow: 0 0 8px rgba(0, 240, 255, 0.3); }
         
@@ -642,19 +561,26 @@
             display: flex; align-items: center; justify-content: center; font-size: 12px;
             transition: 0.3s; box-shadow: 0 0 5px rgba(255, 0, 127, 0.2);
         }
-        .chat-mic-btn:hover {
-            background: rgba(255, 0, 127, 0.1);
-            box-shadow: 0 0 10px var(--neon-pink);
-        }
+        .chat-mic-btn:hover { background: rgba(255, 0, 127, 0.1); box-shadow: 0 0 10px var(--neon-pink); }
 
         .chat-send-btn {
             background: var(--neon-cyan); color: #000; border: none;
             padding: 8px 15px; border-radius: 6px; font-size: 12px; font-weight: 800; cursor: pointer;
             transition: 0.2s; box-shadow: 0 0 8px rgba(0, 240, 255, 0.3);
         }
-        .chat-send-btn:hover {
-            box-shadow: 0 0 15px var(--neon-cyan);
-            transform: scale(1.05);
+        .chat-send-btn:hover { box-shadow: 0 0 15px var(--neon-cyan); transform: scale(1.05); }
+
+        @keyframes rgb-fast-rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes rgb-rotate { 
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); } 
+        }
+        @-webkit-keyframes rgb-rotate { 
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); } 
         }
 
         footer { background: rgba(4, 8, 16, 0.95); border-top: 2px solid var(--neon-cyan); padding: 40px 20px; text-align: center; margin-top: 40px; box-shadow: 0 -10px 30px rgba(0, 240, 255, 0.1); }
@@ -667,62 +593,9 @@
 
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-        @keyframes logo-laser-draw {
-            0%, 35%, 100% {
-                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-                opacity: 1;
-                filter: drop-shadow(0 0 8px var(--neon-cyan)) brightness(1);
-            }
-            40% {
-                clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
-                opacity: 0.5;
-            }
-            45%, 90% {
-                clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
-                opacity: 0;
-            }
-            91% {
-                clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
-                opacity: 0.5;
-            }
-            95% {
-                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-                opacity: 1;
-                filter: drop-shadow(0 0 20px var(--neon-cyan)) brightness(1.6);
-            }
-        }
-        @keyframes tagline-fade {
-            0%, 40%, 95%, 100% {
-                opacity: 0;
-                transform: scale(0.95);
-                pointer-events: none;
-            }
-            45%, 90% {
-                opacity: 1;
-                transform: scale(1);
-                pointer-events: auto;
-            }
-        }
-        @keyframes rgb-shift-text {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        @keyframes rgb-fast-rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
         @media (max-width: 768px) {
-            .drama-details-container { 
-                padding: 20px !important; 
-            }
-            .detail-poster-wrapper { 
-                width: 280px !important; 
-                height: 420px !important; 
-                max-width: 92% !important; 
-            }
+            .drama-details-container { padding: 20px !important; }
+            .detail-poster-wrapper { width: 280px !important; height: 420px !important; max-width: 92% !important; }
             .info-spec-list { grid-template-columns: 1fr; }
             .episodes-grid-cards { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; }
             .episodes-grid-buttons { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; }
@@ -731,15 +604,14 @@
         }
         @media (max-width: 600px) {
             .header-container { flex-direction: row !important; justify-content: space-between !important; align-items: center !important; width: 100%; gap: 10px; }
-            .live-clock { display: flex !important; font-size: 8px !important; padding: 4px 8px !important; letter-spacing: 0px !important; border-width: 1px !important; }
-            
             .logo-wrapper { width: 300px !important; height: 55px !important; }
             .site-logo-img { height: 40px !important; }
             .coded-tagline-text { font-size: 11.5px !important; line-height: 1.25 !important; letter-spacing: 0.5px !important; }
             .coded-tagline-text span { font-size: 8.5px !important; }
-
-            .sub-nav-bar { gap: 10px; padding: 8px; }
-            .sub-nav-item { font-size: 11px; padding: 6px 12px; }
+            .sub-nav-bar { flex-direction: row !important; justify-content: space-between !important; gap: 8px; padding: 10px 12px; }
+            .sub-nav-item { font-size: 11px; padding: 6px 14px; }
+            .sub-nav-clock { font-size: 10px !important; padding: 5px 10px !important; }
+            .sub-nav-date { font-size: 10px !important; padding: 5px 10px !important; }
         }
     </style>
 </head>
@@ -768,7 +640,6 @@
                     </div>
                 </a>
             </div>
-            <div class="live-clock" id="cyberClock">🤖 [SECURED TIME DATALINK]</div>
         </div>
     </header>
 
@@ -779,10 +650,9 @@
     <!-- SUB-NAVIGATION BAR -->
     <div class="sub-nav-container">
         <div class="sub-nav-bar">
-            <a href="index.html" class="sub-nav-item"><i class="fa-solid fa-house"></i> Home</a>
-        </div>
-        <div class="sub-nav-ticker">
-            <div class="sub-nav-ticker-text">✨️ දුර්ලභ කතා මාලා වල නිවහන {The Home of Rare Series}   ✨️</div>
+            <div class="sub-nav-clock" id="cyberClock">⏰ 00:00:00 AM</div>
+            <a href="index.html" class="sub-nav-item active"><i class="fa-solid fa-house"></i> Home</a>
+            <div class="sub-nav-date" id="cyberDate">📅 Loading...</div>
         </div>
     </div>
 
@@ -801,13 +671,13 @@
         <div class="episodes-section" id="episodes-section-wrapper"></div>
 
         <!-- ⬅️      ➡️ DRAMA NAVIGATION BUTTONS CONTAINER -->
-        <div class="glass-section-custom" id="drama-navigation-wrapper" style="display:none; text-align: center; margin-bottom: 25px;">
-            <div style="display: flex; justify-content: center; gap: 20px; align-items: center;">
-                <a id="prev-drama-btn" class="download-btn" href="#" style="max-width: 180px; margin: 0;">
+        <div class="glass-section-custom" id="drama-navigation-wrapper" style="display:none; margin-bottom: 25px;">
+            <div class="episode-nav-container">
+                <a id="prev-drama-btn" class="download-btn" href="#">
                     <span class="btn-sheen-sweep"></span>
                     <span style="position:relative; z-index:3;">⬅️ Prev Drama</span>
                 </a>
-                <a id="next-drama-btn" class="download-btn" href="#" style="max-width: 180px; margin: 0;">
+                <a id="next-drama-btn" class="download-btn" href="#">
                     <span class="btn-sheen-sweep"></span>
                     <span style="position:relative; z-index:3;">Next Drama ➡️</span>
                 </a>
@@ -817,13 +687,13 @@
         <!-- ABOUT US GLASS BOX -->
         <div class="about-section" id="about-us-section-wrapper" style="display:none; margin-top: 30px;"></div>
 
-        <!-- 🌐 GLOWING SOCIAL MEDIA PLUG (Fully identical to index.html with RGB texts) -->
+        <!-- 🌐 GLOWING SOCIAL MEDIA PLUG -->
         <div class="social-plug-box">
             <div class="social-title">CONNECT WITH US ON SOCIAL NETWORKS</div>
-            <div class="social-icons-wrapper" id="social-plug-links">
-                <a href="https://facebook.com" target="_blank" class="social-btn facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="https://youtube.com" target="_blank" class="social-btn youtube"><i class="fa-brands fa-youtube"></i></a>
-                <a href="https://t.me/liyasi1" target="_blank" class="social-btn telegram" id="tg-main-icon-link"><i class="fa-brands fa-telegram"></i></a>
+            <div class="social-icons-wrapper">
+                <a href="#" target="_blank" class="social-btn facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" target="_blank" class="social-btn youtube"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" target="_blank" class="social-btn telegram" id="tg-config-link"><i class="fa-brands fa-telegram"></i></a>
             </div>
         </div>
 
@@ -847,10 +717,6 @@
         
         <div class="chat-messages" id="chat-messages">
             <!-- Initialized dynamically in Javascript -->
-        </div>
-        
-        <div class="ai-action-chips">
-            <!-- Populated dynamically via data.json -->
         </div>
         
         <div class="chat-input-row">
@@ -882,35 +748,38 @@
             }
         }
 
+        /* ⏰ REAL-TIME SECURED CLOCK & DATE */
         function updateCyberClock() {
             const now = new Date();
-            const options = { timeZone: "Asia/Colombo", hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            const options = { timeZone: "Asia/Colombo", hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit' };
             const timeString = now.toLocaleTimeString('en-US', options);
-            const year = now.getFullYear(); const month = String(now.getMonth() + 1).padStart(2, '0'); const day = String(now.getDate()).padStart(2, '0');
-            document.getElementById('cyberClock').innerHTML = `
-                <span style="font-family: 'Courier New', monospace; letter-spacing: 1px;">
-                    <span style="color: var(--neon-pink); font-weight: bold; animation: blink 1.2s infinite;">🤖 [SYSTEM ACTIVE]</span> 
-                    📅 ${year}.${month}.${day} | ⏰ ${timeString}
-                </span>
-            `;
+            const year = now.getFullYear(); 
+            const month = String(now.getMonth() + 1).padStart(2, '0'); 
+            const day = String(now.getDate()).padStart(2, '0');
+            const days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+            const dayName = days[now.getDay()];
+            
+            const clockEl = document.getElementById('cyberClock');
+            if(clockEl) clockEl.innerHTML = `<span style="font-weight: bold; animation: blink 1.2s infinite; color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan);">⏰</span> ${timeString}`;
+            
+            const dateEl = document.getElementById('cyberDate');
+            if(dateEl) dateEl.innerHTML = `📅 ${year}.${month}.${day} | ${dayName}`;
         }
-        setInterval(updateCyberClock, 1000); updateCyberClock();
+        setInterval(updateCyberClock, 1000);
+        updateCyberClock();
 
         const urlParams = new URLSearchParams(window.location.search);
         const dramaId = urlParams.get('id');
         let dramaUniqueVoteId = `drama_overall_${dramaId}`;
-        let databaseGlobal = null; // Global reference for AI Assistant
 
         async function loadDramaDetails() {
             try {
                 const response = await fetch('data.json?v=' + new Date().getTime());
                 if (response.ok) {
                     const database = await response.json();
-                    databaseGlobal = database; // Save globally
                     const drama = database.dramas[dramaId];
                     if (drama) {
                         renderDramaDetails(drama, database.config || {}, database);
-                        renderDynamicChatChips(database.config || {}, Object.values(database.dramas || {}));
                     } else {
                         showNotFound();
                     }
@@ -925,7 +794,7 @@
 
             // Global Config overrides
             if (config.telegram_channel_link) {
-                document.getElementById('tg-main-icon-link').href = config.telegram_channel_link;
+                document.getElementById('tg-config-link').href = config.telegram_channel_link;
             }
 
             // Dynamic background dynamic blur
@@ -981,7 +850,7 @@
 
                     <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); padding: 20px; border-radius: 10px; line-height: 1.8; color: #ccc; font-size: 13.5px;">
                         <h3 style="color: ${statusColor}; text-shadow: 0 0 5px ${statusColor}; margin: 0 0 10px 0; font-size: 14px; text-transform: uppercase; font-weight: 900;">කතා සාරාංශය (Synopsis)</h3>
-                        <p style="margin: 0;">${drama.synopsis || 'කතා සාරාංශයක් ඇතුළත් කර නොමැත.'}</p>
+                        <p style="margin: 0; text-align: justify;">${drama.synopsis || 'කතා සාරාංශයක් ඇතුළත් කර නොමැත.'}</p>
                     </div>
                 </div>
             `;
@@ -993,8 +862,9 @@
             // Render BATCH button for Completed
             if (isComplete && drama.batch_link) {
                 episodesHTML += `
-                    <div class="batch-download-wrapper">
-                        <a href="${drama.batch_link}" target="_blank" class="batch-btn">
+                    <div class="batch-download-wrapper" style="margin-bottom: 20px;">
+                        <a href="${drama.batch_link}" target="_blank" class="download-btn" style="max-width: 100%;">
+                            <span class="btn-sheen-sweep"></span>
                             <i class="fa-solid fa-file-zipper"></i> BATCH DOWNLOAD FULL SEASON (.ZIP)
                         </a>
                     </div>
@@ -1024,7 +894,7 @@
                     const epData = episodesMap[i];
                     if (epData && epData.link) {
                         episodesHTML += `
-                            <a href="episode_pecker.html?drama_id=${drama.id}&ep=${epData.episode}" class="movie-style-card">
+                            <a href="episode_picker.html?drama_id=${drama.id}&ep=${epData.episode}" class="movie-style-card">
                                 <span class="badge-top-left">${epData.episode}</span>
                                 <div class="rating-bar-vertical" style="border-right-color: ${ratingColor}; color: ${ratingColor}; text-shadow: 0 0 8px ${ratingColor}; box-shadow: 0 0 10px ${ratingShadow};">
                                     <i class="fa-solid fa-star" style="font-size: 8px;"></i>
@@ -1052,7 +922,7 @@
                     const epData = episodesMap[i];
                     if (epData && epData.link) {
                         episodesHTML += `
-                            <a href="episode_pecker.html?drama_id=${drama.id}&ep=${epData.episode}" class="ep-btn ${activeColorClass}">
+                            <a href="episode_picker.html?drama_id=${drama.id}&ep=${epData.episode}" class="ep-btn ${activeColorClass}">
                                 <i class="fa-solid fa-circle-play" style="font-size: 14px;"></i>
                                 <span>EPISODE ${String(i).padStart(2, '0')}</span>
                             </a>
@@ -1106,15 +976,15 @@
                 navWrapper.style.display = 'none';
             }
 
-            // About Us dynamic render above footer (MATCHING THE HOME PAGE DESIGN WITH SYMMETRICAL NEON BARS)
+            // About Us dynamic render above footer (MATCHING THE HOME PAGE DESIGN)
             const aboutUsSection = document.getElementById('about-us-section-wrapper');
             if (aboutUsSection) {
                 aboutUsSection.style.display = 'flex';
-                const aboutMeText = config.about_me_text || "අපි ඔබ වෙත ගෙන එන්නේ ගුණාත්මක බවින් ඉහළම ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි පමණි. අපගේ නිල සමාජ මාධ්‍ය ජාලයන් සමඟ එක් වී අලුත්ම අප්ඩේට්ස් එවලේම ලබාගන්න.";
+                const aboutMeText = config.about_me_text || "අපි ඔබ වෙත ගෙන එන්නේ ගුණාත්මක බවින් ඉහළම ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි පමණි. අපගේ නිල සමාජ මාධ්‍ය ජාලයන් සමඟ එක් වී අලුත්ම උපසිරැසි නිකුත් වූ සැනින් ලබාගන්න.";
                 const aboutMeAvatar = config.about_me_avatar || ABOUT_ME_ART_LOGO;
                 aboutUsSection.innerHTML = `
                     <h3 class="about-header-title">ලියැසි SUBVERSE (About Us)</h3>
-                    <div class="about-avatar-wrapper" style="width: 100%;">
+                    <div class="about-avatar-wrapper">
                         <div class="about-avatar-ring">
                             <img src="${aboutMeAvatar}" class="about-img" alt="Avatar">
                         </div>
@@ -1128,6 +998,7 @@
 
             // Render Overall Drama Vote Section
             renderOverallVoteSection();
+            resetChatMessages();
         }
 
         // Render Overall Vote Section (Like/Dislike panel for the entire Drama)
@@ -1146,10 +1017,10 @@
                     </div>
                     <div class="sl-vote-buttons">
                         <button class="vote-btn-custom vote-like" onclick="handleSLVote('like', this)">
-                            👍 LIKE <span class="vote-count" id="overall-like-cnt">0</span>
+                            👍 LIKE <span class="vote-count sl-like-cnt">0</span>
                         </button>
                         <button class="vote-btn-custom vote-dislike" onclick="handleSLVote('dislike', this)">
-                            👎 DISLIKE <span class="vote-count" id="overall-dislike-cnt">0</span>
+                            👎 DISLIKE <span class="vote-count sl-dislike-cnt">0</span>
                         </button>
                     </div>
                 </div>
@@ -1166,11 +1037,12 @@
                     
                     document.querySelectorAll('.sl-vote-container').forEach(container => {
                         const id = container.getAttribute('data-id');
+                        
                         const likes = (data && data[id] && data[id].like !== undefined) ? parseInt(data[id].like) : 0;
                         const dislikes = (data && data[id] && data[id].dislike !== undefined) ? parseInt(data[id].dislike) : 0;
 
-                        const likeEl = container.querySelector('#overall-like-cnt');
-                        const dislikeEl = container.querySelector('#overall-dislike-cnt');
+                        const likeEl = container.querySelector('.sl-like-cnt');
+                        const dislikeEl = container.querySelector('.sl-dislike-cnt');
                         if (likeEl) likeEl.innerText = likes;
                         if (dislikeEl) dislikeEl.innerText = dislikes;
 
@@ -1217,7 +1089,7 @@
                 });
 
                 localStorage.setItem(voteLocalStorageKey, 'true');
-                loadVotes(); // Reload all votes with fresh database records
+                loadVotes(); 
             } catch(e) {
                 console.error("Error updating vote:", e);
                 alert("⚠️ සන්නිවේදන දෝෂයකි. කරුණාකර නැවත උත්සාහ කරන්න.");
@@ -1239,9 +1111,7 @@
             document.getElementById('episodes-section-wrapper').style.display = 'none';
         }
 
-        /* -------------------------------------------------------------
-           🤖 CYBER-AI FLOATING CHATBOT WIDGET LOGIC
-        ------------------------------------------------------------- */
+        /* 🤖 CYBER-AI CHATBOT FUNCTIONALITY */
         let autoCloseTimer;
 
         function toggleAIChat() {
@@ -1259,29 +1129,22 @@
 
         function resetChatMessages() {
             const container = document.getElementById('chat-messages');
-            if (container) {
-                container.innerHTML = `
-                    <div class="chat-msg-row bot-row">
-                        <img src="https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png" class="chat-bot-avatar" alt="Avatar">
-                        <div class="chat-bubble bot">Здарова! 🖐️ මම ලියැසි SUBVERSE AI සහායකයා. ඔයාට අවශ්‍ය ඕනෑම ඩ්‍රාමා එකක් ගැන, බ්ලොග් එකේ ලිපි ගැන හෝ සබ්ටයිටල් දාගන්න විදිහ ගැන මාත් එක්ක නිදහසේ කතා කරන්න! ❤️🍿</div>
-                    </div>
-                `;
-            }
+            container.innerHTML = `
+                <div class="chat-msg-row bot-row">
+                    <img src="https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png" class="chat-bot-avatar" alt="Avatar">
+                    <div class="chat-bubble bot">Здарова! 🖐️ මම ලියැසි SUBVERSE AI සහායකයා. ඔයාට අවශ්‍ය ඕනෑම ඩ්‍රාමා එකක් ගැන, බ්ලොග් එකේ ලිපි ගැන හෝ සබ්ටයිටල් දාගන්න විදිහ ගැන මාත් එක්ක නිදහසේ කතා කරන්න! ❤️🍿</div>
+                </div>
+            `;
         }
 
         function resetAutoCloseTimer() {
             clearTimeout(autoCloseTimer);
             autoCloseTimer = setTimeout(() => {
                 const win = document.getElementById('cyber-ai-chat-window');
-                if (win && win.style.display === 'flex') {
+                if (win.style.display === 'flex') {
                     toggleAIChat(); 
                 }
             }, 180000); 
-        }
-
-        function quickSend(question) {
-            document.getElementById('chat-text-input').value = question;
-            sendAIMessage();
         }
 
         function updateServerStatusUI(statusName, colorVar) {
@@ -1307,50 +1170,10 @@
                     if (articleResponse.ok) { articleData = await articleResponse.text(); }
                 } catch (err) { console.log("Could not fetch article_data.txt", err); }
 
-                let dramaContext = "";
-                if (databaseGlobal && databaseGlobal.dramas) {
-                    let minimizedDramas = {};
-                    for (let key in databaseGlobal.dramas) {
-                        let drama = databaseGlobal.dramas[key];
-                        minimizedDramas[drama.title] = {
-                            id: drama.id,
-                            type: drama.type,
-                            status: drama.status,
-                            imdb: drama.imdb,
-                            episodes: (drama.episodes || []).map(ep => ({
-                                episode: ep.episode,
-                                link: ep.link,
-                                tg_link: ep.tg_link
-                            }))
-                        };
-                    }
-                    dramaContext = JSON.stringify(minimizedDramas);
-                }
-                
-                const configContext = databaseGlobal && databaseGlobal.config ? JSON.stringify(databaseGlobal.config) : "";
-
                 const combinedPrompt = `
                 ඔබ "ලියැසි SUBVERSE" උපසිරැසි වෙබ් අඩවියේ නිල AI සහායකයා වේ. පරිශීලකයන්ට උපසිරැසි, බ්ලොග් සහ ඩ්‍රාමා ගැන සහාය වන්න.
-
-                ⚠️ පෞරුෂය සහ කතා කරන විලාසය (Conversational Tone):
-                - ඉතාමත් මිත්‍රශීලී, කාරුණික සහ ලෙන්ගතු තරුණ පරිපාලකයෙකු (Friendly Youth Sinhala Admin) මෙන් කතා කරන්න.
-                - පරිශීලකයාට ආමන්ත්‍රණය කිරීමට "ඔයා", "යාලුවා", "සහෝ" වැනි වචන භාවිත කරන්න. 
-                - පිළිතුරුවලට අලංකාර ඉමෝජි (🍿, ❤️, ✨, 🎬) එකතු කරන්න.
-                - ඉතා දිගු ඡේද ලියනවා වෙනුවට කෙටියෙන්, පැහැදිලිව, කියවීමට ආශා හිතෙන පරිදි කරුණු වශයෙන් ලියා දක්වන්න.
-
-                ⚠️ ලින්ක්ස් ලබා දීමේදී අනුගමනය කළ යුතු විශේෂ නීති:
-                1. යම් කෙනෙක් කිසියම් ඩ්‍රාමා එකක එපිසෝඩ් එකක් බාගත කරගැනීමට ලින්ක් එකක් ඇසුවහොත්, [උපසිරැසි සහ ඩ්‍රාමා ලැයිස්තුව] හි ඇති "link" (උපසිරැසි ලින්ක් එක) හෝ "tg_link" (ටෙලිග්‍රෑම් විඩියෝ ලින්ක් එක) සොයාගෙන එය අනිවාර්යයෙන්ම ලබා දෙන්න.
-                2. බ්ලොගර් (Blogger) අඩවිය ගැන හෝ බ්ලොග් එකට පිවිසීමට ලින්ක් එකක් ඇසුවහොත් [වෙබ් අඩවියේ මූලික තොරතුරු] හි ඇති "blogger_link" එක ලබා දෙන්න.
-                3. හැමවිටම ලින්ක් ලබා දීමේදී පරිශීලකයාට ක්ලික් කළ හැකි වන පරිදි [ලින්ක් එකේ නම](URL ලින්ක් එක) ආකාරයටම සකසා ලබා දෙන්න. (උදාහරණයක් ලෙස: \`[Doctor Lawyer 01 කොටස බාගත කරගන්න](https://...)\` හෝ \`[අපගේ බ්ලොග් අඩවියට පිවිසෙන්න](https://...)\` ලෙස ලබා දෙන්න). කිසිවිටක සාමාන්‍ය plain text එකක් ලෙස ලින්ක් ලබා නොදෙන්න.
-
-                [වෙබ් අඩවියේ මූලික තොරතුරු]:
-                ${configContext}
-
-                [උපසිරැසි සහ ඩ්‍රාමා ලැයිස්තුව]:
-                ${dramaContext}
-
-                [බ්ලොගර් සහ ලිපිවල අමතර විස්තර (article_data.txt)]:
-                ${articleData}
+                පරිශීලකයාට ආමන්ත්‍රණය කිරීමට "ඔයා", "යාලුවා", "සහෝ" වැනි වචන භාවිත කරන්න. 
+                පිළිතුරුවලට අලංකාර ඉමෝජි (🍿, ❤️, ✨, 🎬) එකතු කරන්න.
 
                 [පරිශීලකයාගේ ප්‍රශ්නය]:
                 ${text}
@@ -1360,61 +1183,41 @@
                 
                 try {
                     const hfResponse = await fetch(HUGGING_FACE_API_URL, {
-                        method: "POST",
-                        mode: 'cors',
-                        headers: { "Content-Type": "application/json" },
+                        method: "POST", mode: 'cors', headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({ message: text }) 
                     });
-                    
                     if (!hfResponse.ok) throw new Error("Hugging Face Space API limits exceeded");
-                    
                     const hfData = await hfResponse.json();
                     if (hfData.reply) {
                         aiResponseText = hfData.reply;
                         updateServerStatusUI("HUGGING FACE (PRIMARY)", "var(--neon-cyan)");
-                    } else {
-                        throw new Error("Empty reply");
-                    }
+                    } else throw new Error("Empty reply");
                 } 
                 catch (hfError) {
-                    console.log("Hugging Face Failed. Switching to Cloudflare Gemini Fallback...", hfError);
                     try {
                         const response = await fetch(CLOUDFLARE_WORKER_URL, {
-                            method: "POST",
-                            mode: 'cors',
-                            headers: { "Content-Type": "application/json" },
+                            method: "POST", mode: 'cors', headers: { "Content-Type": "application/json" },
                             body: JSON.stringify({ message: combinedPrompt })
                         });
-                        
                         if (!response.ok) throw new Error("Gemini Limit Exceeded");
-                        
                         const data = await response.json();
                         if (data.reply) {
                             aiResponseText = data.reply;
                             updateServerStatusUI("CLOUDFLARE (GEMINI FALLBACK)", "#ffcc00");
-                        } else {
-                            throw new Error("No response");
-                        }
+                        } else throw new Error("No response");
                     } 
                     catch (geminiError) {
-                        console.log("Cloudflare Gemini failed. Switching to Cloudflare Groq Llama 3...", geminiError);
                         try {
                             const responseGroq = await fetch(CLOUDFLARE_WORKER_URL_GROQ, {
-                                method: "POST",
-                                mode: 'cors',
-                                headers: { "Content-Type": "application/json" },
+                                method: "POST", mode: 'cors', headers: { "Content-Type": "application/json" },
                                 body: JSON.stringify({ message: combinedPrompt })
                             });
-                            
                             const dataGroq = await responseGroq.json();
                             if (dataGroq.reply) {
                                 aiResponseText = dataGroq.reply;
                                 updateServerStatusUI("CLOUDFLARE (GROQ FALLBACK)", "var(--neon-pink)");
-                            } else {
-                                text = "No response from Groq";
-                            }
+                            } else throw new Error("No response from Groq");
                         } catch (groqError) {
-                            console.error("All AI servers failed.", groqError);
                             updateServerStatusUI("OFFLINE", "#ff003c");
                         }
                     }
@@ -1432,11 +1235,10 @@
                 updateServerStatusUI("ERROR", "#ff003c");
             }
         }
-
+        
         let msgCounter = 0;
         function appendChatMessage(sender, text) {
             const container = document.getElementById('chat-messages');
-            if (!container) return;
             const id = 'msg-' + (++msgCounter);
             
             const currentMessages = container.querySelectorAll('.chat-msg-row');
@@ -1455,7 +1257,6 @@
             const row = document.createElement('div');
             row.className = `chat-msg-row ${sender}-row`;
             row.id = id;
-            row.style.transition = "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)";
             
             if (sender === 'bot') {
                 const img = document.createElement('img');
@@ -1494,11 +1295,9 @@
             recognition.maxAlternatives = 1;
 
             const micBtn = document.querySelector('.chat-mic-btn');
-            if (micBtn) {
-                micBtn.style.color = "var(--neon-cyan)";
-                micBtn.style.borderColor = "var(--neon-cyan)";
-                micBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i>';
-            }
+            micBtn.style.color = "var(--neon-cyan)";
+            micBtn.style.borderColor = "var(--neon-cyan)";
+            micBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i>';
 
             recognition.start();
 
@@ -1509,12 +1308,12 @@
 
             recognition.onspeechend = function() {
                 recognition.stop();
-                if (micBtn) resetMicButton(micBtn);
+                resetMicButton(micBtn);
             };
 
             recognition.onerror = function(event) {
                 console.log('Error: ' + event.error);
-                if (micBtn) resetMicButton(micBtn);
+                resetMicButton(micBtn);
             };
         }
 
@@ -1524,49 +1323,7 @@
             btn.innerHTML = '<i class="fa-solid fa-microphone"></i>';
         }
 
-        function renderDynamicChatChips(config, dramas) {
-            try {
-                const chipsContainer = document.querySelector('.ai-action-chips');
-                if (!chipsContainer) return;
-
-                let chipsHTML = "";
-
-                if (config && config.chat_chips) {
-                    const customList = config.chat_chips.split('|');
-                    customList.forEach(item => {
-                        const cleanName = item.trim();
-                        if (cleanName) {
-                            chipsHTML += `<div class="ai-chip" onclick="quickSend('${cleanName}')">${cleanName}</div>`;
-                        }
-                    });
-                } 
-                else {
-                    if (dramas && dramas.length > 0) {
-                        const lastTwo = dramas.slice(-2);
-                        lastTwo.forEach(d => {
-                            if (d && d.title) {
-                                const titleText = d.title;
-                                const shortTitle = titleText.split(' ')[0] || "Drama";
-                                chipsHTML += `<div class="ai-chip" onclick="quickSend('${titleText} උපසිරැසි තියෙද? 🍿')">🍿 ${shortTitle}?</div>`;
-                            }
-                        });
-                    }
-                    if (config && config.blogger_link) {
-                        chipsHTML += `<div class="ai-chip" onclick="quickSend('Blogger කියවීම් ඉසව්ව ලින්ක් එක මොකක්ද? 📚')">📚 Blogger Link</div>`;
-                    }
-                    chipsHTML += `<div class="ai-chip" onclick="quickSend('Subverse Admin සම්බන්ධ කරගන්නේ කොහොමද? 💬')">💬 Admin Contact</div>`;
-                }
-
-                chipsContainer.innerHTML = chipsHTML;
-            } catch (err) {
-                console.error("Error in renderDynamicChatChips:", err);
-            }
-        }
-
-        window.onload = function() {
-            loadDramaDetails();
-            resetChatMessages();
-        };
+        window.onload = loadDramaDetails;
     </script>
 </body>
 </html>
