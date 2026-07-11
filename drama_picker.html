@@ -170,6 +170,35 @@
 
         .main-container { max-width: 1300px; margin: 20px auto; padding: 0 15px; box-sizing: border-box; }
 
+        /* 📍 BREADCRUMBS DESIGN */
+        .breadcrumb-nav {
+            max-width: 1300px;
+            margin: 0 auto 15px auto;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            font-size: 12.5px;
+            font-weight: 600;
+        }
+        .breadcrumb-nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .breadcrumb-nav a:hover {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 5px var(--neon-cyan);
+        }
+        .breadcrumb-separator {
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 10px;
+        }
+        .breadcrumb-current {
+            color: var(--neon-pink);
+            text-shadow: 0 0 5px var(--neon-pink);
+        }
+
         .glass-section-custom {
             background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px;
             padding: 25px; margin-bottom: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
@@ -192,44 +221,84 @@
             text-align: center;
         }
 
+        /* 📺 RESPONSIVE DESKTOP FLEX LAYOUT FOR DETAILED SECTION */
+        @media (min-width: 900px) {
+            .drama-details-container {
+                flex-direction: row !important;
+                align-items: flex-start !important;
+                text-align: left !important;
+                gap: 40px !important;
+            }
+            .detail-poster-wrapper {
+                width: 380px !important; /* Scale-up to desktop display width */
+                height: 570px !important; /* 2:3 ratio */
+                flex-shrink: 0 !important;
+            }
+            .detail-info-wrapper {
+                flex-grow: 1 !important;
+            }
+        }
+
+        /* 🎨 ROTATING NEON BORDER ON POSTER */
         .detail-poster-wrapper {
             position: relative; border-radius: 12px; overflow: hidden;
-            border-left: 4px solid var(--neon-cyan);
-            border-right: 4px solid var(--neon-cyan);
-            border-top: none; border-bottom: none;
-            box-shadow: -10px 0 15px rgba(0, 240, 255, 0.3), 10px 0 15px rgba(0, 240, 255, 0.3);
+            background: #020408;
+            padding: 3.5px;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.35);
             width: 280px; height: 420px; max-width: 92%;
             margin: 0 auto;
             aspect-ratio: 2/3;
-            animation: posterNeonPulse 3s infinite alternate ease-in-out;
+            z-index: 1;
         }
-        @keyframes posterNeonPulse {
-            0% {
-                border-left-color: var(--neon-cyan); border-right-color: var(--neon-cyan);
-                box-shadow: -10px 0 15px rgba(0, 240, 255, 0.3), 10px 0 15px rgba(0, 240, 255, 0.3);
-            }
-            100% {
-                border-left-color: var(--neon-pink); border-right-color: var(--neon-pink);
-                box-shadow: -10px 0 15px rgba(255, 0, 127, 0.3), 10px 0 15px rgba(255, 0, 127, 0.3);
-            }
+        .detail-poster-wrapper::before {
+            content: ''; position: absolute; top: -150%; left: -150%; width: 400%; height: 400%;
+            background: conic-gradient(var(--neon-cyan) 0deg, var(--neon-pink) 120deg, var(--neon-purple) 240deg, var(--neon-cyan) 360deg);
+            animation: rgb-fast-rotate 4s linear infinite;
+            z-index: -1;
+        }
+        .detail-poster-wrapper::after {
+            content: ''; position: absolute; inset: 3.5px;
+            background: #020408; border-radius: 10px;
+            z-index: 0;
+        }
+        .detail-poster-img { 
+            position: relative; width: 100%; height: 100%; 
+            object-fit: cover; background: #000; border-radius: 10px; z-index: 1; 
         }
 
-        .detail-poster-img { width: 100%; height: 100%; object-fit: contain; background: #000; }
+        /* 📌 POSTER BADGES & GENRES (ABSOLUTE POSITIONS INSIDE POSTER) */
+        .poster-top-badges {
+            position: absolute; top: 12px; left: 12px;
+            display: flex; flex-direction: column; gap: 6px; z-index: 3;
+        }
+        .poster-top-badges span {
+            padding: 4px 10px; font-size: 10px; font-weight: 900;
+            border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;
+            border: 1px solid rgba(255, 255, 255, 0.2); color: #fff;
+            background: rgba(2, 4, 8, 0.85); width: fit-content; white-space: nowrap;
+        }
+        .poster-bottom-gradient {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            height: 110px; background: linear-gradient(to top, rgba(2, 4, 8, 0.95), transparent);
+            z-index: 2; pointer-events: none;
+        }
+        .poster-genres-container {
+            position: absolute; bottom: 12px; left: 12px; right: 12px;
+            display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; z-index: 3;
+        }
+        .poster-genres-container .genre-tag-badge {
+            background: rgba(157, 78, 221, 0.85) !important;
+            border: 1px solid var(--neon-purple) !important;
+            color: #fff !important; text-shadow: 0 0 5px var(--neon-purple);
+            padding: 4px 10px !important; font-size: 9.5px !important;
+            font-weight: 800; border-radius: 4px !important;
+        }
 
         .rating-bar-vertical {
-            position: absolute; right: 8px; top: 8px; background: rgba(2, 4, 8, 0.9);
+            position: absolute; right: 12px; top: 12px; background: rgba(2, 4, 8, 0.9);
             border-right: 3px solid var(--neon-amber); color: var(--neon-amber); text-shadow: 0 0 8px var(--neon-amber);
             padding: 3.5px 7px; font-size: 11px; font-weight: 900; border-radius: 3px;
-            box-shadow: 0 0 10px rgba(255, 170, 0, 0.3); display: flex; align-items: center; gap: 4px; z-index: 2;
-        }
-
-        .details-top-badges-row {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            width: 100%;
+            box-shadow: 0 0 10px rgba(255, 170, 0, 0.3); display: flex; align-items: center; gap: 4px; z-index: 3;
         }
 
         .detail-left-column {
@@ -239,23 +308,12 @@
             align-items: center;
             width: 100%;
         }
-        .genres-row-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            justify-content: center;
-        }
-
-        .genre-tag-badge {
-            background: rgba(157, 78, 221, 0.1); border: 1px solid var(--neon-purple); color: #d8b4fe;
-            text-shadow: 0 0 5px var(--neon-purple); padding: 4px 12px; font-size: 11px; font-weight: 800; border-radius: 20px; text-transform: uppercase;
-        }
 
         .detail-info-wrapper {
             width: 100%;
         }
 
-        /* 🛠️ INFO SPEC LIST ALIGNMENT FIX */
+        /* 🛠️ INFO SPEC LIST ALIGNMENT */
         .info-spec-list { 
             list-style: none; 
             padding: 0; 
@@ -275,6 +333,16 @@
         }
         .info-spec-label { color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); font-weight: bold; text-align: left; }
         .info-spec-value { color: #fff; font-weight: 800; text-align: right; }
+
+        /* 📺 RESPONSIVE YOUTUBE TRAILER BOX */
+        .trailer-iframe-wrapper {
+            position: relative; width: 100%; padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0; border-radius: 8px; overflow: hidden;
+            border: 1px solid var(--glass-border); box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+        .trailer-iframe-wrapper iframe {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        }
 
         .episodes-section {
             background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px;
@@ -298,6 +366,14 @@
         }
         .title-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,1) 40%, transparent); padding: 12px 6px; }
         .title-overlay p { color: var(--neon-cyan); text-shadow: 0 0 6px var(--neon-cyan); margin: 0; font-size: 10.5px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: center; }
+
+        /* 📸 AUTO ZOOM FIX ON EPISODE CARDS IMAGE */
+        .poster-img {
+            width: 100%; height: 100%;
+            object-fit: cover; /* Centering and fitting to standard grid boundaries automatically */
+            object-position: center;
+            background: #000; opacity: 0.8; transition: opacity 0.3s;
+        }
 
         .episodes-grid-buttons { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; margin-top: 20px; }
         .ep-btn {
@@ -340,7 +416,6 @@
             transform: skewX(-20deg); animation: lightning-sweep 4s infinite linear; z-index: 2; pointer-events: none;
         }
 
-        /* ⬅️ ➡️ PREV/NEXT BUTTONS ALIGNMENT */
         .episode-nav-container {
             display: flex; justify-content: space-between; gap: 15px; align-items: center; width: 100%;
         }
@@ -443,6 +518,14 @@
             margin-bottom: 25px;
         }
         .social-icons-wrapper { display: flex; justify-content: center; gap: 25px; }
+
+        /* 🌐 DESKTOP-SPECIFIC SOCIAL BUTTONS SPACING OVERRIDE */
+        @media (min-width: 900px) {
+            .social-icons-wrapper {
+                gap: 55px !important; /* Spaced out further on desktop */
+            }
+        }
+
         .social-btn {
             position: relative; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
             text-decoration: none; transition: all 0.3s ease; background: var(--glass-bg); 
@@ -565,6 +648,24 @@
             letter-spacing: 1px; font-family: 'Share Tech Mono', monospace; text-shadow: 0 0 5px var(--neon-cyan);
         }
 
+        /* 💡 Suggestion Chips Inside Chat widget */
+        .ai-action-chips {
+            display: flex; gap: 6px; padding: 8px 12px;
+            overflow-x: auto; background: rgba(0,0,0,0.2);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            scrollbar-width: none;
+        }
+        .ai-action-chips::-webkit-scrollbar { display: none; }
+        .ai-chip {
+            background: rgba(0, 240, 255, 0.05); border: 1px solid rgba(0, 240, 255, 0.3);
+            color: #ccc; font-size: 11px; padding: 6px 10px; border-radius: 15px;
+            cursor: pointer; white-space: nowrap; transition: 0.2s;
+        }
+        .ai-chip:hover {
+            border-color: var(--neon-cyan); color: var(--neon-cyan);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+        }
+
         .chat-input-row {
             padding: 10px; border-top: 1.5px solid rgba(0, 240, 255, 0.15);
             display: flex; gap: 8px; background: rgba(6, 11, 25, 0.9); align-items: center;
@@ -657,6 +758,27 @@
             .about-section { flex-direction: column; text-align: center; }
         }
         @media (max-width: 600px) {
+            /* 🛑 MOBILE STICKY STABILITY OFFSETS - HEADER & SUB-NAV STAYS STICKY ONLY */
+            header {
+                position: sticky !important;
+                top: 0 !important;
+                z-index: 1000 !important;
+            }
+            .ticker-wrapper {
+                position: static !important; /* Scrolls away normally on mobile */
+                background: rgba(6, 11, 25, 0.95) !important;
+            }
+            .sub-nav-container {
+                position: sticky !important;
+                top: 81px !important; /* Stays stuck directly under mobile header height */
+                z-index: 998 !important;
+                padding: 10px 15px !important;
+                background: rgba(2, 4, 8, 0.9) !important;
+                backdrop-filter: blur(10px) !important;
+                -webkit-backdrop-filter: blur(10px) !important;
+                margin: 0 auto !important;
+            }
+
             .header-container { flex-direction: row !important; justify-content: space-between !important; align-items: center !important; width: 100%; gap: 10px; }
             .logo-wrapper { width: 300px !important; height: 55px !important; }
             .site-logo-img { height: 40px !important; }
@@ -715,6 +837,11 @@
 
     <!-- MAIN BODY CONTAINER -->
     <div class="main-container">
+
+        <!-- BREADCRUMBS NAVIGATION -->
+        <div class="breadcrumb-nav" id="breadcrumb-container">
+            <!-- Dynamically populated via Javascript -->
+        </div>
         
         <!-- DYNAMIC DETAILED HERO BLOCK -->
         <div class="drama-details-container" id="drama-details-wrapper">
@@ -775,6 +902,9 @@
         <div class="chat-messages" id="chat-messages">
             <!-- Initialized dynamically in Javascript -->
         </div>
+
+        <!-- Dynamic AI Suggestion Chips -->
+        <div class="ai-action-chips"></div>
         
         <div class="chat-input-row">
             <input type="text" id="chat-text-input" placeholder="පණිවිඩය ලියන්න (Type here)..." class="chat-text-input" onkeydown="if(event.key === 'Enter') sendAIMessage()">
@@ -870,31 +1000,72 @@
             const statusColor = isComplete ? "var(--neon-pink)" : "var(--neon-cyan)";
             const statusShadow = isComplete ? "var(--neon-pink)" : "var(--neon-cyan)";
 
+            // 📍 Dynamic Breadcrumbs logic
+            const breadcrumbEl = document.getElementById('breadcrumb-container');
+            if (breadcrumbEl) {
+                const dramaTypeLabel = drama.type === "K-DRAMA" ? "Korean Drama" : drama.type === "C-DRAMA" ? "Chinese Drama" : "Japanese Drama";
+                breadcrumbEl.innerHTML = `
+                    <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+                    <i class="fa-solid fa-chevron-right breadcrumb-separator"></i>
+                    <a href="index.html">${dramaTypeLabel}</a>
+                    <i class="fa-solid fa-chevron-right breadcrumb-separator"></i>
+                    <span class="breadcrumb-current">${drama.title}</span>
+                `;
+            }
+
+            // 📺 Responsive YouTube Video Trailer embed logic
+            let trailerHTML = "";
+            if (drama.trailer_link) {
+                let embedUrl = drama.trailer_link;
+                if (embedUrl.includes("watch?v=")) {
+                    embedUrl = embedUrl.replace("watch?v=", "embed/");
+                } else if (embedUrl.includes("youtu.be/")) {
+                    embedUrl = embedUrl.replace("youtu.be/", "youtube.com/embed/");
+                }
+                
+                trailerHTML = `
+                    <div class="trailer-box-container" style="margin-top: 25px;">
+                        <h3 style="color: var(--neon-amber); text-shadow: 0 0 5px var(--neon-amber); margin: 0 0 12px 0; font-size: 14px; text-transform: uppercase; font-weight: 900; display: flex; align-items: center; gap: 8px; border-left: 3px solid var(--neon-amber); padding-left: 10px;">
+                            <i class="fa-brands fa-youtube" style="color: #ff0000; font-size: 16px;"></i> පූර්ව ප්‍රචාරක පටය (Official Trailer)
+                        </h3>
+                        <div class="trailer-iframe-wrapper">
+                            <iframe src="${embedUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                `;
+            }
+
             // Populate Info details with optimized structural layout
             document.getElementById('drama-details-wrapper').innerHTML = `
-                <!-- 1. Top Badges Row -->
-                <div class="details-top-badges-row">
-                    <span style="background: ${statusColor}; color: #000; box-shadow: 0 0 10px ${statusColor}; border: 1px solid rgba(255,255,255,0.4); padding: 4px 12px; font-size: 11px; font-weight: 900; border-radius: 4px; text-transform: uppercase;">${drama.status}</span>
-                    <span style="background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: #fff; padding: 4px 12px; font-size: 11px; font-weight: bold; border-radius: 4px;">${drama.type}</span>
-                    <span style="background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: #fff; padding: 4px 12px; font-size: 11px; font-weight: bold; border-radius: 4px;">${drama.total_episodes || '?'} EPISODES</span>
-                </div>
-
-                <!-- 2. Left Column (Poster + Rating + Genres list below) -->
+                <!-- 1. Left Column (Poster with Top Badges, Rating, Gradient, and Genres on top of it) -->
                 <div class="detail-left-column">
                     <div class="detail-poster-wrapper">
                         <img class="detail-poster-img" src="${drama.image_url}" alt="Poster">
+                        
+                        <!-- Top-Left Badges inside Poster -->
+                        <div class="poster-top-badges">
+                            <span class="badge-status" style="background: ${statusColor}; box-shadow: 0 0 10px ${statusColor};">${drama.status}</span>
+                            <span class="badge-type">${drama.type}</span>
+                            <span class="badge-eps">${drama.total_episodes || '?'} EPS</span>
+                        </div>
+
+                        <!-- Top-Right Rating inside Poster -->
                         <div class="rating-bar-vertical" style="border-right-color: ${ratingColor}; color: ${ratingColor}; text-shadow: 0 0 8px ${ratingColor}; box-shadow: 0 0 10px ${ratingShadow};">
                             <i class="fa-solid fa-star" style="font-size: 8px;"></i>
                             <span>${drama.imdb}</span>
                         </div>
-                    </div>
-                    <!-- Genres list placed directly under poster -->
-                    <div class="genres-row-container">
-                        ${drama.genres ? drama.genres.map(g => `<span class="genre-tag-badge">${g}</span>`).join('') : ''}
+
+                        <!-- Bottom Gradient Overlay -->
+                        <div class="poster-bottom-gradient"></div>
+
+                        <!-- Genres inside Bottom of Poster -->
+                        <div class="poster-genres-container">
+                            ${drama.genres ? drama.genres.map(g => `<span class="genre-tag-badge">${g}</span>`).join('') : ''}
+                        </div>
                     </div>
                 </div>
 
-                <!-- 3. Right Column (Title + Spec List + Synopsis) -->
+                <!-- 2. Right Column (Title + Spec List + Synopsis + Dynamic YouTube Trailer) -->
                 <div class="detail-info-wrapper">
                     <h1 style="font-size: 28px; font-weight: 900; margin: 0 0 15px 0; text-shadow: 0 0 10px #fff; text-transform: uppercase;">${drama.title}</h1>
                     
@@ -907,10 +1078,13 @@
                         <li class="info-spec-item"><span class="info-spec-label">Runtime:</span> <span class="info-spec-value">${drama.runtime || 'N/A'}</span></li>
                     </ul>
 
-                    <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); padding: 20px; border-radius: 10px; line-height: 1.8; color: #ccc; font-size: 13.5px;">
+                    <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); padding: 20px; border-radius: 10px; line-height: 1.8; color: #ccc; font-size: 13.5px; margin-bottom: 20px;">
                         <h3 style="color: ${statusColor}; text-shadow: 0 0 5px ${statusColor}; margin: 0 0 10px 0; font-size: 14px; text-transform: uppercase; font-weight: 900;">කතා සාරාංශය (Synopsis)</h3>
                         <p style="margin: 0; text-align: justify;">${drama.synopsis || 'කතා සාරාංශයක් ඇතුළත් කර නොමැත.'}</p>
                     </div>
+
+                    <!-- Dynamic YouTube Trailer Placement -->
+                    ${trailerHTML}
                 </div>
             `;
 
@@ -1057,6 +1231,7 @@
 
             // Render Overall Drama Vote Section
             renderOverallVoteSection();
+            renderDynamicChatChips(config, database.dramas);
             resetChatMessages();
         }
 
@@ -1087,7 +1262,53 @@
             loadVotes();
         }
 
-        // 📡 FIREBASE REAL-TIME VOTING LOAD (NULL-SAFE & ROBUST)
+        /* 💡 DYNAMIC CHIPS RENDER FUNCTION (PYTHON COMPATIBLE via data.json) */
+        function renderDynamicChatChips(config, dramas) {
+            try {
+                const chipsContainer = document.querySelector('.ai-action-chips');
+                if (!chipsContainer) return;
+
+                let chipsHTML = "";
+
+                if (config && config.chat_chips) {
+                    const customList = config.chat_chips.split('|');
+                    customList.forEach(item => {
+                        const cleanName = item.trim();
+                        if (cleanName) {
+                            chipsHTML += `<div class="ai-chip" onclick="quickSend('${cleanName}')">${cleanName}</div>`;
+                        }
+                    });
+                } 
+                else {
+                    const availableDramas = Object.values(dramas || {}).filter(d => d && d.status !== "UPCOMING");
+                    if (availableDramas && availableDramas.length > 0) {
+                        const lastTwo = availableDramas.slice(-2);
+                        lastTwo.forEach(d => {
+                            if (d && d.title) {
+                                const titleText = d.title;
+                                const shortTitle = titleText.split(' ')[0] || "Drama";
+                                chipsHTML += `<div class="ai-chip" onclick="quickSend('${titleText} උපසිරැසි තියෙද? 🍿')">🍿 ${shortTitle}?</div>`;
+                            }
+                        });
+                    }
+                    if (config && config.blogger_link) {
+                        chipsHTML += `<div class="ai-chip" onclick="quickSend('Blogger කියවීම් ඉසව්ව ලින්ක් එක මොකක්ද? 📚')">📚 Blogger Link</div>`;
+                    }
+                    chipsHTML += `<div class="ai-chip" onclick="quickSend('Subverse Admin සම්බන්ධ කරගන්නේ කොහොමද? 💬')">💬 Admin Contact</div>`;
+                }
+
+                chipsContainer.innerHTML = chipsHTML;
+            } catch (err) {
+                console.error("Error in renderDynamicChatChips:", err);
+            }
+        }
+
+        function quickSend(question) {
+            document.getElementById('chat-text-input').value = question;
+            sendAIMessage();
+        }
+
+        // 📡 FIREBASE REAL-TIME VOTING LOAD
         async function loadVotes() {
             try {
                 const res = await fetch(firebaseURL + "votes.json");
