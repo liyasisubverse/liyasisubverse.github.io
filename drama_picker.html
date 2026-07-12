@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="si">
 <head>
@@ -11,7 +12,8 @@
         style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; 
         font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; 
         img-src 'self' data: https: http:; 
-        connect-src 'self' https://subverse-b897d-default-rtdb.firebaseio.com https://liyasisubverse1-liyasi-backend.hf.space https://ask-gemini.rashmi004005g.workers.dev https://groq.rashmi004005g.workers.dev https://www.google-analytics.com;
+        frame-src 'self' https://www.youtube.com https://youtube.com;
+        connect-src 'self' https://subverse-b897d-default-rtdb.firebaseio.com https://liyasisubverse1-liyasi-backend.hf.space https://ask-gemini.rashmi004005g.workers.dev https://groq.rashmi004005g.workers.dev https://www.google-analytics.com https://*.google-analytics.com;
     ">
 
     <!-- 🛡️ 2. FRAME-BUSTING (CLICKJACKING ආරක්ෂාව) -->
@@ -78,6 +80,10 @@
                               url('https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/bbfcf6e6-8bca-4883-8eb1-f93a2d1d4728.png');
             background-attachment: fixed; background-size: cover; background-position: center;
             overflow-x: hidden;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
         .sticky-top-bar {
@@ -780,6 +786,11 @@
             0% { -webkit-transform: rotate(0deg); }
             100% { -webkit-transform: rotate(360deg); } 
         }
+        @keyframes lightning-sweep {
+            0% { left: -150%; }
+            50% { left: 150%; }
+            100% { left: 150%; }
+        }
 
         footer { background: rgba(4, 8, 16, 0.95); border-top: 2px solid var(--neon-cyan); padding: 40px 20px; text-align: center; margin-top: 40px; box-shadow: 0 -10px 30px rgba(0, 240, 255, 0.1); }
         .footer-content { max-width: 800px; margin: 0 auto; }
@@ -812,14 +823,14 @@
                 box-shadow: none !important;
             }
             .ticker-wrapper {
-                position: static !important; /* Scrolls away normally on mobile */
+                position: static !important; 
                 background: transparent !important;
                 border: none !important;
                 box-shadow: none !important;
             }
             .sub-nav-container {
                 position: sticky !important;
-                top: 81px !important; /* Stays stuck directly under mobile header height */
+                top: 81px !important; 
                 z-index: 998 !important;
                 padding: 10px 15px !important;
                 background: transparent !important;
@@ -1055,6 +1066,35 @@
         let dramaUniqueVoteId = `drama_overall_${dramaId}`;
         let globalConfig = {};
 
+        // 🎥 Robust YouTube link format parser
+        function getYouTubeEmbedUrl(urlOrId) {
+            if (!urlOrId) return "";
+            urlOrId = urlOrId.trim();
+
+            // If it is already an embed URL, return it directly
+            if (urlOrId.includes("youtube.com/embed/") || urlOrId.includes("youtube-nocookie.com/embed/")) {
+                return urlOrId;
+            }
+
+            let videoId = "";
+            // If it is exactly 11 characters (standard video ID) and doesn't contain slashes or dots
+            if (urlOrId.length === 11 && !urlOrId.includes("/") && !urlOrId.includes(".")) {
+                videoId = urlOrId;
+            } else {
+                // Regex for standard formats (watch?v=, youtu.be/, shorts/, embed/, v/, mobile etc.)
+                const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|shorts\/)([^#\&\?]*).*/;
+                const match = urlOrId.match(regExp);
+                if (match && match[2].length === 11) {
+                    videoId = match[2];
+                }
+            }
+
+            if (videoId) {
+                return `https://www.youtube.com/embed/${videoId}`;
+            }
+            return urlOrId; // Return original if parsing cannot proceed
+        }
+
         async function loadDramaDetails() {
             try {
                 const response = await fetch('data.json?v=' + new Date().getTime());
@@ -1115,23 +1155,19 @@
             let trailerHTML = "";
             const trailerUrl = drama.trailer_link || drama.trailer || drama.trailerUrl;
             if (trailerUrl) {
-                let embedUrl = trailerUrl;
-                if (embedUrl.includes("watch?v=")) {
-                    embedUrl = embedUrl.replace("watch?v=", "embed/");
-                } else if (embedUrl.includes("youtu.be/")) {
-                    embedUrl = embedUrl.replace("youtu.be/", "youtube.com/embed/");
-                }
-                
-                trailerHTML = `
-                    <div class="trailer-box-container" style="margin-top: 25px;">
-                        <h3 style="color: var(--neon-amber); text-shadow: 0 0 5px var(--neon-amber); margin: 0 0 12px 0; font-size: 14px; text-transform: uppercase; font-weight: 900; display: flex; align-items: center; gap: 8px; border-left: 3px solid var(--neon-amber); padding-left: 10px;">
-                            <i class="fa-brands fa-youtube" style="color: #ff0000; font-size: 16px;"></i> පූර්ව ප්‍රචාරක පටය (Official Trailer)
-                        </h3>
-                        <div class="trailer-iframe-wrapper">
-                            <iframe src="${embedUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+                const embedUrl = getYouTubeEmbedUrl(trailerUrl);
+                if (embedUrl) {
+                    trailerHTML = `
+                        <div class="trailer-box-container" style="margin-top: 25px;">
+                            <h3 style="color: var(--neon-amber); text-shadow: 0 0 5px var(--neon-amber); margin: 0 0 12px 0; font-size: 14px; text-transform: uppercase; font-weight: 900; display: flex; align-items: center; gap: 8px; border-left: 3px solid var(--neon-amber); padding-left: 10px;">
+                                <i class="fa-brands fa-youtube" style="color: #ff0000; font-size: 16px;"></i> පූර්ව ප්‍රචාරක පටය (Official Trailer)
+                            </h3>
+                            <div class="trailer-iframe-wrapper">
+                                <iframe src="${embedUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+                            </div>
                         </div>
-                    </div>
-                `;
+                    `;
+                }
             }
 
             // Populate Info details with optimized structural layout
@@ -1311,7 +1347,7 @@
             const aboutUsSection = document.getElementById('about-us-section-wrapper');
             if (aboutUsSection) {
                 aboutUsSection.style.display = 'flex';
-                const aboutMeText = config.about_me_text || "අපි ඔබ වෙත ගෙන එන්නේ ගුණාත්මක බවින් ඉහළම ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි පමණි. අපගේ නිල සමාජ මාධ්‍ය ජාලයන් සමඟ එක් වී أලුත්ම උපසිරැසි නිකුත් වූ සැනින් ලබාගන්න.";
+                const aboutMeText = config.about_me_text || "අපි ඔබ වෙත ගෙන එන්නේ ගුණාත්මක බවින් ඉහළම ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි පමණි. අපගේ නිල සමාජ මාධ්‍ය ජාලයන් සමඟ එක් වී අලුත්ම උපසිරැසි නිකුත් වූ සැනින් ලබාගන්න.";
                 const aboutMeAvatar = config.about_me_avatar || ABOUT_ME_ART_LOGO;
                 aboutUsSection.innerHTML = `
                     <h3 class="about-header-title">ලියැසි SUBVERSE (About Us)</h3>
@@ -1349,10 +1385,10 @@
                     </div>
                     <div class="sl-vote-buttons">
                         <button class="vote-btn-custom vote-like" onclick="handleSLVote('like', this)">
-                            👍 LIKE <span class="vote-count" class="sl-like-cnt">0</span>
+                            👍 LIKE <span class="vote-count sl-like-cnt">0</span>
                         </button>
                         <button class="vote-btn-custom vote-dislike" onclick="handleSLVote('dislike', this)">
-                            👎 DISLIKE <span class="vote-count" class="sl-dislike-cnt">0</span>
+                            👎 DISLIKE <span class="vote-count sl-dislike-cnt">0</span>
                         </button>
                     </div>
                 </div>
@@ -1510,7 +1546,7 @@
             container.innerHTML = `
                 <div class="chat-msg-row bot-row">
                     <img src="https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png" class="chat-bot-avatar" alt="Avatar">
-                    <div class="chat-bubble bot">Здарова! 🖐️ මම ලියැසි SUBVERSE AI සහායකයා. ඔයාට අවශ්‍ය ඕනෑම ඩ්‍රාමා එකක් ගැන, බ්ලොග් එකේ ලිපි ගැන හෝ සබ්ටයිටල් දාගන්න විදිහ ගැන මාත් එක්ක නිදහසේ කතා කරන්න! ❤️🍿</div>
+                    <div class="chat-bubble bot">හෙලෝ! 🖐️ මම ලියැසි SUBVERSE AI සහායකයා. ඔයාට අවශ්‍ය ඕනෑම ඩ්‍රාමා එකක් ගැන, බ්ලොග් එකේ ලිපි ගැන හෝ සබ්ටයිටල් දාගන්න විදිහ ගැන මාත් එක්ක නිදහසේ කතා කරන්න! ❤️🍿</div>
                 </div>
             `;
         }
@@ -1548,10 +1584,13 @@
                     if (articleResponse.ok) { articleData = await articleResponse.text(); }
                 } catch (err) { console.log("Could not fetch article_data.txt", err); }
 
+                // 🛡️ Logic bug fixed: Article Data is now properly injected into the fallback prompt.
                 const combinedPrompt = `
                 ඔබ "ලියැසි SUBVERSE" උපසිරැසි වෙබ් අඩවියේ නිල AI සහායකයා වේ. පරිශීලකයන්ට උපසිරැසි, බ්ලොග් සහ ඩ්‍රාමා ගැන සහාය වන්න.
                 පරිශීලකයාට ආමන්ත්‍රණය කිරීමට "ඔයා", "යාලුවා", "සහෝ" වැනි වචන භාවිත කරන්න. 
                 පිළිතුරුවලට අලංකාර ඉමෝජි (🍿, ❤️, ✨, 🎬) එකතු කරන්න.
+
+                ${articleData ? `[අඩවියේ තොරතුරු / Context]:\n${articleData}\n` : ''}
 
                 [පරිශීලකයාගේ ප්‍රශ්නය]:
                 ${text}
@@ -1619,17 +1658,10 @@
             const container = document.getElementById('chat-messages');
             const id = 'msg-' + (++msgCounter);
             
+            // Keeps the chat memory safe, and only removes oldest items once it exceeds 30
             const currentMessages = container.querySelectorAll('.chat-msg-row');
-            if (currentMessages.length >= 2) {
-                for (let i = 0; i < currentMessages.length; i++) {
-                    currentMessages[i].style.opacity = '0';
-                    currentMessages[i].style.maxHeight = '0px';
-                    currentMessages[i].style.padding = '0px';
-                    currentMessages[i].style.margin = '0px';
-                    currentMessages[i].style.overflow = 'hidden';
-                    currentMessages[i].style.pointerEvents = 'none';
-                    currentMessages[i].style.transform = 'translateY(-20px)';
-                }
+            if (currentMessages.length > 30) {
+                currentMessages[0].remove();
             }
 
             const row = document.createElement('div');
