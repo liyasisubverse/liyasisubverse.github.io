@@ -210,7 +210,7 @@
             padding: 6px 12px; border-radius: 5px; display: flex; align-items: center; gap: 6px;
             white-space: nowrap;
             box-shadow: none !important;
-    
+        }
 
         .ticker-wrapper {
             background: transparent !important;
@@ -418,12 +418,13 @@
             background: #020408; border-radius: 50%; z-index: -1; 
         }
         
+        /* 🛡️ ආරක්ෂණ රීතිය සාර්ථකව නැවත ඇතුළත් කරන ලදී (Circular Image Restored) */
         .cast-img-container img { 
             width: calc(100% - 3px); height: calc(100% - 3px); 
             object-fit: cover; object-position: top center; 
             border-radius: 50%; position: relative; z-index: 1; 
         }
-
+        
         .cast-member-name { font-size: 11px; font-weight: bold; color: #ccc; }
 
         .map-responsive-box { width: 100%; text-align: center; margin-top: 10px; border-radius: 12px; overflow: hidden; border: 1px solid var(--glass-border); }
@@ -1257,7 +1258,6 @@
                 </div>
             `;
 
-            // 📖 Populate Episode Specific Story Description (v2 SPECIFIC ADDITION)
             const epStoryWrapper = document.getElementById('episode-story-section-wrapper');
             if (epStoryWrapper && currentEpisode.synopsis) {
                 epStoryWrapper.style.display = "block";
@@ -1305,7 +1305,6 @@
             `;
         }
 
-        /* 🍿 YouTube URL embedded resolver helper */
         function getYouTubeEmbedUrl(url) {
             if (!url) return null;
             let videoId = "";
@@ -1910,6 +1909,11 @@
             const container = document.getElementById('chat-messages');
             const id = 'msg-' + (++msgCounter);
             
+            const currentMessages = container.querySelectorAll('.chat-msg-row');
+            if (currentMessages.length > 30) {
+                currentMessages[0].remove();
+            }
+
             const row = document.createElement('div');
             row.className = `chat-msg-row ${sender}-row`;
             row.id = id;
@@ -1987,4 +1991,4 @@
         window.onload = initPage;
     </script>
 </body>
-    </html>
+                </html>
