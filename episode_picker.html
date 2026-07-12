@@ -2,6 +2,25 @@
 <html lang="si">
 <head>
     <meta charset="UTF-8">
+    
+    <!-- 1. Content Security Policy (CSP) Meta Tag -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https:; connect-src 'self' https://subverse-b897d-default-rtdb.firebaseio.com https://liyasisubverse1-liyasi-backend.hf.space https://ask-gemini.rashmi004005g.workers.dev https://groq.rashmi004005g.workers.dev https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src 'self' https:;">
+
+    <!-- 2. Anti-Clickjacking (Frame-Busting) CSS & JS -->
+    <style id="antiClickjack">
+        body { display: none !important; }
+    </style>
+    <script>
+        if (self === top) {
+            var antiClickjack = document.getElementById("antiClickjack");
+            if (antiClickjack) {
+                antiClickjack.parentNode.removeChild(antiClickjack);
+            }
+        } else {
+            top.location = self.location;
+        }
+    </script>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ලියැසි SUBVERSE - උපසිරැසි බාගත කිරීමේ කවුළුව</title>
     
@@ -59,19 +78,39 @@
             overflow-x: hidden;
         }
 
-        /* 📌 STICKY TOP BAR (HEADER + SUB-NAV) */
+        /* 3. User-Select Disable CSS */
+        body {
+            -webkit-user-select: none; /* Safari */
+            -moz-user-select: none;    /* Firefox */
+            -ms-user-select: none;     /* IE/Edge */
+            user-select: none;         /* Standard */
+        }
+        /* Keep user input elements selectable */
+        input, textarea, [contenteditable="true"] {
+            -webkit-user-select: text !important;
+            -moz-user-select: text !important;
+            -ms-user-select: text !important;
+            user-select: text !important;
+        }
+
+        /* 📌 STICKY TOP BAR (HEADER + SUB-NAV) - MADE COMPLETELY TRANSPARENT */
         .sticky-top-bar {
             position: sticky;
             top: 0;
             z-index: 1000;
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-bottom: 2px solid rgba(0, 240, 255, 0.25);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+            background: transparent !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            border-bottom: none !important;
+            box-shadow: none !important;
         }
 
         header {
+            background: transparent !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            border-bottom: none !important;
+            box-shadow: none !important;
             padding: 12px 20px 5px 20px;
         }
         .header-container {
@@ -134,36 +173,58 @@
             opacity: 0; z-index: 1;
         }
 
-        /* 📅 SUB-NAV, CLOCK & DATE SPLIT */
-        .sub-nav-container { max-width: 1300px; margin: 0 auto; padding: 5px 15px 12px 15px; box-sizing: border-box; }
+        /* 📅 SUB-NAV, CLOCK & DATE SPLIT - MADE COMPLETELY TRANSPARENT */
+        .sub-nav-container { 
+            max-width: 1300px; margin: 0 auto; padding: 5px 15px 12px 15px; box-sizing: border-box; 
+            background: transparent !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
         .sub-nav-bar { 
             display: flex; justify-content: space-between; align-items: center; gap: 15px; 
-            background: rgba(255, 255, 255, 0.02); padding: 8px 20px; border-radius: 10px;
-            border: 1px solid rgba(255,255,255,0.05);
+            background: transparent !important; padding: 8px 20px; border-radius: 10px;
+            border: none !important;
+            box-shadow: none !important;
         }
         .sub-nav-item {
             color: var(--text-main); text-decoration: none; font-size: 13px; font-weight: 800;
             padding: 8px 22px; border-radius: 5px; transition: 0.3s; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
         }
-        .sub-nav-item:hover, .sub-nav-item.active { color: var(--neon-cyan); background: rgba(0, 240, 255, 0.1); text-shadow: 0 0 12px var(--neon-cyan); border: 1px solid rgba(0, 240, 255, 0.2); }
+        .sub-nav-item:hover, .sub-nav-item.active { 
+            color: var(--neon-cyan); 
+            background: transparent !important; 
+            text-shadow: 0 0 12px var(--neon-cyan); 
+            border: none !important; 
+            box-shadow: none !important;
+        }
         
         .sub-nav-clock {
             font-family: 'Courier New', monospace; font-size: 12px; font-weight: bold;
             color: var(--neon-cyan); text-shadow: 0 0 8px var(--neon-cyan);
-            background: rgba(0, 240, 255, 0.05); border: 1px solid var(--neon-cyan);
+            background: transparent !important; border: none !important;
             padding: 6px 12px; border-radius: 5px; display: flex; align-items: center; gap: 6px;
             white-space: nowrap;
+            box-shadow: none !important;
         }
         .sub-nav-date {
             font-family: 'Courier New', monospace; font-size: 12px; font-weight: bold;
             color: var(--neon-pink); text-shadow: 0 0 8px var(--neon-pink);
-            background: rgba(255, 0, 127, 0.05); border: 1px solid var(--neon-pink);
+            background: transparent !important; border: none !important;
             padding: 6px 12px; border-radius: 5px; display: flex; align-items: center; gap: 6px;
             white-space: nowrap;
+            box-shadow: none !important;
         }
 
+        /* ⚡ TICKER (SCROLLING TEXT BAR) - MADE COMPLETELY TRANSPARENT */
         .ticker-wrapper {
-            background: rgba(255, 0, 127, 0.12); border-bottom: 1px solid rgba(255, 0, 127, 0.25);
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
             overflow: hidden; padding: 6px 0; position: relative;
             -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
             mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
@@ -784,25 +845,34 @@
             .cat-vote-wrapper { grid-template-columns: 1fr !important; gap: 10px; }
         }
         @media (max-width: 600px) {
-            /* 🛑 2 වන විසඳුම: MOBILE STICKY STABILITY OFFSETS - HEADER & SUB-NAV STAYS STICKY ONLY */
+            /* 🛑 2 වන විසඳුම: MOBILE STICKY STABILITY OFFSETS - TRANSPARENT HEADER & SUB-NAV ON MOBILE */
             header {
                 position: sticky !important;
                 top: 0 !important;
                 z-index: 1000 !important;
+                background: transparent !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                border: none !important;
+                box-shadow: none !important;
             }
             .ticker-wrapper {
                 position: static !important; /* Scrolls away normally on mobile */
-                background: rgba(6, 11, 25, 0.95) !important;
+                background: transparent !important;
+                border: none !important;
+                box-shadow: none !important;
             }
             .sub-nav-container {
                 position: sticky !important;
                 top: 81px !important; /* Stays stuck directly under mobile header height */
                 z-index: 998 !important;
                 padding: 10px 15px !important;
-                background: rgba(2, 4, 8, 0.9) !important;
-                backdrop-filter: blur(10px) !important;
-                -webkit-backdrop-filter: blur(10px) !important;
+                background: transparent !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
                 margin: 0 auto !important;
+                border: none !important;
+                box-shadow: none !important;
             }
 
             .header-container { flex-direction: row !important; justify-content: space-between !important; align-items: center !important; width: 100%; gap: 10px; }
@@ -985,14 +1055,69 @@
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
+        /* 8. Safe Local Storage Wrapper with enhanced security wrapper */
         const safeLocalStorage = {
             getItem: function(key) {
-                try { return localStorage.getItem(key); } catch (e) { return null; }
+                try { 
+                    return localStorage.getItem(key); 
+                } catch (e) { 
+                    console.warn("Storage access restricted:", e);
+                    return null; 
+                }
             },
             setItem: function(key, value) {
-                try { localStorage.setItem(key, value); } catch (e) {}
+                try { 
+                    localStorage.setItem(key, value); 
+                } catch (e) {
+                    console.warn("Storage writing restricted:", e);
+                }
             }
         };
+
+        /* 🔒 SECURITY EVENTS */
+        // 4. Disable Right-Click (contextmenu) Event
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        // 5. Disable Copy & Cut Events
+        document.addEventListener('copy', function(e) {
+            e.preventDefault();
+        });
+        document.addEventListener('cut', function(e) {
+            e.preventDefault();
+        });
+
+        // 6. Disable Image Dragging Event
+        document.addEventListener('dragstart', function(e) {
+            if (e.target.tagName === 'IMG') {
+                e.preventDefault();
+            }
+        });
+
+        // 7. Disable Keyboard Shortcuts (Inspect, Source Code, View, Save)
+        document.addEventListener('keydown', function(e) {
+            // Disable F12
+            if (e.keyCode === 123 || e.key === 'F12') {
+                e.preventDefault();
+                return false;
+            }
+            // Disable Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C (DevTools Shortcuts)
+            if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67 || e.key === 'I' || e.key === 'J' || e.key === 'C')) {
+                e.preventDefault();
+                return false;
+            }
+            // Disable Ctrl+U (View Source)
+            if (e.ctrlKey && (e.keyCode === 85 || e.key === 'U' || e.key === 'u')) {
+                e.preventDefault();
+                return false;
+            }
+            // Disable Ctrl+S (Save Page)
+            if (e.ctrlKey && (e.keyCode === 83 || e.key === 'S' || e.key === 's')) {
+                e.preventDefault();
+                return false;
+            }
+        });
 
         function toggleDropdown() {
             const menu = document.getElementById('threeDotMenu');
