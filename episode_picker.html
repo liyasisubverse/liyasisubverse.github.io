@@ -82,10 +82,6 @@
                               url('https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/bbfcf6e6-8bca-4883-8eb1-f93a2d1d4728.png');
             background-attachment: fixed; background-size: cover; background-position: center;
             overflow-x: hidden;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
         }
 
         .sticky-top-bar {
@@ -418,13 +414,12 @@
             background: #020408; border-radius: 50%; z-index: -1; 
         }
         
-        /* 🛡️ ආරක්ෂණ රීතිය සාර්ථකව නැවත ඇතුළත් කරන ලදී (Circular Image Restored) */
         .cast-img-container img { 
             width: calc(100% - 3px); height: calc(100% - 3px); 
             object-fit: cover; object-position: top center; 
             border-radius: 50%; position: relative; z-index: 1; 
         }
-        
+
         .cast-member-name { font-size: 11px; font-weight: bold; color: #ccc; }
 
         .map-responsive-box { width: 100%; text-align: center; margin-top: 10px; border-radius: 12px; overflow: hidden; border: 1px solid var(--glass-border); }
@@ -836,14 +831,14 @@
                 box-shadow: none !important;
             }
             .ticker-wrapper {
-                position: static !important; 
+                position: static !important; /* Scrolls away normally on mobile */
                 background: transparent !important;
                 border: none !important;
                 box-shadow: none !important;
             }
             .sub-nav-container {
                 position: sticky !important;
-                top: 81px !important; 
+                top: 81px !important; /* Stays stuck directly under mobile header height */
                 z-index: 998 !important;
                 padding: 10px 15px !important;
                 background: transparent !important;
@@ -923,7 +918,7 @@
             <p style="text-align: center; color: var(--neon-cyan); padding: 50px 0;">🤖 [SYSTEM RETRIEVING DATA...]</p>
         </div>
 
-        <!-- 📖 EPISODE STORY SYNOPSIS BOX -->
+        <!-- 📖 EPISODE STORY SYNOPSIS BOX (v2 SPECIFIC ADDITION) -->
         <div class="glass-section-custom" id="episode-story-section-wrapper" style="display:none;"></div>
 
         <!-- 🎭 CAST & CREW DYNAMIC HOLDER -->
@@ -1258,6 +1253,7 @@
                 </div>
             `;
 
+            // 📖 Populate Episode Specific Story Description (v2 SPECIFIC ADDITION)
             const epStoryWrapper = document.getElementById('episode-story-section-wrapper');
             if (epStoryWrapper && currentEpisode.synopsis) {
                 epStoryWrapper.style.display = "block";
@@ -1305,6 +1301,7 @@
             `;
         }
 
+        /* 🍿 YouTube URL embedded resolver helper */
         function getYouTubeEmbedUrl(url) {
             if (!url) return null;
             let videoId = "";
@@ -1798,7 +1795,7 @@
             container.innerHTML = `
                 <div class="chat-msg-row bot-row">
                     <img src="https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png" class="chat-bot-avatar" alt="Avatar">
-                    <div class="chat-bubble bot">හෙලෝ! 🖐️ මම ලියැසි SUBVERSE AI සහායකයා. ඔයාට අවශ්‍ය ඕනෑම ඩ්‍රාමා එකක් ගැන, බ්ලොග් එකේ ලිපි ගැන හෝ සබ්ටයිටල් දාගන්න විදිහ ගැන මාත් එක්ක නිදහසේ කතා කරන්න! ❤️🍿</div>
+                    <div class="chat-bubble bot">Здарова! 🖐️ මම ලියැසි SUBVERSE AI සහායකයා. ඔයාට අවශ්‍ය ඕනෑම ඩ්‍රාමා එකක් ගැන, බ්ලොග් එකේ ලිපි ගැන හෝ සබ්ටයිටල් දාගන්න විදිහ ගැන මාත් එක්ක නිදහසේ කතා කරන්න! ❤️🍿</div>
                 </div>
             `;
         }
@@ -1909,11 +1906,6 @@
             const container = document.getElementById('chat-messages');
             const id = 'msg-' + (++msgCounter);
             
-            const currentMessages = container.querySelectorAll('.chat-msg-row');
-            if (currentMessages.length > 30) {
-                currentMessages[0].remove();
-            }
-
             const row = document.createElement('div');
             row.className = `chat-msg-row ${sender}-row`;
             row.id = id;
@@ -1991,4 +1983,4 @@
         window.onload = initPage;
     </script>
 </body>
-                </html>
+</html>
