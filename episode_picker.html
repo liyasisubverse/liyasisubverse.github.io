@@ -331,36 +331,7 @@
         }
 
         .poster-top-row span, .poster-top-row .rating-bar-inline {
-            padding: 4px 8px; font-size: 10px; font-weight: 900;
-            border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;
-            background: rgba(2, 4, 8, 0.85); width: fit-content; white-space: nowrap;
-            display: inline-flex; align-items: center; gap: 4px;
-        }
-
-        /* 🌈 SOPHISTICATED NEON BADGES CSS CLASSES */
-        .poster-top-row .badge-status {
-            background: rgba(2, 4, 8, 0.85) !important;
-            font-weight: 900;
-            border: 1.5px solid currentColor !important;
-        }
-        .poster-top-row .badge-type {
-            border: 1.5px solid var(--neon-purple) !important;
-            color: #fff !important;
-            text-shadow: 0 0 8px var(--neon-purple);
-            box-shadow: 0 0 10px rgba(157, 78, 221, 0.4);
-            background: rgba(157, 78, 221, 0.15) !important;
-        }
-        .poster-top-row .badge-ep {
-            border: 1.5px solid var(--neon-cyan) !important;
-            color: #fff !important;
-            text-shadow: 0 0 8px var(--neon-cyan);
-            box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
-            background: rgba(0, 240, 255, 0.15) !important;
-        }
-        .poster-top-row .rating-bar-inline {
-            border: 1.5px solid currentColor !important;
-            background: rgba(2, 4, 8, 0.85) !important;
-            font-weight: 900;
+            flex-shrink: 0 !important;
         }
 
         .poster-bottom-gradient {
@@ -370,14 +341,46 @@
         }
         .poster-genres-container {
             position: absolute; bottom: 12px; left: 12px; right: 12px;
-            display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; z-index: 3;
+            display: flex; flex-wrap: nowrap !important; gap: 6px; justify-content: center; z-index: 3;
+            overflow-x: auto !important;
+            scrollbar-width: none;
         }
-        .poster-genres-container .genre-tag-badge {
-            background: rgba(157, 78, 221, 0.85) !important;
-            border: 1px solid var(--neon-purple) !important;
-            color: #fff !important; text-shadow: 0 0 5px var(--neon-purple);
-            padding: 4px 10px !important; font-size: 9.5px !important;
-            font-weight: 800; border-radius: 4px !important;
+        .poster-genres-container::-webkit-scrollbar { display: none !important; }
+
+        /* 🌈 GLOWING RGB SHIFTING NEON BADGES */
+        @keyframes neon-rgb-glow {
+            0% { border-color: #ff007f; box-shadow: 0 0 10px #ff007f, inset 0 0 5px rgba(255, 0, 127, 0.25); }
+            25% { border-color: #00f0ff; box-shadow: 0 0 10px #00f0ff, inset 0 0 5px rgba(0, 240, 255, 0.25); }
+            50% { border-color: #ffaa00; box-shadow: 0 0 10px #ffaa00, inset 0 0 5px rgba(255, 170, 0, 0.25); }
+            75% { border-color: #9d4edd; box-shadow: 0 0 10px #9d4edd, inset 0 0 5px rgba(157, 78, 221, 0.25); }
+            100% { border-color: #ff007f; box-shadow: 0 0 10px #ff007f, inset 0 0 5px rgba(255, 0, 127, 0.25); }
+        }
+
+        .rgb-neon-badge {
+            background: rgba(2, 4, 8, 0.95) !important;
+            padding: 4px 10px !important;
+            font-size: 10px !important;
+            font-weight: 900 !important;
+            border-radius: 4px !important;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            display: inline-flex !important;
+            align-items: center;
+            gap: 4.5px;
+            border: 1.5px solid currentColor !important;
+            animation: neon-rgb-glow 6s linear infinite !important;
+            flex-shrink: 0 !important;
+            box-sizing: border-box;
+        }
+
+        .rgb-neon-badge span, .rgb-neon-badge i {
+            background: linear-gradient(90deg, #ff007f, #00f0ff, #ffaa00, #9d4edd, #ff007f);
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rgb-shift-text 6s linear infinite !important;
+            display: inline-block;
         }
 
         .rating-bar-vertical {
@@ -1052,7 +1055,7 @@
     <footer>
         <div class="footer-content">
             <div class="footer-brand"><span class="sinhala">ලියැසි</span><span class="english">SUBVERSE</span></div>
-            <p class="footer-description">ලියැසි SUBVERSE වෙතින් උසස්ම තත්ත්වයේ ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි නොමිලේ ලබාගත හැක.</p>
+            <p class="footer-description">ලියැසි SUBVERSE වෙතින් උසස්ම තත්ත්වයේ ආසියානු kතාමාලා සඳහා සිංහල උපසිරැසි නොමිලේ ලබාගත හැක.</p>
             <div class="footer-credits">&copy; 2026 ලියැසි SUBVERSE. All Rights Reserved.</div>
         </div>
     </footer>
@@ -1201,16 +1204,9 @@
 
         function renderDramaDetails() {
             const wrapper = document.getElementById('drama-details-wrapper');
-            
             const rating = parseFloat(currentEpisode.imdb || currentDrama.imdb || '8.5');
-            let ratingColor = "#ffaa00"; let ratingShadow = "rgba(255, 170, 0, 0.4)";
-            if (rating >= 8.5) { ratingColor = "#00ff66"; ratingShadow = "rgba(0, 255, 102, 0.4)"; }
-            else if (rating >= 7.5) { ratingColor = "#ffaa00"; ratingShadow = "rgba(255, 170, 0, 0.4)"; }
-            else { ratingColor = "#ff007f"; ratingShadow = "rgba(255, 0, 127, 0.4)"; }
-
             const isComplete = currentDrama.status === "COMPLETE";
             const statusColor = isComplete ? "var(--neon-pink)" : "var(--neon-cyan)";
-            const statusShadow = isComplete ? "var(--neon-pink)" : "var(--neon-cyan)";
 
             // Image schema fallback resolution
             const dramaImg = currentDrama.image_url || currentDrama.image || currentDrama.imageUrl || '';
@@ -1235,20 +1231,19 @@
             document.body.style.backgroundImage = `linear-gradient(to bottom, rgba(2, 4, 8, 0.9), rgba(2, 4, 8, 0.98)), url('${epImg}')`;
 
             // Populate Info details with optimized structural layout
-            // 🛡️ Enhanced distinct neon colors applied inside poster
             wrapper.innerHTML = `
                 <!-- 1. Left Column (Poster with Top Row Badges, Gradient, and Genres on top of it) -->
                 <div class="detail-left-column">
                     <div class="detail-poster-wrapper">
                         <img class="detail-poster-img" src="${epImg}" alt="Poster">
                         
-                        <!-- Top-Left Badges Inline Row inside Poster -->
+                        <!-- Top-Left Badges Inline Row inside Poster (Styled with Neon RGB Shifting) -->
                         <div class="poster-top-row">
-                            <span class="badge-status" style="color: ${statusColor}; border-color: ${statusColor}; box-shadow: 0 0 10px ${statusShadow};">${currentDrama.status}</span>
-                            <span class="badge-type">${currentDrama.type || 'DRAMA'}</span>
-                            <span class="badge-ep">${epNum}</span>
-                            <div class="rating-bar-inline" style="border-right-color: ${ratingColor}; color: ${ratingColor}; text-shadow: 0 0 8px ${ratingColor}; box-shadow: 0 0 10px ${ratingShadow};">
-                                <i class="fa-solid fa-star" style="font-size: 8px;"></i>
+                            <div class="rgb-neon-badge"><span>${currentDrama.status}</span></div>
+                            <div class="rgb-neon-badge"><span>${currentDrama.type || 'DRAMA'}</span></div>
+                            <div class="rgb-neon-badge"><span>${epNum}</span></div>
+                            <div class="rgb-neon-badge">
+                                <i class="fa-solid fa-star"></i>
                                 <span>${rating}</span>
                             </div>
                         </div>
@@ -1256,9 +1251,9 @@
                         <!-- Bottom Gradient Overlay -->
                         <div class="poster-bottom-gradient"></div>
 
-                        <!-- Genres inside Bottom of Poster -->
+                        <!-- Genres inside Bottom of Poster (Styled with Neon RGB Shifting) -->
                         <div class="poster-genres-container">
-                            ${currentDrama.genres ? currentDrama.genres.map(g => `<span class="genre-tag-badge">${g}</span>`).join('') : ''}
+                            ${currentDrama.genres ? currentDrama.genres.map(g => `<div class="rgb-neon-badge"><span>${g}</span></div>`).join('') : ''}
                         </div>
                     </div>
                 </div>
@@ -1289,7 +1284,7 @@
             if (epStoryWrapper && currentEpisode.synopsis) {
                 epStoryWrapper.style.display = "block";
                 epStoryWrapper.innerHTML = `
-                    <h3 style="color: var(--neon-pink); text-shadow: 0 0 5px var(--neon-pink); border-left-color: var(--neon-pink);">${currentEpisode.title || epNum} - කොටසේ කතාව (Episode Synopsis)</h3>
+                    <h3 style="color: var(--neon-pink); text-shadow: 0 0 5px var(--neon-pink); border-left-color: var(--neon-pink);">${currentEpisode.title || epNum} - කොටසේ kතාව (Episode Synopsis)</h3>
                     <p style="margin: 0; text-align: justify; line-height: 1.8; color: #ddd; font-size: 13.5px;">${currentEpisode.synopsis}</p>
                 `;
             } else if (epStoryWrapper) {
@@ -1326,7 +1321,7 @@
 
             section.style.display = "block";
             section.innerHTML = `
-                <h3>🗺️ කතාවේ සිතියම (Story Relationship Map)</h3>
+                <h3>🗺️ kතාවේ සිතියම (Story Relationship Map)</h3>
                 <div class="map-responsive-box">
                     <img src="${mapUrl}" alt="Relationship Map" loading="lazy">
                 </div>
@@ -1375,7 +1370,7 @@
             wrapper.innerHTML = `
                 <h3>🇱🇰 මෙම කොටස (Episode) පිළිබඳ ඔබේ මනාපය (Rate This Episode)</h3>
                 <div class="sl-vote-container" style="margin-top:0;">
-                    <div class="sl-vote-title">ඔබ මෙම කොටසට කැමතිද? (Do you like this episode?)</div>
+                    <div class="sl-vote-title">ඔබ මෙම කොටසට kමතිද? (Do you like this episode?)</div>
                     <div class="neon-bar-wrapper">
                         <div class="neon-bar-track">
                             <div id="ep-vote-bar" class="neon-bar-fill" style="width: 50%;"></div>
@@ -1397,7 +1392,7 @@
             const wrapper = document.getElementById('download-section-wrapper');
             wrapper.style.display = "block";
             wrapper.innerHTML = `
-                <h3>📥 උපසිරැසි සහ වීඩියෝ ලබාගැනීමේ කවුළුව (Subtitle & Video Download)</h3>
+                <h3>📥 උපසිරැසි සහ වීඩියෝ ලබාගැනීමේ kවුළුව (Subtitle & Video Download)</h3>
                 <div class="download-box">
                     <a href="${currentEpisode.link || '#'}" target="_blank" class="download-btn" onclick="trackDownload('sub')">
                         <span class="btn-sheen-sweep"></span>
@@ -1451,7 +1446,7 @@
             const genres = [
                 { id: "cat_fantasy", title: "🔮 Fantasy (මායාවී)" },
                 { id: "cat_sci_fi", title: "🚀 Sci-Fi (විද්‍යා ප්‍රබන්ධ)" },
-                { id: "cat_romance", title: "💖 Romance (ආදර කතා)" },
+                { id: "cat_romance", title: "💖 Romance (ආදර kතා)" },
                 { id: "cat_comedy", title: "😂 Comedy (හාස්‍යමය)" },
                 { id: "cat_thriller", title: "🔪 Thriller / Action (ත්‍රාසජනක)" }
             ];
@@ -1484,7 +1479,7 @@
             const aboutUsSection = document.getElementById('about-us-section-wrapper');
             if (aboutUsSection) {
                 aboutUsSection.style.display = 'flex';
-                const aboutMeText = globalConfig.about_me_text || "අපි ඔබ වෙත ගෙන එන්නේ ගුණාත්මක බවින් ඉහළම ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි පමණි. අපගේ නිල සමාජ මාධ්‍ය ජාලයන් සමඟ එක් වී අලුත්ම උපසිරැසි නිකුත් වූ සැනින් ලබාගන්න.";
+                const aboutMeText = globalConfig.about_me_text || "අපි ඔබ වෙත ගෙන එන්නේ ගුණාත්මක බවින් ඉහළම ආසියානු kතාමාලා සඳහා සිංහල උපසිරැසි පමණි. අපගේ නිල සමාජ මාධ්‍ය ජාලයන් සමඟ එක් වී අලුත්ම උපසිරැසි නිකුත් වූ සැනින් ලබාගන්න.";
                 const aboutMeAvatar = globalConfig.about_me_avatar || ABOUT_ME_ART_LOGO;
                 aboutUsSection.innerHTML = `
                     <h3 class="about-header-title">ලියැසි SUBVERSE (About Us)</h3>
@@ -1828,7 +1823,7 @@
             container.innerHTML = `
                 <div class="chat-msg-row bot-row">
                     <img src="https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png" class="chat-bot-avatar" alt="Avatar">
-                    <div class="chat-bubble bot">හෙලෝ! 🖐️ මම ලියැසි SUBVERSE AI සහායකයා. ඔයාට අවශ්‍ය ඕනෑම ඩ්‍රාමා එකක් ගැන, බ්ලොග් එකේ ලිපි ගැන හෝ සබ්ටයිටල් දාගන්න විදිහ ගැන මාත් එක්ක නිදහසේ කතා කරන්න! ❤️🍿</div>
+                    <div class="chat-bubble bot">හෙලෝ! 🖐️ මම ලියැසි SUBVERSE AI සහායකයා. ඔයාට අවශ්‍ය ඕනෑම ඩ්‍රාමා එකක් ගැන, බ්ලොග් එකේ ලිපි ගැන හෝ සබ්ටයිටල් දාගන්න විදිහ ගැන මාත් එක්ක නිදහසේ kතා කරන්න! ❤️🍿</div>
                 </div>
             `;
         }
@@ -2016,4 +2011,4 @@
         window.onload = initPage;
     </script>
 </body>
-</html>
+                                                                                                                     </html>
