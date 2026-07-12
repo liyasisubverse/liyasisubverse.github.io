@@ -11,6 +11,7 @@
         style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; 
         font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; 
         img-src 'self' data: https: http:; 
+        frame-src 'self' https://www.youtube.com https://youtube.com;
         connect-src 'self' https://subverse-b897d-default-rtdb.firebaseio.com https://liyasisubverse1-liyasi-backend.hf.space https://ask-gemini.rashmi004005g.workers.dev https://groq.rashmi004005g.workers.dev https://www.google-analytics.com;
     ">
 
@@ -81,6 +82,10 @@
                               url('https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/bbfcf6e6-8bca-4883-8eb1-f93a2d1d4728.png');
             background-attachment: fixed; background-size: cover; background-position: center;
             overflow-x: hidden;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
         .sticky-top-bar {
@@ -205,7 +210,7 @@
             padding: 6px 12px; border-radius: 5px; display: flex; align-items: center; gap: 6px;
             white-space: nowrap;
             box-shadow: none !important;
-        }
+    
 
         .ticker-wrapper {
             background: transparent !important;
@@ -830,14 +835,14 @@
                 box-shadow: none !important;
             }
             .ticker-wrapper {
-                position: static !important; /* Scrolls away normally on mobile */
+                position: static !important; 
                 background: transparent !important;
                 border: none !important;
                 box-shadow: none !important;
             }
             .sub-nav-container {
                 position: sticky !important;
-                top: 81px !important; /* Stays stuck directly under mobile header height */
+                top: 81px !important; 
                 z-index: 998 !important;
                 padding: 10px 15px !important;
                 background: transparent !important;
@@ -917,7 +922,7 @@
             <p style="text-align: center; color: var(--neon-cyan); padding: 50px 0;">🤖 [SYSTEM RETRIEVING DATA...]</p>
         </div>
 
-        <!-- 📖 EPISODE STORY SYNOPSIS BOX (v2 SPECIFIC ADDITION) -->
+        <!-- 📖 EPISODE STORY SYNOPSIS BOX -->
         <div class="glass-section-custom" id="episode-story-section-wrapper" style="display:none;"></div>
 
         <!-- 🎭 CAST & CREW DYNAMIC HOLDER -->
@@ -1109,10 +1114,11 @@
                 return;
             }
 
+            let database = {};
             try {
                 const response = await fetch('data.json?v=' + new Date().getTime());
                 if (response.ok) {
-                    const database = await response.json();
+                    database = await response.json();
                     globalConfig = database.config || {};
                     currentDrama = database.dramas ? database.dramas[dramaId] : null;
                     if (currentDrama) {
@@ -1150,7 +1156,7 @@
             loadClicksAndVotes();
             loadComments();
             loadGenreVoteData();
-            renderDynamicChatChips(globalConfig, currentDrama);
+            renderDynamicChatChips(globalConfig, database.dramas);
             resetChatMessages();
         }
 
@@ -1299,17 +1305,32 @@
             `;
         }
 
+        /* 🍿 YouTube URL embedded resolver helper */
+        function getYouTubeEmbedUrl(url) {
+            if (!url) return null;
+            let videoId = "";
+            try {
+                const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|shorts\/)([^#\&\?]*).*/;
+                const match = url.match(regExp);
+                if (match && match[2].length === 11) {
+                    videoId = match[2];
+                }
+            } catch (e) {
+                console.error("Error parsing YouTube URL:", e);
+            }
+            if (videoId) {
+                return `https://www.youtube.com/embed/${videoId}`;
+            }
+            return url;
+        }
+
         function renderTrailer() {
             const section = document.getElementById('trailer-section-wrapper');
             const trailerUrl = currentEpisode.trailer || currentEpisode.trailer_link || currentEpisode.trailerUrl || currentDrama.trailer || currentDrama.trailer_link || currentDrama.trailerUrl;
             if (!trailerUrl) return;
 
-            let embedUrl = trailerUrl;
-            if (embedUrl.includes("watch?v=")) {
-                embedUrl = embedUrl.replace("watch?v=", "embed/");
-            } else if (embedUrl.includes("youtu.be/")) {
-                embedUrl = embedUrl.replace("youtu.be/", "youtube.com/embed/");
-            }
+            const embedUrl = getYouTubeEmbedUrl(trailerUrl);
+            if (!embedUrl) return;
 
             section.style.display = "block";
             section.innerHTML = `
@@ -1452,7 +1473,7 @@
             }
         }
 
-        const epClean = epNum ? epNum.replace(' ', '_') : "EP_00";
+        const epClean = epNum ? epNum.replace(/\s+/g, '_') : "EP_00";
 
         async function loadClicksAndVotes() {
             if (!dramaId) return;
@@ -1778,7 +1799,7 @@
             container.innerHTML = `
                 <div class="chat-msg-row bot-row">
                     <img src="https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png" class="chat-bot-avatar" alt="Avatar">
-                    <div class="chat-bubble bot">Здарова! 🖐️ මම ලියැසි SUBVERSE AI සහායකයා. ඔයාට අවශ්‍ය ඕනෑම ඩ්‍රාමා එකක් ගැන, බ්ලොග් එකේ ලිපි ගැන හෝ සබ්ටයිටල් දාගන්න විදිහ ගැන මාත් එක්ක නිදහසේ කතා කරන්න! ❤️🍿</div>
+                    <div class="chat-bubble bot">හෙලෝ! 🖐️ මම ලියැසි SUBVERSE AI සහායකයා. ඔයාට අවශ්‍ය ඕනෑම ඩ්‍රාමා එකක් ගැන, බ්ලොග් එකේ ලිපි ගැන හෝ සබ්ටයිටල් දාගන්න විදිහ ගැන මාත් එක්ක නිදහසේ කතා කරන්න! ❤️🍿</div>
                 </div>
             `;
         }
@@ -1820,6 +1841,8 @@
                 ඔබ "ලියැසි SUBVERSE" උපසිරැසි වෙබ් අඩවියේ නිල AI සහායකයා වේ. පරිශීලකයන්ට උපසිරැසි, බ්ලොග් සහ ඩ්‍රාමා ගැන සහාය වන්න.
                 පරිශීලකයාට ආමන්ත්‍රණය කිරීමට "ඔයා", "යාලුවා", "සහෝ" වැනි වචන භාවිත කරන්න. 
                 පිළිතුරුවලට අලංකාර ඉමෝජි (🍿, ❤️, ✨, 🎬) එකතු කරන්න.
+
+                ${articleData ? `[අඩවියේ තොරතුරු / Context]:\n${articleData}\n` : ''}
 
                 [පරිශීලකයාගේ ප්‍රශ්නය]:
                 ${text}
@@ -1887,19 +1910,6 @@
             const container = document.getElementById('chat-messages');
             const id = 'msg-' + (++msgCounter);
             
-            const currentMessages = container.querySelectorAll('.chat-msg-row');
-            if (currentMessages.length >= 2) {
-                for (let i = 0; i < currentMessages.length; i++) {
-                    currentMessages[i].style.opacity = '0';
-                    currentMessages[i].style.maxHeight = '0px';
-                    currentMessages[i].style.padding = '0px';
-                    currentMessages[i].style.margin = '0px';
-                    currentMessages[i].style.overflow = 'hidden';
-                    currentMessages[i].style.pointerEvents = 'none';
-                    currentMessages[i].style.transform = 'translateY(-20px)';
-                }
-            }
-
             const row = document.createElement('div');
             row.className = `chat-msg-row ${sender}-row`;
             row.id = id;
@@ -1974,8 +1984,7 @@
             btn.innerHTML = '<i class="fa-solid fa-microphone"></i>';
         }
 
-        window.onload = loadDramaDetails;
+        window.onload = initPage;
     </script>
 </body>
-</html>
-
+    </html>
