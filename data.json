@@ -2,6 +2,12 @@
   "latest_updates": [
     {
       "title": "Doctor Lawyer",
+      "episode": "EP 01",
+      "image_url": "https://i.ibb.co/pBhQmmD1/Doctor-Lawyer-Episode-01.jpg",
+      "post_link": "episode_picker.html?drama_id=196906&ep=EP 01"
+    },
+    {
+      "title": "Doctor Lawyer",
       "episode": "EP 05",
       "image_url": "https://i.ibb.co/pBhQmmD1/Doctor-Lawyer-Episode-01.jpg",
       "post_link": "episode_picker.html?drama_id=196906&ep=EP 05"
@@ -41,12 +47,6 @@
       "episode": "EP 02",
       "image_url": "https://i.ibb.co/pBhQmmD1/Doctor-Lawyer-Episode-01.jpg",
       "post_link": "episode_picker.html?drama_id=196906&ep=EP 02"
-    },
-    {
-      "title": "Doctor Lawyer",
-      "episode": "EP 01",
-      "image_url": "https://i.ibb.co/pBhQmmD1/Doctor-Lawyer-Episode-01.jpg",
-      "post_link": "episode_picker.html?drama_id=196906&ep=EP 01"
     }
   ],
   "dramas": {
