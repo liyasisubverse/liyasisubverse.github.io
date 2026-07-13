@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="si">
 <head>
@@ -802,6 +801,13 @@
         }
         .chat-send-btn:hover { box-shadow: 0 0 15px var(--neon-cyan); transform: scale(1.05); }
 
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+        @keyframes rgb-fast-rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         @keyframes logo-laser-draw {
             0%, 35%, 100% {
                 clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
@@ -835,17 +841,9 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-        @keyframes rgb-fast-rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
         @keyframes rgb-rotate { 
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); } 
-        }
-        @-webkit-keyframes rgb-rotate { 
-            0% { -webkit-transform: rotate(0deg); }
-            100% { -webkit-transform: rotate(360deg); } 
         }
 
         footer { background: rgba(4, 8, 16, 0.95); border-top: 2px solid var(--neon-cyan); padding: 40px 20px; text-align: center; margin-top: 40px; box-shadow: 0 -10px 30px rgba(0, 240, 255, 0.1); }
@@ -889,7 +887,7 @@
                 box-shadow: none !important;
             }
             .ticker-wrapper {
-                position: static !important; /* Scrolls away normally on mobile */
+                position: static !important; 
                 background: transparent !important;
                 border: none !important;
                 box-shadow: none !important;
@@ -1195,6 +1193,7 @@
             const tickerEl = document.getElementById('ticker-text');
             if (tickerEl) tickerEl.innerHTML = `⚡ ${currentDrama.title || ''} [${epNum}] උපසිරැසි දැන් බාගත කරගත හැක! • `;
 
+            // Dynamic links mapping for Social Media Plug box:
             let latestEpTgLink = globalConfig.telegram_channel_link || "#";
             if (currentEpisode && currentEpisode.tg_link) {
                 latestEpTgLink = currentEpisode.tg_link;
@@ -1225,7 +1224,6 @@
             loadGenreVoteData();
             renderDynamicChatChips(globalConfig, database.dramas);
             resetChatMessages();
-            startRealtimeSync();
         }
 
         function showError(title, desc) {
@@ -1247,6 +1245,7 @@
             const isComplete = currentDrama.status === "COMPLETE";
             const statusColor = isComplete ? "var(--neon-pink)" : "var(--neon-cyan)";
 
+            // Image schema fallback resolution
             const dramaImg = currentDrama.image_url || currentDrama.image || currentDrama.imageUrl || '';
             const epImg = currentEpisode.image || currentEpisode.image_url || currentEpisode.imageUrl || dramaImg;
 
@@ -1314,6 +1313,7 @@
                 </div>
             `;
 
+            // 📖 Populate Episode Specific Story Description
             const epStoryWrapper = document.getElementById('episode-story-section-wrapper');
             if (epStoryWrapper && currentEpisode.synopsis) {
                 epStoryWrapper.style.display = "block";
@@ -1535,7 +1535,6 @@
         async function loadClicksAndVotes() {
             if (!dramaId) return;
             
-            // Systematic paths
             try {
                 const res = await fetch(`${firebaseURL}episode_clicks/${dramaId}/${epClean}.json`);
                 if (res.ok) {
@@ -1565,7 +1564,6 @@
             }
         }
 
-        // Click tracked only once per user
         async function trackDownload(type) {
             if (!dramaId) return;
             const countKey = `voted_${type}_${dramaId}_${epClean}`;
@@ -2410,8 +2408,7 @@
         function initApp() {
             try { initBackground(); } catch(e) { console.error(e); }
             try { resetChatMessages(); } catch(e) { console.error(e); }
-            if (typeof loadContent === 'function') loadContent();
-            if (typeof loadCommentsAndLikes === 'function') loadCommentsAndLikes();
+            try { initPage(); } catch(e) { console.error(e); }
             try { startRealtimeSync(); } catch(e) { console.error(e); }
         }
 
