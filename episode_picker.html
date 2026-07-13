@@ -343,32 +343,32 @@
             border: none !important;
             box-shadow: none !important;
             font-weight: 900;
-            font-size: 13px;
+            font-size: 11px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             white-space: nowrap;
             display: inline-flex;
             align-items: center;
-            gap: 4.5px;
+            gap: 4px;
             margin: 0;
             padding: 0;
         }
 
         .neon-cyan-glow {
             color: #00f0ff !important;
-            text-shadow: 0 0 8px #00f0ff, 0 0 16px rgba(0, 240, 255, 0.6);
+            text-shadow: 0 0 6px #00f0ff, 0 0 12px rgba(0, 240, 255, 0.6);
         }
         .neon-purple-glow {
-            color: #b5179e !important;
-            text-shadow: 0 0 8px #b5179e, 0 0 16px rgba(181, 23, 158, 0.6);
+            color: #9d4edd !important;
+            text-shadow: 0 0 6px #9d4edd, 0 0 12px rgba(157, 78, 221, 0.6);
         }
         .neon-pink-glow {
             color: #ff007f !important;
-            text-shadow: 0 0 8px #ff007f, 0 0 16px rgba(255, 0, 127, 0.6);
+            text-shadow: 0 0 6px #ff007f, 0 0 12px rgba(255, 0, 127, 0.6);
         }
         .neon-amber-glow {
             color: #ffaa00 !important;
-            text-shadow: 0 0 8px #ffaa00, 0 0 16px rgba(255, 170, 0, 0.6);
+            text-shadow: 0 0 6px #ffaa00, 0 0 12px rgba(255, 170, 0, 0.6);
         }
 
         /* 📱 RESPONSIVE IMDB GAUGE ON MOBILE CARDS (VIOLATION FIXED) */
@@ -896,7 +896,7 @@
             }
             .sub-nav-container {
                 position: sticky !important;
-                top: 81px !important; /* Stays stuck directly under mobile header height */
+                top: 81px !important; 
                 z-index: 998 !important;
                 padding: 10px 15px !important;
                 background: transparent !important;
@@ -979,7 +979,7 @@
             <p style="text-align: center; color: var(--neon-cyan); padding: 50px 0;">🤖 [SYSTEM RETRIEVING DATA...]</p>
         </div>
 
-        <!-- 📖 EPISODE STORY SYNOPSIS BOX (v2 SPECIFIC ADDITION) -->
+        <!-- 📖 EPISODE STORY SYNOPSIS BOX -->
         <div class="glass-section-custom" id="episode-story-section-wrapper" style="display:none;"></div>
 
         <!-- 🎭 CAST & CREW DYNAMIC HOLDER -->
@@ -1165,8 +1165,6 @@
         let currentEpisode = null;
         let globalConfig = {};
 
-        const epClean = epNum ? epNum.replace(/\s+/g, '_') : "EP_00";
-
         async function initPage() {
             if (!dramaId || !epNum) {
                 showError("⚠️ Drama / Episode Not Found", "The requested episode data could not be parsed.");
@@ -1197,7 +1195,6 @@
             const tickerEl = document.getElementById('ticker-text');
             if (tickerEl) tickerEl.innerHTML = `⚡ ${currentDrama.title || ''} [${epNum}] උපසිරැසි දැන් බාගත කරගත හැක! • `;
 
-            // Dynamic links mapping for Social Media Plug box:
             let latestEpTgLink = globalConfig.telegram_channel_link || "#";
             if (currentEpisode && currentEpisode.tg_link) {
                 latestEpTgLink = currentEpisode.tg_link;
@@ -1250,7 +1247,6 @@
             const isComplete = currentDrama.status === "COMPLETE";
             const statusColor = isComplete ? "var(--neon-pink)" : "var(--neon-cyan)";
 
-            // Image schema fallback resolution
             const dramaImg = currentDrama.image_url || currentDrama.image || currentDrama.imageUrl || '';
             const epImg = currentEpisode.image || currentEpisode.image_url || currentEpisode.imageUrl || dramaImg;
 
@@ -1276,25 +1272,19 @@
                     <div class="detail-poster-wrapper">
                         <img class="detail-poster-img" src="${epImg}" alt="Poster">
                         
-                        <!-- Top-Left Badges (No background box, Glowing neon text, Organized Layout) -->
-                        <div class="poster-labels-container" style="position: absolute; top: 15px; left: 15px; right: 15px; display: flex; flex-direction: column; gap: 8px; z-index: 3; align-items: flex-start;">
-                            <div style="display: flex; gap: 12px; align-items: center; width: 100%; justify-content: flex-start; flex-wrap: nowrap; overflow: visible;">
-                                <span class="neon-text-label neon-cyan-glow">${currentDrama.status}</span>
-                                <span class="neon-text-label neon-purple-glow">${currentDrama.type || 'DRAMA'}</span>
-                                <span class="neon-text-label neon-pink-glow">${epNum}</span>
-                            </div>
-                            <div style="display: flex; justify-content: flex-start; width: 100%;">
-                                <span class="neon-text-label neon-amber-glow">
-                                    <i class="fa-solid fa-star"></i> ${rating}
-                                </span>
-                            </div>
+                        <!-- Top-Left Badges (No background box, Glowing neon text, Single Row Layout) -->
+                        <div class="poster-top-row" style="position: absolute; top: 12px; left: 12px; right: 12px; display: flex; flex-direction: row; flex-wrap: nowrap !important; align-items: center; justify-content: space-between; gap: 8px; z-index: 3; overflow-x: auto !important; scrollbar-width: none;">
+                            <span class="neon-text-label neon-cyan-glow">${currentDrama.status}</span>
+                            <span class="neon-text-label neon-purple-glow">${currentDrama.type || 'DRAMA'}</span>
+                            <span class="neon-text-label neon-pink-glow">${epNum}</span>
+                            <span class="neon-text-label neon-amber-glow"><i class="fa-solid fa-star" style="font-size: 8px; margin-right: 2px;"></i>${rating}</span>
                         </div>
 
                         <!-- Bottom Gradient Overlay -->
                         <div class="poster-bottom-gradient"></div>
 
                         <!-- Genres inside Bottom of Poster (No background box, Glowing neon text) -->
-                        <div class="poster-genres-container" style="position: absolute; bottom: 15px; left: 15px; right: 15px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; z-index: 3;">
+                        <div class="poster-genres-container" style="position: absolute; bottom: 12px; left: 12px; right: 12px; display: flex; flex-wrap: nowrap !important; gap: 10px; justify-content: center; z-index: 3; overflow-x: auto !important; scrollbar-width: none;">
                             ${currentDrama.genres ? currentDrama.genres.map((g, idx) => {
                                 const neonColors = ['neon-cyan-glow', 'neon-purple-glow', 'neon-pink-glow', 'neon-amber-glow'];
                                 return `<span class="neon-text-label ${neonColors[idx % neonColors.length]}">${g}</span>`;
@@ -1324,7 +1314,6 @@
                 </div>
             `;
 
-            // 📖 Populate Episode Specific Story Description (Spelling corrected to "කතාව")
             const epStoryWrapper = document.getElementById('episode-story-section-wrapper');
             if (epStoryWrapper && currentEpisode.synopsis) {
                 epStoryWrapper.style.display = "block";
@@ -1359,7 +1348,6 @@
             section.innerHTML = castHTML;
         }
 
-        // Spelling corrected to "කතාවේ"
         function renderMap() {
             const section = document.getElementById('map-section-wrapper');
             const mapUrl = currentEpisode.map_url || currentDrama.map_url;
@@ -1410,7 +1398,6 @@
             `;
         }
 
-        // Spelling corrected to "කැමතිද"
         function renderVotePanel() {
             const wrapper = document.getElementById('vote-section-wrapper');
             wrapper.style.display = "block";
@@ -1435,7 +1422,6 @@
             `;
         }
 
-        // Spelling corrected to "කවුළුව"
         function renderDownloadBox() {
             const wrapper = document.getElementById('download-section-wrapper');
             wrapper.style.display = "block";
@@ -1544,20 +1530,19 @@
             }
         }
 
+        const epClean = epNum ? epNum.replace(/\s+/g, '_') : "EP_00";
+
         async function loadClicksAndVotes() {
             if (!dramaId) return;
             
+            // Systematic paths
             try {
-                // Structured under /episodes/ node in Firebase
-                const res = await fetch(`${firebaseURL}clicks/${dramaId}/episodes/${epClean}.json`);
+                const res = await fetch(`${firebaseURL}episode_clicks/${dramaId}/${epClean}.json`);
                 if (res.ok) {
                     const data = await res.json();
                     if (data !== null) {
                         document.getElementById('sub-count-ui').innerText = data.sub !== undefined ? data.sub : 0;
                         document.getElementById('tg-count-ui').innerText = data.tg !== undefined ? data.tg : 0;
-                    } else {
-                        document.getElementById('sub-count-ui').innerText = 0;
-                        document.getElementById('tg-count-ui').innerText = 0;
                     }
                 }
             } catch (e) {
@@ -1565,8 +1550,7 @@
             }
 
             try {
-                // Structured under /episodes/ node in Firebase
-                const res = await fetch(`${firebaseURL}likes/${dramaId}/episodes/${epClean}.json`);
+                const res = await fetch(`${firebaseURL}episode_votes/${dramaId}/${epClean}.json`);
                 if (res.ok) {
                     const data = await res.json();
                     const l = (data !== null && data.likes !== undefined) ? parseInt(data.likes) : 0;
@@ -1581,12 +1565,11 @@
             }
         }
 
-        // Subtitle & Telegram click counted only once per user
+        // Click tracked only once per user
         async function trackDownload(type) {
             if (!dramaId) return;
             const countKey = `voted_${type}_${dramaId}_${epClean}`;
-            // Structured under /episodes/ node in Firebase
-            const countUrl = `${firebaseURL}clicks/${dramaId}/episodes/${epClean}/${type}.json`;
+            const countUrl = `${firebaseURL}episode_clicks/${dramaId}/${epClean}/${type}.json`;
             
             if (safeLocalStorage.getItem(countKey) === 'true') {
                 return;
@@ -1615,15 +1598,16 @@
         }
 
         async function submitEpisodeVote(type) {
-            const voteKey = `voted_${dramaId}_${epClean}`;
-            if (safeLocalStorage.getItem(voteKey) === 'true') {
+            const voteKey = `voted_episode_${dramaId}_${epClean}`;
+            const isAdmin = safeLocalStorage.getItem('isAdmin') === 'true';
+
+            if (!isAdmin && safeLocalStorage.getItem(voteKey) === 'true') {
                 alert("⚠️ ඔබ දැනටමත් මෙම කොටස සඳහා මනාපය පළ කර ඇත! ❤️");
                 return;
             }
 
             if (!dramaId) return;
-            // Structured under /episodes/ node in Firebase
-            const voteUrl = `${firebaseURL}likes/${dramaId}/episodes/${epClean}/${type}.json`;
+            const voteUrl = `${firebaseURL}episode_votes/${dramaId}/${epClean}/${type}.json`;
             try {
                 const res = await fetch(voteUrl);
                 let count = 0;
@@ -1638,7 +1622,9 @@
                     body: JSON.stringify(count)
                 });
 
-                safeLocalStorage.setItem(voteKey, 'true');
+                if (!isAdmin) {
+                    safeLocalStorage.setItem(voteKey, 'true');
+                }
                 loadClicksAndVotes(); 
             } catch (e) {
                 console.error("Vote submission failed:", e);
@@ -1685,7 +1671,9 @@
 
         async function submitGenreVote(gid, type) {
             const voteKey = `voted_genre_${gid}`;
-            if (safeLocalStorage.getItem(voteKey) === 'true') {
+            const isAdmin = safeLocalStorage.getItem('isAdmin') === 'true';
+
+            if (!isAdmin && safeLocalStorage.getItem(voteKey) === 'true') {
                 alert("⚠️ ඔබ දැනටමත් මෙම ප්‍රභේදය සඳහා මනාපය පළ කර ඇත! ❤️");
                 return;
             }
@@ -1705,7 +1693,9 @@
                     body: JSON.stringify(count)
                 });
 
-                safeLocalStorage.setItem(voteKey, 'true');
+                if (!isAdmin) {
+                    safeLocalStorage.setItem(voteKey, 'true');
+                }
                 loadGenreVoteData(); 
             } catch (e) {
                 console.error("Genre vote submission failed:", e);
@@ -1717,8 +1707,7 @@
             const container = document.getElementById('comments-list-container');
             
             try {
-                // Structured under /episodes/ node in Firebase
-                const res = await fetch(`${firebaseURL}comments/${dramaId}/episodes/${epClean}.json`);
+                const res = await fetch(`${firebaseURL}comments/${dramaId}/${epClean}.json`);
                 if (res.ok) {
                     const data = await res.json();
                     if (data === null || typeof data !== 'object') {
@@ -1752,31 +1741,7 @@
                 }
             } catch (e) {
                 if (!isBackground) {
-                    let localComments = [];
-                    try {
-                        localComments = JSON.parse(safeLocalStorage.getItem(`comments_${dramaId}_${epClean}`)) || [];
-                    } catch(err) {
-                        localComments = [];
-                    }
-                    
-                    if (localComments.length === 0) {
-                        container.innerHTML = `<p style="font-size:12px; color:var(--text-muted); text-align:center;">තවමත් කිසිදු ප්‍රතිචාරයක් නොමැත. පළමු ප්‍රතිචාරය ඔබේ කරන්න! 💬</p>`;
-                        return;
-                    }
-                    container.innerHTML = "";
-                    localComments.forEach(c => {
-                        const dateStr = c.timestamp ? new Date(c.timestamp).toLocaleDateString('si-LK') : "";
-                        const timeStr = c.timestamp ? new Date(c.timestamp).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) : "";
-                        container.innerHTML += `
-                            <div class="comment-card">
-                                <div class="comment-header">
-                                    <span>👤 ${c.name || 'Anonymous'}</span>
-                                    <span>📅 ${dateStr} ${timeStr}</span>
-                                </div>
-                                <div class="comment-body">${c.text || ''}</div>
-                            </div>
-                        `;
-                    });
+                    container.innerHTML = `<p style="font-size:12px; color:var(--text-muted); text-align:center;">තවමත් කිසිදු ප්‍රතිචාරයක් නොමැත. පළමු ප්‍රතිචාරය ඔබේ කරන්න! 💬</p>`;
                 }
             }
         }
@@ -1802,8 +1767,7 @@
             };
 
             try {
-                // Structured under /episodes/ node in Firebase
-                const res = await fetch(`${firebaseURL}comments/${dramaId}/episodes/${epClean}.json`, {
+                const res = await fetch(`${firebaseURL}comments/${dramaId}/${epClean}.json`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
@@ -1811,14 +1775,7 @@
 
                 if (!res.ok) throw new Error("Failed");
             } catch (e) {
-                let localComments = [];
-                try {
-                    localComments = JSON.parse(safeLocalStorage.getItem(`comments_${dramaId}_${epClean}`)) || [];
-                } catch(err) {
-                    localComments = [];
-                }
-                localComments.push(payload);
-                safeLocalStorage.setItem(`comments_${dramaId}_${epClean}`, JSON.stringify(localComments));
+                console.error("Failed to post comment:", e);
             }
             
             nameInput.value = "";
@@ -1858,7 +1815,6 @@
             setInterval(() => {
                 loadClicksAndVotes();
                 loadComments(true);
-                loadGenreVoteData();
             }, 3000);
         }
 
@@ -2100,8 +2056,8 @@
             offscreenCtx.fillRect(0, 0, 800, 300);
             
             offscreenCtx.font = "900 85px 'Segoe UI', sans-serif";
-            offscreenCtx.textBaseline = "middle";
             offscreenCtx.textAlign = "center";
+            offscreenCtx.textBaseline = "middle";
             offscreenCtx.strokeStyle = '#ffffff';
             offscreenCtx.lineWidth = 3.5;
             offscreenCtx.strokeText("ලියැසි", 400, 100);
@@ -2441,14 +2397,30 @@
         }
 
         function initBackground() {
-            initParticles();
-            animateGeminiParticles();
+            if (USE_MATRIX_BACKGROUND) {
+                document.body.style.backgroundImage = "none";
+                initParticles();
+                animateGeminiParticles();
+            } else {
+                document.getElementById("matrix-canvas").style.display = "none";
+                document.body.style.backgroundImage = `linear-gradient(to bottom, rgba(2, 4, 8, 0.88), rgba(2, 4, 8, 0.97)), url('${STATIC_BACKGROUND_IMAGE}')`;
+            }
         }
 
-        window.onload = function() {
-            initBackground();
-            initPage();
-        };
+        function initApp() {
+            try { initBackground(); } catch(e) { console.error(e); }
+            try { resetChatMessages(); } catch(e) { console.error(e); }
+            if (typeof loadContent === 'function') loadContent();
+            if (typeof loadCommentsAndLikes === 'function') loadCommentsAndLikes();
+            try { startRealtimeSync(); } catch(e) { console.error(e); }
+        }
+
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", initApp);
+        } else {
+            initApp();
+        }
+        
     </script>
 </body>
 </html>
