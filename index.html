@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="si">
 <head>
@@ -1771,7 +1769,6 @@
             const dramaArray = Object.values(originalDatabase.dramas || {});
             const availableDramas = dramaArray.filter(d => d && d.status !== "UPCOMING");
 
-            // 🎯 සෝෂල් ප්ලග් බොක්ස් එකට නවතම පෝස්ට් එකේ ටෙලිග්‍රෑම් වීඩියෝ ලින්ක් එක (tg_link) ලැබීමට සලස්වන කේතය:
             let latestTgLink = tgChannelLink; 
             if (originalDatabase.latest_updates && originalDatabase.latest_updates[0]) {
                 const latestUpdate = originalDatabase.latest_updates[0];
@@ -2124,13 +2121,13 @@
             let dislikes = 0;
 
             try {
-                const resLikes = await fetch(`${firebaseURL}likes.json`);
+                const resLikes = await fetch(`${firebaseURL}site_feedback/likes.json`);
                 const firebaseLikes = await resLikes.json();
                 if (firebaseLikes !== null) {
                     likes = parseInt(firebaseLikes) || 0;
                 }
 
-                const resDislikes = await fetch(`${firebaseURL}dislikes.json`);
+                const resDislikes = await fetch(`${firebaseURL}site_feedback/dislikes.json`);
                 const firebaseDislikes = await resDislikes.json();
                 if (firebaseDislikes !== null) {
                     dislikes = parseInt(firebaseDislikes) || 0;
@@ -2169,16 +2166,7 @@
                         }
                     }
                 } catch (e) {
-                    let storedComments = [];
-                    try { storedComments = JSON.parse(safeLocalStorage.getItem('subverseComments')) || []; } catch(err) {}
-                    if (storedComments.length === 0) {
-                        listContainer.innerHTML = `<p style="font-size:12px; color:var(--text-muted); text-align:center; padding-top:35px;">තවමත් කිසිදු ප්‍රතිචාරයක් නොමැත. 💬</p>`;
-                    } else {
-                        listContainer.innerHTML = "";
-                        storedComments.forEach(c => {
-                            listContainer.innerHTML += `<div class="comment-item"><strong>${c.name}:</strong> ${c.text}</div>`;
-                        });
-                    }
+                    listContainer.innerHTML = `<p style="font-size:12px; color:var(--text-muted); text-align:center; padding-top:35px;">තවමත් කිසිදු ප්‍රතිචාරයක් නොමැත. 💬</p>`;
                 }
             }
         }
@@ -2192,7 +2180,8 @@
         }
 
         async function submitFeedback(type, event) {
-            if (safeLocalStorage.getItem('subverseVoted') === 'true') {
+            const isAdmin = safeLocalStorage.getItem('isAdmin') === 'true';
+            if (!isAdmin && safeLocalStorage.getItem('subverseVoted') === 'true') {
                 alert("⚠️ ඔබ දැනටමත් ඔබේ කැමැත්ත සලකුණු කර ඇත! ස්තූතියි. ❤️");
                 return;
             }
@@ -2203,20 +2192,22 @@
             let currentCount = defaultVal;
 
             try {
-                const response = await fetch(`${firebaseURL}${targetNode}.json`);
+                const response = await fetch(`${firebaseURL}site_feedback/${targetNode}.json`);
                 if (!response.ok) throw new Error("Firebase response not OK");
                 let globalCount = await response.json();
                 
                 let parsedCount = (globalCount !== null && typeof globalCount !== 'object') ? parseInt(globalCount) : NaN;
                 currentCount = (!isNaN(parsedCount) ? parsedCount : defaultVal) + 1;
 
-                await fetch(`${firebaseURL}${targetNode}.json`, {
+                await fetch(`${firebaseURL}site_feedback/${targetNode}.json`, {
                     method: 'PUT',
                     body: JSON.stringify(currentCount)
                 });
 
                 document.getElementById(countElId).innerText = currentCount;
-                safeLocalStorage.setItem('subverseVoted', 'true');
+                if (!isAdmin) {
+                    safeLocalStorage.setItem('subverseVoted', 'true');
+                }
                 safeLocalStorage.setItem(`subverse${type.charAt(0).toUpperCase() + type.slice(1)}s`, currentCount);
 
             } catch (error) {
@@ -2270,10 +2261,7 @@
                     body: JSON.stringify(newComment)
                 });
             } catch (e) {
-                let storedComments = [];
-                try { storedComments = JSON.parse(safeLocalStorage.getItem('subverseComments')) || []; } catch(err) {}
-                storedComments.push(newComment);
-                safeLocalStorage.setItem('subverseComments', JSON.stringify(storedComments));
+                console.error("Firebase comments post error:", e);
             }
 
             nameInput.value = "";
