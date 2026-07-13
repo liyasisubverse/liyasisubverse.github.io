@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- 🛡️ 1. CONTENT SECURITY POLICY (CSP) META TAG -->
+    <!-- 🛡️ 1. CONTENT SECURITY POLICY (CSP) META TAG - UPDATED FOR NEW FIREBASE -->
     <meta http-equiv="Content-Security-Policy" content="
         default-src 'self'; 
         script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com; 
@@ -12,7 +12,7 @@
         font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; 
         img-src 'self' data: https: http:; 
         frame-src 'self' https://www.youtube.com https://youtube.com;
-        connect-src 'self' https://subverse-b897d-default-rtdb.firebaseio.com https://liyasisubverse1-liyasi-backend.hf.space https://ask-gemini.rashmi004005g.workers.dev https://groq.rashmi004005g.workers.dev https://www.google-analytics.com;
+        connect-src 'self' https://liyasi-github-votes-default-rtdb.firebaseio.com https://liyasisubverse1-liyasi-backend.hf.space https://ask-gemini.rashmi004005g.workers.dev https://groq.rashmi004005g.workers.dev https://www.google-analytics.com;
     ">
 
     <!-- 🛡️ 2. FRAME-BUSTING (CLICKJACKING ආරක්ෂාව) -->
@@ -45,7 +45,7 @@
       gtag('config', 'G-WQ65HDS0TE');
     </script>
 
-    <!-- 🌐 WEBSITE CONFIGURATIONS -->
+    <!-- 🌐 WEBSITE CONFIGURATIONS - UPDATED DATABASE URL -->
     <script>
         const HEADER_BANNER_LOGO = "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/81260990-6d71-4fbb-b966-43f96215438e.png"; 
         const ABOUT_ME_ART_LOGO = "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png";       
@@ -381,6 +381,31 @@
             -webkit-text-fill-color: transparent;
             animation: rgb-shift-text 6s linear infinite !important;
             display: inline-block;
+        }
+
+        /* 📱 RESPONSIVE IMDB GAUGE ON MOBILE CARDS (VIOLATION FIXED) */
+        .imdb-gauge-container {
+            position: absolute; right: 6px; top: 6px; 
+            display: flex; flex-direction: column; align-items: center !important; gap: 2px;
+            z-index: 2; 
+            background: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+        }
+        .imdb-track {
+            width: 10px; height: 22px;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 2px; overflow: hidden; position: relative;
+            box-shadow: 0 0 8px rgba(0,0,0,0.8);
+        }
+        .imdb-value {
+            font-size: 9px; font-weight: 900; font-family: monospace;
+            display: flex; align-items: center; justify-content: center !important; gap: 1px;
+            margin-top: 2px;
+            text-shadow: 0 0 5px rgba(0,0,0,1), 0 0 10px rgba(0,0,0,1);
+            white-space: nowrap;
+            width: 100%;
         }
 
         .rating-bar-vertical {
@@ -834,11 +859,6 @@
             0% { -webkit-transform: rotate(0deg); }
             100% { -webkit-transform: rotate(360deg); } 
         }
-        @keyframes lightning-sweep {
-            0% { left: -150%; }
-            50% { left: 150%; }
-            100% { left: 150%; }
-        }
 
         footer { background: rgba(4, 8, 16, 0.95); border-top: 2px solid var(--neon-cyan); padding: 40px 20px; text-align: center; margin-top: 40px; box-shadow: 0 -10px 30px rgba(0, 240, 255, 0.1); }
         .footer-content { max-width: 800px; margin: 0 auto; }
@@ -1012,7 +1032,7 @@
         <!-- ABOUT US SECTION -->
         <div class="about-section" id="about-us-section-wrapper" style="display:none;"></div>
 
-        <!-- 🌐 GLOWING SOCIAL MEDIA PLUG -->
+        <!-- 🌐 GLOWING SOCIAL MEDIA PLUG (FALLBACKS TO # ENABLED) -->
         <div class="social-plug-box">
             <div class="social-title">CONNECT WITH US ON SOCIAL NETWORKS</div>
             <div class="social-icons-wrapper">
@@ -1171,7 +1191,7 @@
             if (tickerEl) tickerEl.innerHTML = `⚡ ${currentDrama.title || ''} [${epNum}] උපසිරැසි දැන් බාගත කරගත හැක! • `;
 
             // Dynamic links mapping for Social Media Plug box:
-            let latestEpTgLink = globalConfig.telegram_channel_link || "https://t.me/liyasi1";
+            let latestEpTgLink = globalConfig.telegram_channel_link || "#";
             if (currentEpisode && currentEpisode.tg_link) {
                 latestEpTgLink = currentEpisode.tg_link;
             }
@@ -1787,23 +1807,6 @@
                         }
                     });
                 } 
-                else {
-                    const availableDramas = Object.values(dramas || {}).filter(d => d && d.status !== "UPCOMING");
-                    if (availableDramas && availableDramas.length > 0) {
-                        const lastTwo = availableDramas.slice(-2);
-                        lastTwo.forEach(d => {
-                            if (d && d.title) {
-                                const titleText = d.title;
-                                const shortTitle = titleText.split(' ')[0] || "Drama";
-                                chipsHTML += `<div class="ai-chip" onclick="quickSend('${titleText} උපසිරැසි තියෙද? 🍿')">🍿 ${shortTitle}?</div>`;
-                            }
-                        });
-                    }
-                    if (config && config.blogger_link) {
-                        chipsHTML += `<div class="ai-chip" onclick="quickSend('Blogger කියවීම් ඉසව්ව ලින්ක් එක මොකක්ද? 📚')">📚 Blogger Link</div>`;
-                    }
-                    chipsHTML += `<div class="ai-chip" onclick="quickSend('Subverse Admin සම්බන්ධ කරගන්නේ කොහොමද? 💬')">💬 Admin Contact</div>`;
-                }
 
                 chipsContainer.innerHTML = chipsHTML;
             } catch (err) {
@@ -1831,7 +1834,6 @@
             }
         }
 
-        /* 🤖 AI Chat greeting fixed (Russian 'Здарова!' replaced with Sinhala Hello) */
         function resetChatMessages() {
             const container = document.getElementById('chat-messages');
             container.innerHTML = `
@@ -1948,11 +1950,6 @@
             const container = document.getElementById('chat-messages');
             const id = 'msg-' + (++msgCounter);
             
-            const currentMessages = container.querySelectorAll('.chat-msg-row');
-            if (currentMessages.length > 30) {
-                currentMessages[0].remove();
-            }
-
             const row = document.createElement('div');
             row.className = `chat-msg-row ${sender}-row`;
             row.id = id;
