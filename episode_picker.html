@@ -1,5 +1,4 @@
- 
- 
+
 <!DOCTYPE html>
 <html lang="si">
 <head>
@@ -980,7 +979,7 @@
             <p style="text-align: center; color: var(--neon-cyan); padding: 50px 0;">🤖 [SYSTEM RETRIEVING DATA...]</p>
         </div>
 
-        <!-- 📖 EPISODE STORY SYNOPSIS BOX -->
+        <!-- 📖 EPISODE STORY SYNOPSIS BOX (v2 SPECIFIC ADDITION) -->
         <div class="glass-section-custom" id="episode-story-section-wrapper" style="display:none;"></div>
 
         <!-- 🎭 CAST & CREW DYNAMIC HOLDER -->
@@ -1165,6 +1164,8 @@
         let currentDrama = null;
         let currentEpisode = null;
         let globalConfig = {};
+
+        const epClean = epNum ? epNum.replace(/\s+/g, '_') : "EP_00";
 
         async function initPage() {
             if (!dramaId || !epNum) {
@@ -1543,18 +1544,20 @@
             }
         }
 
-        const epClean = epNum ? epNum.replace(/\s+/g, '_') : "EP_00";
-
         async function loadClicksAndVotes() {
             if (!dramaId) return;
             
             try {
-                const res = await fetch(`${firebaseURL}clicks/${dramaId}/${epClean}.json`);
+                // Structured under /episodes/ node in Firebase
+                const res = await fetch(`${firebaseURL}clicks/${dramaId}/episodes/${epClean}.json`);
                 if (res.ok) {
                     const data = await res.json();
                     if (data !== null) {
                         document.getElementById('sub-count-ui').innerText = data.sub !== undefined ? data.sub : 0;
                         document.getElementById('tg-count-ui').innerText = data.tg !== undefined ? data.tg : 0;
+                    } else {
+                        document.getElementById('sub-count-ui').innerText = 0;
+                        document.getElementById('tg-count-ui').innerText = 0;
                     }
                 }
             } catch (e) {
@@ -1562,7 +1565,8 @@
             }
 
             try {
-                const res = await fetch(`${firebaseURL}likes/${dramaId}/${epClean}.json`);
+                // Structured under /episodes/ node in Firebase
+                const res = await fetch(`${firebaseURL}likes/${dramaId}/episodes/${epClean}.json`);
                 if (res.ok) {
                     const data = await res.json();
                     const l = (data !== null && data.likes !== undefined) ? parseInt(data.likes) : 0;
@@ -1581,7 +1585,8 @@
         async function trackDownload(type) {
             if (!dramaId) return;
             const countKey = `voted_${type}_${dramaId}_${epClean}`;
-            const countUrl = `${firebaseURL}clicks/${dramaId}/${epClean}/${type}.json`;
+            // Structured under /episodes/ node in Firebase
+            const countUrl = `${firebaseURL}clicks/${dramaId}/episodes/${epClean}/${type}.json`;
             
             if (safeLocalStorage.getItem(countKey) === 'true') {
                 return;
@@ -1617,7 +1622,8 @@
             }
 
             if (!dramaId) return;
-            const voteUrl = `${firebaseURL}likes/${dramaId}/${epClean}/${type}.json`;
+            // Structured under /episodes/ node in Firebase
+            const voteUrl = `${firebaseURL}likes/${dramaId}/episodes/${epClean}/${type}.json`;
             try {
                 const res = await fetch(voteUrl);
                 let count = 0;
@@ -1711,7 +1717,8 @@
             const container = document.getElementById('comments-list-container');
             
             try {
-                const res = await fetch(`${firebaseURL}comments/${dramaId}/${epClean}.json`);
+                // Structured under /episodes/ node in Firebase
+                const res = await fetch(`${firebaseURL}comments/${dramaId}/episodes/${epClean}.json`);
                 if (res.ok) {
                     const data = await res.json();
                     if (data === null || typeof data !== 'object') {
@@ -1795,7 +1802,8 @@
             };
 
             try {
-                const res = await fetch(`${firebaseURL}comments/${dramaId}/${epClean}.json`, {
+                // Structured under /episodes/ node in Firebase
+                const res = await fetch(`${firebaseURL}comments/${dramaId}/episodes/${epClean}.json`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
@@ -2092,8 +2100,8 @@
             offscreenCtx.fillRect(0, 0, 800, 300);
             
             offscreenCtx.font = "900 85px 'Segoe UI', sans-serif";
-            offscreenCtx.textAlign = "center";
             offscreenCtx.textBaseline = "middle";
+            offscreenCtx.textAlign = "center";
             offscreenCtx.strokeStyle = '#ffffff';
             offscreenCtx.lineWidth = 3.5;
             offscreenCtx.strokeText("ලියැසි", 400, 100);
