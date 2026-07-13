@@ -1,3 +1,5 @@
+ 
+ 
 <!DOCTYPE html>
 <html lang="si">
 <head>
@@ -78,14 +80,32 @@
             color: var(--text-main);
             font-family: 'Segoe UI', system-ui, sans-serif;
             margin: 0; padding: 0; min-height: 100vh;
-            background-image: linear-gradient(to bottom, rgba(2, 4, 8, 0.88), rgba(2, 4, 8, 0.97)), 
-                              url('https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/bbfcf6e6-8bca-4883-8eb1-f93a2d1d4728.png');
-            background-attachment: fixed; background-size: cover; background-position: center;
             overflow-x: hidden;
+            width: 100%;
+            max-width: 100%;
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
+        }
+
+        html, body {
+            max-width: 100vw;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 🌌 MATRIX BACKGROUND CANVAS */
+        #matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
         }
 
         .sticky-top-bar {
@@ -283,8 +303,8 @@
                 gap: 40px !important;
             }
             .detail-poster-wrapper {
-                width: 380px !important; 
-                height: 570px !important; 
+                width: 440px !important; /* Enlarge on desktop */
+                height: 660px !important; /* Enlarge on desktop */
                 flex-shrink: 0 !important;
             }
             .detail-info-wrapper {
@@ -318,69 +338,38 @@
             object-fit: cover; background: #000; border-radius: 10px; z-index: 1; 
         }
 
-        /* 📌 LABELS IN ONE SINGLE ROW WITH HIDDEN SCROLLBAR */
-        .poster-top-row {
-            position: absolute; top: 12px; left: 12px; right: 12px;
-            display: flex; flex-direction: row; flex-wrap: nowrap !important; 
-            align-items: center; justify-content: flex-start; gap: 6px; z-index: 3;
-            overflow-x: auto !important;
-            scrollbar-width: none; /* Firefox */
-        }
-        .poster-top-row::-webkit-scrollbar {
-            display: none !important; /* Chrome, Safari, Opera */
-        }
-
-        .poster-top-row span, .poster-top-row .rating-bar-inline {
-            flex-shrink: 0 !important;
-        }
-
-        .poster-bottom-gradient {
-            position: absolute; bottom: 0; left: 0; right: 0;
-            height: 110px; background: linear-gradient(to top, rgba(2, 4, 8, 0.95), transparent);
-            z-index: 2; pointer-events: none;
-        }
-        .poster-genres-container {
-            position: absolute; bottom: 12px; left: 12px; right: 12px;
-            display: flex; flex-wrap: nowrap !important; gap: 6px; justify-content: center; z-index: 3;
-            overflow-x: auto !important;
-            scrollbar-width: none;
-        }
-        .poster-genres-container::-webkit-scrollbar { display: none !important; }
-
-        /* 🌈 GLOWING RGB SHIFTING NEON BADGES */
-        @keyframes neon-rgb-glow {
-            0% { border-color: #ff007f; box-shadow: 0 0 10px #ff007f, inset 0 0 5px rgba(255, 0, 127, 0.25); }
-            25% { border-color: #00f0ff; box-shadow: 0 0 10px #00f0ff, inset 0 0 5px rgba(0, 240, 255, 0.25); }
-            50% { border-color: #ffaa00; box-shadow: 0 0 10px #ffaa00, inset 0 0 5px rgba(255, 170, 0, 0.25); }
-            75% { border-color: #9d4edd; box-shadow: 0 0 10px #9d4edd, inset 0 0 5px rgba(157, 78, 221, 0.25); }
-            100% { border-color: #ff007f; box-shadow: 0 0 10px #ff007f, inset 0 0 5px rgba(255, 0, 127, 0.25); }
-        }
-
-        .rgb-neon-badge {
-            background: rgba(2, 4, 8, 0.95) !important;
-            padding: 4px 10px !important;
-            font-size: 10px !important;
-            font-weight: 900 !important;
-            border-radius: 4px !important;
+        /* 🌈 GLOWING RGB SHIFTING NEON TEXT LABELS (NO BG, NO BOX) */
+        .neon-text-label {
+            background: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            font-weight: 900;
+            font-size: 13px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
             white-space: nowrap;
-            display: inline-flex !important;
+            display: inline-flex;
             align-items: center;
             gap: 4.5px;
-            border: 1.5px solid currentColor !important;
-            animation: neon-rgb-glow 6s linear infinite !important;
-            flex-shrink: 0 !important;
-            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
-        .rgb-neon-badge span, .rgb-neon-badge i {
-            background: linear-gradient(90deg, #ff007f, #00f0ff, #ffaa00, #9d4edd, #ff007f);
-            background-size: 300% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: rgb-shift-text 6s linear infinite !important;
-            display: inline-block;
+        .neon-cyan-glow {
+            color: #00f0ff !important;
+            text-shadow: 0 0 8px #00f0ff, 0 0 16px rgba(0, 240, 255, 0.6);
+        }
+        .neon-purple-glow {
+            color: #b5179e !important;
+            text-shadow: 0 0 8px #b5179e, 0 0 16px rgba(181, 23, 158, 0.6);
+        }
+        .neon-pink-glow {
+            color: #ff007f !important;
+            text-shadow: 0 0 8px #ff007f, 0 0 16px rgba(255, 0, 127, 0.6);
+        }
+        .neon-amber-glow {
+            color: #ffaa00 !important;
+            text-shadow: 0 0 8px #ffaa00, 0 0 16px rgba(255, 170, 0, 0.6);
         }
 
         /* 📱 RESPONSIVE IMDB GAUGE ON MOBILE CARDS (VIOLATION FIXED) */
@@ -876,6 +865,20 @@
             .cat-vote-wrapper { grid-template-columns: 1fr !important; gap: 10px; }
         }
         @media (max-width: 600px) {
+            .main-container {
+                width: 100% !important;
+                max-width: 100% !important;
+                padding: 0 10px !important;
+                margin: 15px auto !important;
+                overflow-x: hidden !important;
+            }
+            .header-container, .sub-nav-container, .notice-container-alert {
+                width: 100% !important;
+                max-width: 100% !important;
+                padding-left: 10px !important;
+                padding-right: 10px !important;
+                box-sizing: border-box !important;
+            }
             header {
                 position: sticky !important;
                 top: 0 !important;
@@ -919,6 +922,9 @@
 </head>
 <body>
 
+    <!-- 🌌 MATRIX BACKGROUND CANVAS -->
+    <canvas id="matrix-canvas"></canvas>
+
     <!-- 📌 STICKY TOP BAR (HEADER + SUB-NAV) -->
     <div class="sticky-top-bar">
         <!-- NAVIGATION HEADER -->
@@ -939,7 +945,7 @@
                     <a href="index.html" class="logo-wrapper" id="header-logo-container">
                         <img class="site-logo-img" src="https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/81260990-6d71-4fbb-b966-43f96215438e.png" alt="Subverse Logo">
                         <div class="coded-tagline-text">
-                            දුර්ලභ kතා මාලා වල නිවහන<br>
+                            දුර්ලභ කතා මාලා වල නිවහන<br>
                             <span style="font-size: 11px; font-weight: bold;">(The Home of Rare Series)</span>
                         </div>
                     </a>
@@ -974,7 +980,7 @@
             <p style="text-align: center; color: var(--neon-cyan); padding: 50px 0;">🤖 [SYSTEM RETRIEVING DATA...]</p>
         </div>
 
-        <!-- 📖 EPISODE STORY SYNOPSIS BOX (v2 SPECIFIC ADDITION) -->
+        <!-- 📖 EPISODE STORY SYNOPSIS BOX -->
         <div class="glass-section-custom" id="episode-story-section-wrapper" style="display:none;"></div>
 
         <!-- 🎭 CAST & CREW DYNAMIC HOLDER -->
@@ -1078,7 +1084,7 @@
     <footer>
         <div class="footer-content">
             <div class="footer-brand"><span class="sinhala">ලියැසි</span><span class="english">SUBVERSE</span></div>
-            <p class="footer-description">ලියැසි SUBVERSE වෙතින් උසස්ම තත්ත්වයේ ආසියානු kතාමාලා සඳහා සිංහල උපසිරැසි නොමිලේ ලබාගත හැක.</p>
+            <p class="footer-description">ලියැසි SUBVERSE වෙතින් උසස්ම තත්ත්වයේ ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි නොමිලේ ලබාගත හැක.</p>
             <div class="footer-credits">&copy; 2026 ලියැසි SUBVERSE. All Rights Reserved.</div>
         </div>
     </footer>
@@ -1221,6 +1227,7 @@
             loadGenreVoteData();
             renderDynamicChatChips(globalConfig, database.dramas);
             resetChatMessages();
+            startRealtimeSync();
         }
 
         function showError(title, desc) {
@@ -1261,9 +1268,6 @@
                 `;
             }
 
-            // Set secure background dynamic blur
-            document.body.style.backgroundImage = `linear-gradient(to bottom, rgba(2, 4, 8, 0.9), rgba(2, 4, 8, 0.98)), url('${epImg}')`;
-
             // Populate Info details with optimized structural layout
             wrapper.innerHTML = `
                 <!-- 1. Left Column (Poster with Top Row Badges, Gradient, and Genres on top of it) -->
@@ -1271,23 +1275,29 @@
                     <div class="detail-poster-wrapper">
                         <img class="detail-poster-img" src="${epImg}" alt="Poster">
                         
-                        <!-- Top-Left Badges Inline Row inside Poster (Styled with Neon RGB Shifting) -->
-                        <div class="poster-top-row">
-                            <div class="rgb-neon-badge"><span>${currentDrama.status}</span></div>
-                            <div class="rgb-neon-badge"><span>${currentDrama.type || 'DRAMA'}</span></div>
-                            <div class="rgb-neon-badge"><span>${epNum}</span></div>
-                            <div class="rgb-neon-badge">
-                                <i class="fa-solid fa-star"></i>
-                                <span>${rating}</span>
+                        <!-- Top-Left Badges (No background box, Glowing neon text, Organized Layout) -->
+                        <div class="poster-labels-container" style="position: absolute; top: 15px; left: 15px; right: 15px; display: flex; flex-direction: column; gap: 8px; z-index: 3; align-items: flex-start;">
+                            <div style="display: flex; gap: 12px; align-items: center; width: 100%; justify-content: flex-start; flex-wrap: nowrap; overflow: visible;">
+                                <span class="neon-text-label neon-cyan-glow">${currentDrama.status}</span>
+                                <span class="neon-text-label neon-purple-glow">${currentDrama.type || 'DRAMA'}</span>
+                                <span class="neon-text-label neon-pink-glow">${epNum}</span>
+                            </div>
+                            <div style="display: flex; justify-content: flex-start; width: 100%;">
+                                <span class="neon-text-label neon-amber-glow">
+                                    <i class="fa-solid fa-star"></i> ${rating}
+                                </span>
                             </div>
                         </div>
 
                         <!-- Bottom Gradient Overlay -->
                         <div class="poster-bottom-gradient"></div>
 
-                        <!-- Genres inside Bottom of Poster (Styled with Neon RGB Shifting) -->
-                        <div class="poster-genres-container">
-                            ${currentDrama.genres ? currentDrama.genres.map(g => `<div class="rgb-neon-badge"><span>${g}</span></div>`).join('') : ''}
+                        <!-- Genres inside Bottom of Poster (No background box, Glowing neon text) -->
+                        <div class="poster-genres-container" style="position: absolute; bottom: 15px; left: 15px; right: 15px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; z-index: 3;">
+                            ${currentDrama.genres ? currentDrama.genres.map((g, idx) => {
+                                const neonColors = ['neon-cyan-glow', 'neon-purple-glow', 'neon-pink-glow', 'neon-amber-glow'];
+                                return `<span class="neon-text-label ${neonColors[idx % neonColors.length]}">${g}</span>`;
+                            }).join('') : ''}
                         </div>
                     </div>
                 </div>
@@ -1313,12 +1323,12 @@
                 </div>
             `;
 
-            // 📖 Populate Episode Specific Story Description (v2 SPECIFIC ADDITION)
+            // 📖 Populate Episode Specific Story Description (Spelling corrected to "කතාව")
             const epStoryWrapper = document.getElementById('episode-story-section-wrapper');
             if (epStoryWrapper && currentEpisode.synopsis) {
                 epStoryWrapper.style.display = "block";
                 epStoryWrapper.innerHTML = `
-                    <h3 style="color: var(--neon-pink); text-shadow: 0 0 5px var(--neon-pink); border-left-color: var(--neon-pink);">${currentEpisode.title || epNum} - කොටසේ kතාව (Episode Synopsis)</h3>
+                    <h3 style="color: var(--neon-pink); text-shadow: 0 0 5px var(--neon-pink); border-left-color: var(--neon-pink);">${currentEpisode.title || epNum} - කොටසේ කතාව (Episode Synopsis)</h3>
                     <p style="margin: 0; text-align: justify; line-height: 1.8; color: #ddd; font-size: 13.5px;">${currentEpisode.synopsis}</p>
                 `;
             } else if (epStoryWrapper) {
@@ -1326,7 +1336,7 @@
             }
         }
 
-        /* 🛡️ Explicitly define renderCast logic to prevent reference crashes */
+        /* 🎭 CAST & CREW DYNAMIC HOLDER */
         function renderCast() {
             const section = document.getElementById('cast-section-wrapper');
             const cast = currentEpisode.cast || currentDrama.cast || [];
@@ -1348,6 +1358,7 @@
             section.innerHTML = castHTML;
         }
 
+        // Spelling corrected to "කතාවේ"
         function renderMap() {
             const section = document.getElementById('map-section-wrapper');
             const mapUrl = currentEpisode.map_url || currentDrama.map_url;
@@ -1355,7 +1366,7 @@
 
             section.style.display = "block";
             section.innerHTML = `
-                <h3>🗺️ kතාවේ සිතියම (Story Relationship Map)</h3>
+                <h3>🗺️ කතාවේ සිතියම (Story Relationship Map)</h3>
                 <div class="map-responsive-box">
                     <img src="${mapUrl}" alt="Relationship Map" loading="lazy">
                 </div>
@@ -1398,16 +1409,17 @@
             `;
         }
 
+        // Spelling corrected to "කැමතිද"
         function renderVotePanel() {
             const wrapper = document.getElementById('vote-section-wrapper');
             wrapper.style.display = "block";
             wrapper.innerHTML = `
                 <h3>🇱🇰 මෙම කොටස (Episode) පිළිබඳ ඔබේ මනාපය (Rate This Episode)</h3>
                 <div class="sl-vote-container" style="margin-top:0;">
-                    <div class="sl-vote-title">ඔබ මෙම කොටසට kමතිද? (Do you like this episode?)</div>
+                    <div class="sl-vote-title">ඔබ මෙම කොටසට කැමතිද? (Do you like this episode?)</div>
                     <div class="neon-bar-wrapper">
                         <div class="neon-bar-track">
-                            <div id="ep-vote-bar" class="neon-bar-fill" style="width: 50%;"></div>
+                            <div id="ep-vote-bar" class="neon-bar-fill" style="width: 0%;"></div>
                         </div>
                     </div>
                     <div class="sl-vote-buttons">
@@ -1422,11 +1434,12 @@
             `;
         }
 
+        // Spelling corrected to "කවුළුව"
         function renderDownloadBox() {
             const wrapper = document.getElementById('download-section-wrapper');
             wrapper.style.display = "block";
             wrapper.innerHTML = `
-                <h3>📥 උපසිරැසි සහ වීඩියෝ ලබාගැනීමේ kවුළුව (Subtitle & Video Download)</h3>
+                <h3>📥 උපසිරැසි සහ වීඩියෝ ලබාගැනීමේ කවුළුව (Subtitle & Video Download)</h3>
                 <div class="download-box">
                     <a href="${currentEpisode.link || '#'}" target="_blank" class="download-btn" onclick="trackDownload('sub')">
                         <span class="btn-sheen-sweep"></span>
@@ -1480,7 +1493,7 @@
             const genres = [
                 { id: "cat_fantasy", title: "🔮 Fantasy (මායාවී)" },
                 { id: "cat_sci_fi", title: "🚀 Sci-Fi (විද්‍යා ප්‍රබන්ධ)" },
-                { id: "cat_romance", title: "💖 Romance (ආදර kතා)" },
+                { id: "cat_romance", title: "💖 Romance (ආදර කතා)" },
                 { id: "cat_comedy", title: "😂 Comedy (හාස්‍යමය)" },
                 { id: "cat_thriller", title: "🔪 Thriller / Action (ත්‍රාසජනක)" }
             ];
@@ -1493,7 +1506,7 @@
                         <div class="sl-vote-title"><b>${g.title}</b></div>
                         <div class="neon-bar-wrapper">
                             <div class="neon-bar-track">
-                                <div id="genre-bar-${g.id}" class="neon-bar-fill" style="width: 50%;"></div>
+                                <div id="genre-bar-${g.id}" class="neon-bar-fill" style="width: 0%;"></div>
                             </div>
                         </div>
                         <div class="sl-vote-buttons">
@@ -1513,7 +1526,7 @@
             const aboutUsSection = document.getElementById('about-us-section-wrapper');
             if (aboutUsSection) {
                 aboutUsSection.style.display = 'flex';
-                const aboutMeText = globalConfig.about_me_text || "අපි ඔබ වෙත ගෙන එන්නේ ගුණාත්මක බවින් ඉහළම ආසියානු kතාමාලා සඳහා සිංහල උපසිරැසි පමණි. අපගේ නිල සමාජ මාධ්‍ය ජාලයන් සමඟ එක් වී අලුත්ම උපසිරැසි නිකුත් වූ සැනින් ලබාගන්න.";
+                const aboutMeText = globalConfig.about_me_text || "අපි ඔබ වෙත ගෙන එන්නේ ගුණාත්මක බවින් ඉහළම ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි පමණි. අපගේ නිල සමාජ මාධ්‍ය ජාලයන් සමඟ එක් වී අලුත්ම උපසිරැසි නිකුත් වූ සැනින් ලබාගන්න.";
                 const aboutMeAvatar = globalConfig.about_me_avatar || ABOUT_ME_ART_LOGO;
                 aboutUsSection.innerHTML = `
                     <h3 class="about-header-title">ලියැසි SUBVERSE (About Us)</h3>
@@ -1564,9 +1577,16 @@
             }
         }
 
+        // Subtitle & Telegram click counted only once per user
         async function trackDownload(type) {
             if (!dramaId) return;
+            const countKey = `voted_${type}_${dramaId}_${epClean}`;
             const countUrl = `${firebaseURL}clicks/${dramaId}/${epClean}/${type}.json`;
+            
+            if (safeLocalStorage.getItem(countKey) === 'true') {
+                return;
+            }
+            
             try {
                 const res = await fetch(countUrl);
                 let count = 0;
@@ -1581,6 +1601,7 @@
                     body: JSON.stringify(count)
                 });
                 
+                safeLocalStorage.setItem(countKey, 'true');
                 const uiEl = document.getElementById(`${type}-count-ui`);
                 if (uiEl) uiEl.innerText = count;
             } catch (e) {
@@ -1622,7 +1643,7 @@
             const bar = document.getElementById('ep-vote-bar');
             if (!bar) return;
             const total = l + d;
-            const pct = total > 0 ? (l / total) * 100 : 50;
+            const pct = total > 0 ? (l / total) * 100 : 0;
             bar.style.width = pct + "%";
         }
 
@@ -1646,7 +1667,7 @@
                         const bar = document.getElementById(`genre-bar-${gid}`);
                         if (bar) {
                             const total = l + d;
-                            const pct = total > 0 ? (l / total) * 100 : 50;
+                            const pct = total > 0 ? (l / total) * 100 : 0;
                             bar.style.width = pct + "%";
                         }
                     });
@@ -1685,7 +1706,7 @@
             }
         }
 
-        async function loadComments() {
+        async function loadComments(isBackground = false) {
             if (!dramaId) return;
             const container = document.getElementById('comments-list-container');
             
@@ -1697,7 +1718,7 @@
                         throw new Error("No data");
                     }
                     
-                    container.innerHTML = "";
+                    let commentsHTML = "";
                     const commentsArray = Object.keys(data).map(key => data[key]);
                     commentsArray.sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
 
@@ -1705,6 +1726,40 @@
                         const dateStr = c.timestamp ? new Date(c.timestamp).toLocaleDateString('si-LK') : "";
                         const timeStr = c.timestamp ? new Date(c.timestamp).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) : "";
                         
+                        commentsHTML += `
+                            <div class="comment-card">
+                                <div class="comment-header">
+                                    <span>👤 ${c.name || 'Anonymous'}</span>
+                                    <span>📅 ${dateStr} ${timeStr}</span>
+                                </div>
+                                <div class="comment-body">${c.text || ''}</div>
+                            </div>
+                        `;
+                    });
+
+                    if (container.innerHTML !== commentsHTML) {
+                        container.innerHTML = commentsHTML;
+                    }
+                } else {
+                    throw new Error("Fetch failed");
+                }
+            } catch (e) {
+                if (!isBackground) {
+                    let localComments = [];
+                    try {
+                        localComments = JSON.parse(safeLocalStorage.getItem(`comments_${dramaId}_${epClean}`)) || [];
+                    } catch(err) {
+                        localComments = [];
+                    }
+                    
+                    if (localComments.length === 0) {
+                        container.innerHTML = `<p style="font-size:12px; color:var(--text-muted); text-align:center;">තවමත් කිසිදු ප්‍රතිචාරයක් නොමැත. පළමු ප්‍රතිචාරය ඔබේ කරන්න! 💬</p>`;
+                        return;
+                    }
+                    container.innerHTML = "";
+                    localComments.forEach(c => {
+                        const dateStr = c.timestamp ? new Date(c.timestamp).toLocaleDateString('si-LK') : "";
+                        const timeStr = c.timestamp ? new Date(c.timestamp).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) : "";
                         container.innerHTML += `
                             <div class="comment-card">
                                 <div class="comment-header">
@@ -1715,35 +1770,7 @@
                             </div>
                         `;
                     });
-                } else {
-                    throw new Error("Fetch failed");
                 }
-            } catch (e) {
-                let localComments = [];
-                try {
-                    localComments = JSON.parse(safeLocalStorage.getItem(`comments_${dramaId}_${epClean}`)) || [];
-                } catch(err) {
-                    localComments = [];
-                }
-                
-                if (localComments.length === 0) {
-                    container.innerHTML = `<p style="font-size:12px; color:var(--text-muted); text-align:center;">තවමත් කිසිදු ප්‍රතිචාරයක් නොමැත. පළමු ප්‍රතිචාරය ඔබේ කරන්න! 💬</p>`;
-                    return;
-                }
-                container.innerHTML = "";
-                localComments.forEach(c => {
-                    const dateStr = c.timestamp ? new Date(c.timestamp).toLocaleDateString('si-LK') : "";
-                    const timeStr = c.timestamp ? new Date(c.timestamp).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) : "";
-                    container.innerHTML += `
-                        <div class="comment-card">
-                            <div class="comment-header">
-                                <span>👤 ${c.name || 'Anonymous'}</span>
-                                <span>📅 ${dateStr} ${timeStr}</span>
-                            </div>
-                            <div class="comment-body">${c.text || ''}</div>
-                        </div>
-                    `;
-                });
             }
         }
 
@@ -1819,6 +1846,14 @@
             sendAIMessage();
         }
 
+        function startRealtimeSync() {
+            setInterval(() => {
+                loadClicksAndVotes();
+                loadComments(true);
+                loadGenreVoteData();
+            }, 3000);
+        }
+
         let autoCloseTimer;
 
         function toggleAIChat() {
@@ -1839,7 +1874,7 @@
             container.innerHTML = `
                 <div class="chat-msg-row bot-row">
                     <img src="https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png" class="chat-bot-avatar" alt="Avatar">
-                    <div class="chat-bubble bot">හෙලෝ! 🖐️ මම ලියැසි SUBVERSE AI සහායකයා. ඔයාට අවශ්‍ය ඕනෑම ඩ්‍රාමා එකක් ගැන, බ්ලොග් එකේ ලිපි ගැන හෝ සබ්ටයිටල් දාගන්න විදිහ ගැන මාත් එක්ක නිදහසේ kතා කරන්න! ❤️🍿</div>
+                    <div class="chat-bubble bot">හෙලෝ! 🖐️ මම ලියැසි SUBVERSE AI සහායකයා. ඔයාට අවශ්‍ය ඕනෑම ඩ්‍රාමා එකක් ගැන, බ්ලොග් එකේ ලිපි ගැන හෝ සබ්ටයිටල් දාගන්න විදිහ ගැන මාත් එක්ක නිදහසේ කතා කරන්න! ❤️🍿</div>
                 </div>
             `;
         }
@@ -2024,7 +2059,388 @@
             btn.innerHTML = '<i class="fa-solid fa-microphone"></i>';
         }
 
-        window.onload = initPage;
+        /* 🌌 MATRIX BACKGROUND CANVAS IMPLEMENTATION */
+        const canvas = document.getElementById("matrix-canvas");
+        const ctx = canvas.getContext("2d");
+        
+        let particles = [];
+        let textTargets = [];
+        let animationMode = "ambient"; 
+        let modeTimer = 0;
+        let transitionProgress = 0; 
+
+        let angleX = 0.25; 
+        let angleY = 0;   
+        let zoom = 1.7;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            textTargets = createTextTargets();
+            mapParticlesToTargets();
+        }
+        window.addEventListener("resize", resizeCanvas);
+        resizeCanvas();
+
+        function createTextTargets() {
+            const offscreenCanvas = document.createElement('canvas');
+            const offscreenCtx = offscreenCanvas.getContext('2d');
+            offscreenCanvas.width = 800;
+            offscreenCanvas.height = 300;
+            
+            offscreenCtx.fillStyle = '#000000';
+            offscreenCtx.fillRect(0, 0, 800, 300);
+            
+            offscreenCtx.font = "900 85px 'Segoe UI', sans-serif";
+            offscreenCtx.textAlign = "center";
+            offscreenCtx.textBaseline = "middle";
+            offscreenCtx.strokeStyle = '#ffffff';
+            offscreenCtx.lineWidth = 3.5;
+            offscreenCtx.strokeText("ලියැසි", 400, 100);
+            
+            offscreenCtx.font = "900 58px 'Share Tech Mono', monospace";
+            offscreenCtx.lineWidth = 3;
+            offscreenCtx.strokeText("SUBVERSE", 400, 210);
+            
+            const imgData = offscreenCtx.getImageData(0, 0, 800, 300).data;
+            const points = [];
+            
+            const step = 4; 
+            for (let y = 0; y < 300; y += step) {
+                for (let x = 0; x < 800; x += step) {
+                    const index = (x + y * 800) * 4;
+                    if (imgData[index] > 128) {
+                        points.push({ x: x - 400, y: y - 150 });
+                    }
+                }
+            }
+            return points;
+        }
+
+        function project3D(x, y, z) {
+            let cosY = Math.cos(angleY);
+            let sinY = Math.sin(angleY);
+            let x1 = x * cosY - z * sinY;
+            let z1 = x * sinY + z * cosY;
+
+            let cosX = Math.cos(angleX);
+            let sinX = Math.sin(angleX);
+            let y2 = y * cosX - z1 * sinX;
+            let z2 = y * sinX + z1 * cosX;
+
+            let focalLength = 550;
+            let depthScale = focalLength / (focalLength + z2);
+            
+            let screenX = (canvas.width / 2) + x1 * depthScale * zoom;
+            let screenY = (canvas.height / 2) + y2 * depthScale * zoom;
+            
+            return {
+                x: screenX,
+                y: screenY,
+                scale: depthScale,
+                z: z2
+            };
+        }
+
+        class Particle {
+            constructor(id) {
+                this.id = id;
+                this.isGlobalScatter = (id % 3 === 0);
+                
+                if (this.isGlobalScatter) {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.vx = (Math.random() - 0.5) * 0.35;
+                    this.vy = (Math.random() - 0.5) * 0.35;
+                } else {
+                    this.theta = Math.random() * Math.PI * 2;
+                    this.radius = Math.random() * (canvas.width * 0.95) + 50; 
+                    this.z3d = Math.random() * 300 - 150;
+                    this.rotSpeed = (Math.random() * 0.0025 + 0.0008);
+                }
+                
+                this.baseSize = Math.random() * 1.5 + 0.5;
+                this.size = this.baseSize;
+                this.targetX = null;
+                this.targetY = null;
+                this.targetZ = 0;
+                this.isTextParticle = false;
+                this.alpha = Math.random() * 0.65 + 0.35;
+                
+                const colors = [
+                    `rgba(0, 240, 255, ${this.alpha})`,   
+                    `rgba(0, 120, 255, ${this.alpha})`,   
+                    `rgba(157, 78, 221, ${this.alpha})`,  
+                    `rgba(255, 0, 127, ${this.alpha * 0.35})` 
+                ];
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.proj = null;
+                
+                this.isSpecialGlow = false;
+                this.glowColor = null;
+            }
+
+            lerp(start, end, amt) {
+                return (1 - amt) * start + amt * end;
+            }
+
+            update(time) {
+                this.size = this.baseSize * (0.65 + Math.sin(time * 0.004 + this.id) * 0.35);
+
+                if (this.isGlobalScatter) {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    if (this.x < 0) this.x = canvas.width;
+                    if (this.x > canvas.width) this.x = 0;
+                    if (this.y < 0) this.y = canvas.height;
+                    if (this.y > canvas.height) this.y = 0;
+
+                    this.proj = {
+                        x: this.x,
+                        y: this.y,
+                        scale: 0.8 + Math.sin(time * 0.001 + this.id) * 0.2,
+                        z: 0
+                    };
+                } else {
+                    this.theta += this.rotSpeed;
+                    let armOffset = (this.id % 2) * Math.PI;
+                    let angle = this.theta + (this.radius / (canvas.width * 0.3)) * Math.PI + armOffset;
+                    
+                    let ambientX = Math.cos(angle) * this.radius;
+                    let ambientZ = Math.sin(angle) * this.radius;
+                    let ambientY = this.z3d * (1 - this.radius / (canvas.width * 0.65));
+
+                    let ambientProj = project3D(ambientX, ambientY, ambientZ);
+
+                    if (this.isTextParticle && this.targetX !== null) {
+                        const flatX = (canvas.width / 2) + this.targetX;
+                        const flatY = (canvas.height / 2) + this.targetY;
+                        
+                        this.proj = {
+                            x: this.lerp(ambientProj.x, flatX, transitionProgress),
+                            y: this.lerp(ambientProj.y, flatY, transitionProgress),
+                            scale: this.lerp(ambientProj.scale, 1.0, transitionProgress),
+                            z: this.lerp(ambientProj.z, 0, transitionProgress)
+                        };
+                    } else {
+                        this.proj = ambientProj;
+                    }
+                }
+            }
+
+            draw() {
+                if (!this.proj) return;
+                
+                const r = this.size * this.proj.scale;
+                
+                ctx.beginPath();
+                ctx.moveTo(this.proj.x, this.proj.y - r);
+                ctx.lineTo(this.proj.x + r * 0.28, this.proj.y - r * 0.28);
+                ctx.lineTo(this.proj.x + r, this.proj.y);
+                ctx.lineTo(this.proj.x + r * 0.28, this.proj.y + r * 0.28);
+                ctx.lineTo(this.proj.x, this.proj.y + r);
+                ctx.lineTo(this.proj.x - r * 0.28, this.proj.y + r * 0.28);
+                ctx.lineTo(this.proj.x - r, this.proj.y);
+                ctx.lineTo(this.proj.x - r * 0.28, this.proj.y - r * 0.28);
+                ctx.closePath();
+                
+                ctx.fillStyle = this.color;
+                
+                if (this.isSpecialGlow || this.proj.scale > 1.2) {
+                    ctx.shadowColor = this.glowColor || this.color;
+                    ctx.shadowBlur = 8 * this.proj.scale;
+                }
+                
+                ctx.fill();
+                ctx.shadowBlur = 0; 
+            }
+        } 
+
+        function initParticles() {
+            particles = [];
+            textTargets = createTextTargets();
+            
+            const totalParticles = window.innerWidth < 600 ? 250 : 800;
+            for (let i = 0; i < totalParticles; i++) {
+                particles.push(new Particle(i));
+            }
+            mapParticlesToTargets();
+        }
+
+        function mapParticlesToTargets() {
+            if (textTargets.length === 0) return;
+            
+            const scale = Math.min(0.85, (canvas.width * 0.8) / 800);
+            const shuffledTargets = [...textTargets].sort(() => Math.random() - 0.5);
+            const textParticleCount = Math.min(shuffledTargets.length, 450);
+
+            for (let i = 0; i < particles.length; i++) {
+                if (!particles[i].isGlobalScatter && i < textParticleCount) {
+                    const targetPoint = shuffledTargets[i];
+                    particles[i].targetX = targetPoint.x * scale;
+                    particles[i].targetY = targetPoint.y * scale;
+                    particles[i].targetZ = 0;
+                    particles[i].isTextParticle = true;
+
+                    let pct = (targetPoint.x + 350) / 700;
+                    pct = Math.max(0, Math.min(1, pct));
+                    
+                    let r, g, b;
+                    if (pct < 0.33) {
+                        let t = pct / 0.33;
+                        r = Math.floor(255 * (1 - t) + 0 * t);      
+                        g = Math.floor(0 * (1 - t) + 240 * t);
+                        b = Math.floor(127 * (1 - t) + 255 * t);
+                    } else if (pct < 0.66) {
+                        let t = (pct - 0.33) / 0.33;
+                        r = Math.floor(0 * (1 - t) + 255 * t);      
+                        g = Math.floor(240 * (1 - t) + 170 * t);
+                        b = Math.floor(255 * (1 - t) + 0 * t);
+                    } else {
+                        let t = (pct - 0.66) / 0.34;
+                        r = Math.floor(255 * (1 - t) + 157 * t);    
+                        g = Math.floor(170 * (1 - t) + 78 * t);
+                        b = Math.floor(0 * (1 - t) + 221 * t);
+                    }
+                    particles[i].color = `rgba(${r}, ${g}, ${b}, ${particles[i].alpha})`;
+                } else {
+                    particles[i].isTextParticle = false;
+                }
+            }
+        }
+
+        function drawConstellationLines() {
+            const maxDistance = 60;
+            let lineCount = 0; 
+
+            for (let i = 0; i < particles.length; i += 3) { 
+                const pi = particles[i];
+                if (!pi.proj || pi.isGlobalScatter) continue;
+                
+                for (let j = i + 1; j < particles.length; j += 8) {
+                    const pj = particles[j];
+                    if (!pj.proj || pj.isGlobalScatter) continue;
+
+                    const dx = pi.proj.x - pj.proj.x;
+                    const dy = pi.proj.y - pj.proj.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < maxDistance) {
+                        ctx.beginPath();
+                        ctx.moveTo(pi.proj.x, pi.proj.y);
+                        ctx.lineTo(pj.proj.x, pj.proj.y);
+                        
+                        const avgScale = (pi.proj.scale + pj.proj.scale) / 2;
+                        const alpha = (1 - dist / maxDistance) * 0.15 * avgScale;
+                        
+                        ctx.strokeStyle = `rgba(0, 240, 255, ${alpha})`;
+                        ctx.lineWidth = 0.5 * avgScale;
+                        ctx.stroke();
+
+                        lineCount++;
+                        if (lineCount > 120) return; 
+                    }
+                }
+            }
+        }
+
+        function animateGeminiParticles() {
+            ctx.fillStyle = 'rgba(2, 4, 8, 0.18)'; 
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            const time = Date.now();
+
+            angleY += 0.0022;
+            angleX = 0.25 + Math.sin(time * 0.0004) * 0.12;
+
+            modeTimer++;
+            if (modeTimer > 200) { 
+                animationMode = (animationMode === "ambient") ? "text" : "ambient";
+                modeTimer = 0;
+            }
+
+            if (animationMode === "text") {
+                transitionProgress += (1 - transitionProgress) * 0.045; 
+            } else {
+                transitionProgress += (0 - transitionProgress) * 0.045; 
+            }
+
+            drawConstellationLines();
+            
+            if (transitionProgress > 0.01) {
+                ctx.save();
+                ctx.globalAlpha = transitionProgress; 
+                
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+                
+                const centerX = canvas.width / 2;
+                const centerY = canvas.height / 2;
+                const scale = Math.min(0.85, (canvas.width * 0.8) / 800);
+                
+                const offset = (time * 0.0015) % (Math.PI * 2);
+                const col1 = `hsl(${(offset * 180 / Math.PI) % 360}, 100%, 70%)`;
+                const col2 = `hsl(${(offset * 180 / Math.PI + 120) % 360}, 100%, 70%)`;
+                const col3 = `hsl(${(offset * 180 / Math.PI + 240) % 360}, 100%, 70%)`;
+                
+                const grad = ctx.createLinearGradient(centerX - 300 * scale, 0, centerX + 300 * scale, 0);
+                grad.addColorStop(0, col1);
+                grad.addColorStop(0.5, col2);
+                grad.addColorStop(1, col3);
+
+                ctx.font = `900 ${85 * scale}px 'Segoe UI', sans-serif`;
+                
+                ctx.shadowColor = col1;
+                ctx.shadowBlur = 20 * scale;
+                ctx.strokeStyle = col1;
+                ctx.lineWidth = 5 * scale;
+                ctx.strokeText("ලියැසි", centerX, centerY - 50 * scale);
+                
+                ctx.shadowBlur = 0;
+                ctx.fillStyle = "rgba(2, 4, 8, 0.75)";
+                ctx.fillText("ලියැසි", centerX, centerY - 50 * scale);
+                
+                ctx.fillStyle = grad;
+                ctx.globalAlpha = transitionProgress * 0.35;
+                ctx.fillText("ලියැසි", centerX, centerY - 50 * scale);
+                ctx.globalAlpha = transitionProgress;
+
+                ctx.font = `900 ${58 * scale}px 'Share Tech Mono', monospace`;
+                
+                ctx.shadowColor = col3;
+                ctx.shadowBlur = 20 * scale;
+                ctx.strokeStyle = col3;
+                ctx.lineWidth = 4 * scale;
+                ctx.strokeText("SUBVERSE", centerX, centerY + 60 * scale);
+                
+                ctx.shadowBlur = 0;
+                ctx.fillStyle = "rgba(2, 4, 8, 0.75)";
+                ctx.fillText("SUBVERSE", centerX, centerY + 60 * scale);
+                
+                ctx.fillStyle = grad;
+                ctx.globalAlpha = transitionProgress * 0.35;
+                ctx.fillText("SUBVERSE", centerX, centerY + 60 * scale);
+                
+                ctx.restore();
+            }
+
+            particles.forEach(p => {
+                p.update(time);
+                p.draw();
+            });
+
+            requestAnimationFrame(animateGeminiParticles);
+        }
+
+        function initBackground() {
+            initParticles();
+            animateGeminiParticles();
+        }
+
+        window.onload = function() {
+            initBackground();
+            initPage();
+        };
     </script>
 </body>
 </html>
