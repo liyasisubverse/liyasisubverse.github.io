@@ -102,5 +102,15 @@
       ]
     }
   },
-  "config": {}
+  "config": {
+    "about_me_text": "අපි ඔබ වෙත ගෙන එන්නේ ගුණාත්මක බවින් ඉහළම ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි පමණි...",
+    "about_me_avatar": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png",
+    "telegram_channel_link": "https://t.me/+FVJpdLwtqxdjYjE1",
+    "top_notice_text": "⚡ [විශේෂ දැනුම්දීම] නවතම උපසිරැසි දැන් සෘජුවම බාගත කරගත හැක!",
+    "bottom_notice_text": "අපගේ සියලුම සිංහල උපසිරැසි නොමිලේ ලබාගත හැක. කිසියම් ගැටලුවක් ඇත්නම් Contact පිටුවෙන් අපව සම්බන්ධ කරගන්න.",
+    "server_status_sub": "ONLINE",
+    "server_status_bot": "ACTIVE",
+    "blogger_link": "https://liyasisubverse.blogspot.com",
+    "chat_chips": "My Demon 🍿 | Hidden Love 🍿 | Blogger Link 📚 | Help Guide ❓"
+  }
 }
