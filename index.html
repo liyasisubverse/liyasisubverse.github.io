@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ලියැසි SUBVERSE - Premium Subtitles Hub</title>
     
-    <!-- 🛡️ 1. CONTENT SECURITY POLICY (CSP) META TAG -->
+    <!-- 🛡️ 1. CONTENT SECURITY POLICY (CSP) META TAG - UPDATED FOR NEW FIREBASE -->
     <meta http-equiv="Content-Security-Policy" content="
         default-src 'self'; 
         script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com; 
         style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; 
         font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; 
         img-src 'self' data: https: http:; 
-        connect-src 'self' https://subverse-b897d-default-rtdb.firebaseio.com https://liyasisubverse1-liyasi-backend.hf.space https://ask-gemini.rashmi004005g.workers.dev https://groq.rashmi004005g.workers.dev https://www.google-analytics.com;
+        connect-src 'self' https://liyasi-github-votes-default-rtdb.firebaseio.com https://liyasisubverse1-liyasi-backend.hf.space https://ask-gemini.rashmi004005g.workers.dev https://groq.rashmi004005g.workers.dev https://www.google-analytics.com;
     ">
 
     <!-- 🛡️ 2. FRAME-BUSTING (CLICKJACKING ආරක්ෂාව) -->
@@ -56,7 +56,7 @@
       gtag('config', 'G-WQ65HDS0TE');
     </script>
 
-    <!-- WEBSITE CONFIGURATIONS -->
+    <!-- WEBSITE CONFIGURATIONS - UPDATED DATABASE URL -->
     <script>
         const HEADER_BANNER_LOGO = "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/81260990-6d71-4fbb-b966-43f96215438e.png"; 
         const ABOUT_ME_ART_LOGO = "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png";       
@@ -505,9 +505,10 @@
         }
         .card-complete .badge-bottom-left { background: var(--neon-pink); color: #fff; box-shadow: 0 0 12px var(--neon-pink), 0 0 4px #fff; border-color: rgba(255,255,255,0.4); }
 
+        /* 📱 RESPONSIVE IMDB GAUGE ON MOBILE CARDS (VIOLATION FIXED) */
         .imdb-gauge-container {
-            position: absolute; right: 8px; top: 8px; 
-            display: flex; flex-direction: column; align-items: flex-start !important; gap: 4px;
+            position: absolute; right: 6px; top: 6px; 
+            display: flex; flex-direction: column; align-items: center !important; gap: 2px;
             z-index: 2; 
             background: none !important;
             border: none !important;
@@ -515,20 +516,19 @@
             padding: 0 !important;
         }
         .imdb-track {
-            width: 14px; height: 26px;
+            width: 10px; height: 22px;
             background: rgba(255, 255, 255, 0.25);
-            border-radius: 3px; overflow: hidden; position: relative;
+            border-radius: 2px; overflow: hidden; position: relative;
             box-shadow: 0 0 8px rgba(0,0,0,0.8);
-            margin-left: 14px !important; 
         }
         .imdb-fill {
             width: 100%; position: absolute; bottom: 0; left: 0;
             border-radius: 2px; transition: height 0.5s ease-out;
         }
         .imdb-value {
-            font-size: 10px; font-weight: 900; font-family: monospace;
-            display: flex; align-items: center; justify-content: flex-start !important; gap: 2px;
-            margin-top: 3px;
+            font-size: 9px; font-weight: 900; font-family: monospace;
+            display: flex; align-items: center; justify-content: center !important; gap: 1px;
+            margin-top: 2px;
             text-shadow: 0 0 5px rgba(0,0,0,1), 0 0 10px rgba(0,0,0,1);
             white-space: nowrap;
             width: 100%;
@@ -1406,20 +1406,19 @@
                     <button class="feedback-btn like-btn" onclick="submitFeedback('like', event)">
                         <i class="fa-solid fa-thumbs-up"></i>
                         <span>LIKE</span>
-                        <span id="like-count" style="font-family: monospace; font-weight: 900; margin-left: 3px;">124</span>
+                        <span id="like-count" style="font-family: monospace; font-weight: 900; margin-left: 3px;">0</span>
                     </button>
                     <button class="feedback-btn dislike-btn" onclick="submitFeedback('dislike', event)">
                         <i class="fa-solid fa-thumbs-down"></i>
                         <span>DISLIKE</span>
-                        <span id="dislike-count" style="font-family: monospace; font-weight: 900; margin-left: 3px;">2</span>
+                        <span id="dislike-count" style="font-family: monospace; font-weight: 900; margin-left: 3px;">0</span>
                     </button>
                 </div>
             </div>
             <div class="feedback-card" style="border-left: 3.5px solid var(--neon-pink); border-right: 3.5px solid var(--neon-pink);">
                 <div class="feedback-title"><i class="fa-solid fa-comments" style="color:var(--neon-cyan)"></i> USER FEEDBACK & COMMENTS</div>
                 <div class="comments-display" id="comments-list">
-                    <div class="comment-item"><strong>Anonymous:</strong> උපසිරැසි ඉතාම උසස් මට්ටමක පවතිනවා! ජයවේවා! ❤️</div>
-                    <div class="comment-item"><strong>Nipun:</strong> Fantastic Cyberpunk layout and super fast download links. Highly recommended!</div>
+                    <p style="font-size:12px; color:var(--text-muted); text-align:center; padding-top:35px;">තවමත් කිසිදු ප්‍රතිචාරයක් නොමැත. 💬</p>
                 </div>
                 <div class="comment-input-area">
                     <input type="text" id="commenter-name" placeholder="නම (Name)" class="comment-input" style="width: 30%;">
@@ -1429,7 +1428,7 @@
             </div>
         </div>
 
-        <!-- 🌐 GLOWING SOCIAL PLUG BOX -->
+        <!-- 🌐 GLOWING SOCIAL PLUG BOX (FALLBACKS TO # ENABLED) -->
         <div class="social-plug-box">
             <div class="social-title">CONNECT WITH US ON SOCIAL NETWORKS</div>
             <div class="social-icons-wrapper" id="social-plug-links">
@@ -1689,7 +1688,7 @@
                 
                 document.getElementById('visitor-count').innerText = newCount.toLocaleString();
             } catch (error) {
-                document.getElementById('visitor-count').innerText = "1,000+";
+                document.getElementById('visitor-count').innerText = "0";
             }
         }
 
@@ -1770,18 +1769,15 @@
                 }
             }
 
-            // සෝෂල් බොත්තම් සඳහා ලින්ක්ස් ආදේශ කිරීම
+            // සෝෂල් බොත්තම් සඳහා ලින්ක්ස් ආදේශ කිරීම (නොමැති නම් # ලින්ක් එකක් ලෙස ක්‍රියා කරයි)
             const tgSocialBtn = document.getElementById('tg-main-icon-link');
-            if (tgSocialBtn) tgSocialBtn.href = latestTgLink;
+            if (tgSocialBtn) tgSocialBtn.href = latestTgLink || "#";
 
             const fbSocialBtn = document.getElementById('fb-main-icon-link');
             if (fbSocialBtn) fbSocialBtn.href = config.facebook_link || "#";
 
             const ytSocialBtn = document.getElementById('yt-main-icon-link');
             if (ytSocialBtn) ytSocialBtn.href = config.youtube_link || "#";
-
-            const tgBtnHeader = document.getElementById('tg-main-icon-link');
-            if (tgBtnHeader) tgBtnHeader.href = tgChannelLink;
 
             const comingSoonWrapper = document.getElementById('coming-soon-section-wrapper');
             const comingSoonGrid = document.getElementById('coming-soon-grid-container');
@@ -1899,7 +1895,7 @@
                 });
 
                 if (filteredDramas.length === 0) {
-                    area.innerHTML = `<p style="text-align: center; color: var(--neon-pink); font-weight: bold; margin: 50px 0;">🔍 සෙවීමට අදාළ කතාමාලා කිසිවක් හමු නොවීය.</p>`;
+                    area.innerHTML = `<p style="text-align: center; color: var(--neon-pink); font-weight: bold; margin: 50px 0;">🔍 සෙවීමට අදාළ kතාමාලා කිසිවක් හමු නොවීය.</p>`;
                     return;
                 }
 
@@ -1940,6 +1936,7 @@
             }
         }
 
+        /* 🤖 CHAT CHIPS FALLBACK DISABLED (VIOLATION FIXED) */
         function renderDynamicChatChips(config, dramas) {
             try {
                 const chipsContainer = document.querySelector('.ai-action-chips');
@@ -1956,22 +1953,6 @@
                         }
                     });
                 } 
-                else {
-                    if (dramas && dramas.length > 0) {
-                        const lastTwo = dramas.slice(-2);
-                        lastTwo.forEach(d => {
-                            if (d && d.title) {
-                                const titleText = d.title;
-                                const shortTitle = titleText.split(' ')[0] || "Drama";
-                                chipsHTML += `<div class="ai-chip" onclick="quickSend('${titleText} උපසිරැසි තියෙද? 🍿')">🍿 ${shortTitle}?</div>`;
-                            }
-                        });
-                    }
-                    if (config && config.blogger_link) {
-                        chipsHTML += `<div class="ai-chip" onclick="quickSend('Blogger කියවීම් ඉසව්ව ලින්ක් එක මොකක්ද? 📚')">📚 Blogger Link</div>`;
-                    }
-                    chipsHTML += `<div class="ai-chip" onclick="quickSend('Subverse Admin සම්බන්ධ කරගන්නේ කොහොමද? 💬')">💬 Admin Contact</div>`;
-                }
 
                 chipsContainer.innerHTML = chipsHTML;
             } catch (err) {
@@ -1988,7 +1969,7 @@
 
             const translations = {
                 "Action": "ක්‍රියාදාම (Action)",
-                "Romance": "ආදර කතා (Romance)",
+                "Romance": "ආදර kතා (Romance)",
                 "Thriller": "ත්‍රාසජනක (Thriller)",
                 "Historical": "ඓතිහාසික (Historical)",
                 "Fantasy": "මායාවී (Fantasy)",
@@ -2121,9 +2102,10 @@
             renderPage();
         }
 
+        /* 🗳️ DEFAULT VOTE VALUES INITIALIZED TO 0 (VIOLATION FIXED) */
         async function loadCommentsAndLikes() {
-            let likes = 124;
-            let dislikes = 2;
+            let likes = 0;
+            let dislikes = 0;
 
             try {
                 const resLikes = await fetch(`${firebaseURL}likes.json`);
@@ -2144,8 +2126,8 @@
                     await fetch(`${firebaseURL}dislikes.json`, { method: 'PUT', body: JSON.stringify(dislikes) });
                 }
             } catch (e) {
-                likes = parseInt(safeLocalStorage.getItem('subverseLikes')) || 124;
-                dislikes = parseInt(safeLocalStorage.getItem('subverseDislikes')) || 2;
+                likes = parseInt(safeLocalStorage.getItem('subverseLikes')) || 0;
+                dislikes = parseInt(safeLocalStorage.getItem('subverseDislikes')) || 0;
             }
 
             document.getElementById('like-count').innerText = likes;
@@ -2155,21 +2137,20 @@
 
             let storedComments;
             try {
-                storedComments = JSON.parse(safeLocalStorage.getItem('subverseComments')) || [
-                    { name: "Anonymous", text: "උපසිරැසි ඉතාම උසස් මට්ටමක පවතිනවා! ජයවේවා! ❤️" },
-                    { name: "Nipun", text: "Fantastic Cyberpunk layout and super fast download links. Highly recommended!" }
-                ];
+                storedComments = JSON.parse(safeLocalStorage.getItem('subverseComments')) || [];
             } catch (e) {
-                storedComments = [
-                    { name: "Anonymous", text: "උපසිරැසි ඉතාම උසස් මට්ටමක පවතිනවා! ජයවේවා! ❤️" }
-                ];
+                storedComments = [];
             }
             const listContainer = document.getElementById('comments-list');
             if (listContainer) {
-                listContainer.innerHTML = "";
-                storedComments.forEach(c => {
-                    listContainer.innerHTML += `<div class="comment-item"><strong>${c.name}:</strong> ${c.text}</div>`;
-                });
+                if (storedComments.length === 0) {
+                    listContainer.innerHTML = `<p style="font-size:12px; color:var(--text-muted); text-align:center; padding-top:35px;">තවමත් කිසිදු ප්‍රතිචාරයක් නොමැත. 💬</p>`;
+                } else {
+                    listContainer.innerHTML = "";
+                    storedComments.forEach(c => {
+                        listContainer.innerHTML += `<div class="comment-item"><strong>${c.name}:</strong> ${c.text}</div>`;
+                    });
+                }
             }
         }
 
@@ -2189,7 +2170,7 @@
 
             const targetNode = type === 'like' ? 'likes' : 'dislikes';
             const countElId = type === 'like' ? 'like-count' : 'dislike-count';
-            const defaultVal = type === 'like' ? 124 : 2;
+            const defaultVal = 0;
             let currentCount = defaultVal;
 
             try {
@@ -2253,14 +2234,9 @@
 
             let storedComments;
             try {
-                storedComments = JSON.parse(safeLocalStorage.getItem('subverseComments')) || [
-                    { name: "Anonymous", text: "උපසිරැසි ඉතාම උසස් මට්ටමක පවතිනවා! ජයවේවා! ❤️" },
-                    { name: "Nipun", text: "Fantastic Cyberpunk layout and super fast download links. Highly recommended!" }
-                ];
+                storedComments = JSON.parse(safeLocalStorage.getItem('subverseComments')) || [];
             } catch (e) {
-                storedComments = [
-                    { name: "Anonymous", text: "උපසිරැසි ඉතාම උසස් මට්ටමක පවතිනවා! ජයවේවා! ❤️" }
-                ];
+                storedComments = [];
             }
 
             storedComments.push({ name: name, text: text });
@@ -2305,11 +2281,6 @@
                     toggleAIChat(); 
                 }
             }, 180000); 
-        }
-
-        function quickSend(question) {
-            document.getElementById('chat-text-input').value = question;
-            sendAIMessage();
         }
 
         function updateServerStatusUI(statusName, colorVar) {
@@ -2931,4 +2902,3 @@
     </script>
 </body>
 </html>
-
