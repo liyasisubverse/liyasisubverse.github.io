@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="si">
 <head>
@@ -340,32 +339,32 @@
             border: none !important;
             box-shadow: none !important;
             font-weight: 900;
-            font-size: 13px;
+            font-size: 11px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             white-space: nowrap;
             display: inline-flex;
             align-items: center;
-            gap: 4.5px;
+            gap: 4px;
             margin: 0;
             padding: 0;
         }
 
         .neon-cyan-glow {
             color: #00f0ff !important;
-            text-shadow: 0 0 8px #00f0ff, 0 0 16px rgba(0, 240, 255, 0.6);
+            text-shadow: 0 0 6px #00f0ff, 0 0 12px rgba(0, 240, 255, 0.6);
         }
         .neon-purple-glow {
-            color: #b5179e !important;
-            text-shadow: 0 0 8px #b5179e, 0 0 16px rgba(181, 23, 158, 0.6);
+            color: #9d4edd !important;
+            text-shadow: 0 0 6px #9d4edd, 0 0 12px rgba(157, 78, 221, 0.6);
         }
         .neon-pink-glow {
             color: #ff007f !important;
-            text-shadow: 0 0 8px #ff007f, 0 0 16px rgba(255, 0, 127, 0.6);
+            text-shadow: 0 0 6px #ff007f, 0 0 12px rgba(255, 0, 127, 0.6);
         }
         .neon-amber-glow {
             color: #ffaa00 !important;
-            text-shadow: 0 0 8px #ffaa00, 0 0 16px rgba(255, 170, 0, 0.6);
+            text-shadow: 0 0 6px #ffaa00, 0 0 12px rgba(255, 170, 0, 0.6);
         }
 
         /* 📱 RESPONSIVE IMDB GAUGE ON MOBILE CARDS (VIOLATION FIXED) */
@@ -398,6 +397,12 @@
             border-right: 3px solid var(--neon-amber); color: var(--neon-amber); text-shadow: 0 0 8px var(--neon-amber);
             padding: 3.5px 7px; font-size: 11px; font-weight: 900; border-radius: 3px;
             box-shadow: 0 0 10px rgba(255, 170, 0, 0.3); display: flex; align-items: center; gap: 4px; z-index: 2;
+        }
+        .rating-bar-inline {
+            background: rgba(2, 4, 8, 0.95) !important;
+            border-right: 3px solid var(--neon-amber);
+            box-shadow: 0 0 10px rgba(255, 170, 0, 0.3);
+            display: inline-flex; align-items: center; gap: 4px;
         }
 
         .detail-left-column {
@@ -1116,7 +1121,7 @@
 
         const urlParams = new URLSearchParams(window.location.search);
         const dramaId = urlParams.get('id');
-        let dramaUniqueVoteId = `drama_overall_${dramaId}`;
+        let dramaUniqueVoteId = dramaId;
         let globalConfig = {};
 
         // 🎥 Robust YouTube link format parser
@@ -1236,25 +1241,19 @@
                     <div class="detail-poster-wrapper">
                         <img class="detail-poster-img" src="${dramaImg}" alt="Poster">
                         
-                        <!-- Top-Left Badges Inline Row inside Poster (No background box, Glowing neon text) -->
-                        <div class="poster-labels-container" style="position: absolute; top: 15px; left: 15px; right: 15px; display: flex; flex-direction: column; gap: 8px; z-index: 3; align-items: flex-start;">
-                            <div style="display: flex; gap: 12px; align-items: center; width: 100%; justify-content: flex-start; flex-wrap: nowrap; overflow: visible;">
-                                <span class="neon-text-label neon-cyan-glow">${drama.status}</span>
-                                <span class="neon-text-label neon-purple-glow">${drama.type}</span>
-                                <span class="neon-text-label neon-pink-glow">${drama.total_episodes || '?'} EPS</span>
-                            </div>
-                            <div style="display: flex; justify-content: flex-start; width: 100%;">
-                                <span class="neon-text-label neon-amber-glow">
-                                    <i class="fa-solid fa-star"></i> ${drama.imdb}
-                                </span>
-                            </div>
+                        <!-- Top-Left Badges (No background box, Glowing neon text, Single Row Layout) -->
+                        <div class="poster-top-row" style="position: absolute; top: 12px; left: 12px; right: 12px; display: flex; flex-direction: row; flex-wrap: nowrap !important; align-items: center; justify-content: space-between; gap: 8px; z-index: 3; overflow-x: auto !important; scrollbar-width: none;">
+                            <span class="neon-text-label neon-cyan-glow">${drama.status}</span>
+                            <span class="neon-text-label neon-purple-glow">${drama.type}</span>
+                            <span class="neon-text-label neon-pink-glow">${drama.total_episodes || '?'} EPS</span>
+                            <span class="neon-text-label neon-amber-glow"><i class="fa-solid fa-star" style="font-size: 8px; margin-right: 2px;"></i>${drama.imdb}</span>
                         </div>
 
                         <!-- Bottom Gradient Overlay -->
                         <div class="poster-bottom-gradient"></div>
 
                         <!-- Genres inside Bottom of Poster (No background box, Glowing neon text) -->
-                        <div class="poster-genres-container" style="position: absolute; bottom: 15px; left: 15px; right: 15px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; z-index: 3;">
+                        <div class="poster-genres-container" style="position: absolute; bottom: 12px; left: 12px; right: 12px; display: flex; flex-wrap: nowrap !important; gap: 10px; justify-content: center; z-index: 3; overflow-x: auto !important; scrollbar-width: none;">
                             ${drama.genres ? drama.genres.map((g, idx) => {
                                 const neonColors = ['neon-cyan-glow', 'neon-purple-glow', 'neon-pink-glow', 'neon-amber-glow'];
                                 return `<span class="neon-text-label ${neonColors[idx % neonColors.length]}">${g}</span>`;
@@ -1493,30 +1492,27 @@
             sendAIMessage();
         }
 
-        // 📡 FIREBASE REAL-TIME VOTING LOAD
+        // 📡 FIREBASE REAL-TIME VOTING LOAD (Independent Path)
         async function loadVotes() {
+            if (!dramaId) return;
             try {
-                const res = await fetch(firebaseURL + "votes.json");
+                const res = await fetch(`${firebaseURL}drama_votes/${dramaId}.json`);
                 if (res.ok) {
                     const data = await res.json();
                     
-                    document.querySelectorAll('.sl-vote-container').forEach(container => {
-                        const id = container.getAttribute('data-id');
-                        
-                        const likes = (data && data[id] && data[id].like !== undefined) ? parseInt(data[id].like) : 0;
-                        const dislikes = (data && data[id] && data[id].dislike !== undefined) ? parseInt(data[id].dislike) : 0;
+                    const likes = (data && data.like !== undefined) ? parseInt(data.like) : 0;
+                    const dislikes = (data && data.dislike !== undefined) ? parseInt(data.dislike) : 0;
 
-                        const likeEl = container.querySelector('.sl-like-cnt');
-                        const dislikeEl = container.querySelector('.sl-dislike-cnt');
-                        if (likeEl) likeEl.innerText = likes;
-                        if (dislikeEl) dislikeEl.innerText = dislikes;
+                    const likeEl = document.querySelector('.sl-like-cnt');
+                    const dislikeEl = document.querySelector('.sl-dislike-cnt');
+                    if (likeEl) likeEl.innerText = likes;
+                    if (dislikeEl) dislikeEl.innerText = dislikes;
 
-                        const total = likes + dislikes;
-                        const fillEl = container.querySelector('.neon-bar-fill');
-                        if (fillEl) {
-                            fillEl.style.width = (total > 0 ? ((likes / total) * 100) : 0) + '%';
-                        }
-                    });
+                    const total = likes + dislikes;
+                    const fillEl = document.getElementById('drama-vote-bar');
+                    if (fillEl) {
+                        fillEl.style.width = (total > 0 ? ((likes / total) * 100) : 0) + '%';
+                    }
                 }
             } catch(e) {
                 console.error("Error loading votes:", e);
@@ -1524,17 +1520,17 @@
         }
 
         async function handleSLVote(type, btn) {
-            const container = btn.closest('.sl-vote-container');
-            const id = container.getAttribute('data-id');
-            const voteLocalStorageKey = 'voted_' + id;
+            if (!dramaId) return;
+            const voteLocalStorageKey = 'voted_drama_' + dramaId;
+            const isAdmin = safeLocalStorage.getItem('isAdmin') === 'true';
             
-            if (safeLocalStorage.getItem(voteLocalStorageKey) === 'true') {
+            if (!isAdmin && safeLocalStorage.getItem(voteLocalStorageKey) === 'true') {
                 alert("⚠️ ඔබ දැනටමත් ඔබේ මනාපය පළ කර ඇත! ❤️");
                 return;
             }
 
             try {
-                const res = await fetch(`${firebaseURL}votes/${id}.json`);
+                const res = await fetch(`${firebaseURL}drama_votes/${dramaId}.json`);
                 let currentData = { like: 0, dislike: 0 };
                 if (res.ok) {
                     const temp = await res.json();
@@ -1547,13 +1543,15 @@
                 if (type === 'like') newLikes++;
                 if (type === 'dislike') newDislikes++;
 
-                await fetch(`${firebaseURL}votes/${id}.json`, {
+                await fetch(`${firebaseURL}drama_votes/${dramaId}.json`, {
                     method: 'PATCH',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ [type]: type === 'like' ? newLikes : newDislikes })
                 });
 
-                safeLocalStorage.setItem(voteLocalStorageKey, 'true');
+                if (!isAdmin) {
+                    safeLocalStorage.setItem(voteLocalStorageKey, 'true');
+                }
                 loadVotes(); 
             } catch(e) {
                 console.error("Error updating vote:", e);
