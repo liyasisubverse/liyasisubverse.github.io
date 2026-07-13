@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- 🛡️ 1. CONTENT SECURITY POLICY (CSP) META TAG -->
+    <!-- 🛡️ 1. CONTENT SECURITY POLICY (CSP) META TAG - UPDATED FOR NEW FIREBASE -->
     <meta http-equiv="Content-Security-Policy" content="
         default-src 'self'; 
         script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com; 
@@ -12,7 +12,7 @@
         font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; 
         img-src 'self' data: https: http:; 
         frame-src 'self' https://www.youtube.com https://youtube.com;
-        connect-src 'self' https://subverse-b897d-default-rtdb.firebaseio.com https://liyasisubverse1-liyasi-backend.hf.space https://ask-gemini.rashmi004005g.workers.dev https://groq.rashmi004005g.workers.dev https://www.google-analytics.com https://*.google-analytics.com;
+        connect-src 'self' https://liyasi-github-votes-default-rtdb.firebaseio.com https://liyasisubverse1-liyasi-backend.hf.space https://ask-gemini.rashmi004005g.workers.dev https://groq.rashmi004005g.workers.dev https://www.google-analytics.com https://*.google-analytics.com;
     ">
 
     <!-- 🛡️ 2. FRAME-BUSTING (CLICKJACKING ආරක්ෂාව) -->
@@ -120,7 +120,7 @@
             width: 160px; z-index: 1010; backdrop-filter: blur(10px);
         }
         .dropdown-menu a { display: flex; align-items: center; gap: 8px; color: white; padding: 10px 15px; text-decoration: none; font-size: 13px; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.05); transition: 0.2s; }
-        .dropdown-menu a:hover { background: rgba(0, 240, 255, 0.1); color: var(--neon-cyan); }
+        .dropdown-menu a:hover { background: rgba(0,240,255,0.1); color: var(--neon-cyan); }
 
         .logo-wrapper { 
             position: relative; 
@@ -314,14 +314,18 @@
             object-fit: cover; background: #000; border-radius: 10px; z-index: 1; 
         }
 
+        /* 📌 LABELS IN ONE SINGLE ROW WITH HIDDEN SCROLLBAR */
         .poster-top-row {
             position: absolute; top: 12px; left: 12px; right: 12px;
             display: flex; flex-direction: row; flex-wrap: nowrap !important; 
             align-items: center; justify-content: flex-start; gap: 6px; z-index: 3;
             overflow-x: auto !important;
-            scrollbar-width: none;
+            scrollbar-width: none; /* Firefox */
         }
-        .poster-top-row::-webkit-scrollbar { display: none !important; }
+        .poster-top-row::-webkit-scrollbar {
+            display: none !important; /* Chrome, Safari, Opera */
+        }
+
         .poster-top-row span, .poster-top-row .rating-bar-inline {
             flex-shrink: 0 !important;
         }
@@ -373,6 +377,31 @@
             -webkit-text-fill-color: transparent;
             animation: rgb-shift-text 6s linear infinite !important;
             display: inline-block;
+        }
+
+        /* 📱 RESPONSIVE IMDB GAUGE ON MOBILE CARDS (VIOLATION FIXED) */
+        .imdb-gauge-container {
+            position: absolute; right: 6px; top: 6px; 
+            display: flex; flex-direction: column; align-items: center !important; gap: 2px;
+            z-index: 2; 
+            background: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+        }
+        .imdb-track {
+            width: 10px; height: 22px;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 2px; overflow: hidden; position: relative;
+            box-shadow: 0 0 8px rgba(0,0,0,0.8);
+        }
+        .imdb-value {
+            font-size: 9px; font-weight: 900; font-family: monospace;
+            display: flex; align-items: center; justify-content: center !important; gap: 1px;
+            margin-top: 2px;
+            text-shadow: 0 0 5px rgba(0,0,0,1), 0 0 10px rgba(0,0,0,1);
+            white-space: nowrap;
+            width: 100%;
         }
 
         .rating-bar-vertical {
@@ -815,11 +844,6 @@
             0% { -webkit-transform: rotate(0deg); }
             100% { -webkit-transform: rotate(360deg); } 
         }
-        @keyframes lightning-sweep {
-            0% { left: -150%; }
-            50% { left: 150%; }
-            100% { left: 150%; }
-        }
 
         footer { background: rgba(4, 8, 16, 0.95); border-top: 2px solid var(--neon-cyan); padding: 40px 20px; text-align: center; margin-top: 40px; box-shadow: 0 -10px 30px rgba(0, 240, 255, 0.1); }
         .footer-content { max-width: 800px; margin: 0 auto; }
@@ -962,7 +986,7 @@
         <!-- ABOUT US GLASS BOX -->
         <div class="about-section" id="about-us-section-wrapper" style="display:none; margin-top: 30px;"></div>
 
-        <!-- 🌐 GLOWING SOCIAL MEDIA PLUG -->
+        <!-- 🌐 GLOWING SOCIAL MEDIA PLUG (FALLBACKS TO # ENABLED) -->
         <div class="social-plug-box">
             <div class="social-title">CONNECT WITH US ON SOCIAL NETWORKS</div>
             <div class="social-icons-wrapper">
@@ -1100,17 +1124,14 @@
             if (!urlOrId) return "";
             urlOrId = urlOrId.trim();
 
-            // If it is already an embed URL, return it directly
             if (urlOrId.includes("youtube.com/embed/") || urlOrId.includes("youtube-nocookie.com/embed/")) {
                 return urlOrId;
             }
 
             let videoId = "";
-            // If it is exactly 11 characters (standard video ID) and doesn't contain slashes or dots
             if (urlOrId.length === 11 && !urlOrId.includes("/") && !urlOrId.includes(".")) {
                 videoId = urlOrId;
             } else {
-                // Regex for standard formats (watch?v=, youtu.be/, shorts/, embed/, v/, mobile etc.)
                 const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|shorts\/)([^#\&\?]*).*/;
                 const match = urlOrId.match(regExp);
                 if (match && match[2].length === 11) {
@@ -1121,7 +1142,7 @@
             if (videoId) {
                 return `https://www.youtube.com/embed/${videoId}`;
             }
-            return urlOrId; // Return original if parsing cannot proceed
+            return urlOrId; 
         }
 
         async function loadDramaDetails() {
@@ -1145,8 +1166,8 @@
         function renderDramaDetails(drama, config, database) {
             document.title = `${drama.title} - සිංහල උපසිරැසි | ලියැසි SUBVERSE`;
 
-            // Global Config overrides & Dynamic links mapping for Social Media Plug box:
-            let latestDramaTgLink = config.telegram_channel_link || "https://t.me/liyasi1";
+            // Global Config overrides & Dynamic links mapping for Social Media Plug box with "#" fallbacks:
+            let latestDramaTgLink = config.telegram_channel_link || "#";
             if (drama.episodes && drama.episodes.length > 0) {
                 const sortedEps = [...drama.episodes].sort((a, b) => {
                     const numA = parseInt(a.episode.match(/\d+/)?.[0] || 0);
@@ -1413,7 +1434,7 @@
             resetChatMessages();
         }
 
-        // Render Overall Vote Section (Like/Dislike panel for the entire Drama)
+        // Render Overall Drama Vote Section (Like/Dislike panel for the entire Drama)
         function renderOverallVoteSection() {
             const wrapper = document.getElementById('overall-vote-section');
             if (!wrapper) return;
@@ -1440,7 +1461,7 @@
             loadVotes();
         }
 
-        /* 💡 DYNAMIC CHIPS RENDER FUNCTION (PYTHON COMPATIBLE via data.json) */
+        /* 💡 DYNAMIC CHIPS RENDER FUNCTION - CHIPS FALLBACK DISABLED (VIOLATION FIXED) */
         function renderDynamicChatChips(config, dramas) {
             try {
                 const chipsContainer = document.querySelector('.ai-action-chips');
@@ -1457,23 +1478,6 @@
                         }
                     });
                 } 
-                else {
-                    const availableDramas = Object.values(dramas || {}).filter(d => d && d.status !== "UPCOMING");
-                    if (availableDramas && availableDramas.length > 0) {
-                        const lastTwo = availableDramas.slice(-2);
-                        lastTwo.forEach(d => {
-                            if (d && d.title) {
-                                const titleText = d.title;
-                                const shortTitle = titleText.split(' ')[0] || "Drama";
-                                chipsHTML += `<div class="ai-chip" onclick="quickSend('${titleText} උපසිරැසි තියෙද? 🍿')">🍿 ${shortTitle}?</div>`;
-                            }
-                        });
-                    }
-                    if (config && config.blogger_link) {
-                        chipsHTML += `<div class="ai-chip" onclick="quickSend('Blogger කියවීම් ඉසව්ව ලින්ක් එක මොකක්ද? 📚')">📚 Blogger Link</div>`;
-                    }
-                    chipsHTML += `<div class="ai-chip" onclick="quickSend('Subverse Admin සම්බන්ධ කරගන්නේ කොහොමද? 💬')">💬 Admin Contact</div>`;
-                }
 
                 chipsContainer.innerHTML = chipsHTML;
             } catch (err) {
