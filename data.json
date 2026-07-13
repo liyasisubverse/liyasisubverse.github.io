@@ -2,6 +2,12 @@
   "latest_updates": [
     {
       "title": "Doctor Lawyer",
+      "episode": "EP 01",
+      "image_url": "https://i.ibb.co/pBhQmmD1/Doctor-Lawyer-Episode-01.jpg",
+      "post_link": "episode_picker.html?drama_id=196906&ep=EP 01"
+    },
+    {
+      "title": "Doctor Lawyer",
       "episode": "EP 06",
       "image_url": "https://i.ibb.co/pBhQmmD1/Doctor-Lawyer-Episode-01.jpg",
       "post_link": "episode_picker.html?drama_id=196906&ep=EP 06"
@@ -89,12 +95,12 @@
         {
           "episode": "EP 01",
           "link": "https://liyasisubverse.github.io/subtitles/Doctor_Lawyer/Doctor_Lawyer_EP_01.srt",
-          "tg_link": "https://t.me/+FVJpdLwtqxdjYjE1",
+          "tg_link": "tg://join?invite=FVJpdLwtqxdjYjE1",
           "title": "✨️ පළමු සැත්කම ✨️",
           "image": "https://i.ibb.co/pBhQmmD1/Doctor-Lawyer-Episode-01.jpg",
           "synopsis": "දක්ෂ ශල්‍ය වෛද්‍ය හාන් යී-හන් විසින් සිදු කරන විශේෂ හෘද බද්ධය.",
           "map_url": "",
-          "trailer": "",
+          "trailer": "https://www.youtube.com/embed/Vm13Xq24WP0",
           "cast": [
             {
               "name": "So Ji-sub",
