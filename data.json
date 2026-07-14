@@ -3,6 +3,18 @@
     {
       "title": "Joseon Attorney: A Morality",
       "episode": "EP 02",
+      "image_url": "https://i.ibb.co/23xKnG79/60b83a1c8f87.jpg story_map_image = https://i.ibb.co/Xx69sDVZ/81e8c3a61814.png",
+      "post_link": "episode_picker.html?drama_id=206715&ep=EP 02"
+    },
+    {
+      "title": "Joseon Attorney: A Morality",
+      "episode": "EP 01",
+      "image_url": "https://i.ibb.co/23xKnG79/60b83a1c8f87.jpg story_map_image = https://i.ibb.co/Xx69sDVZ/81e8c3a61814.png",
+      "post_link": "episode_picker.html?drama_id=206715&ep=EP 01"
+    },
+    {
+      "title": "Joseon Attorney: A Morality",
+      "episode": "EP 02",
       "image_url": "https://i.ibb.co/23xKnG79/60b83a1c8f87.jpg",
       "post_link": "episode_picker.html?drama_id=206715&ep=EP 02"
     },
@@ -35,18 +47,6 @@
       "episode": "EP 14",
       "image_url": "https://i.ibb.co/pBhQmmD1/Doctor-Lawyer-Episode-01.jpg",
       "post_link": "episode_picker.html?drama_id=196906&ep=EP 14"
-    },
-    {
-      "title": "Doctor Lawyer",
-      "episode": "EP 13",
-      "image_url": "https://i.ibb.co/pBhQmmD1/Doctor-Lawyer-Episode-01.jpg",
-      "post_link": "episode_picker.html?drama_id=196906&ep=EP 13"
-    },
-    {
-      "title": "Doctor Lawyer",
-      "episode": "EP 12",
-      "image_url": "https://i.ibb.co/pBhQmmD1/Doctor-Lawyer-Episode-01.jpg",
-      "post_link": "episode_picker.html?drama_id=196906&ep=EP 12"
     }
   ],
   "dramas": {
@@ -795,7 +795,7 @@
       "status": "ONGOING",
       "imdb": "5.8",
       "total_episodes": 16,
-      "image_url": "https://i.ibb.co/23xKnG79/60b83a1c8f87.jpg",
+      "image_url": "https://i.ibb.co/23xKnG79/60b83a1c8f87.jpg story_map_image = https://i.ibb.co/Xx69sDVZ/81e8c3a61814.png",
       "map_url": "https://i.ibb.co/Xx69sDVZ/81e8c3a61814.png",
       "synopsis": "\"Joseon Attorney: A Morality\" යනු ජොසොන් යුගයේ පසුබිමක දිවෙන නීතිමය සහ පලිගැනීමේ කතාවකි.",
       "genres": [
@@ -843,10 +843,10 @@
           "episode": "EP 01",
           "link": "https://liyasisubverse.github.io/subtitles/Joseon_Attorney_A_Morality/Joseon_Attorney:_A_Morality_EP_01.srt",
           "tg_link": "",
-          "title": "✨️ යුක්තියේ ආරම්භය ✨️",
-          "image": "https://i.ibb.co/23xKnG79/60b83a1c8f87.jpg",
-          "synopsis": "අසාධාරණයට එරෙහිව නැගී සිටින අභිරහස් පුද්ගලයාගේ ආගමනය.",
-          "map_url": "https://i.ibb.co/Xx69sDVZ/81e8c3a61814.png",
+          "title": "✨️ පළමු නඩුව ✨️",
+          "image": "https://i.ibb.co/23xKnG79/60b83a1c8f87.jpg story_map_image = https://i.ibb.co/Xx69sDVZ/81e8c3a61814.png",
+          "synopsis": "කැන්ග් හන්-සූ තම පළමු නඩුව ජයග්‍රහණය කරමින් නගරයට පැමිණීම.",
+          "map_url": "",
           "trailer": "https://www.youtube.com/embed/PxJZZVhmzc8",
           "cast": [
             {
@@ -874,22 +874,22 @@
               "image": "https://image.tmdb.org/t/p/w200/slfoiusX9IrWAB0oi9IbOJ2ih23.jpg"
             }
           ],
-          "director": "Kim Seung-ho (කිම් ස්‍යුන්ග්-හෝ), Lee Han-joon (ලී හන්-ජුන්)",
-          "writer": "Choi Jin-young (චෝයි ජින්-යන්ග්)",
+          "director": "Kim Seung-ho, Lee Han-joon",
+          "writer": "Choi Jin-young",
           "network": "MBC",
-          "first_air_date": "2023-03-31 සිට 2023-05-20 දක්වා",
-          "runtime": "70 min",
+          "first_air_date": "2023-03-31",
+          "runtime": "69 min",
           "country": "South Korea (දකුණු කොරියාව)",
           "imdb": "5.8"
         },
         {
           "episode": "EP 02",
-          "link": "#",
-          "tg_link": "https://t.me/c/3564105068/135",
-          "title": "✨️ උගුලකට හසු වූ අහිංසකයා ✨️",
-          "image": "https://i.ibb.co/23xKnG79/60b83a1c8f87.jpg",
-          "synopsis": "පළමු නඩුව සහ කුතුහලය දනවන උපාය මාර්ග.",
-          "map_url": "https://i.ibb.co/Xx69sDVZ/81e8c3a61814.png",
+          "link": "https://liyasisubverse.github.io/subtitles/Joseon_Attorney_A_Morality/Joseon_Attorney:_A_Morality_EP_02.srt",
+          "tg_link": "",
+          "title": "✨️ නව මිත්‍රත්වය ✨️",
+          "image": "https://i.ibb.co/23xKnG79/60b83a1c8f87.jpg story_map_image = https://i.ibb.co/Xx69sDVZ/81e8c3a61814.png",
+          "synopsis": "හන්-සූ සහ යොන්-ජූ කුමරිය අතර සිදුවන පළමු හමුවීම සහ බැඳීම.",
+          "map_url": "",
           "trailer": "https://www.youtube.com/embed/PxJZZVhmzc8",
           "cast": [
             {
@@ -917,11 +917,11 @@
               "image": "https://image.tmdb.org/t/p/w200/slfoiusX9IrWAB0oi9IbOJ2ih23.jpg"
             }
           ],
-          "director": "Kim Seung-ho (කිම් ස්‍යුන්ග්-හෝ), Lee Han-joon (ලී හන්-ජුන්)",
-          "writer": "Choi Jin-young (චෝයි ජින්-යන්ග්)",
+          "director": "Kim Seung-ho, Lee Han-joon",
+          "writer": "Choi Jin-young",
           "network": "MBC",
-          "first_air_date": "2023-03-31 සිට 2023-05-20 දක්වා",
-          "runtime": "70 min",
+          "first_air_date": "2023-03-31",
+          "runtime": "69 min",
           "country": "South Korea (දකුණු කොරියාව)",
           "imdb": "5.8"
         }
