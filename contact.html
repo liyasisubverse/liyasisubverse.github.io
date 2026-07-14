@@ -32,44 +32,54 @@
         }
         h1 { color: var(--neon-cyan); text-shadow: 0 0 10px var(--neon-cyan); text-transform: uppercase; margin-top: 0; font-size: 24px; font-weight: 900; }
         p { line-height: 1.8; color: #ccc; font-size: 14.5px; }
-        ul { list-style: none; padding: 0; margin: 20px 0; }
-        li { margin-bottom: 25px; font-size: 15px; display: flex; flex-direction: column; gap: 10px; }
-        .label-text { display: flex; align-items: center; gap: 10px; }
+        ul { list-style: none; padding: 0; margin: 25px 0; }
+        li { margin-bottom: 30px; font-size: 15px; }
+        .label-text { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
         li i { color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); width: 20px; }
         
-        /* --- Neon Button Styles --- */
-        .neon-email-btn {
+        /* --- Compact Neon Button Base --- */
+        .neon-btn {
             display: inline-block;
-            padding: 12px 25px;
-            color: var(--neon-cyan);
+            padding: 8px 18px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 14px;
-            border: 2px solid var(--neon-cyan);
-            border-radius: 8px;
+            font-size: 13px;
+            border-radius: 6px;
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: all 0.3s ease;
-            box-shadow: 0 0 10px rgba(0, 240, 255, 0.2), inset 0 0 10px rgba(0, 240, 255, 0.2);
             width: fit-content;
-            margin-top: 5px;
         }
 
-        .neon-email-btn:hover {
+        /* Cyan Button */
+        .btn-cyan {
+            color: var(--neon-cyan);
+            border: 2px solid var(--neon-cyan);
+            box-shadow: 0 0 8px rgba(0, 240, 255, 0.2);
+        }
+        .btn-cyan:hover {
             color: #000;
             background-color: var(--neon-cyan);
-            box-shadow: 0 0 20px var(--neon-cyan), 0 0 40px var(--neon-cyan);
+            box-shadow: 0 0 15px var(--neon-cyan), 0 0 30px var(--neon-cyan);
             transform: translateY(-2px);
         }
 
-        .telegram-link {
-            color: #fff; text-decoration: none; font-weight: bold; transition: 0.3s;
+        /* Pink Button */
+        .btn-pink {
+            color: var(--neon-pink);
+            border: 2px solid var(--neon-pink);
+            box-shadow: 0 0 8px rgba(255, 0, 127, 0.2);
         }
-        .telegram-link:hover { color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); }
+        .btn-pink:hover {
+            color: #000;
+            background-color: var(--neon-pink);
+            box-shadow: 0 0 15px var(--neon-pink), 0 0 30px var(--neon-pink);
+            transform: translateY(-2px);
+        }
 
         .back-btn {
             display: inline-flex; align-items: center; gap: 8px; color: var(--neon-pink);
-            text-decoration: none; font-weight: bold; margin-top: 25px;
+            text-decoration: none; font-weight: bold; margin-top: 20px;
             text-shadow: 0 0 5px var(--neon-pink); transition: 0.3s;
             font-size: 14px;
         }
@@ -84,11 +94,11 @@
         <ul>
             <li>
                 <div class="label-text"><i class="fa-solid fa-envelope"></i> <b>ඊමේල් ලිපිනය (Email) :</b></div>
-                <a href="https://forms.gle/gt9TZJq3J7ofmJUN8" class="neon-email-btn" target="_blank">Send Message (පණිවිඩය එවන්න)</a>
+                <a href="https://forms.gle/gt9TZJq3J7ofmJUN8" class="neon-btn btn-cyan" target="_blank">Contact via Email</a>
             </li>
             <li>
                 <div class="label-text"><i class="fa-brands fa-telegram"></i> <b>ටෙලිග්‍රෑම් (Telegram) :</b></div>
-                <a href="#" class="telegram-link" target="_blank">t.me/yourusername</a>
+                <a href="#" class="neon-btn btn-pink" target="_blank">Contact via Telegram</a>
             </li>
         </ul>
         
