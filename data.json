@@ -8,6 +8,12 @@
     },
     {
       "title": "Doctor Lawyer",
+      "episode": "EP 16",
+      "image_url": "https://i.ibb.co/pBhQmmD1/Doctor-Lawyer-Episode-01.jpg",
+      "post_link": "episode_picker.html?drama_id=196906&ep=EP 16"
+    },
+    {
+      "title": "Doctor Lawyer",
       "episode": "EP 15",
       "image_url": "https://i.ibb.co/pBhQmmD1/Doctor-Lawyer-Episode-01.jpg",
       "post_link": "episode_picker.html?drama_id=196906&ep=EP 15"
@@ -41,12 +47,6 @@
       "episode": "EP 10",
       "image_url": "https://i.ibb.co/pBhQmmD1/Doctor-Lawyer-Episode-01.jpg",
       "post_link": "episode_picker.html?drama_id=196906&ep=EP 10"
-    },
-    {
-      "title": "Doctor Lawyer",
-      "episode": "EP 09",
-      "image_url": "https://i.ibb.co/pBhQmmD1/Doctor-Lawyer-Episode-01.jpg",
-      "post_link": "episode_picker.html?drama_id=196906&ep=EP 09"
     }
   ],
   "dramas": {
@@ -54,7 +54,7 @@
       "id": "196906",
       "title": "Doctor Lawyer",
       "type": "K-DRAMA",
-      "status": "ONGOING",
+      "status": "COMPLETE",
       "imdb": "7.3",
       "total_episodes": 16,
       "image_url": "https://i.ibb.co/pBhQmmD1/Doctor-Lawyer-Episode-01.jpg",
