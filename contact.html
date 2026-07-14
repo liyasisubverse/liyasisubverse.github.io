@@ -19,7 +19,6 @@
             color: #ffffff;
             font-family: 'Segoe UI', system-ui, sans-serif;
             margin: 0; padding: 40px 20px;
-            /* 🏞️ CHANGE YOUR CUSTOM BACKGROUND IMAGE HERE 👇 */
             background-image: linear-gradient(to bottom, rgba(2, 4, 8, 0.88), rgba(2, 4, 8, 0.97)), url('https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=1200&auto=format&fit=crop');
             background-attachment: fixed; background-size: cover; background-position: center;
         }
@@ -34,10 +33,40 @@
         h1 { color: var(--neon-cyan); text-shadow: 0 0 10px var(--neon-cyan); text-transform: uppercase; margin-top: 0; font-size: 24px; font-weight: 900; }
         p { line-height: 1.8; color: #ccc; font-size: 14.5px; }
         ul { list-style: none; padding: 0; margin: 20px 0; }
-        li { margin-bottom: 15px; font-size: 14.5px; display: flex; align-items: center; gap: 10px; }
+        li { margin-bottom: 25px; font-size: 15px; display: flex; flex-direction: column; gap: 10px; }
+        .label-text { display: flex; align-items: center; gap: 10px; }
         li i { color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); width: 20px; }
-        li a { color: #fff; text-decoration: none; font-weight: bold; transition: 0.3s; }
-        li a:hover { color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); }
+        
+        /* --- Neon Button Styles --- */
+        .neon-email-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            color: var(--neon-cyan);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            border: 2px solid var(--neon-cyan);
+            border-radius: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.2), inset 0 0 10px rgba(0, 240, 255, 0.2);
+            width: fit-content;
+            margin-top: 5px;
+        }
+
+        .neon-email-btn:hover {
+            color: #000;
+            background-color: var(--neon-cyan);
+            box-shadow: 0 0 20px var(--neon-cyan), 0 0 40px var(--neon-cyan);
+            transform: translateY(-2px);
+        }
+
+        .telegram-link {
+            color: #fff; text-decoration: none; font-weight: bold; transition: 0.3s;
+        }
+        .telegram-link:hover { color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); }
+
         .back-btn {
             display: inline-flex; align-items: center; gap: 8px; color: var(--neon-pink);
             text-decoration: none; font-weight: bold; margin-top: 25px;
@@ -53,8 +82,14 @@
         <p>ලියැසි SUBVERSE වෙබ් අඩවිය පිළිබඳව ඔබගේ වටිනා අදහස්, යෝජනා, චෝදනා හෝ කිසියම් ගැටලුවක් ඇත්නම් අප වෙත ඉදිරිපත් කිරීමට පහත සඳහන් ක්‍රමවේදයන් භාවිත කළ හැක. අප ඉතාමත් ඉක්මනින් ඔබගේ පණිවිඩ සඳහා ප්‍රතිචාර දැක්වීමට කටයුතු කරන්නෙමු.</p>
         
         <ul>
-            <li><i class="fa-solid fa-envelope"></i> <b>ඊමේල් ලිපිනය (Email) :</b> <a href="https://forms.gle/gt9TZJq3J7ofmJUN8">https://forms.gle/gt9TZJq3J7ofmJUN8</a></li>
-            <li><i class="fa-brands fa-telegram"></i> <b>ටෙලිග්‍රෑම් (Telegram) :</b> <a href="#" target="_blank">#</a></li>
+            <li>
+                <div class="label-text"><i class="fa-solid fa-envelope"></i> <b>ඊමේල් ලිපිනය (Email) :</b></div>
+                <a href="https://forms.gle/gt9TZJq3J7ofmJUN8" class="neon-email-btn" target="_blank">Send Message (පණිවිඩය එවන්න)</a>
+            </li>
+            <li>
+                <div class="label-text"><i class="fa-brands fa-telegram"></i> <b>ටෙලිග්‍රෑම් (Telegram) :</b></div>
+                <a href="#" class="telegram-link" target="_blank">t.me/yourusername</a>
+            </li>
         </ul>
         
         <br>
