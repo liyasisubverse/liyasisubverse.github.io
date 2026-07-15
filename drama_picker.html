@@ -295,27 +295,113 @@
             padding-left: 10px; margin: 0 0 15px 0; letter-spacing: 1px;
         }
 
+        /* 🔲 SINGLE LAYER GLASS WINDOW RECONSTRUCTION & LAYOUT */
         .drama-details-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 30px;
-            background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px;
-            padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); margin-bottom: 30px;
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            gap: 20px;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+            margin-bottom: 30px;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            width: 100%;
+        }
+
+        .glass-card-custom {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 25px;
+        }
+
+        .card-poster-title-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            width: 100%;
+        }
+
+        .detail-title-col {
+            width: 100%;
             text-align: center;
         }
 
+        .drama-main-title {
+            font-size: 28px;
+            font-weight: 900;
+            margin: 0;
+            text-shadow: 0 0 10px #fff;
+            text-transform: uppercase;
+            color: #fff;
+        }
+
+        .card-heading-cyan {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 8px var(--neon-cyan);
+            font-size: 14px;
+            font-weight: 900;
+            text-transform: uppercase;
+            border-left: 3px solid var(--neon-cyan);
+            padding-left: 10px;
+            margin: 0 0 15px 0;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-heading-pink {
+            color: var(--neon-pink);
+            text-shadow: 0 0 8px var(--neon-pink);
+            font-size: 14px;
+            font-weight: 900;
+            text-transform: uppercase;
+            border-left: 3px solid var(--neon-pink);
+            padding-left: 10px;
+            margin: 0 0 15px 0;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .drama-synopsis-text {
+            margin: 0 0 20px 0;
+            text-align: justify;
+            line-height: 1.8;
+            color: #ccc;
+            font-size: 13.5px;
+        }
+
         @media (min-width: 900px) {
-            .drama-details-container {
-                flex-direction: row !important;
-                align-items: flex-start !important;
-                text-align: left !important;
-                gap: 40px !important;
+            .card-poster-title-inner {
+                flex-direction: row;
+                align-items: center;
+                text-align: left;
+            }
+            .detail-title-col {
+                flex-grow: 1;
+                text-align: left;
+                padding-left: 20px;
+            }
+            .drama-main-title {
+                font-size: 36px;
+                text-align: left;
             }
             .detail-poster-wrapper {
-                width: 440px !important; 
-                height: 660px !important; 
+                width: 380px !important; 
+                height: 570px !important; 
                 flex-shrink: 0 !important;
             }
             .detail-info-wrapper {
@@ -349,10 +435,11 @@
             object-fit: cover; background: #000; border-radius: 10px; z-index: 1; 
         }
 
+        /* 🏷️ POSTER IMAGES NEON LABELS (RENOVATED) */
         .neon-text-label {
-            background: none !important;
-            border: none !important;
-            box-shadow: none !important;
+            background: rgba(2, 4, 8, 0.85) !important;
+            border: 1.5px solid currentColor !important;
+            box-shadow: 0 0 10px currentColor !important;
             font-weight: 900;
             font-size: 11px;
             text-transform: uppercase;
@@ -362,7 +449,8 @@
             align-items: center;
             gap: 4px;
             margin: 0;
-            padding: 0;
+            padding: 5px 10px !important;
+            border-radius: 6px;
         }
 
         .neon-cyan-glow {
@@ -380,6 +468,46 @@
         .neon-amber-glow {
             color: #ffaa00 !important;
             text-shadow: 0 0 6px #ffaa00, 0 0 12px rgba(255, 170, 0, 0.6);
+        }
+
+        .poster-top-row {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap !important;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            z-index: 3;
+        }
+
+        .poster-top-left-col {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .poster-genres-container {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            right: 12px;
+            display: flex !important;
+            flex-wrap: wrap !important;
+            justify-content: center !important;
+            gap: 6px !important;
+            z-index: 3;
+            overflow: visible !important;
+        }
+
+        .poster-genres-container .neon-text-label {
+            flex: 0 1 calc(33.333% - 6px);
+            text-align: center;
+            justify-content: center;
         }
 
         .imdb-gauge-container {
@@ -428,7 +556,7 @@
         .info-spec-list { 
             list-style: none; 
             padding: 0; 
-            margin: 0 0 25px 0; 
+            margin: 0; 
             display: flex;
             flex-direction: column; 
             gap: 12px; 
@@ -624,11 +752,25 @@
             animation: rgb-shift-text 6s linear infinite;
             margin-bottom: 25px;
         }
-        .social-icons-wrapper { display: flex; justify-content: center; gap: 25px; }
+
+        /* 🌐 SOCIAL MEDIA PLUG INTERFACE (RECONSTRUCTED WITH BLOGGER) */
+        .social-icons-wrapper { 
+            display: flex; 
+            justify-content: center; 
+            gap: 20px; 
+            flex-wrap: wrap;
+        }
 
         @media (min-width: 900px) {
             .social-icons-wrapper {
                 gap: 55px !important; 
+            }
+            .social-btn {
+                width: 60px !important;
+                height: 60px !important;
+            }
+            .social-btn i {
+                font-size: 24px !important;
             }
         }
 
@@ -651,6 +793,7 @@
         .social-btn.facebook i { color: #1877f2; text-shadow: 0 0 10px #1877f2, 0 0 20px #1877f2; }
         .social-btn.youtube i { color: #ff0000; text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000; }
         .social-btn.telegram i { color: #0088cc; text-shadow: 0 0 10px #0088cc, 0 0 20px #0088cc; }
+        .social-btn.blogger i { color: #ff5722; text-shadow: 0 0 10px #ff5722, 0 0 20px #ff5722; }
         .social-btn:hover { box-shadow: 0 0 15px var(--neon-cyan); }
 
         #cyber-ai-bubble {
@@ -813,7 +956,7 @@
                 clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
                 opacity: 0.5;
             }
-            95% {
+            55% {
                 clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
                 opacity: 1;
                 filter: drop-shadow(0 0 20px var(--neon-cyan)) brightness(1.6);
@@ -852,7 +995,7 @@
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
         @media (max-width: 768px) {
-            .drama-details-container { padding: 20px !important; }
+            .drama-details-container { padding: 0 !important; }
             .detail-poster-wrapper { width: 280px !important; height: 420px !important; max-width: 92% !important; }
             .info-spec-list { grid-template-columns: 1fr; }
             .episodes-grid-cards { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; }
@@ -1010,6 +1153,8 @@
                 <a href="#" target="_blank" class="social-btn facebook" id="fb-main-icon-link"><i class="fa-brands fa-facebook-f"></i></a>
                 <a href="#" target="_blank" class="social-btn youtube" id="yt-main-icon-link"><i class="fa-brands fa-youtube"></i></a>
                 <a href="#" target="_blank" class="social-btn telegram" id="tg-config-link"><i class="fa-brands fa-telegram"></i></a>
+                <!-- කරුණාකර ඔබගේ Blogger ලින්ක් එක href="" තුළ මෙතැන ඇතුලත් කරන්න -->
+                <a href="" target="_blank" class="social-btn blogger" id="blogger-config-link"><i class="fa-brands fa-blogger-b"></i></a>
             </div>
         </section>
 
@@ -1273,29 +1418,40 @@
                 }
             }
 
+            // 🔲 WINDOW LAYER RECONSTRUCTION & REORGANIZATION
             const detailsWrapper = document.getElementById('drama-details-wrapper');
             if (detailsWrapper) {
                 detailsWrapper.innerHTML = `
-                    <div class="detail-left-column">
-                        <div class="detail-poster-wrapper">
-                            <img class="detail-poster-img" src="${dramaImg}" alt="${drama.title} සිංහල උපසිරැසි | Sinhala Subtitles">
-                            <div class="poster-top-row" style="position: absolute; top: 12px; left: 12px; right: 12px; display: flex; flex-direction: row; flex-wrap: nowrap !important; align-items: center; justify-content: space-between; gap: 8px; z-index: 3; overflow-x: auto !important; scrollbar-width: none;">
-                                <span class="neon-text-label neon-cyan-glow">${drama.status}</span>
-                                <span class="neon-text-label neon-purple-glow">${drama.type}</span>
-                                <span class="neon-text-label neon-pink-glow">${drama.total_episodes || '?'} EPS</span>
-                                <span class="neon-text-label neon-amber-glow"><i class="fa-solid fa-star" style="font-size: 8px; margin-right: 2px;"></i>${drama.imdb}</span>
+                    <!-- CARD 01: POSTER & DRAMA TITLE ONLY -->
+                    <div class="glass-card-custom">
+                        <div class="card-poster-title-inner">
+                            <div class="detail-poster-wrapper">
+                                <img class="detail-poster-img" src="${dramaImg}" alt="${drama.title} සිංහල උපසිරැසි | Sinhala Subtitles">
+                                <div class="poster-top-row">
+                                    <div class="poster-top-left-col">
+                                        <span class="neon-text-label neon-cyan-glow">${drama.status}</span>
+                                        <span class="neon-text-label neon-amber-glow"><i class="fa-solid fa-star" style="font-size: 8px; margin-right: 2px;"></i>${drama.imdb}</span>
+                                    </div>
+                                    <span class="neon-text-label neon-purple-glow">${drama.type}</span>
+                                    <span class="neon-text-label neon-pink-glow">${drama.total_episodes || '?'} EPS</span>
+                                </div>
+                                <div class="poster-bottom-gradient"></div>
+                                <div class="poster-genres-container">
+                                    ${drama.genres ? drama.genres.map((g, idx) => {
+                                        const neonColors = ['neon-cyan-glow', 'neon-purple-glow', 'neon-pink-glow', 'neon-amber-glow'];
+                                        return `<span class="neon-text-label ${neonColors[idx % neonColors.length]}">${g}</span>`;
+                                    }).join('') : ''}
+                                </div>
                             </div>
-                            <div class="poster-bottom-gradient"></div>
-                            <div class="poster-genres-container" style="position: absolute; bottom: 12px; left: 12px; right: 12px; display: flex; flex-wrap: nowrap !important; gap: 10px; justify-content: center; z-index: 3; overflow-x: auto !important; scrollbar-width: none;">
-                                ${drama.genres ? drama.genres.map((g, idx) => {
-                                    const neonColors = ['neon-cyan-glow', 'neon-purple-glow', 'neon-pink-glow', 'neon-amber-glow'];
-                                    return `<span class="neon-text-label ${neonColors[idx % neonColors.length]}">${g}</span>`;
-                                }).join('') : ''}
+                            <div class="detail-title-col">
+                                <h1 class="drama-main-title">${drama.title}</h1>
                             </div>
                         </div>
                     </div>
-                    <div class="detail-info-wrapper">
-                        <h1 style="font-size: 28px; font-weight: 900; margin: 0 0 15px 0; text-shadow: 0 0 10px #fff; text-transform: uppercase;">${drama.title}</h1>
+
+                    <!-- CARD 02: SPECIFICATIONS (DRAMA DETAILS) -->
+                    <div class="glass-card-custom">
+                        <h3 class="card-heading-cyan"><i class="fa-solid fa-circle-info"></i> කතාමාලා විස්තර (Drama Details)</h3>
                         <ul class="info-spec-list">
                             <li class="info-spec-item"><span class="info-spec-label">Director:</span> <span class="info-spec-value">${drama.director || 'N/A'}</span></li>
                             <li class="info-spec-item"><span class="info-spec-label">Writer:</span> <span class="info-spec-value">${drama.writer || 'N/A'}</span></li>
@@ -1304,10 +1460,12 @@
                             <li class="info-spec-item"><span class="info-spec-label">Air Date:</span> <span class="info-spec-value">${drama.first_air_date || 'N/A'}</span></li>
                             <li class="info-spec-item"><span class="info-spec-label">Runtime:</span> <span class="info-spec-value">${drama.runtime || 'N/A'}</span></li>
                         </ul>
-                        <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); padding: 20px; border-radius: 10px; line-height: 1.8; color: #ccc; font-size: 13.5px; margin-bottom: 20px;">
-                            <h3 style="color: ${statusColor}; text-shadow: 0 0 5px ${statusColor}; margin: 0 0 10px 0; font-size: 14px; text-transform: uppercase; font-weight: 900;">කතා සාරාංශය (Synopsis)</h3>
-                            <p style="margin: 0; text-align: justify;">${drama.synopsis || 'කතා සාරාංශයක් ඇතුළත් කර නොමැත.'}</p>
-                        </div>
+                    </div>
+
+                    <!-- CARD 03: SYNOPSIS & TRAILER -->
+                    <div class="glass-card-custom">
+                        <h3 class="card-heading-pink"><i class="fa-solid fa-book-open"></i> කතා සාරාංශය (Synopsis)</h3>
+                        <p class="drama-synopsis-text">${drama.synopsis || 'කතා සාරාංශයක් ඇතුළත් කර නොමැත.'}</p>
                         ${trailerHTML}
                     </div>
                 `;
