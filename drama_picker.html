@@ -99,6 +99,7 @@
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
+            padding-top: 145px; /* Fixed sticky header එකට ඉඩ වෙන් කිරීම */
         }
 
         html, body {
@@ -120,9 +121,12 @@
             pointer-events: none;
         }
 
+        /* 📌 FIXED HEADER BAR */
         .sticky-top-bar {
-            position: sticky;
+            position: fixed !important;
             top: 0;
+            left: 0;
+            right: 0;
             z-index: 1000;
             background: transparent !important;
             backdrop-filter: none !important;
@@ -295,7 +299,7 @@
             padding-left: 10px; margin: 0 0 15px 0; letter-spacing: 1px;
         }
 
-        /* 🔲 SINGLE LAYER GLASS WINDOW RECONSTRUCTION & LAYOUT */
+        /* 🔲 SINGLE LAYER GLASS WINDOW RECONSTRUCTION */
         .drama-details-container {
             display: flex;
             flex-direction: column;
@@ -376,8 +380,23 @@
             gap: 8px;
         }
 
+        .card-heading-amber {
+            color: var(--neon-amber);
+            text-shadow: 0 0 8px var(--neon-amber);
+            font-size: 14px;
+            font-weight: 900;
+            text-transform: uppercase;
+            border-left: 3px solid var(--neon-amber);
+            padding-left: 10px;
+            margin: 0 0 15px 0;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
         .drama-synopsis-text {
-            margin: 0 0 20px 0;
+            margin: 0;
             text-align: justify;
             line-height: 1.8;
             color: #ccc;
@@ -470,25 +489,17 @@
             text-shadow: 0 0 6px #ffaa00, 0 0 12px rgba(255, 170, 0, 0.6);
         }
 
+        /* 📊 GRID ALIGNMENT FOR TOP ROW + IMDB */
         .poster-top-row {
             position: absolute;
             top: 12px;
             left: 12px;
             right: 12px;
-            display: flex;
-            flex-direction: row;
-            flex-wrap: nowrap !important;
-            align-items: center;
-            justify-content: space-between;
-            gap: 8px;
+            display: grid !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+            grid-template-rows: auto auto !important;
+            gap: 8px !important;
             z-index: 3;
-        }
-
-        .poster-top-left-col {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 8px;
         }
 
         .poster-genres-container {
@@ -508,30 +519,6 @@
             flex: 0 1 calc(33.333% - 6px);
             text-align: center;
             justify-content: center;
-        }
-
-        .imdb-gauge-container {
-            position: absolute; right: 6px; top: 6px; 
-            display: flex; flex-direction: column; align-items: center !important; gap: 2px;
-            z-index: 2; 
-            background: none !important;
-            border: none !important;
-            box-shadow: none !important;
-            padding: 0 !important;
-        }
-        .imdb-track {
-            width: 10px; height: 22px;
-            background: rgba(255, 255, 255, 0.25);
-            border-radius: 2px; overflow: hidden; position: relative;
-            box-shadow: 0 0 8px rgba(0,0,0,0.8);
-        }
-        .imdb-value {
-            font-size: 9px; font-weight: 900; font-family: monospace;
-            display: flex; align-items: center; justify-content: center !important; gap: 1px;
-            margin-top: 2px;
-            text-shadow: 0 0 5px rgba(0,0,0,1), 0 0 10px rgba(0,0,0,1);
-            white-space: nowrap;
-            width: 100%;
         }
 
         .rating-bar-vertical {
@@ -1019,7 +1006,7 @@
                 box-sizing: border-box !important;
             }
             header {
-                position: sticky !important;
+                position: fixed !important;
                 top: 0 !important;
                 z-index: 1000 !important;
                 background: transparent !important;
@@ -1035,7 +1022,7 @@
                 box-shadow: none !important;
             }
             .sub-nav-container {
-                position: sticky !important;
+                position: fixed !important;
                 top: 81px !important; 
                 z-index: 998 !important;
                 padding: 10px 15px !important;
@@ -1100,10 +1087,10 @@
                 <div class="sub-nav-date" id="cyberDate">📅 Loading...</div>
             </div>
         </nav>
-    </div>
 
-    <div class="ticker-wrapper">
-        <div class="ticker-text" id="ticker-text">⚡ Loading Subtitle Terminal...</div>
+        <div class="ticker-wrapper">
+            <div class="ticker-text" id="ticker-text">⚡ Loading Subtitle Terminal...</div>
+        </div>
     </div>
 
     <!-- MAIN BODY CONTAINER -->
@@ -1406,34 +1393,30 @@
                 const embedUrl = getYouTubeEmbedUrl(trailerUrl);
                 if (embedUrl) {
                     trailerHTML = `
-                        <div class="trailer-box-container" style="margin-top: 25px;">
-                            <h3 style="color: var(--neon-amber); text-shadow: 0 0 5px var(--neon-amber); margin: 0 0 12px 0; font-size: 14px; text-transform: uppercase; font-weight: 900; display: flex; align-items: center; gap: 8px; border-left: 3px solid var(--neon-amber); padding-left: 10px;">
-                                <i class="fa-brands fa-youtube" style="color: #ff0000; font-size: 16px;"></i> පූර්ව ප්‍රචාරක පටය (Official Trailer)
-                            </h3>
-                            <div class="trailer-iframe-wrapper">
-                                <iframe src="${embedUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
-                            </div>
+                        <h3 class="card-heading-amber">
+                            <i class="fa-brands fa-youtube" style="color: #ff0000; font-size: 16px;"></i> පූර්ව ප්‍රචාරක පටය (Official Trailer)
+                        </h3>
+                        <div class="trailer-iframe-wrapper">
+                            <iframe src="${embedUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
                         </div>
                     `;
                 }
             }
 
-            // 🔲 WINDOW LAYER RECONSTRUCTION & REORGANIZATION
+            // 🔲 SINGLE LAYER CARDS WITH FIXED LAYOUTS
             const detailsWrapper = document.getElementById('drama-details-wrapper');
             if (detailsWrapper) {
                 detailsWrapper.innerHTML = `
-                    <!-- CARD 01: POSTER & DRAMA TITLE ONLY -->
+                    <!-- CARD 01: POSTER & TITLE ONLY -->
                     <div class="glass-card-custom">
                         <div class="card-poster-title-inner">
                             <div class="detail-poster-wrapper">
                                 <img class="detail-poster-img" src="${dramaImg}" alt="${drama.title} සිංහල උපසිරැසි | Sinhala Subtitles">
                                 <div class="poster-top-row">
-                                    <div class="poster-top-left-col">
-                                        <span class="neon-text-label neon-cyan-glow">${drama.status}</span>
-                                        <span class="neon-text-label neon-amber-glow"><i class="fa-solid fa-star" style="font-size: 8px; margin-right: 2px;"></i>${drama.imdb}</span>
-                                    </div>
-                                    <span class="neon-text-label neon-purple-glow">${drama.type}</span>
-                                    <span class="neon-text-label neon-pink-glow">${drama.total_episodes || '?'} EPS</span>
+                                    <span class="neon-text-label neon-cyan-glow" style="grid-column: 1; grid-row: 1; justify-self: start;">${drama.status}</span>
+                                    <span class="neon-text-label neon-purple-glow" style="grid-column: 2; grid-row: 1; justify-self: center;">${drama.type}</span>
+                                    <span class="neon-text-label neon-pink-glow" style="grid-column: 3; grid-row: 1; justify-self: end;">${drama.total_episodes || '?'} EPS</span>
+                                    <span class="neon-text-label neon-amber-glow" style="grid-column: 1; grid-row: 2; justify-self: start;"><i class="fa-solid fa-star" style="font-size: 8px; margin-right: 2px;"></i>${drama.imdb}</span>
                                 </div>
                                 <div class="poster-bottom-gradient"></div>
                                 <div class="poster-genres-container">
@@ -1449,7 +1432,7 @@
                         </div>
                     </div>
 
-                    <!-- CARD 02: SPECIFICATIONS (DRAMA DETAILS) -->
+                    <!-- CARD 02: DRAMA DETAILS (SPECIFICATIONS) -->
                     <div class="glass-card-custom">
                         <h3 class="card-heading-cyan"><i class="fa-solid fa-circle-info"></i> කතාමාලා විස්තර (Drama Details)</h3>
                         <ul class="info-spec-list">
@@ -1462,12 +1445,18 @@
                         </ul>
                     </div>
 
-                    <!-- CARD 03: SYNOPSIS & TRAILER -->
+                    <!-- CARD 03: SYNOPSIS (කවුළුව 01) -->
                     <div class="glass-card-custom">
                         <h3 class="card-heading-pink"><i class="fa-solid fa-book-open"></i> කතා සාරාංශය (Synopsis)</h3>
                         <p class="drama-synopsis-text">${drama.synopsis || 'කතා සාරාංශයක් ඇතුළත් කර නොමැත.'}</p>
+                    </div>
+
+                    <!-- CARD 04: OFFICIAL TRAILER (කවුළුව 02 - ඇත්නම් පමණක් දර්ශනය වේ) -->
+                    ${trailerHTML ? `
+                    <div class="glass-card-custom">
                         ${trailerHTML}
                     </div>
+                    ` : ''}
                 `;
             }
 
