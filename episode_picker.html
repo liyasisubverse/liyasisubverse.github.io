@@ -8,7 +8,7 @@
     <!-- 🛡️ CONTENT SECURITY POLICY (CSP) META TAG -->
     <meta http-equiv="Content-Security-Policy" content="
         default-src 'self'; 
-        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com; 
+        script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; 
         style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; 
         font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; 
         img-src 'self' data: https: http:; 
@@ -32,8 +32,22 @@
     </script>
 
     <!-- FAVICON LINK -->
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" href=""> <!-- කරුණාකර ඔබගේ favicon.png ලින්ක් එක href="" තුළ මෙතැන ඇතුලත් කරන්න -->
     
+    <!-- SEO META TAGS -->
+    <meta name="description" id="meta-desc" content="ලියැසි SUBVERSE වෙතින් ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි නොමිලේ සෘජුවම බාගත කරගන්න.">
+    <meta name="keywords" id="meta-keywords" content="liyasi subverse, sinhala subtitles, sinhala sub, liyasi sub, korean drama sinhala sub">
+    <meta name="author" content="ලියැසි SUBVERSE">
+
+    <!-- OPEN GRAPH TAGS -->
+    <meta property="og:title" id="og-title" content="ලියැසි SUBVERSE">
+    <meta property="og:description" id="og-desc" content="ගුණාත්මක බවින් ඉහළම ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි නොමිලේ, සෘජුවම බාගත කරගන්න.">
+    <meta property="og:image" id="og-image" content=""> <!-- කරුණාකර ඔබගේ Social Preview ලින්ක් එක content="" තුළ මෙතැන ඇතුලත් කරන්න -->
+    <meta property="og:type" content="video.episode">
+
+    <!-- TVEpisode JSON-LD Schema (Structured Data) -->
+    <script type="application/ld+json" id="episode-schema"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Segoe+UI:wght@400;600;800;900&display=swap" rel="stylesheet">
 
@@ -926,7 +940,7 @@
         <header>
             <div class="header-container">
                 <div class="header-left-zone">
-                    <div class="three-dot-wrapper">
+                    <nav class="three-dot-wrapper">
                         <button class="three-dot-btn" onclick="toggleDropdown()"><i class="fa-solid fa-ellipsis-vertical"></i></button>
                         <div class="dropdown-menu" id="threeDotMenu">
                             <a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact Us</a>
@@ -935,7 +949,7 @@
                             <a href="request.html"><i class="fa-solid fa-film"></i> Request Drama</a>
                             <a href="about.html"><i class="fa-solid fa-address-card"></i> About Us</a>
                         </div>
-                    </div>
+                    </nav>
                     <!-- Alternating Logo & Coded Tagline -->
                     <a href="index.html" class="logo-wrapper" id="header-logo-container">
                         <img class="site-logo-img" src="https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/81260990-6d71-4fbb-b966-43f96215438e.png" alt="Subverse Logo">
@@ -949,13 +963,13 @@
         </header>
 
         <!-- SUB-NAVIGATION BAR -->
-        <div class="sub-nav-container">
+        <nav class="sub-nav-container">
             <div class="sub-nav-bar">
                 <div class="sub-nav-clock" id="cyberClock">⏰ 00:00:00 AM</div>
                 <a href="index.html" class="sub-nav-item active"><i class="fa-solid fa-house"></i> Home</a>
                 <div class="sub-nav-date" id="cyberDate">📅 Loading...</div>
             </div>
-        </div>
+        </nav>
     </div>
 
     <div class="ticker-wrapper">
@@ -963,38 +977,42 @@
     </div>
 
     <!-- MAIN BODY CONTAINER -->
-    <div class="main-container">
+    <main class="main-container">
 
         <!-- BREADCRUMBS NAVIGATION -->
-        <div class="breadcrumb-nav" id="breadcrumb-container">
+        <nav class="breadcrumb-nav" id="breadcrumb-container">
             <!-- Dynamically populated via Javascript -->
-        </div>
+        </nav>
         
         <!-- DYNAMIC DETAILED HERO BLOCK -->
-        <div class="drama-details-container" id="drama-details-wrapper">
-            <p style="text-align: center; color: var(--neon-cyan); padding: 50px 0;">🤖 [SYSTEM RETRIEVING DATA...]</p>
-        </div>
+        <section class="drama-details-container" id="drama-details-wrapper">
+            <!-- Static Fallback Content for SEO Crawlers -->
+            <div style="padding: 20px; text-align: center; width: 100%;">
+                <h2>ලියැසි SUBVERSE - උපසිරැසි බාගත කිරීමේ කවුළුව</h2>
+                <p>ආසියානු කතාමාලා වල නිශ්චිත කොටස් (Episodes) සඳහා සිංහල උපසිරැසි සහ වීඩියෝ ලින්ක්ස් මෙතැනින් නොමිලේ ලබාගන්න.</p>
+            </div>
+        </section>
 
         <!-- 📖 EPISODE STORY SYNOPSIS BOX -->
-        <div class="glass-section-custom" id="episode-story-section-wrapper" style="display:none;"></div>
+        <section class="glass-section-custom" id="episode-story-section-wrapper" style="display:none;"></section>
 
         <!-- 🎭 CAST & CREW DYNAMIC HOLDER -->
-        <div class="glass-section-custom" id="cast-section-wrapper" style="display:none;"></div>
+        <section class="glass-section-custom" id="cast-section-wrapper" style="display:none;"></section>
 
         <!-- 🗺️ STORY MAP DYNAMIC HOLDER -->
-        <div class="glass-section-custom" id="map-section-wrapper" style="display:none;"></div>
+        <section class="glass-section-custom" id="map-section-wrapper" style="display:none;"></section>
 
         <!-- 🍿 OFFICIAL TRAILER DYNAMIC HOLDER -->
-        <div class="glass-section-custom" id="trailer-section-wrapper" style="display:none;"></div>
+        <section class="glass-section-custom" id="trailer-section-wrapper" style="display:none;"></section>
 
         <!-- 🇱🇰 VOTE / USER CHOICE DYNAMIC HOLDER -->
-        <div class="glass-section-custom" id="vote-section-wrapper" style="display:none;"></div>
+        <section class="glass-section-custom" id="vote-section-wrapper" style="display:none;"></section>
 
         <!-- 📥 DOWNLOAD BOX CONTAINER -->
-        <div class="glass-section-custom" id="download-section-wrapper" style="display:none;"></div>
+        <section class="glass-section-custom" id="download-section-wrapper" style="display:none;"></section>
 
         <!-- ⬅️   ➡️ NAVIGATION BUTTONS CONTAINER -->
-        <div class="glass-section-custom" id="episode-navigation-wrapper" style="display:none; margin-bottom: 25px;">
+        <section class="glass-section-custom" id="episode-navigation-wrapper" style="display:none; margin-bottom: 25px;">
             <div class="episode-nav-container">
                 <a id="prev-episode-btn" class="download-btn" href="#">
                     <span class="btn-sheen-sweep"></span>
@@ -1005,18 +1023,18 @@
                     <span style="position:relative; z-index:3;">Next ➡️</span>
                 </a>
             </div>
-        </div>
+        </section>
 
         <!-- 📂 CATEGORY/GENRE CHOICE PANEL -->
-        <div class="glass-section-custom" id="genre-vote-wrapper" style="display:none;">
+        <section class="glass-section-custom" id="genre-vote-wrapper" style="display:none;">
             <h3>📂 ඔබට වැඩිපුරම අවශ්‍ය කුමන ප්‍රභේදද? (Vote for Genre)</h3>
             <div class="cat-vote-wrapper" id="genre-vote-container">
                 <!-- Genre voting items will be populated dynamically -->
             </div>
-        </div>
+        </section>
 
         <!-- 💬 REAL-TIME COMMENTS SECTION -->
-        <div class="glass-section-custom" id="comments-section-wrapper">
+        <section class="glass-section-custom" id="comments-section-wrapper">
             <h3>💬 අදහස් සහ ප්‍රතිචාර (Comments)</h3>
             <div id="comments-list-container">
                 <p style="font-size:12px; color:var(--text-muted);">ප්‍රතිචාර පූරණය වෙමින් පවතී...</p>
@@ -1028,22 +1046,22 @@
                     <i class="fa-solid fa-paper-plane"></i> SUBMIT
                 </button>
             </div>
-        </div>
+        </section>
 
         <!-- ABOUT US SECTION -->
-        <div class="about-section" id="about-us-section-wrapper" style="display:none;"></div>
+        <section class="about-section" id="about-us-section-wrapper" style="display:none;"></section>
 
         <!-- 🌐 GLOWING SOCIAL MEDIA PLUG -->
-        <div class="social-plug-box">
-            <div class="social-title">CONNECT WITH US ON SOCIAL NETWORKS</div>
+        <section class="social-plug-box">
+            <h3 class="social-title">CONNECT WITH US ON SOCIAL NETWORKS</h3>
             <div class="social-icons-wrapper">
                 <a href="#" target="_blank" class="social-btn facebook" id="fb-main-icon-link"><i class="fa-brands fa-facebook-f"></i></a>
                 <a href="#" target="_blank" class="social-btn youtube" id="yt-main-icon-link"><i class="fa-brands fa-youtube"></i></a>
                 <a href="#" target="_blank" class="social-btn telegram" id="tg-config-link"><i class="fa-brands fa-telegram"></i></a>
             </div>
-        </div>
+        </section>
 
-    </div>
+    </main>
 
     <!-- 🤖 CYBER-AI FLOATING CHATBOT WIDGET -->
     <div id="cyber-ai-bubble" onclick="toggleAIChat()">
@@ -1176,7 +1194,54 @@
                 return;
             }
 
-            document.title = `${currentDrama.title || ''} ${epNum} - ලියැසි SUBVERSE`;
+            // Dynamically update SEO Meta Tags
+            document.title = `${currentDrama.title || ''} ${epNum} සිංහල උපසිරැසි | Sinhala Subtitles - ලියැසි SUBVERSE`;
+            
+            const metaDesc = document.getElementById('meta-desc');
+            if (metaDesc) {
+                metaDesc.setAttribute('content', `${currentDrama.title || ''} ${epNum} (සිංහල උපසිරැසි) - ${currentEpisode.synopsis ? currentEpisode.synopsis.slice(0, 150) : (currentDrama.synopsis ? currentDrama.synopsis.slice(0, 150) : '')}...`);
+            }
+            const metaKeywords = document.getElementById('meta-keywords');
+            if (metaKeywords) {
+                metaKeywords.setAttribute('content', `${currentDrama.title || ''} ${epNum} sinhala sub, ${currentDrama.title || ''} ${epNum} sinhala subtitles, liyasi sub, subverse, ${currentDrama.title || ''} liyasi`);
+            }
+            const ogTitle = document.getElementById('og-title');
+            if (ogTitle) {
+                ogTitle.setAttribute('content', `${currentDrama.title || ''} ${epNum} සිංහල උපසිරැසි | Sinhala Subtitles - ලියැසි SUBVERSE`);
+            }
+            const ogDesc = document.getElementById('og-desc');
+            if (ogDesc) {
+                ogDesc.setAttribute('content', `නවතම ${currentDrama.title || ''} කතාමාලාවේ ${epNum} කොටස සඳහා සිංහල උපසිරැසි නොමිලේ සෘජුවම බාගත කරගන්න.`);
+            }
+            const ogImage = document.getElementById('og-image');
+            const dramaImg = currentDrama.image_url || currentDrama.image || currentDrama.imageUrl || '';
+            const epImg = currentEpisode.image || currentEpisode.image_url || currentEpisode.imageUrl || dramaImg;
+            if (ogImage && epImg) {
+                ogImage.setAttribute('content', epImg);
+            }
+
+            // Populate TVEpisode Schema Markup dynamically
+            const schemaEl = document.getElementById('episode-schema');
+            if (schemaEl) {
+                const schemaData = {
+                    "@context": "https://schema.org",
+                    "@type": "TVEpisode",
+                    "name": currentEpisode.title || epNum,
+                    "episodeNumber": epNum.replace(/\D/g, "") || "1",
+                    "description": currentEpisode.synopsis || currentDrama.synopsis || "",
+                    "image": epImg,
+                    "partOfTVSeries": {
+                        "@type": "TVSeries",
+                        "name": currentDrama.title
+                    },
+                    "author": {
+                        "@type": "Organization",
+                        "name": "ලියැසි SUBVERSE"
+                    }
+                };
+                schemaEl.textContent = JSON.stringify(schemaData);
+            }
+
             const tickerEl = document.getElementById('ticker-text');
             if (tickerEl) tickerEl.innerHTML = `⚡ ${currentDrama.title || ''} [${epNum}] උපසිරැසි දැන් බාගත කරගත හැක! • `;
 
@@ -1254,7 +1319,7 @@
             wrapper.innerHTML = `
                 <div class="detail-left-column">
                     <div class="detail-poster-wrapper">
-                        <img class="detail-poster-img" src="${epImg}" alt="Poster">
+                        <img class="detail-poster-img" src="${epImg}" alt="${currentDrama.title} ${epNum} සිංහල උපසිරැසි | Sinhala Subtitles">
                         <div class="poster-top-row" style="position: absolute; top: 12px; left: 12px; right: 12px; display: flex; flex-direction: row; flex-wrap: nowrap !important; align-items: center; justify-content: space-between; gap: 8px; z-index: 3; overflow-x: auto !important; scrollbar-width: none;">
                             <span class="neon-text-label neon-cyan-glow">${currentDrama.status}</span>
                             <span class="neon-text-label neon-purple-glow">${currentDrama.type || 'DRAMA'}</span>
@@ -1312,7 +1377,7 @@
                 castHTML += `
                     <div class="cast-member-item">
                         <div class="cast-img-container">
-                            <img src="${c.image || c.image_url || c.imageUrl || ''}" alt="${c.name}" loading="lazy">
+                            <img src="${c.image || c.image_url || c.imageUrl || ''}" alt="${c.name} - Cast Member" loading="lazy">
                         </div>
                         <span class="cast-member-name">${c.name}</span>
                     </div>
@@ -1332,7 +1397,7 @@
             section.innerHTML = `
                 <h3>🗺️ කතාවේ සිතියම (Story Relationship Map)</h3>
                 <div class="map-responsive-box">
-                    <img src="${mapUrl}" alt="Relationship Map" loading="lazy">
+                    <img src="${mapUrl}" alt="${currentDrama.title} Story Map" loading="lazy">
                 </div>
             `;
         }
@@ -2072,7 +2137,6 @@
             offscreenCtx.fillRect(0, 0, 800, 300);
             
             offscreenCtx.font = "900 85px 'Segoe UI', sans-serif";
-            offscreenCtx.textAlign = "center";
             offscreenCtx.textBaseline = "middle";
             offscreenCtx.strokeStyle = '#ffffff';
             offscreenCtx.lineWidth = 3.5;
