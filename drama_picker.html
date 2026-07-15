@@ -8,7 +8,7 @@
     <!-- 🛡️ CONTENT SECURITY POLICY (CSP) META TAG -->
     <meta http-equiv="Content-Security-Policy" content="
         default-src 'self'; 
-        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com; 
+        script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; 
         style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; 
         font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; 
         img-src 'self' data: https: http:; 
@@ -32,7 +32,21 @@
     </script>
 
     <!-- FAVICON -->
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" href=""> <!-- කරුණාකර ඔබගේ favicon.png ලින්ක් එක href="" තුළ මෙතැන ඇතුලත් කරන්න -->
+
+    <!-- SEO META TAGS -->
+    <meta name="description" id="meta-desc" content="ලියැසි SUBVERSE වෙතින් ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි නොමිලේ සෘජුවම බාගත කරගන්න.">
+    <meta name="keywords" id="meta-keywords" content="liyasi subverse, sinhala subtitles, sinhala sub, liyasi sub, korean drama sinhala sub">
+    <meta name="author" content="ලියැසි SUBVERSE">
+
+    <!-- OPEN GRAPH TAGS -->
+    <meta property="og:title" id="og-title" content="ලියැසි SUBVERSE">
+    <meta property="og:description" id="og-desc" content="ගුණාත්මක බවින් ඉහළම ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි නොමිලේ, සෘජුවම බාගත කරගන්න.">
+    <meta property="og:image" id="og-image" content=""> <!-- කරුණාකර ඔබගේ Social Preview ලින්ක් එක content="" තුළ මෙතැන ඇතුලත් කරන්න -->
+    <meta property="og:type" content="video.tv_show">
+
+    <!-- TVSeries JSON-LD Schema (Structured Data) -->
+    <script type="application/ld+json" id="series-schema"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Segoe+UI:wght@400;600;800;900&display=swap" rel="stylesheet">
@@ -913,7 +927,7 @@
         <header>
             <div class="header-container">
                 <div class="header-left-zone">
-                    <div class="three-dot-wrapper">
+                    <nav class="three-dot-wrapper">
                         <button class="three-dot-btn" onclick="toggleDropdown()"><i class="fa-solid fa-ellipsis-vertical"></i></button>
                         <div class="dropdown-menu" id="threeDotMenu">
                             <a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact Us</a>
@@ -922,7 +936,7 @@
                             <a href="request.html"><i class="fa-solid fa-film"></i> Request Drama</a>
                             <a href="about.html"><i class="fa-solid fa-address-card"></i> About Us</a>
                         </div>
-                    </div>
+                    </nav>
                     <!-- Alternating Logo & Coded Tagline -->
                     <a href="index.html" class="logo-wrapper" id="header-logo-container">
                         <img class="site-logo-img" src="https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/81260990-6d71-4fbb-b966-43f96215438e.png" alt="Subverse Logo">
@@ -936,13 +950,13 @@
         </header>
 
         <!-- SUB-NAVIGATION BAR -->
-        <div class="sub-nav-container">
+        <nav class="sub-nav-container">
             <div class="sub-nav-bar">
                 <div class="sub-nav-clock" id="cyberClock">⏰ 00:00:00 AM</div>
                 <a href="index.html" class="sub-nav-item active"><i class="fa-solid fa-house"></i> Home</a>
                 <div class="sub-nav-date" id="cyberDate">📅 Loading...</div>
             </div>
-        </div>
+        </nav>
     </div>
 
     <div class="ticker-wrapper">
@@ -950,26 +964,30 @@
     </div>
 
     <!-- MAIN BODY CONTAINER -->
-    <div class="main-container">
+    <main class="main-container">
 
         <!-- BREADCRUMBS NAVIGATION -->
-        <div class="breadcrumb-nav" id="breadcrumb-container">
+        <nav class="breadcrumb-nav" id="breadcrumb-container">
             <!-- Dynamically populated via Javascript -->
-        </div>
+        </nav>
         
         <!-- DYNAMIC DETAILED HERO BLOCK -->
-        <div class="drama-details-container" id="drama-details-wrapper">
-            <p style="text-align: center; color: var(--neon-cyan); grid-column: span 2; padding: 50px 0;">🤖 [SYSTEM RETRIEVING DATA...]</p>
-        </div>
+        <section class="drama-details-container" id="drama-details-wrapper">
+            <!-- Static Fallback Content for SEO Crawlers -->
+            <div style="padding: 20px; text-align: center; width: 100%;">
+                <h2>ලියැසි SUBVERSE - උපසිරැසි කවුළුව</h2>
+                <p>නවතම ආසියානු කතාමාලා (K-Dramas, C-Dramas, J-Dramas) වල සියලුම කොටස් සඳහා සිංහල උපසිරැසි මෙතැනින් නොමිලේ ලබාගන්න.</p>
+            </div>
+        </section>
 
         <!-- 🇱🇰 SRI LANKA IMDB OVERALL VOTE WIDGET -->
-        <div class="glass-section-custom" id="overall-vote-section" style="display: none;"></div>
+        <section class="glass-section-custom" id="overall-vote-section" style="display: none;"></section>
 
         <!-- 💾 EPISODES DOWNLOAD SECTION -->
-        <div class="episodes-section" id="episodes-section-wrapper"></div>
+        <section class="episodes-section" id="episodes-section-wrapper"></section>
 
         <!-- ⬅️      ➡️ DRAMA NAVIGATION BUTTONS CONTAINER -->
-        <div class="glass-section-custom" id="drama-navigation-wrapper" style="display:none; margin-bottom: 25px;">
+        <section class="glass-section-custom" id="drama-navigation-wrapper" style="display:none; margin-bottom: 25px;">
             <div class="episode-nav-container">
                 <a id="prev-drama-btn" class="download-btn" href="#">
                     <span class="btn-sheen-sweep"></span>
@@ -980,22 +998,22 @@
                     <span style="position:relative; z-index:3;">Next Drama ➡️</span>
                 </a>
             </div>
-        </div>
+        </section>
 
         <!-- ABOUT US GLASS BOX -->
-        <div class="about-section" id="about-us-section-wrapper" style="display:none; margin-top: 30px;"></div>
+        <section class="about-section" id="about-us-section-wrapper" style="display:none; margin-top: 30px;"></section>
 
         <!-- 🌐 GLOWING SOCIAL MEDIA PLUG -->
-        <div class="social-plug-box">
-            <div class="social-title">CONNECT WITH US ON SOCIAL NETWORKS</div>
+        <section class="social-plug-box">
+            <h3 class="social-title">CONNECT WITH US ON SOCIAL NETWORKS</h3>
             <div class="social-icons-wrapper">
                 <a href="#" target="_blank" class="social-btn facebook" id="fb-main-icon-link"><i class="fa-brands fa-facebook-f"></i></a>
                 <a href="#" target="_blank" class="social-btn youtube" id="yt-main-icon-link"><i class="fa-brands fa-youtube"></i></a>
                 <a href="#" target="_blank" class="social-btn telegram" id="tg-config-link"><i class="fa-brands fa-telegram"></i></a>
             </div>
-        </div>
+        </section>
 
-    </div>
+    </main>
 
     <!-- 🤖 CYBER-AI FLOATING CHATBOT WIDGET -->
     <div id="cyber-ai-bubble" onclick="toggleAIChat()">
@@ -1151,7 +1169,50 @@
         }
 
         function renderDramaDetails(drama, config, database) {
-            document.title = `${drama.title} - සිංහල උපසිරැසි | ලියැසි SUBVERSE`;
+            
+            // Dynamically update SEO meta tags
+            document.title = `${drama.title} සිංහල උපසිරැසි | Sinhala Subtitles - ලියැසි SUBVERSE`;
+            
+            const metaDesc = document.getElementById('meta-desc');
+            if (metaDesc) {
+                metaDesc.setAttribute('content', `${drama.title} (සිංහල උපසිරැසි) - ${drama.synopsis ? drama.synopsis.slice(0, 150) : ''}...`);
+            }
+            const metaKeywords = document.getElementById('meta-keywords');
+            if (metaKeywords) {
+                metaKeywords.setAttribute('content', `${drama.title} sinhala sub, ${drama.title} sinhala subtitles, liyasi sub, subverse, ${drama.title} liyasi`);
+            }
+            const ogTitle = document.getElementById('og-title');
+            if (ogTitle) {
+                ogTitle.setAttribute('content', `${drama.title} සිංහල උපසිරැසි | Sinhala Subtitles - ලියැසි SUBVERSE`);
+            }
+            const ogDesc = document.getElementById('og-desc');
+            if (ogDesc) {
+                ogDesc.setAttribute('content', `නවතම ${drama.title} කතාමාලාවේ සියලුම කොටස් සඳහා ගුණාත්මක බවින් ඉහළම සිංහල උපසිරැසි නොමිලේ සෘජුවම බාගත කරගන්න.`);
+            }
+            const ogImage = document.getElementById('og-image');
+            const dramaImg = drama.image_url || drama.image || drama.imageUrl || '';
+            if (ogImage && dramaImg) {
+                ogImage.setAttribute('content', dramaImg);
+            }
+
+            // Populate TVSeries Schema Markup dynamically
+            const schemaEl = document.getElementById('series-schema');
+            if (schemaEl) {
+                const schemaData = {
+                    "@context": "https://schema.org",
+                    "@type": "TVSeries",
+                    "name": drama.title,
+                    "description": drama.synopsis || "",
+                    "image": dramaImg,
+                    "genre": drama.genres || [],
+                    "numberOfEpisodes": drama.total_episodes || "",
+                    "author": {
+                        "@type": "Organization",
+                        "name": "ලියැසි SUBVERSE"
+                    }
+                };
+                schemaEl.textContent = JSON.stringify(schemaData);
+            }
 
             let latestDramaTgLink = config.telegram_channel_link || "#";
             if (drama.episodes && drama.episodes.length > 0) {
@@ -1174,8 +1235,6 @@
 
             const ytBtn = document.getElementById('yt-main-icon-link');
             if (ytBtn) ytBtn.href = config.youtube_link || "#";
-
-            const dramaImg = drama.image_url || drama.image || drama.imageUrl || '';
 
             const tickerEl = document.getElementById('ticker-text');
             if (tickerEl) tickerEl.innerHTML = `⚡ ${drama.title} Subtitles Updated! • `;
@@ -1219,7 +1278,7 @@
                 detailsWrapper.innerHTML = `
                     <div class="detail-left-column">
                         <div class="detail-poster-wrapper">
-                            <img class="detail-poster-img" src="${dramaImg}" alt="Poster">
+                            <img class="detail-poster-img" src="${dramaImg}" alt="${drama.title} සිංහල උපසිරැසි | Sinhala Subtitles">
                             <div class="poster-top-row" style="position: absolute; top: 12px; left: 12px; right: 12px; display: flex; flex-direction: row; flex-wrap: nowrap !important; align-items: center; justify-content: space-between; gap: 8px; z-index: 3; overflow-x: auto !important; scrollbar-width: none;">
                                 <span class="neon-text-label neon-cyan-glow">${drama.status}</span>
                                 <span class="neon-text-label neon-purple-glow">${drama.type}</span>
@@ -1300,7 +1359,7 @@
                                         <i class="fa-solid fa-star" style="font-size: 8px;"></i>
                                         <span>${epData.imdb || drama.imdb}</span>
                                     </div>
-                                    <img class="poster-img" src="${epImg}" alt="${epData.title}">
+                                    <img class="poster-img" src="${epImg}" alt="${drama.title} ${epData.episode} සිංහල උපසිරැසි | Sinhala Subtitles">
                                     <div class="title-overlay"><p>${epData.title}</p></div>
                                 </a>
                             `;
@@ -1308,7 +1367,7 @@
                             episodesHTML += `
                                 <div class="movie-style-card" style="opacity: 0.25; cursor: not-allowed;">
                                     <span class="badge-top-left">EP ${String(i).padStart(2, '0')}</span>
-                                    <img class="poster-img" src="${dramaImg}" alt="Upcoming">
+                                    <img class="poster-img" src="${dramaImg}" alt="${drama.title} Upcoming Episode සිංහල උපසිරැසි">
                                     <div class="title-overlay" style="background: rgba(0,0,0,0.85);"><p style="color:var(--text-muted)">⏳ UPCOMING</p></div>
                                 </div>
                             `;
@@ -1806,7 +1865,6 @@
             offscreenCtx.fillRect(0, 0, 800, 300);
             
             offscreenCtx.font = "900 85px 'Segoe UI', sans-serif";
-            offscreenCtx.textAlign = "center";
             offscreenCtx.textBaseline = "middle";
             offscreenCtx.strokeStyle = '#ffffff';
             offscreenCtx.lineWidth = 3.5;
