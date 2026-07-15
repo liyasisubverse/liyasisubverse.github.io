@@ -8,7 +8,7 @@
     <!-- 🛡️ CONTENT SECURITY POLICY (CSP) META TAG -->
     <meta http-equiv="Content-Security-Policy" content="
         default-src 'self'; 
-        script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; 
+        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com; 
         style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; 
         font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; 
         img-src 'self' data: https: http:; 
@@ -117,24 +117,13 @@
             pointer-events: none;
         }
 
-        /* 📌 STICKY TOP BAR INTEGRATION (HEADER + SUB-NAV) */
-        .sticky-top-bar {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: rgba(2, 4, 8, 0.95) !important;
-            backdrop-filter: blur(15px) !important;
-            -webkit-backdrop-filter: blur(15px) !important;
-            border-bottom: 2px solid var(--neon-cyan) !important;
-            box-shadow: 0 5px 25px rgba(0, 240, 255, 0.2) !important;
-        }
-
         header {
             background: transparent !important; 
             backdrop-filter: none !important;
             -webkit-backdrop-filter: none !important;
             border-bottom: none !important; 
-            padding: 12px 20px 4px 20px;
+            padding: 12px 20px;
+            position: sticky; top: 0; z-index: 1000;
             box-sizing: border-box;
         }
         
@@ -207,7 +196,7 @@
             border-bottom: none !important; 
             backdrop-filter: none !important; 
             -webkit-backdrop-filter: none !important;
-            overflow: hidden; padding: 6px 0; position: relative; z-index: 999;
+            overflow: hidden; padding: 6px 0; position: sticky; top: 91px; z-index: 999;
             -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
             mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
             box-sizing: border-box;
@@ -217,7 +206,8 @@
         @keyframes marquee { 0% { transform: translateX(100vw); } 100% { transform: translateX(-100%); } }
 
         .sub-nav-container { 
-            max-width: 1300px; margin: 0 auto; padding: 4px 15px 10px 15px; box-sizing: border-box; 
+            max-width: 1300px; margin: 0 auto; padding: 10px 15px; box-sizing: border-box; 
+            position: sticky; top: 121px; z-index: 998;
             background: transparent !important; 
             backdrop-filter: none !important; 
             -webkit-backdrop-filter: none !important;
@@ -226,7 +216,7 @@
         }
         .sub-nav-bar { 
             display: flex; justify-content: space-between; align-items: center; gap: 15px; 
-            background: transparent !important; padding: 0 10px; border-radius: 10px;
+            background: transparent !important; padding: 10px 20px; border-radius: 10px;
             border: none !important;
             box-shadow: none !important;
         }
@@ -263,8 +253,9 @@
         }
 
         .notice-container-alert {
-            max-width: 1300px; margin: 15px auto 0 auto; padding: 8px 15px; box-sizing: border-box;
+            max-width: 1300px; margin: 0 auto; padding: 8px 15px; box-sizing: border-box;
             display: none;
+            position: sticky; top: 192px; z-index: 997;
             background: rgba(2, 4, 8, 0.9); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
         }
         .notice-alert-bar {
@@ -333,41 +324,30 @@
         }
 
         .hero-badge-row { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
-
-        /* 🛡️ PREMIUM GLOWING SOLID BADGES SETUP */
-        .hero-badge, .hero-ep-badge, .hero-imdb-badge, .upcoming-badge, .upcoming-ep-badge, .upcoming-imdb-badge {
-            background: #020408 !important; /* solid dark background */
-            border: 1px solid var(--neon-cyan) !important;
-            box-shadow: 0 0 6px rgba(0, 240, 255, 0.4) !important;
-            color: var(--neon-cyan) !important;
-            text-shadow: 0 0 5px var(--neon-cyan) !important;
-            padding: 4px 10px !important;
-            font-size: 11px !important;
-            font-weight: 900 !important;
-            border-radius: 4px !important;
-            white-space: nowrap !important;
-            display: inline-flex !important;
-            align-items: center !important;
-            gap: 4px;
+        .hero-badge { 
+            background: var(--neon-pink); color: #fff; 
+            padding: 5px 12px; font-size: 13px; font-weight: 900; 
+            width: fit-content; border-radius: 4px; 
+            box-shadow: 0 0 10px var(--neon-pink); letter-spacing: 0.5px; margin: 0; 
         }
-        .hero-badge, .upcoming-badge {
-            border-color: var(--neon-pink) !important;
-            color: var(--neon-pink) !important;
-            text-shadow: 0 0 5px var(--neon-pink) !important;
-            box-shadow: 0 0 6px rgba(255, 0, 127, 0.4) !important;
+        .hero-ep-badge { 
+            background: rgba(0, 240, 255, 0.1); color: var(--neon-cyan); 
+            border: 1.5px solid var(--neon-cyan); padding: 4.5px 10px; 
+            font-size: 12px; font-weight: bold; border-radius: 4px; 
+            text-shadow: 0 0 5px var(--neon-cyan); box-shadow: 0 0 8px rgba(0, 240, 255, 0.3); 
         }
-        .hero-imdb-badge, .upcoming-imdb-badge {
-            border-color: var(--neon-amber) !important;
-            color: var(--neon-amber) !important;
-            text-shadow: 0 0 5px var(--neon-amber) !important;
-            box-shadow: 0 0 6px rgba(255, 170, 0, 0.4) !important;
+        .hero-imdb-badge {
+            background: rgba(2, 4, 8, 0.95); border: 1.5px solid var(--neon-amber); color: var(--neon-amber);
+            padding: 4.5px 10px; font-size: 12px; font-weight: bold; border-radius: 4px;
+            box-shadow: 0 0 10px rgba(255, 170, 0, 0.4); display: flex; align-items: center; gap: 4px;
+            text-shadow: 0 0 5px var(--neon-amber);
         }
 
         .hero-title { font-size: 32px; font-weight: 900; margin: 0 0 6px 0; text-shadow: 0 0 12px #fff; color: #fff; }
         .hero-author { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--neon-cyan); margin-bottom: 15px; }
         .hero-author img { width: 18px; height: 18px; border-radius: 50%; border: 1px solid var(--neon-cyan); }
         .hero-desc { 
-            font-size: 14px; color: var(--text-muted); line-height: 1.6; margin: auto 0 15px 0;
+            font-size: 14px; color: var(--neon-cyan); text-shadow: 0 0 8px rgba(0, 240, 255, 0.4); line-height: 1.6; margin: auto 0 15px 0;
         }
 
         .upcoming-banner {
@@ -426,9 +406,30 @@
         .upcoming-badge-row::-webkit-scrollbar {
             display: none;
         }
+        .upcoming-badge { 
+            background: var(--neon-amber); color: #000; 
+            padding: 5px 12px; font-size: 13px; font-weight: 900; 
+            width: fit-content; border-radius: 4px; 
+            box-shadow: 0 0 10px var(--neon-amber); letter-spacing: 0.5px; margin: 0; 
+            white-space: nowrap;
+        }
+        .upcoming-ep-badge { 
+            background: rgba(255, 170, 0, 0.1); color: var(--neon-amber); 
+            border: 1.5px solid var(--neon-amber); padding: 4.5px 10px; 
+            font-size: 12px; font-weight: bold; border-radius: 4px; 
+            text-shadow: 0 0 5px var(--neon-amber); box-shadow: 0 0 8px rgba(255, 170, 0, 0.3); 
+            white-space: nowrap;
+        }
+        .upcoming-imdb-badge {
+            background: rgba(2, 4, 8, 0.95); border: 1.5px solid var(--neon-amber); color: var(--neon-amber);
+            padding: 4.5px 10px; font-size: 12px; font-weight: bold; border-radius: 4px;
+            box-shadow: 0 0 10px rgba(255, 170, 0, 0.4); display: flex; align-items: center; gap: 4px;
+            text-shadow: 0 0 5px var(--neon-amber);
+            white-space: nowrap;
+        }
         .upcoming-title { font-size: 28px; font-weight: 900; margin: 0 0 12px 0; text-shadow: 0 0 12px #fff; color: #fff; }
         .upcoming-desc { 
-            font-size: 13.5px; color: var(--text-muted); line-height: 1.5; margin: auto 0 0 0; 
+            font-size: 13.5px; color: var(--neon-amber); text-shadow: 0 0 8px rgba(255, 170, 0, 0.4); line-height: 1.5; margin: auto 0 0 0; 
         }
 
         .control-zone {
@@ -491,7 +492,7 @@
             border-top: 3.5px solid var(--neon-cyan); border-bottom: 3.5px solid var(--neon-cyan);
         }
         .movie-style-card:hover { 
-            transform: scale(1.03); 
+            transform: scale(1.05); 
             border-color: var(--neon-cyan); 
             box-shadow: 0 0 15px var(--neon-cyan); 
         }
@@ -503,49 +504,45 @@
         .poster-img { width: 100%; height: 100%; object-fit: cover; background: #000; opacity: 0.8; transition: opacity 0.3s; }
         .movie-style-card:hover .poster-img { opacity: 0.95; }
 
-        /* 🛡️ DYNAMIC CARD NEON BADGES (SINGLE HORIZONTAL ROW WITH OVERFLOW-X SUPPORT) */
-        .card-badge-row {
-            position: absolute;
-            top: 8px;
-            left: 8px;
-            right: 8px;
-            display: flex;
-            flex-direction: row;
-            flex-wrap: nowrap !important;
-            gap: 6px;
-            z-index: 5;
-            overflow-x: auto !important;
-            scrollbar-width: none;
+        .badge-top-left {
+            position: absolute; top: 8px; left: 8px; background: rgba(2, 4, 8, 0.85); color: #fff;
+            padding: 3px 8px; font-size: 10px; font-weight: 900; border-radius: 4px; border: 1px solid var(--neon-cyan); box-shadow: 0 0 8px rgba(0, 240, 255, 0.4); z-index: 2; text-transform: uppercase;
         }
-        .card-badge-row::-webkit-scrollbar {
-            display: none;
+        .card-complete .badge-top-left { background: var(--neon-pink); color: #fff; border-color: rgba(255, 255, 255, 0.4); box-shadow: 0 0 12px var(--neon-pink), 0 0 4px #fff; }
+
+        .badge-bottom-left {
+            position: absolute; bottom: 35px; left: 8px; background: var(--neon-cyan); color: #000;
+            padding: 3px 8px; font-size: 10px; font-weight: 900; border-radius: 4px; box-shadow: 0 0 12px var(--neon-cyan), 0 0 4px #fff; border: 1px solid rgba(255,255,255,0.4); z-index: 2;
         }
-        .card-neon-badge {
-            background: #020408 !important; /* solid dark background */
-            border: 1px solid var(--neon-cyan);
-            border-radius: 4px;
-            padding: 4px 8px;
-            font-size: 10px;
-            font-weight : 900;
-            color: var(--neon-cyan);
-            text-shadow: 0 0 5px var(--neon-cyan);
-            box-shadow: 0 0 6px rgba(0, 240, 255, 0.4);
+        .card-complete .badge-bottom-left { background: var(--neon-pink); color: #fff; box-shadow: 0 0 12px var(--neon-pink), 0 0 4px #fff; border-color: rgba(255,255,255,0.4); }
+
+        /* 📱 RESPONSIVE IMDB GAUGE ON MOBILE CARDS */
+        .imdb-gauge-container {
+            position: absolute; right: 6px; top: 6px; 
+            display: flex; flex-direction: column; align-items: center !important; gap: 2px;
+            z-index: 2; 
+            background: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+        }
+            .imdb-track {
+            width: 100%; height: 05 px;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 2px; overflow: hidden; position: relative;
+            box-shadow: 0 0 8px rgba(0,0,0,0.8);
+        }
+        .imdb-fill {
+            width: 100%; position: absolute; bottom: 0; left: 0;
+            border-radius: 2px; transition: height 0.5s ease-out;
+        }
+        .imdb-value {
+            font-size: 9px; font-weight: 900; font-family: monospace;
+            display: flex; align-items: center; justify-content: center !important; gap: 1px;
+            margin-top: 2px;
+            text-shadow: 0 0 5px rgba(0,0,0,1), 0 0 10px rgba(0,0,0,1);
             white-space: nowrap;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-        }
-        .card-neon-badge.pink {
-            border-color: var(--neon-pink);
-            color: var(--neon-pink);
-            text-shadow: 0 0 5px var(--neon-pink);
-            box-shadow: 0 0 6px rgba(255, 0, 127, 0.4);
-        }
-        .card-neon-badge.amber {
-            border-color: var(--neon-amber);
-            color: var(--neon-amber);
-            text-shadow: 0 0 5px var(--neon-amber);
-            box-shadow: 0 0 6px rgba(255, 170, 0, 0.4);
+            width: 100%;
         }
 
         .title-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,1) 40%, transparent); padding: 12px 6px; }
@@ -554,11 +551,10 @@
         .movie-style-card:hover .title-overlay p { color: #fff; text-shadow: 0 0 12px var(--neon-cyan), 0 0 4px #fff; }
         .movie-style-card.card-complete:hover .title-overlay p { color: #fff; text-shadow: 0 0 12px var(--neon-pink), 0 0 4px #fff; }
 
-        /* Blogger promo section as separate box */
         .blogger-promo-box {
             position: relative;
             background: #020408; 
-            border-radius: 12px; padding: 25px; margin-top: 40px; margin-bottom: 35px;
+            border-radius: 12px; padding: 25px; margin-top: 40px; margin-bottom: 20px;
             display: flex; align-items: center; justify-content: space-between; gap: 20px;
             overflow: hidden; 
             z-index: 1;
@@ -1109,11 +1105,34 @@
                 padding-right: 10px !important;
                 box-sizing: border-box !important;
             }
-            
+            header {
+                position: sticky !important;
+                top: 0 !important;
+                z-index: 1000 !important;
+            }
             .ticker-wrapper {
                 position: static !important; 
                 background: transparent !important; 
                 border-bottom: none !important; 
+            }
+            .sub-nav-container.sub-nav-container {
+                position: sticky !important;
+                top: 81px !important; 
+                z-index: 998 !important;
+                padding: 10px 15px !important;
+                background: transparent !important; 
+                backdrop-filter: none !important; 
+                -webkit-backdrop-filter: none !important;
+                margin: 0 auto !important;
+                border: none !important;
+                box-shadow: none !important;
+            }
+            
+            .sub-nav-bar {
+                background: transparent !important;
+                border: none !important;
+                padding: 10px 0 !important;
+                box-shadow: none !important;
             }
             
             .notice-container-alert {
@@ -1178,6 +1197,8 @@
             }
 
             .drama-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+            .badge-top-left, .badge-bottom-left { font-size: 8px; padding: 2px 4px; }
+            .badge-bottom-left { bottom: 32px; }
 
             .blogger-promo-box { flex-direction: column; text-align: center; padding: 20px; }
             .blogger-left-section { flex-direction: column; gap: 10px; }
@@ -1206,6 +1227,11 @@
                 flex-wrap: nowrap !important;
                 overflow-x: auto !important;
             }
+            .upcoming-badge { font-size: 10px !important; padding: 4px 8px !important; }
+            .upcoming-ep-badge { font-size: 9px !important; padding: 3.5px 6px !important; }
+            .upcoming-imdb-badge { font-size: 9px !important; padding: 3.5px 6px !important; }
+            .upcoming-title { font-size: 22px !important; margin-bottom: 6px !important; }
+            .upcoming-desc { font-size: 12px !important; line-height: 1.4 !important; margin-top: auto !important; }
         }
 
         .feedback-buttons {
@@ -1227,47 +1253,44 @@
     <!-- 🌌 MATRIX BACKGROUND CANVAS -->
     <canvas id="matrix-canvas"></canvas>
 
-    <!-- 📌 STICKY TOP BAR WRAPPER -->
-    <div class="sticky-top-bar">
-        <!-- NAVIGATION HEADER -->
-        <header>
-            <div class="header-container">
-                <div class="header-left-zone">
-                    <div class="three-dot-wrapper">
-                        <button class="three-dot-btn" onclick="toggleDropdown()"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-                        <div class="dropdown-menu" id="threeDotMenu">
-                            <a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact Us</a>
-                            <a href="disclaimer.html"><i class="fa-solid fa-triangle-exclamation"></i> Disclaimer</a>
-                            <a href="dmca.html"><i class="fa-solid fa-scale-balanced"></i> DMCA</a>
-                            <a href="request.html"><i class="fa-solid fa-film"></i> Request Drama</a>
-                            <a href="about.html"><i class="fa-solid fa-address-card"></i> About Us</a>
-                        </div>
+    <!-- NAVIGATION HEADER -->
+    <header>
+        <div class="header-container">
+            <div class="header-left-zone">
+                <div class="three-dot-wrapper">
+                    <button class="three-dot-btn" onclick="toggleDropdown()"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                    <div class="dropdown-menu" id="threeDotMenu">
+                        <a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact Us</a>
+                        <a href="disclaimer.html"><i class="fa-solid fa-triangle-exclamation"></i> Disclaimer</a>
+                        <a href="dmca.html"><i class="fa-solid fa-scale-balanced"></i> DMCA</a>
+                        <a href="request.html"><i class="fa-solid fa-film"></i> Request Drama</a>
+                        <a href="about.html"><i class="fa-solid fa-address-card"></i> About Us</a>
                     </div>
-                    <!-- Alternating Logo & Coded Tagline -->
-                    <a href="index.html" class="logo-wrapper" id="header-logo-container">
-                        <img class="site-logo-img" src="https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/81260990-6d71-4fbb-b966-43f96215438e.png" alt="Subverse Logo">
-                        <div class="coded-tagline-text">
-                            දුර්ලභ කතා මාලා වල නිවහන<br>
-                            <span style="font-size: 11px; font-weight: bold;">(The Home of Rare Series)</span>
-                        </div>
-                    </a>
                 </div>
+                <!-- Alternating Logo & Coded Tagline -->
+                <a href="index.html" class="logo-wrapper" id="header-logo-container">
+                    <img class="site-logo-img" src="https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/81260990-6d71-4fbb-b966-43f96215438e.png" alt="Subverse Logo">
+                    <div class="coded-tagline-text">
+                        දුර්ලභ කතා මාලා වල නිවහන<br>
+                        <span style="font-size: 11px; font-weight: bold;">(The Home of Rare Series)</span>
+                    </div>
+                </a>
             </div>
-        </header>
-
-        <!-- SUB-NAVIGATION BAR (INSIDE STICKY) -->
-        <div class="sub-nav-container">
-            <nav class="sub-nav-bar">
-                <div class="sub-nav-clock" id="cyberClock">⏰ 00:00:00 AM</div>
-                <a href="index.html" class="sub-nav-item active"><i class="fa-solid fa-house"></i> Home</a>
-                <div class="sub-nav-date" id="cyberDate">📅 Loading...</div>
-            </nav>
         </div>
-    </div>
+    </header>
 
     <!-- TOP TICKER BAR -->
     <div class="ticker-wrapper">
         <div class="ticker-text" id="ticker-text">⚡ Loading Updates...</div>
+    </div>
+
+    <!-- SUB-NAVIGATION BAR -->
+    <div class="sub-nav-container">
+        <div class="sub-nav-bar">
+            <div class="sub-nav-clock" id="cyberClock">⏰ 00:00:00 AM</div>
+            <a href="index.html" class="sub-nav-item active"><i class="fa-solid fa-house"></i> Home</a>
+            <div class="sub-nav-date" id="cyberDate">📅 Loading...</div>
+        </div>
     </div>
 
     <!-- NEON PULSING SPECIAL NOTICE BAR -->
@@ -1279,10 +1302,10 @@
     </div>
 
     <!-- MAIN BODY CONTAINER -->
-    <main class="main-container">
+    <div class="main-container">
         
         <!-- CYBER-HUD HERO BANNER -->
-        <section class="hero-banner" id="hero-banner-container">
+        <div class="hero-banner" id="hero-banner-container">
             <div class="hero-bg-blur" id="hero-bg-blur-img"></div>
             <div class="hero-banner-content">
                 <div class="hero-hud-card">
@@ -1299,30 +1322,30 @@
                     <a href="#" class="hero-btn" id="hero-btn-link"><i class="fa-solid fa-download"></i> උපසිරැසි ලබාගන්න</a>
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- 🚀 COMING SOON SECTION -->
-        <section id="coming-soon-section-wrapper" style="display: none; margin-bottom: 35px;">
+        <div id="coming-soon-section-wrapper" style="display: none; margin-bottom: 35px;">
             <div class="section-bar" style="border-left-color: var(--neon-amber); background: linear-gradient(90deg, rgba(255, 170, 0, 0.15), transparent);">
                 <h2 class="section-title-neon" style="color: var(--neon-amber); text-shadow: 0 0 10px var(--neon-amber), 0 0 20px rgba(255, 170, 0, 0.4); animation: cyber-glow-pulse-amber 3s infinite ease-in-out;">ළඟදීම බලාපොරොත්තු වන්න (COMING SOON)</h2>
             </div>
             <div id="coming-soon-grid-container">
                 <!-- Dynamically populated coming soon premium banners -->
             </div>
-        </section>
+        </div>
 
         <!-- 🔥 TRENDING / MOST DOWNLOADED SECTION -->
-        <section id="trending-section-wrapper" style="display: none; margin-bottom: 35px;">
+        <div id="trending-section-wrapper" style="display: none; margin-bottom: 35px;">
             <div class="section-bar" style="border-left-color: var(--neon-pink); background: linear-gradient(90deg, rgba(255, 0, 127, 0.15), transparent);">
                 <h2 class="section-title-neon" style="color: var(--neon-pink); text-shadow: 0 0 10px var(--neon-pink), 0 0 20px rgba(255, 0, 127, 0.4); animation: cyber-glow-pulse-pink 3s infinite ease-in-out;">වැඩියෙන්ම බාගත කළ උපසිරැසි (MOST DOWNLOADED)</h2>
             </div>
             <div class="drama-grid" id="trending-grid-container">
                 <!-- Dynamically populated top popular dramas sorted automatically by Firebase counts -->
             </div>
-        </section>
+        </div>
 
         <!-- 🎛️ CONTROL ZONE -->
-        <section class="control-zone">
+        <div class="control-zone">
             <div class="filter-tabs">
                 <button class="tab-btn active" onclick="filterLanguage('ALL', event)">ALL SHOWS</button>
                 <button class="tab-btn tab-btn-korean" onclick="filterLanguage('K-DRAMA', event)">KOREAN</button>
@@ -1336,10 +1359,10 @@
                     <input type="text" id="searchInput" placeholder="ඔබට අවශ්‍ය කතාමාලාව මෙතන සර්ච් කරන්න..." onkeyup="searchDrama()">
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- Dynamic Content (Dramas List) -->
-        <section id="dynamic-content">
+        <div id="dynamic-content">
             <div class="drama-grid">
                 <div class="skeleton-card"></div>
                 <div class="skeleton-card"></div>
@@ -1348,16 +1371,16 @@
                 <div class="skeleton-card"></div>
                 <div class="skeleton-card"></div>
             </div>
-        </section>
+        </div>
 
         <!-- Dynamic Genre Section -->
-        <section class="genre-section">
+        <div class="genre-section">
             <span class="genre-section-title">ප්‍රභේදය අනුව සොයන්න (Browse by Genre)</span>
             <div class="genre-list" id="genre-container"></div>
-        </section>
+        </div>
 
         <!-- 📚 CYBER BLOGGER PROMO BANNER -->
-        <section class="blogger-promo-box" id="blogger-promo-container">
+        <div class="blogger-promo-box" id="blogger-promo-container">
             <div class="blogger-left-section">
                 <div class="blogger-icon-outer">
                     <i class="fa-solid fa-book-open-reader"></i>
@@ -1370,10 +1393,10 @@
             <a href="#" target="_blank" class="blogger-visit-btn" id="blogger-visit-btn-link">
                 කියවීමට පිවිසෙන්න <i class="fa-solid fa-arrow-up-right-from-square"></i>
             </a>
-        </section>
+        </div>
 
         <!-- WIDGETS BAR with Symmetrical Borders -->
-        <section class="widget-grid" style="margin-top: 20px; margin-bottom: 40px;">
+        <div class="widget-grid" style="margin-top: 20px; margin-bottom: 40px;">
             <div class="widget-box" style="border-left: 3.5px solid var(--neon-pink); border-right: 3.5px solid var(--neon-pink);">
                 <div class="widget-title"><i class="fa-solid fa-bullhorn" style="color:var(--neon-pink)"></i> දැනුම්දීම් (Notice)</div>
                 <p id="notice-widget-text" style="font-size:12px; line-height:1.6; color:#ccc; margin:0;">අපගේ සියලුම සිංහල උපසිරැසි නොමිලේ ලබාගත හැක. කිසියම් ගැටලුවක් ඇත්නම් 3-Dot මෙනුවේ ඇති Contact පිටුවෙන් අපට පණිවිඩයක් එවන්න.</p>
@@ -1387,13 +1410,13 @@
                 <div class="widget-title" style="border-left-color: var(--neon-amber);"><i class="fa-solid fa-server" style="color:var(--neon-amber)"></i> සේවා තත්ත්වය (Server Status)</div>
                 <p id="server-status-widget" style="font-size:12px; margin:0; color:#ccc; line-height:1.6;">💾 උපසිරැසි සර්වර්: <span style="color:#0f0; font-weight:bold;">ONLINE</span><br>🤖 ටෙලිග්‍රෑම් බොට්: <span style="color:#0f0; font-weight:bold;">ACTIVE</span></p>
             </div>
-        </section>
+        </div>
 
         <!-- ABOUT US SECTION -->
-        <section class="about-section" id="about-section-container"></section>
+        <div class="about-section" id="about-section-container"></div>
 
         <!-- USER FEEDBACK & COMMENTS GAUGE -->
-        <section class="feedback-grid">
+        <div class="feedback-grid">
             <div class="feedback-card" style="border-left: 3.5px solid var(--neon-cyan); border-right: 3.5px solid var(--neon-cyan);">
                 <div class="feedback-title"><i class="fa-solid fa-heart" style="color:var(--neon-pink)"></i> SUBVERSE FEEDBACK GAUGE</div>
                 <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 15px;">මෙම වෙබ් අඩවිය පිළිබඳ ඔබේ කැමැත්ත මෙතනින් සලකුණු කරන්න (Rate Subverse):</p>
@@ -1428,19 +1451,19 @@
                     <button class="comment-submit-btn" onclick="submitComment()"><i class="fa-solid fa-paper-plane"></i></button>
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- 🌐 GLOWING SOCIAL PLUG BOX -->
-        <section class="social-plug-box">
+        <div class="social-plug-box">
             <div class="social-title">CONNECT WITH US ON SOCIAL NETWORKS</div>
             <div class="social-icons-wrapper" id="social-plug-links">
                 <a href="#" target="_blank" class="social-btn facebook" id="fb-main-icon-link"><i class="fa-brands fa-facebook-f"></i></a>
                 <a href="#" target="_blank" class="social-btn youtube" id="yt-main-icon-link"><i class="fa-brands fa-youtube"></i></a>
                 <a href="#" target="_blank" class="social-btn telegram" id="tg-main-icon-link"><i class="fa-brands fa-telegram"></i></a>
             </div>
-        </section>
+        </div>
 
-    </main>
+    </div>
 
     <!-- 🤖 CYBER-AI FLOATING CHATBOT WIDGET -->
     <div id="cyber-ai-bubble" onclick="toggleAIChat()">
@@ -1484,6 +1507,7 @@
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
+  
         const USE_MATRIX_BACKGROUND = true; 
         const STATIC_BACKGROUND_IMAGE = "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/bbfcf6e6-8bca-4883-8eb1-f93a2d1d4728.png";
 
@@ -1982,39 +2006,50 @@
             container.innerHTML = html;
         }
 
-        /* 🛡️ REFACTORED CARD NEON BADGES RENDERING ENGINE */
         function createCardHTML(d) {
             const isComplete = d.status === "COMPLETE";
             const categoryText = d.type || "DRAMA";
-            
-            let statusBadgeClass = isComplete ? "pink" : "cyan";
-            let statusText = isComplete ? "COMPLETE" : "ONGOING";
-            let epText = d.total_episodes ? `${d.total_episodes} EPS` : "TBA";
-            
+
+            let topLeftBadgeHTML = "";
+            let bottomLeftBadgeHTML = "";
+
+            if (isComplete) {
+                const totalEpText = d.total_episodes ? `EPISODE ${d.total_episodes}` : "EPISODES";
+                topLeftBadgeHTML = `<span class="badge-top-left">COMPLETE</span>`;
+                bottomLeftBadgeHTML = `<span class="badge-bottom-left">${totalEpText}</span>`;
+            } else {
+                topLeftBadgeHTML = `<span class="badge-top-left">${categoryText}</span>`;
+                bottomLeftBadgeHTML = `<span class="badge-bottom-left">ONGOING</span>`; 
+            }
+
+            const rating = parseFloat(d.imdb) || 0.0;
+            let ratingColor = "#ffaa00"; 
+            if (rating >= 8.5) {
+                ratingColor = "#00ff66"; 
+            } else if (rating >= 7.5) {
+                ratingColor = "#ffaa00"; 
+            } else {
+                ratingColor = "#ff007f"; 
+            }
+            const ratingPercent = rating * 10; 
+
             const imgUrl = d.image_url || d.image || d.imageUrl || "";
 
             return `
                 <a href="drama_picker.html?id=${d.id}" class="movie-style-card ${isComplete ? 'card-complete' : ''}">
-                    <!-- Top Dynamic Badges Single Line -->
-                    <div class="card-badge-row">
-                        <span class="card-neon-badge ${statusBadgeClass}">${statusText}</span>
-                        <span class="card-neon-badge">${categoryText}</span>
-                        <span class="card-neon-badge pink">${epText}</span>
-                        <span class="card-neon-badge amber">
-                            <i class="fa-solid fa-star" style="font-size: 8px;"></i>${d.imdb}
+                    ${topLeftBadgeHTML}
+                    ${bottomLeftBadgeHTML}
+                    
+                    <div class="imdb-gauge-container">
+                        <div class="imdb-track">
+                            <div class="imdb-fill" style="height: ${ratingPercent}%; background-color: ${ratingColor}; box-shadow: 0 0 10px ${ratingColor};"></div>
+                        </div>
+                        <span class="imdb-value" style="color: ${ratingColor}; text-shadow: 0 0 5px ${ratingColor};">
+                            <i class="fa-solid fa-star" style="font-size: 8px; margin-right: 3px;"></i>${d.imdb}
                         </span>
                     </div>
 
-                    <!-- Bottom Genre Labels Row -->
-                    <div class="card-badge-row" style="top: auto; bottom: 35px;">
-                        ${d.genres ? d.genres.map((g, idx) => {
-                            const classes = ['', 'pink', 'amber'];
-                            const cls = classes[idx % classes.length];
-                            return `<span class="card-neon-badge ${cls}">${g}</span>`;
-                        }).join('') : ''}
-                    </div>
-
-                    <img class="poster-img" src="${imgUrl}" alt="${d.title} සිංහල උපසිරැසි | Sinhala Subtitles" loading="lazy">
+                    <img class="poster-img" src="${imgUrl}" alt="Poster" loading="lazy">
                     <div class="title-overlay"><p>${d.title}</p></div>
                 </a>
             `;
@@ -2930,6 +2965,7 @@
         } else {
             initApp();
         }
+        
     </script>
 </body>
 </html>
