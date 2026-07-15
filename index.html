@@ -8,11 +8,12 @@
     <!-- 🛡️ CONTENT SECURITY POLICY (CSP) META TAG -->
     <meta http-equiv="Content-Security-Policy" content="
         default-src 'self'; 
-        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com; 
+        script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; 
         style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; 
         font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; 
         img-src 'self' data: https: http:; 
-        connect-src 'self' https://liyasi-github-votes-default-rtdb.firebaseio.com https://liyasisubverse1-liyasi-backend.hf.space https://ask-gemini.rashmi004005g.workers.dev https://groq.rashmi004005g.workers.dev https://www.google-analytics.com;
+        frame-src 'self' https://www.youtube.com https://youtube.com;
+        connect-src 'self' https://liyasi-github-votes-default-rtdb.firebaseio.com https://liyasisubverse1-liyasi-backend.hf.space https://ask-gemini.rashmi004005g.workers.dev https://groq.rashmi004005g.workers.dev https://www.google-analytics.com https://*.google-analytics.com;
     ">
 
     <!-- 🛡️ FRAME-BUSTING -->
@@ -31,7 +32,7 @@
     </script>
 
     <!-- FAVICON -->
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" href=""> <!-- කරුණාකර ඔබගේ favicon.png ලින්ක් එක href="" තුළ මෙතැන ඇතුලත් කරන්න -->
 
     <!-- SEO META TAGS -->
     <meta name="description" content="ලියැසි SUBVERSE වෙතින් උසස්ම තත්ත්වයේ ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි නොමිලේ, සෘජුවම බාගත කරගන්න.">
@@ -41,7 +42,7 @@
     <!-- OPEN GRAPH TAGS -->
     <meta property="og:title" content="ලියැසි SUBVERSE - Premium Subtitles Hub">
     <meta property="og:description" content="ගුණාත්මක බවින් ඉහළම ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි නොමිලේ, සෘජුවම බාගත කරගන්න.">
-    <meta property="og:image" content="https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png">
+    <meta property="og:image" content=""> <!-- කරුණාකර ඔබගේ Social Preview / Open Graph (ලින්ක් බෙදා ගන්නා පින්තූරය) ලින්ක් එක content="" තුළ මෙතැන ඇතුලත් කරන්න -->
     <meta property="og:url" content="https://liyasisubverse.github.io/">
     <meta property="og:type" content="website">
 
@@ -67,6 +68,10 @@
 
     <style>
         /* 🎨 PREMIUM CYBERPUNK PALETTE */
+        * {
+            box-sizing: border-box;
+        }
+        
         :root {
             --bg-main: #020408;
             --neon-cyan: #00f0ff;
@@ -1257,7 +1262,7 @@
     <header>
         <div class="header-container">
             <div class="header-left-zone">
-                <div class="three-dot-wrapper">
+                <nav class="three-dot-wrapper">
                     <button class="three-dot-btn" onclick="toggleDropdown()"><i class="fa-solid fa-ellipsis-vertical"></i></button>
                     <div class="dropdown-menu" id="threeDotMenu">
                         <a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact Us</a>
@@ -1266,7 +1271,7 @@
                         <a href="request.html"><i class="fa-solid fa-film"></i> Request Drama</a>
                         <a href="about.html"><i class="fa-solid fa-address-card"></i> About Us</a>
                     </div>
-                </div>
+                </nav>
                 <!-- Alternating Logo & Coded Tagline -->
                 <a href="index.html" class="logo-wrapper" id="header-logo-container">
                     <img class="site-logo-img" src="https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/81260990-6d71-4fbb-b966-43f96215438e.png" alt="Subverse Logo">
@@ -1285,13 +1290,13 @@
     </div>
 
     <!-- SUB-NAVIGATION BAR -->
-    <div class="sub-nav-container">
+    <nav class="sub-nav-container">
         <div class="sub-nav-bar">
             <div class="sub-nav-clock" id="cyberClock">⏰ 00:00:00 AM</div>
             <a href="index.html" class="sub-nav-item active"><i class="fa-solid fa-house"></i> Home</a>
             <div class="sub-nav-date" id="cyberDate">📅 Loading...</div>
         </div>
-    </div>
+    </nav>
 
     <!-- NEON PULSING SPECIAL NOTICE BAR -->
     <div class="notice-container-alert" id="notice-alert-container">
@@ -1302,13 +1307,13 @@
     </div>
 
     <!-- MAIN BODY CONTAINER -->
-    <div class="main-container">
+    <main class="main-container">
         
         <!-- CYBER-HUD HERO BANNER -->
-        <div class="hero-banner" id="hero-banner-container">
+        <section class="hero-banner" id="hero-banner-container">
             <div class="hero-bg-blur" id="hero-bg-blur-img"></div>
             <div class="hero-banner-content">
-                <div class="hero-hud-card">
+                <article class="hero-hud-card">
                     <div class="hero-badge-row">
                         <span class="hero-badge">LATEST RELEASE</span>
                         <span class="hero-ep-badge" id="hero-ep-num">EP 00</span>
@@ -1320,32 +1325,32 @@
                     <div class="hero-author" id="hero-author-container"></div>
                     <p class="hero-desc" id="hero-desc-text">දත්ත ලබාගනිමින් පවතී...</p>
                     <a href="#" class="hero-btn" id="hero-btn-link"><i class="fa-solid fa-download"></i> උපසිරැසි ලබාගන්න</a>
-                </div>
+                </article>
             </div>
-        </div>
+        </section>
 
         <!-- 🚀 COMING SOON SECTION -->
-        <div id="coming-soon-section-wrapper" style="display: none; margin-bottom: 35px;">
+        <section id="coming-soon-section-wrapper" style="display: none; margin-bottom: 35px;">
             <div class="section-bar" style="border-left-color: var(--neon-amber); background: linear-gradient(90deg, rgba(255, 170, 0, 0.15), transparent);">
                 <h2 class="section-title-neon" style="color: var(--neon-amber); text-shadow: 0 0 10px var(--neon-amber), 0 0 20px rgba(255, 170, 0, 0.4); animation: cyber-glow-pulse-amber 3s infinite ease-in-out;">ළඟදීම බලාපොරොත්තු වන්න (COMING SOON)</h2>
             </div>
             <div id="coming-soon-grid-container">
                 <!-- Dynamically populated coming soon premium banners -->
             </div>
-        </div>
+        </section>
 
         <!-- 🔥 TRENDING / MOST DOWNLOADED SECTION -->
-        <div id="trending-section-wrapper" style="display: none; margin-bottom: 35px;">
+        <section id="trending-section-wrapper" style="display: none; margin-bottom: 35px;">
             <div class="section-bar" style="border-left-color: var(--neon-pink); background: linear-gradient(90deg, rgba(255, 0, 127, 0.15), transparent);">
                 <h2 class="section-title-neon" style="color: var(--neon-pink); text-shadow: 0 0 10px var(--neon-pink), 0 0 20px rgba(255, 0, 127, 0.4); animation: cyber-glow-pulse-pink 3s infinite ease-in-out;">වැඩියෙන්ම බාගත කළ උපසිරැසි (MOST DOWNLOADED)</h2>
             </div>
             <div class="drama-grid" id="trending-grid-container">
                 <!-- Dynamically populated top popular dramas sorted automatically by Firebase counts -->
             </div>
-        </div>
+        </section>
 
         <!-- 🎛️ CONTROL ZONE -->
-        <div class="control-zone">
+        <section class="control-zone">
             <div class="filter-tabs">
                 <button class="tab-btn active" onclick="filterLanguage('ALL', event)">ALL SHOWS</button>
                 <button class="tab-btn tab-btn-korean" onclick="filterLanguage('K-DRAMA', event)">KOREAN</button>
@@ -1359,10 +1364,15 @@
                     <input type="text" id="searchInput" placeholder="ඔබට අවශ්‍ය කතාමාලාව මෙතන සර්ච් කරන්න..." onkeyup="searchDrama()">
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- Dynamic Content (Dramas List) -->
-        <div id="dynamic-content">
+        <section id="dynamic-content">
+            <!-- Static Fallback Content for SEO Crawlers (replaces when JS loads) -->
+            <div style="padding: 20px; text-align: center; border: 1px dashed rgba(0, 240, 255, 0.2); border-radius: 8px; margin-bottom: 20px;">
+                <h2 style="color: #fff; font-size: 16px;">ලියැසි SUBVERSE - උසස්ම තත්ත්වයේ සිංහල උපසිරැසි (Sinhala Subtitles)</h2>
+                <p style="color: var(--text-muted); font-size: 13px;">නවතම කොරියානු කතාමාලා (Korean Dramas), චීන කතාමාලා (Chinese Dramas) සහ ජපන් කතාමාලා (Japanese Dramas) සඳහා ගුණාත්මක බවින් ඉහළම සිංහල උපසිරැසි නොමිලේ සෘජුවම බාගත කරගන්න.</p>
+            </div>
             <div class="drama-grid">
                 <div class="skeleton-card"></div>
                 <div class="skeleton-card"></div>
@@ -1371,16 +1381,16 @@
                 <div class="skeleton-card"></div>
                 <div class="skeleton-card"></div>
             </div>
-        </div>
+        </section>
 
         <!-- Dynamic Genre Section -->
-        <div class="genre-section">
+        <section class="genre-section">
             <span class="genre-section-title">ප්‍රභේදය අනුව සොයන්න (Browse by Genre)</span>
             <div class="genre-list" id="genre-container"></div>
-        </div>
+        </section>
 
         <!-- 📚 CYBER BLOGGER PROMO BANNER -->
-        <div class="blogger-promo-box" id="blogger-promo-container">
+        <section class="blogger-promo-box" id="blogger-promo-container">
             <div class="blogger-left-section">
                 <div class="blogger-icon-outer">
                     <i class="fa-solid fa-book-open-reader"></i>
@@ -1393,10 +1403,10 @@
             <a href="#" target="_blank" class="blogger-visit-btn" id="blogger-visit-btn-link">
                 කියවීමට පිවිසෙන්න <i class="fa-solid fa-arrow-up-right-from-square"></i>
             </a>
-        </div>
+        </section>
 
         <!-- WIDGETS BAR with Symmetrical Borders -->
-        <div class="widget-grid" style="margin-top: 20px; margin-bottom: 40px;">
+        <section class="widget-grid" style="margin-top: 20px; margin-bottom: 40px;">
             <div class="widget-box" style="border-left: 3.5px solid var(--neon-pink); border-right: 3.5px solid var(--neon-pink);">
                 <div class="widget-title"><i class="fa-solid fa-bullhorn" style="color:var(--neon-pink)"></i> දැනුම්දීම් (Notice)</div>
                 <p id="notice-widget-text" style="font-size:12px; line-height:1.6; color:#ccc; margin:0;">අපගේ සියලුම සිංහල උපසිරැසි නොමිලේ ලබාගත හැක. කිසියම් ගැටලුවක් ඇත්නම් 3-Dot මෙනුවේ ඇති Contact පිටුවෙන් අපට පණිවිඩයක් එවන්න.</p>
@@ -1410,15 +1420,15 @@
                 <div class="widget-title" style="border-left-color: var(--neon-amber);"><i class="fa-solid fa-server" style="color:var(--neon-amber)"></i> සේවා තත්ත්වය (Server Status)</div>
                 <p id="server-status-widget" style="font-size:12px; margin:0; color:#ccc; line-height:1.6;">💾 උපසිරැසි සර්වර්: <span style="color:#0f0; font-weight:bold;">ONLINE</span><br>🤖 ටෙලිග්‍රෑම් බොට්: <span style="color:#0f0; font-weight:bold;">ACTIVE</span></p>
             </div>
-        </div>
+        </section>
 
         <!-- ABOUT US SECTION -->
-        <div class="about-section" id="about-section-container"></div>
+        <section class="about-section" id="about-section-container"></section>
 
         <!-- USER FEEDBACK & COMMENTS GAUGE -->
-        <div class="feedback-grid">
+        <section class="feedback-grid">
             <div class="feedback-card" style="border-left: 3.5px solid var(--neon-cyan); border-right: 3.5px solid var(--neon-cyan);">
-                <div class="feedback-title"><i class="fa-solid fa-heart" style="color:var(--neon-pink)"></i> SUBVERSE FEEDBACK GAUGE</div>
+                <h3 class="feedback-title"><i class="fa-solid fa-heart" style="color:var(--neon-pink)"></i> SUBVERSE FEEDBACK GAUGE</h3>
                 <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 15px;">මෙම වෙබ් අඩවිය පිළිබඳ ඔබේ කැමැත්ත මෙතනින් සලකුණු කරන්න (Rate Subverse):</p>
                 
                 <!-- Feedback Gauge Bar -->
@@ -1441,7 +1451,7 @@
                 </div>
             </div>
             <div class="feedback-card" style="border-left: 3.5px solid var(--neon-pink); border-right: 3.5px solid var(--neon-pink);">
-                <div class="feedback-title"><i class="fa-solid fa-comments" style="color:var(--neon-cyan)"></i> USER FEEDBACK & COMMENTS</div>
+                <h3 class="feedback-title"><i class="fa-solid fa-comments" style="color:var(--neon-cyan)"></i> USER FEEDBACK & COMMENTS</h3>
                 <div class="comments-display" id="comments-list">
                     <p style="font-size:12px; color:var(--text-muted); text-align:center; padding-top:35px;">තවමත් කිසිදු ප්‍රතිචාරයක් නොමැත. 💬</p>
                 </div>
@@ -1451,19 +1461,19 @@
                     <button class="comment-submit-btn" onclick="submitComment()"><i class="fa-solid fa-paper-plane"></i></button>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- 🌐 GLOWING SOCIAL PLUG BOX -->
-        <div class="social-plug-box">
-            <div class="social-title">CONNECT WITH US ON SOCIAL NETWORKS</div>
+        <section class="social-plug-box">
+            <h3 class="social-title">CONNECT WITH US ON SOCIAL NETWORKS</h3>
             <div class="social-icons-wrapper" id="social-plug-links">
                 <a href="#" target="_blank" class="social-btn facebook" id="fb-main-icon-link"><i class="fa-brands fa-facebook-f"></i></a>
                 <a href="#" target="_blank" class="social-btn youtube" id="yt-main-icon-link"><i class="fa-brands fa-youtube"></i></a>
                 <a href="#" target="_blank" class="social-btn telegram" id="tg-main-icon-link"><i class="fa-brands fa-telegram"></i></a>
             </div>
-        </div>
+        </section>
 
-    </div>
+    </main>
 
     <!-- 🤖 CYBER-AI FLOATING CHATBOT WIDGET -->
     <div id="cyber-ai-bubble" onclick="toggleAIChat()">
@@ -1928,9 +1938,9 @@
                     if (dramasOfLang.length === 0) return;
 
                     let sectionHTML = `
-                        <div class="section-bar">
+                        <section class="section-bar">
                             <h2 class="section-title-neon">${label}</h2>
-                        </div>
+                        </section>
                     `;
 
                     const ongoing = dramasOfLang.filter(d => d && d.status === "ONGOING");
@@ -2049,7 +2059,7 @@
                         </span>
                     </div>
 
-                    <img class="poster-img" src="${imgUrl}" alt="Poster" loading="lazy">
+                    <img class="poster-img" src="${imgUrl}" alt="${d.title} සිංහල උපසිරැසි | Sinhala Subtitles" loading="lazy">
                     <div class="title-overlay"><p>${d.title}</p></div>
                 </a>
             `;
