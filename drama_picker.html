@@ -120,7 +120,7 @@
             pointer-events: none;
         }
 
-        /* 📌 FIXED HEADER BAR */
+        /* 📌 STICKY / FIXED HEADER CONFIGURATIONS */
         header {
             position: fixed !important;
             top: 0;
@@ -208,15 +208,12 @@
         .ticker-text { display: inline-block; white-space: nowrap; animation: marquee 25s linear infinite; font-size: 11px; font-weight: 700; text-shadow: 0 0 5px var(--neon-pink); }
         @keyframes marquee { 0% { transform: translateX(100vw); } 100% { transform: translateX(-100%); } }
 
-        /* 📌 SUB-NAVIGATION BAR (STICKS BELOW FIXED HEADER ON SCROLL WITH GAP) */
+        /* 📌 SUB-NAVIGATION BAR (STICKS BELOW FIXED HEADER ON SCROLL) */
         .sub-nav-container { 
             position: sticky !important;
             top: 75px !important; 
             z-index: 1000 !important;
-            max-width: 1300px; 
-            margin: 18px auto 0 auto !important; /* 👈 මෙතැනින් Ticker සහ Home අතර පරතරය වෙනස් කර ඇත (Desktop) */
-            padding: 5px 15px 12px 15px; 
-            box-sizing: border-box; 
+            max-width: 1300px; margin: 0 auto; padding: 5px 15px 12px 15px; box-sizing: border-box; 
             background: transparent !important;
             backdrop-filter: none !important;
             -webkit-backdrop-filter: none !important;
@@ -397,14 +394,6 @@
             gap: 8px;
         }
 
-        .drama-synopsis-text {
-            margin: 0;
-            text-align: justify;
-            line-height: 1.8;
-            color: #ccc;
-            font-size: 13.5px;
-        }
-
         @media (min-width: 900px) {
             .card-poster-title-inner {
                 flex-direction: row;
@@ -489,19 +478,6 @@
         .neon-amber-glow {
             color: #ffaa00 !important;
             text-shadow: 0 0 6px #ffaa00, 0 0 12px rgba(255, 170, 0, 0.6);
-        }
-
-        /* 📊 GRID ALIGNMENT FOR TOP ROW + IMDB */
-        .poster-top-row {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            right: 12px;
-            display: grid !important;
-            grid-template-columns: repeat(3, 1fr) !important;
-            grid-template-rows: auto auto !important;
-            gap: 8px !important;
-            z-index: 3;
         }
 
         .poster-genres-container {
@@ -981,6 +957,8 @@
         .footer-description { font-size: 13px; color: #fff; text-shadow: 0 0 5px var(--neon-pink); line-height: 1.6; margin-bottom: 25px; }
         .footer-credits { font-size: 11px; color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px; }
 
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
         @media (max-width: 768px) {
             .drama-details-container { padding: 0 !important; }
             .detail-poster-wrapper { width: 280px !important; height: 420px !important; max-width: 92% !important; }
@@ -1026,14 +1004,14 @@
                 z-index: 998 !important;
             }
             .sub-nav-container {
-                position: sticky !important;
+                position: fixed !important;
                 top: 55px !important; 
                 z-index: 1000 !important;
-                margin: 12px auto 0 auto !important; /* 👈 මෙතැනින් Ticker සහ Home අතර පරතරය වෙනස් කර ඇත (Mobile) */
                 padding: 5px 10px !important;
                 background: transparent !important;
                 backdrop-filter: none !important;
                 -webkit-backdrop-filter: none !important;
+                margin: 0 auto !important;
                 border: none !important;
                 box-shadow: none !important;
             }
@@ -1086,7 +1064,7 @@
         <div class="ticker-text" id="ticker-text">⚡ Loading Subtitle Terminal...</div>
     </div>
 
-    <!-- 📌 SUB-NAVIGATION BAR (STICKS BELOW FIXED HEADER ON SCROLL WITH GAP) -->
+    <!-- 📌 SUB-NAVIGATION BAR (STICKS BELOW FIXED HEADER ON SCROLL) -->
     <nav class="sub-nav-container">
         <div class="sub-nav-bar">
             <div class="sub-nav-clock" id="cyberClock">⏰ 00:00:00 AM</div>
@@ -1440,7 +1418,7 @@
                         </div>
                     </div>
 
-                    <!-- CARD 02: DRAMA DETAILS (SPECIFICATIONS) -->
+                    <!-- CARD 02: SPECIFICATIONS (DRAMA DETAILS) -->
                     <div class="glass-card-custom">
                         <h3 class="card-heading-cyan"><i class="fa-solid fa-circle-info"></i> කතාමාලා විස්තර (Drama Details)</h3>
                         <ul class="info-spec-list">
@@ -1459,7 +1437,7 @@
                         <p class="drama-synopsis-text">${drama.synopsis || 'කතා සාරාංශයක් ඇතුළත් කර නොමැත.'}</p>
                     </div>
 
-                    <!-- CARD 04: OFFICIAL TRAILER (කවුළුව 02) -->
+                    <!-- CARD 04: OFFICIAL TRAILER (කවුළුව 02 - ඇත්නම් පමණක් දර්ශනය වේ) -->
                     ${trailerHTML ? `
                     <div class="glass-card-custom">
                         ${trailerHTML}
