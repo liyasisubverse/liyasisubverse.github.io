@@ -87,7 +87,7 @@
 
             /* 📏 ADJUSTABLE HEIGHTS & GAPS (පරතරයන් වෙනස් කිරීමට පහත අගයන් භාවිත කරන්න) */
             --header-height: 75px;         /* හෙඩර් එකෙහි උස */
-            --sub-nav-height: 55px;        /* හෝම් බටන් සහිත බාර් එකෙහි උස */
+            --sub-nav-height: 55px;        /* ή හෝම් බටන් සහිත බාර් එකෙහි උස */
             --header-subnav-gap: 15px;     /* හෙඩර් එක සහ හෝම් බාර් එක අතර පරතරය */
             --subnav-ticker-gap: 15px;     /* හෝම් බාර් එක සහ අකුරු දුවන බාර් එක අතර පරතරය */
             --ticker-main-gap: 30px;       /* අකුරු දුවන බාර් එක සහ ප්‍රධාන විස්තර කොටස අතර පරතරය */
@@ -927,57 +927,16 @@
         }
         .chat-send-btn:hover { box-shadow: 0 0 15px var(--neon-cyan); transform: scale(1.05); }
 
-        /* 🔄 SYNCHRONIZED ROTATING ANIMATION FOR LOGO & TAGLINE */
-        @keyframes logo-laser-draw {
-            0%, 40% {
-                opacity: 1;
-                visibility: visible;
-                transform: translate(-50%, -50%) scale(1);
-            }
-            45%, 95% {
-                opacity: 0;
-                visibility: hidden;
-                transform: translate(-50%, -50%) scale(0.9);
-            }
-            100% {
-                opacity: 1;
-                visibility: visible;
-                transform: translate(-50%, -50%) scale(1);
-            }
-        }
-        @keyframes tagline-fade {
-            0%, 40% {
-                opacity: 0;
-                visibility: hidden;
-                transform: translateY(-50%) scale(0.9);
-            }
-            45%, 95% {
-                opacity: 1;
-                visibility: visible;
-                transform: translateY(-50%) scale(1);
-            }
-            100% {
-                opacity: 0;
-                visibility: hidden;
-                transform: translateY(-50%) scale(0.9);
-            }
-        }
-        @keyframes rgb-shift-text {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
         @keyframes rgb-fast-rotate {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
         @keyframes rgb-rotate { 
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); } 
-        }
-        @-webkit-keyframes rgb-rotate { 
-            0% { -webkit-transform: rotate(0deg); }
-            100% { -webkit-transform: rotate(360deg); } 
         }
 
         footer { background: rgba(4, 8, 16, 0.95); border-top: 2px solid var(--neon-cyan); padding: 40px 20px; text-align: center; margin-top: 40px; box-shadow: 0 -10px 30px rgba(0, 240, 255, 0.1); }
@@ -987,82 +946,6 @@
         .footer-brand .english { color: var(--neon-cyan); text-shadow: 0 0 8px var(--neon-cyan); margin-left: 3px; }
         .footer-description { font-size: 13px; color: #fff; text-shadow: 0 0 5px var(--neon-pink); line-height: 1.6; margin-bottom: 25px; }
         .footer-credits { font-size: 11px; color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px; }
-
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-
-        @media (max-width: 768px) {
-            .drama-details-container { padding: 0 !important; }
-            .detail-poster-wrapper { width: 280px !important; height: 420px !important; max-width: 92% !important; }
-            .info-spec-list { grid-template-columns: 1fr; }
-            .cast-grid-box { grid-template-columns: repeat(3, 1fr); gap: 10px; }
-            .cat-vote-wrapper { grid-template-columns: 1fr !important; gap: 10px; }
-        }
-        @media (max-width: 600px) {
-            :root {
-                --header-height: 55px;
-                --sub-nav-height: 45px;
-                --header-subnav-gap: 8px;
-                --subnav-ticker-gap: 8px;
-                --ticker-main-gap: 15px;
-            }
-            .main-container {
-                width: 100% !important;
-                max-width: 100% !important;
-                padding: 0 10px !important;
-                margin: 0 auto !important;
-                overflow-x: hidden !important;
-            }
-            .header-container, .sub-nav-container {
-                width: 100% !important;
-                max-width: 100% !important;
-                padding-left: 10px !important;
-                padding-right: 10px !important;
-                box-sizing: border-box !important;
-            }
-            header {
-                position: fixed !important;
-                top: 0 !important;
-                z-index: 1010 !important;
-                height: var(--header-height) !important;
-                background: transparent !important;
-                backdrop-filter: none !important;
-                -webkit-backdrop-filter: none !important;
-                border: none !important;
-                box-shadow: none !important;
-                padding: 8px 10px !important;
-            }
-            .sub-nav-container {
-                position: fixed !important;
-                top: calc(var(--header-height) + var(--header-subnav-gap)) !important; 
-                z-index: 1000 !important;
-                padding: 0 10px !important;
-                background: transparent !important;
-                backdrop-filter: none !important;
-                -webkit-backdrop-filter: none !important;
-                margin: 0 auto !important;
-                border: none !important;
-                box-shadow: none !important;
-            }
-            .ticker-wrapper {
-                margin-top: calc(var(--header-height) + var(--header-subnav-gap) + var(--sub-nav-height) + var(--subnav-ticker-gap)) !important;
-                position: static !important; 
-                background: transparent !important;
-                border: none !important;
-                box-shadow: none !important;
-                z-index: 998 !important;
-                margin-bottom: var(--ticker-main-gap) !important;
-            }
-
-            .header-container { flex-direction: row !important; justify-content: space-between !important; align-items: center !important; width: 100%; gap: 10px; }
-            .logo-wrapper { width: 300px !important; height: 45px !important; }
-            .site-logo-img { height: 35px !important; }
-            .coded-tagline-text { font-size: 11.5px !important; line-height: 1.25 !important; letter-spacing: 0.5px !important; }
-            .coded-tagline-text span { font-size: 8.5px !important; }
-            .sub-nav-bar { flex-direction: row !important; justify-content: space-between !important; gap: 8px; padding: 10px 12px; height: var(--sub-nav-height) !important; }
-            .sub-nav-item { font-size: 11px; padding: 6px 14px; }
-            .sub-nav-clock { font-size: 10px !important; padding: 5px 10px !important; }
-            .sub-nav-date { font-size: 10px !important; padding: 5px 10px !important; }
-        }
     </style>
 </head>
 <body>
@@ -1395,7 +1278,6 @@
             const ytBtn = document.getElementById('yt-main-icon-link');
             if (ytBtn) ytBtn.href = globalConfig.youtube_link || "#";
 
-            // Config blogger link
             const bloggerBtn = document.getElementById('blogger-config-link');
             if (bloggerBtn) bloggerBtn.href = globalConfig.blogger_link || "";
 
@@ -1552,6 +1434,31 @@
                     <img src="${mapUrl}" alt="${currentDrama.title} Story Map" loading="lazy">
                 </div>
             `;
+        }
+
+        function getYouTubeEmbedUrl(urlOrId) {
+            if (!urlOrId) return null;
+            urlOrId = urlOrId.trim();
+
+            if (urlOrId.includes("youtube.com/embed/") || urlOrId.includes("youtube-nocookie.com/embed/")) {
+                return urlOrId;
+            }
+
+            let videoId = "";
+            if (urlOrId.length === 11 && !urlOrId.includes("/") && !urlOrId.includes(".")) {
+                videoId = urlOrId;
+            } else {
+                const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|shorts\/)([^#\&\?]*).*/;
+                const match = urlOrId.match(regExp);
+                if (match && match[2].length === 11) {
+                    videoId = match[2];
+                }
+            }
+
+            if (videoId) {
+                return `https://www.youtube.com/embed/${videoId}`;
+            }
+            return urlOrId; 
         }
 
         function renderTrailer() {
