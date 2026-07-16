@@ -72,8 +72,11 @@
         var CLOUDFLARE_WORKER_URL_GROQ = "https://groq.rashmi004005g.workers.dev"; 
     </script>
     <style>
-        /* 🎨 PREMIUM CYBERPUNK PALETTE */
+        /* 🎨 PREMIUM CYBERPUNK PALETTE & VARIABLES */
         :root {
+            --header-height: 80px;
+            --sub-nav-height: 50px;
+            --header-subnav-gap: 0px;
             --bg-main: #020408;
             --neon-cyan: #00f0ff;
             --neon-pink: #ff007f;
@@ -123,9 +126,7 @@
 
         /* 01. හෙඩර් එක lock කිරීම සහ පසුබිම් රහිතව ස්වාධීන කිරීම */
         .sticky-top-bar {
-            position: -webkit-sticky !important;
-            position: sticky !important;
-            top: 0 !important;
+            position: static !important;
             z-index: 1000 !important;
             background: transparent !important;
             backdrop-filter: none !important;
@@ -136,12 +137,19 @@
         }
 
         header {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0;
+            right: 0;
+            height: var(--header-height);
+            z-index: 1010 !important;
             background: transparent !important;
             backdrop-filter: none !important;
             -webkit-backdrop-filter: none !important;
-            border-bottom: none !important;
+            border: none !important;
             box-shadow: none !important;
             padding: 12px 20px 5px 20px;
+            box-sizing: border-box;
         }
         .header-container {
             max-width: 1300px; margin: 0 auto;
@@ -209,6 +217,13 @@
             -webkit-backdrop-filter: none !important;
             border: none !important;
             box-shadow: none !important;
+
+            top: calc(var(--header-height) + var(--header-subnav-gap)) !important;
+            position: fixed !important;
+            left: 0;
+            right: 0;
+            height: var(--sub-nav-height);
+            z-index: 1000 !important;
         }
         .sub-nav-bar { 
             display: flex; justify-content: space-between; align-items: center; gap: 15px; 
@@ -249,6 +264,7 @@
         }
 
         .ticker-wrapper {
+            margin-top: calc(var(--header-height) + var(--sub-nav-height) + var(--header-subnav-gap) + 10px) !important;
             background: transparent !important;
             border: none !important;
             box-shadow: none !important;
@@ -295,6 +311,24 @@
             backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
         }
         .glass-section-custom h3 {
+            color: var(--neon-cyan); text-shadow: 0 0 8px var(--neon-cyan); font-size: 14px;
+            font-weight: 900; text-transform: uppercase; border-left: 3px solid var(--neon-cyan);
+            padding-left: 10px; margin: 0 0 15px 0; letter-spacing: 1px;
+        }
+
+        /* 📋 NESTED SUB-WINDOWS inside Unified Layer */
+        .sub-window-box {
+            background: rgba(4, 8, 16, 0.5);
+            border: 1px solid rgba(0, 240, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+        .sub-window-box:last-child {
+            margin-bottom: 0;
+        }
+        .sub-window-box h3 {
             color: var(--neon-cyan); text-shadow: 0 0 8px var(--neon-cyan); font-size: 14px;
             font-weight: 900; text-transform: uppercase; border-left: 3px solid var(--neon-cyan);
             padding-left: 10px; margin: 0 0 15px 0; letter-spacing: 1px;
@@ -463,7 +497,7 @@
         .info-spec-list { 
             list-style: none; 
             padding: 0; 
-            margin: 0 0 25px 0; 
+            margin: 0; 
             display: flex;
             flex-direction: column; 
             gap: 12px; 
@@ -677,7 +711,6 @@
         }
         .social-icons-wrapper { display: flex; justify-content: center; gap: 25px; }
 
-        /* 05. ඩෙක්ස්ටොප් එකේදී ලොගෝ පරතරය හා විශාලත්වය ගැලපෙන ලෙස සකස් කිරීම */
         @media (min-width: 900px) {
             .social-icons-wrapper {
                 gap: 40px !important; 
@@ -710,7 +743,6 @@
         .social-btn.facebook i { color: #1877f2; text-shadow: 0 0 10px #1877f2, 0 0 20px #1877f2; }
         .social-btn.youtube i { color: #ff0000; text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000; }
         .social-btn.telegram i { color: #0088cc; text-shadow: 0 0 10px #0088cc, 0 0 20px #0088cc; }
-        /* 05. බ්ලොගර් ලොගෝ නියොන් සහ වර්ණ සැකසීම */
         .social-btn.blogger i { color: #f57c00; text-shadow: 0 0 10px #f57c00, 0 0 20px #f57c00; }
         .social-btn:hover { box-shadow: 0 0 15px var(--neon-cyan); }
 
@@ -917,6 +949,11 @@
             .cat-vote-wrapper { grid-template-columns: 1fr !important; gap: 10px; }
         }
         @media (max-width: 600px) {
+            :root {
+                --header-height: 65px;
+                --sub-nav-height: 45px;
+                --header-subnav-gap: 0px;
+            }
             .main-container {
                 width: 100% !important;
                 max-width: 100% !important;
@@ -931,9 +968,9 @@
                 padding-right: 10px !important;
                 box-sizing: border-box !important;
             }
-            /* හෙඩර් Lock එක ස්වාධීනව තබාගැනීම */
             header {
-                position: relative !important;
+                position: fixed !important;
+                top: 0 !important;
                 background: transparent !important;
                 backdrop-filter: none !important;
                 -webkit-backdrop-filter: none !important;
@@ -942,12 +979,14 @@
             }
             .ticker-wrapper {
                 position: static !important; 
+                margin-top: calc(var(--header-height) + var(--sub-nav-height) + var(--header-subnav-gap) + 10px) !important;
                 background: transparent !important;
                 border: none !important;
                 box-shadow: none !important;
             }
             .sub-nav-container {
-                position: relative !important;
+                position: fixed !important;
+                top: calc(var(--header-height) + var(--header-subnav-gap)) !important;
                 padding: 10px 15px !important;
                 background: transparent !important;
                 backdrop-filter: none !important;
@@ -1024,20 +1063,14 @@
             <!-- Dynamically populated via Javascript -->
         </nav>
         
-        <!-- 04. කවුළු 01: රූපය හා ඩ්‍රාමා නම පමණක් පෙන්වන කවුළුව -->
-        <section class="glass-section-custom" id="window-poster-title">
+        <!-- 📂 UNIFIED DETAILS LAYER (තනි ලෙයර් එකකට ගත් කවුළු) -->
+        <section class="glass-section-custom" id="unified-details-layer">
             <!-- Static Fallback Content for SEO Crawlers -->
             <div style="padding: 20px; text-align: center; width: 100%;">
                 <h2>ලියැසි SUBVERSE - උපසිරැසි බාගත කිරීමේ කවුළුව</h2>
                 <p>ආසියානු කතාමාලා වල නිශ්චිත කොටස් (Episodes) සඳහා සිංහල උපසිරැසි සහ වීඩියෝ ලින්ක්ස් මෙතැනින් නොමිලේ ලබාගන්න.</p>
             </div>
         </section>
-
-        <!-- 04. කවුළු 02: Director|Writer|Network|Country|Air Date|Run Time විස්තර කවුළුව -->
-        <section class="glass-section-custom" id="window-drama-specs" style="display:none;"></section>
-
-        <!-- 04. කවුළු 03: කතා සාරාංශය (synopsis) සහ පූර්ව ප්‍රචාරක පටය (OFFICIAL TRAILER) පෙන්වන කවුළුව -->
-        <section class="glass-section-custom" id="window-synopsis-trailer" style="display:none;"></section>
 
         <!-- 🎭 CAST & CREW DYNAMIC HOLDER -->
         <section class="glass-section-custom" id="cast-section-wrapper" style="display:none;"></section>
@@ -1319,7 +1352,7 @@
         }
 
         function showError(title, desc) {
-            const wrapper = document.getElementById('window-poster-title');
+            const wrapper = document.getElementById('unified-details-layer');
             if (wrapper) {
                 wrapper.innerHTML = `
                     <div style="text-align: center; padding: 50px 20px; color: var(--neon-pink);">
@@ -1336,11 +1369,8 @@
 
         // 04. කවුළු ප්‍රතිසංස්කරණය කිරීම් සහ Dynamic තනි Layer දත්ත පිරවීම් සිදු කිරීම
         function renderDramaDetails() {
-            const win1 = document.getElementById('window-poster-title');
-            const win2 = document.getElementById('window-drama-specs');
-            const win3 = document.getElementById('window-synopsis-trailer');
-            
-            if (!win1 || !win2 || !win3) return;
+            const unifiedLayer = document.getElementById('unified-details-layer');
+            if (!unifiedLayer) return;
             
             const rating = parseFloat(currentEpisode.imdb || currentDrama.imdb || '8.5');
             const dramaImg = currentDrama.image_url || currentDrama.image || currentDrama.imageUrl || '';
@@ -1361,74 +1391,97 @@
                 `;
             }
 
-            // 04. කවුළු 01: රූපය හා ඩ්‍රාමා නම පමණක් පෙන්වන කවුළුව
-            win1.innerHTML = `
-                <div style="display: flex; flex-direction: column; align-items: center; gap: 20px; width: 100%;">
-                    <div class="detail-poster-wrapper">
-                        <img class="detail-poster-img" src="${epImg}" alt="${currentDrama.title} ${epNum} සිංහල උපසිරැසි | Sinhala Subtitles">
-                        
-                        <!-- Top Labels Layout (Ongoing, Type, EP- Rate, and IMDB connected nicely under Ongoing) -->
-                        <div class="poster-top-row" style="position: absolute; top: 12px; left: 12px; right: 12px; display: flex; justify-content: space-between; align-items: flex-start; z-index: 3;">
-                            <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 6px;">
-                                <span class="neon-text-label neon-cyan-glow">${currentDrama.status}</span>
-                                <span class="neon-text-label neon-amber-glow"><i class="fa-solid fa-star" style="font-size: 8px; margin-right: 2px;"></i>${rating}</span>
-                            </div>
-                            <div style="display: flex; justify-content: center; flex-grow: 1;">
-                                <span class="neon-text-label neon-purple-glow">${currentDrama.type || 'DRAMA'}</span>
-                            </div>
-                            <div style="display: flex; justify-content: flex-end;">
-                                <span class="neon-text-label neon-pink-glow">${epNum}</span>
-                            </div>
-                        </div>
-                        
-                        <!-- Bottom Genres wrapper ensuring 3 labels per row inside grid -->
-                        <div class="poster-genres-container">
-                            ${currentDrama.genres ? currentDrama.genres.map((g, idx) => {
-                                const neonColors = ['neon-cyan-glow', 'neon-purple-glow', 'neon-pink-glow', 'neon-amber-glow'];
-                                return `<span class="neon-text-label ${neonColors[idx % neonColors.length]}">${g}</span>`;
-                            }).join('') : ''}
-                        </div>
-                    </div>
-                    <div style="text-align: center; width: 100%;">
-                        <h1 style="font-size: 28px; font-weight: 900; margin: 0 0 10px 0; text-shadow: 0 0 10px #fff; text-transform: uppercase; color: #fff;">${currentDrama.title || ''}</h1>
-                        <h4 style="color: var(--neon-cyan); text-shadow:0 0 5px var(--neon-cyan); margin: 0; font-size: 16px; font-weight: 800; text-transform: uppercase;">${currentEpisode.title || ''}</h4>
-                    </div>
-                </div>
-            `;
-
-            // 04. කවුළු 02: Director|Writer|Network|Country|Air Date|Run Time විස්තර කවුළුව
-            win2.style.display = "block";
-            win2.innerHTML = `
-                <h3>📋 කතාමාලාවේ තොරතුරු (Drama Specifications)</h3>
-                <ul class="info-spec-list">
-                    <li class="info-spec-item"><span class="info-spec-label">Director:</span><span class="info-spec-value">${currentEpisode.director || currentDrama.director || 'N/A'}</span></li>
-                    <li class="info-spec-item"><span class="info-spec-label">Writer:</span><span class="info-spec-value">${currentEpisode.writer || currentDrama.writer || 'N/A'}</span></li>
-                    <li class="info-spec-item"><span class="info-spec-label">Network:</span><span class="info-spec-value">${currentEpisode.network || currentDrama.network || 'N/A'}</span></li>
-                    <li class="info-spec-item"><span class="info-spec-label">First Aired:</span><span class="info-spec-value">${currentEpisode.first_air_date || currentDrama.first_air_date || 'N/A'}</span></li>
-                    <li class="info-spec-item"><span class="info-spec-label">Runtime:</span><span class="info-spec-value">${currentEpisode.runtime || currentDrama.runtime || 'N/A'}</span></li>
-                    <li class="info-spec-item"><span class="info-spec-label">Country:</span><span class="info-spec-value">${currentEpisode.country || currentDrama.country || 'N/A'}</span></li>
-                </ul>
-            `;
-
-            // 04. කවුළු 03: කොටසේ කතාව (EPISODE SYNOPSIS) සහ පූර්ව ප්‍රචාරක පටය (OFFICIAL TRAILER) පෙන්වන කවුළුව (කතා මාලාවේ විස්තරය ඉවත් කර ඇත)
             const trailerUrl = currentEpisode.trailer || currentEpisode.trailer_link || currentEpisode.trailerUrl || currentDrama.trailer || currentDrama.trailer_link || currentDrama.trailerUrl;
             const embedUrl = (trailerUrl && trailerUrl !== "#") ? getYouTubeEmbedUrl(trailerUrl) : null;
 
-            win3.style.display = "block";
-            win3.innerHTML = `
-                <h3>📖 කොටසේ කතාව සහ පූර්ව ප්‍රචාරක පටය (Episode Synopsis & Official Trailer)</h3>
-                <div style="color: #ccc; font-size: 13.5px; line-height: 1.8; text-align: justify; margin-bottom: 25px;">
-                    ${currentEpisode.synopsis ? `
-                        <p style="margin: 0 0 8px 0; font-weight: bold; color: var(--neon-pink); text-shadow: 0 0 5px var(--neon-pink); font-size: 14px; text-transform: uppercase;">${epNum} - කොටසේ කතාව (Episode Synopsis)</p>
-                        <p style="margin: 0;">${currentEpisode.synopsis}</p>
-                    ` : ''}
+            // Specifications sub-window layout
+            let specsHTML = `
+                <div class="sub-window-box" id="sub-window-drama-specs">
+                    <h3>📋 කතාමාලාවේ තොරතුරු (Drama Specifications)</h3>
+                    <ul class="info-spec-list">
+                        <li class="info-spec-item"><span class="info-spec-label">Director:</span><span class="info-spec-value">${currentEpisode.director || currentDrama.director || 'N/A'}</span></li>
+                        <li class="info-spec-item"><span class="info-spec-label">Writer:</span><span class="info-spec-value">${currentEpisode.writer || currentDrama.writer || 'N/A'}</span></li>
+                        <li class="info-spec-item"><span class="info-spec-label">Network:</span><span class="info-spec-value">${currentEpisode.network || currentDrama.network || 'N/A'}</span></li>
+                        <li class="info-spec-item"><span class="info-spec-label">First Aired:</span><span class="info-spec-value">${currentEpisode.first_air_date || currentDrama.first_air_date || 'N/A'}</span></li>
+                        <li class="info-spec-item"><span class="info-spec-label">Runtime:</span><span class="info-spec-value">${currentEpisode.runtime || currentDrama.runtime || 'N/A'}</span></li>
+                        <li class="info-spec-item"><span class="info-spec-label">Country:</span><span class="info-spec-value">${currentEpisode.country || currentDrama.country || 'N/A'}</span></li>
+                    </ul>
                 </div>
-                ${embedUrl ? `
-                    <p style="margin: 0 0 12px 0; font-weight: bold; color: var(--neon-amber); text-shadow: 0 0 5px var(--neon-amber); font-size: 14px; text-transform: uppercase;">නිල පූර්ව ප්‍රචාරක පටය (Official Trailer)</p>
-                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius:12px; border:1px solid var(--glass-border);">
-                        <iframe src="${embedUrl}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen loading="lazy"></iframe>
+            `;
+
+            // Episode Synopsis sub-window layout
+            let synopsisHTML = "";
+            if (currentEpisode.synopsis) {
+                synopsisHTML = `
+                    <div class="sub-window-box" id="sub-window-synopsis">
+                        <h3>📖 කොටසේ කතාව (Episode Synopsis)</h3>
+                        <div style="color: #ccc; font-size: 13.5px; line-height: 1.8; text-align: justify;">
+                            <p style="margin: 0 0 8px 0; font-weight: bold; color: var(--neon-pink); text-shadow: 0 0 5px var(--neon-pink); font-size: 14px; text-transform: uppercase;">${epNum} - කොටසේ කතාව (Episode Synopsis)</p>
+                            <p style="margin: 0;">${currentEpisode.synopsis}</p>
+                        </div>
                     </div>
-                ` : ''}
+                `;
+            }
+
+            // Trailer sub-window layout
+            let trailerHTML = "";
+            if (embedUrl) {
+                trailerHTML = `
+                    <div class="sub-window-box" id="sub-window-trailer">
+                        <h3>🎬 පූර්ව ප්‍රචාරක පටය (Official Trailer)</h3>
+                        <p style="margin: 0 0 12px 0; font-weight: bold; color: var(--neon-amber); text-shadow: 0 0 5px var(--neon-amber); font-size: 14px; text-transform: uppercase;">නිල පූර්ව ප්‍රචාරක පටය (Official Trailer)</p>
+                        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius:12px; border:1px solid var(--glass-border);">
+                            <iframe src="${embedUrl}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen loading="lazy"></iframe>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Generating unified single layer layout
+            unifiedLayer.innerHTML = `
+                <!-- Sub-Window 01: Poster & Title -->
+                <div class="sub-window-box" id="sub-window-poster-title">
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 20px; width: 100%;">
+                        <div class="detail-poster-wrapper">
+                            <img class="detail-poster-img" src="${epImg}" alt="${currentDrama.title} ${epNum} සිංහල උපසිරැසි | Sinhala Subtitles">
+                            
+                            <!-- Top Labels Layout -->
+                            <div class="poster-top-row" style="position: absolute; top: 12px; left: 12px; right: 12px; display: flex; justify-content: space-between; align-items: flex-start; z-index: 3;">
+                                <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 6px;">
+                                    <span class="neon-text-label neon-cyan-glow">${currentDrama.status}</span>
+                                    <span class="neon-text-label neon-amber-glow"><i class="fa-solid fa-star" style="font-size: 8px; margin-right: 2px;"></i>${rating}</span>
+                                </div>
+                                <div style="display: flex; justify-content: center; flex-grow: 1;">
+                                    <span class="neon-text-label neon-purple-glow">${currentDrama.type || 'DRAMA'}</span>
+                                </div>
+                                <div style="display: flex; justify-content: flex-end;">
+                                    <span class="neon-text-label neon-pink-glow">${epNum}</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Bottom Genres -->
+                            <div class="poster-genres-container">
+                                ${currentDrama.genres ? currentDrama.genres.map((g, idx) => {
+                                    const neonColors = ['neon-cyan-glow', 'neon-purple-glow', 'neon-pink-glow', 'neon-amber-glow'];
+                                    return `<span class="neon-text-label ${neonColors[idx % neonColors.length]}">${g}</span>`;
+                                }).join('') : ''}
+                            </div>
+                        </div>
+                        <div style="text-align: center; width: 100%;">
+                            <h1 style="font-size: 28px; font-weight: 900; margin: 0 0 10px 0; text-shadow: 0 0 10px #fff; text-transform: uppercase; color: #fff;">${currentDrama.title || ''}</h1>
+                            <h4 style="color: var(--neon-cyan); text-shadow:0 0 5px var(--neon-cyan); margin: 0; font-size: 16px; font-weight: 800; text-transform: uppercase;">${currentEpisode.title || ''}</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sub-Window 02: Specifications -->
+                ${specsHTML}
+
+                <!-- Sub-Window 03: Episode Synopsis (වෙනම කවුළුවක්) -->
+                ${synopsisHTML}
+
+                <!-- Sub-Window 04: Official Trailer (වෙනම කවුළුවක්) -->
+                ${trailerHTML}
             `;
         }
 
@@ -1495,7 +1548,7 @@
         }
 
         function renderTrailer() {
-            // Trailer එක කවුළු 03 (window-synopsis-trailer) තුළට ඒකාබද්ධ කර ඇත.
+            // Trailer එක කවුළු 03 සහ 04 ලෙස unified-details-layer එක තුළට ඒකාබද්ධ කර ඇත.
         }
 
         function renderVotePanel() {
@@ -1527,7 +1580,6 @@
             const wrapper = document.getElementById('download-section-wrapper');
             if (!wrapper) return;
             
-            // 📡 Telegram fallback to global Config Link if ep.tg_link is absent
             const fallbackTelegramLink = currentEpisode.tg_link || globalConfig.telegram_channel_link || "#";
 
             wrapper.style.display = "block";
