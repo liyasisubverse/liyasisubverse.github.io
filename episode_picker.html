@@ -123,13 +123,14 @@
 
         /* 01. හෙඩර් එක lock කිරීම සහ පසුබිම් රහිතව ස්වාධීන කිරීම */
         .sticky-top-bar {
+            position: -webkit-sticky !important;
             position: sticky !important;
             top: 0 !important;
             z-index: 1000 !important;
             background: transparent !important;
             backdrop-filter: none !important;
             -webkit-backdrop-filter: none !important;
-            border-bottom: none !important;
+            border: none !important;
             box-shadow: none !important;
             width: 100%;
         }
@@ -932,7 +933,7 @@
             }
             /* හෙඩර් Lock එක ස්වාධීනව තබාගැනීම */
             header {
-                position: static !important;
+                position: relative !important;
                 background: transparent !important;
                 backdrop-filter: none !important;
                 -webkit-backdrop-filter: none !important;
@@ -946,7 +947,7 @@
                 box-shadow: none !important;
             }
             .sub-nav-container {
-                position: static !important;
+                position: relative !important;
                 padding: 10px 15px !important;
                 background: transparent !important;
                 backdrop-filter: none !important;
@@ -1138,7 +1139,7 @@
     <footer>
         <div class="footer-content">
             <div class="footer-brand"><span class="sinhala">ලියැසි</span><span class="english">SUBVERSE</span></div>
-            <p class="footer-description">ලියැසි SUBVERSE වෙතින් උසස්ම තත්ත්වයේ ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි නොමිලේ ලබාගත හැක.</p>
+            <p class="footer-description">ලියැසි SUBVERSE වෙතින් උසස්ම තත්ත්වයේ ආසියානු කතාමාලා සඳහාසිංහල උපසිරැසි නොමිලේ ලබාගත හැක.</p>
             <div class="footer-credits">&copy; 2026 ලියැසි SUBVERSE. All Rights Reserved.</div>
         </div>
     </footer>
@@ -1360,7 +1361,7 @@
                 `;
             }
 
-            // 03. කවුළු 01: රූපය හා ඩ්‍රාමා නම පමණක් පෙන්වන කවුළුව + උඩ ලේබල් තුනක් Balance කර IMDB rate එක ONGOING යටින් තැබීම
+            // 04. කවුළු 01: රූපය හා ඩ්‍රාමා නම පමණක් පෙන්වන කවුළුව
             win1.innerHTML = `
                 <div style="display: flex; flex-direction: column; align-items: center; gap: 20px; width: 100%;">
                     <div class="detail-poster-wrapper">
@@ -1398,7 +1399,7 @@
             // 04. කවුළු 02: Director|Writer|Network|Country|Air Date|Run Time විස්තර කවුළුව
             win2.style.display = "block";
             win2.innerHTML = `
-                <h3>📊 කතාමාලාවේ විස්තරාත්මක තොරතුරු (Drama Information)</h3>
+                <h3>📋 කතාමාලාවේ තොරතුරු (Drama Specifications)</h3>
                 <ul class="info-spec-list">
                     <li class="info-spec-item"><span class="info-spec-label">Director:</span><span class="info-spec-value">${currentEpisode.director || currentDrama.director || 'N/A'}</span></li>
                     <li class="info-spec-item"><span class="info-spec-label">Writer:</span><span class="info-spec-value">${currentEpisode.writer || currentDrama.writer || 'N/A'}</span></li>
@@ -1409,16 +1410,14 @@
                 </ul>
             `;
 
-            // 04. කවුළු 03: කතා සාරාංශය (synopsis) සහ පූර්ව ප්‍රචාරක පටය (OFFICIAL TRAILER) පෙන්වන කවුළුව (තනි Layer එකකට සකසා ඇත)
+            // 04. කවුළු 03: කොටසේ කතාව (EPISODE SYNOPSIS) සහ පූර්ව ප්‍රචාරක පටය (OFFICIAL TRAILER) පෙන්වන කවුළුව (කතා මාලාවේ විස්තරය ඉවත් කර ඇත)
             const trailerUrl = currentEpisode.trailer || currentEpisode.trailer_link || currentEpisode.trailerUrl || currentDrama.trailer || currentDrama.trailer_link || currentDrama.trailerUrl;
             const embedUrl = (trailerUrl && trailerUrl !== "#") ? getYouTubeEmbedUrl(trailerUrl) : null;
 
             win3.style.display = "block";
             win3.innerHTML = `
-                <h3>📖 කතා සාරාංශය සහ පූර්ව ප්‍රචාරක පටය (Synopsis & Official Trailer)</h3>
+                <h3>📖 කොටසේ කතාව සහ පූර්ව ප්‍රචාරක පටය (Episode Synopsis & Official Trailer)</h3>
                 <div style="color: #ccc; font-size: 13.5px; line-height: 1.8; text-align: justify; margin-bottom: 25px;">
-                    <p style="margin: 0 0 8px 0; font-weight: bold; color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); font-size: 14px; text-transform: uppercase;">කතාමාලාවේ විස්තරය (Drama Synopsis)</p>
-                    <p style="margin: 0 0 20px 0;">${currentDrama.synopsis || ''}</p>
                     ${currentEpisode.synopsis ? `
                         <p style="margin: 0 0 8px 0; font-weight: bold; color: var(--neon-pink); text-shadow: 0 0 5px var(--neon-pink); font-size: 14px; text-transform: uppercase;">${epNum} - කොටසේ කතාව (Episode Synopsis)</p>
                         <p style="margin: 0;">${currentEpisode.synopsis}</p>
