@@ -32,7 +32,7 @@
     </script>
 
     <!-- FAVICON LINK -->
-    <link rel="icon" type="image/png" href="https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/addbf6d9-1174-488e-a2c9-6f9fa5621744.png"> <!-- කරුණාකර ඔබගේ favicon.png ලින්ක් එක href="" තුළ මෙතැන ඇතුලත් කරන්න -->
+    <link rel="icon" type="image/png" href="favicon.png"> <!-- ඔබගේ ප්‍රධාන ෆෝල්ඩරයේ ඇති favicon.png එක සෘජුව සම්බන්ධ කර ඇත -->
     
     <!-- SEO META TAGS -->
     <meta name="description" id="meta-desc" content="ලියැසි SUBVERSE වෙතින් ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි නොමිලේ සෘජුවම බාගත කරගන්න.">
@@ -311,24 +311,6 @@
             backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
         }
         .glass-section-custom h3 {
-            color: var(--neon-cyan); text-shadow: 0 0 8px var(--neon-cyan); font-size: 14px;
-            font-weight: 900; text-transform: uppercase; border-left: 3px solid var(--neon-cyan);
-            padding-left: 10px; margin: 0 0 15px 0; letter-spacing: 1px;
-        }
-
-        /* 📋 NESTED SUB-WINDOWS inside Unified Layer */
-        .sub-window-box {
-            background: rgba(4, 8, 16, 0.5);
-            border: 1px solid rgba(0, 240, 255, 0.1);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-        }
-        .sub-window-box:last-child {
-            margin-bottom: 0;
-        }
-        .sub-window-box h3 {
             color: var(--neon-cyan); text-shadow: 0 0 8px var(--neon-cyan); font-size: 14px;
             font-weight: 900; text-transform: uppercase; border-left: 3px solid var(--neon-cyan);
             padding-left: 10px; margin: 0 0 15px 0; letter-spacing: 1px;
@@ -1063,10 +1045,10 @@
             <!-- Dynamically populated via Javascript -->
         </nav>
         
-        <!-- 📂 UNIFIED DETAILS LAYER (තනි ලෙයර් එකකට ගත් කවුළු) -->
-        <section class="glass-section-custom" id="unified-details-layer">
+        <!-- 📂 UNIFIED DETAILS LAYER - දැන් විනිවිද පෙනෙන ස්වාධීන කවුළු සඳහා සකසා ඇත (Double Layer Bug Resolved) -->
+        <section id="unified-details-layer" style="width: 100%; background: transparent !important; border: none !important; box-shadow: none !important; padding: 0 !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important;">
             <!-- Static Fallback Content for SEO Crawlers -->
-            <div style="padding: 20px; text-align: center; width: 100%;">
+            <div class="glass-section-custom" style="text-align: center; width: 100%;">
                 <h2>ලියැසි SUBVERSE - උපසිරැසි බාගත කිරීමේ කවුළුව</h2>
                 <p>ආසියානු කතාමාලා වල නිශ්චිත කොටස් (Episodes) සඳහා සිංහල උපසිරැසි සහ වීඩියෝ ලින්ක්ස් මෙතැනින් නොමිලේ ලබාගන්න.</p>
             </div>
@@ -1131,8 +1113,8 @@
                 <a href="#" target="_blank" class="social-btn facebook" id="fb-main-icon-link"><i class="fa-brands fa-facebook-f"></i></a>
                 <a href="#" target="_blank" class="social-btn youtube" id="yt-main-icon-link"><i class="fa-brands fa-youtube"></i></a>
                 <a href="#" target="_blank" class="social-btn telegram" id="tg-config-link"><i class="fa-brands fa-telegram"></i></a>
-                <!-- PLACE YOUR BLOGGER LINK HERE / ඔබගේ බ්ලොගර් ලින්ක් එක මෙතැනට ඇතුලත් කරන්න -->
-                <a href="liyasisubverse.blogspot.com" target="_blank" class="social-btn blogger" id="blogger-main-icon-link"><i class="fa-brands fa-blogger-b"></i></a>
+                <!-- Blogger link set to Absolute URL to prevent 404 -->
+                <a href="https://liyasisubverse.blogspot.com" target="_blank" class="social-btn blogger" id="blogger-main-icon-link"><i class="fa-brands fa-blogger-b"></i></a>
             </div>
         </section>
 
@@ -1172,7 +1154,7 @@
     <footer>
         <div class="footer-content">
             <div class="footer-brand"><span class="sinhala">ලියැසි</span><span class="english">SUBVERSE</span></div>
-            <p class="footer-description">ලියැසි SUBVERSE වෙතින් උසස්ම තත්ත්වයේ ආසියානු කතාමාලා සඳහාසිංහල උපසිරැසි නොමිලේ ලබාගත හැක.</p>
+            <p class="footer-description">ලියැසි SUBVERSE වෙතින් උසස්ම තත්ත්වයේ ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි නොමිලේ ලබාගත හැක.</p>
             <div class="footer-credits">&copy; 2026 ලියැසි SUBVERSE. All Rights Reserved.</div>
         </div>
     </footer>
@@ -1355,7 +1337,7 @@
             const wrapper = document.getElementById('unified-details-layer');
             if (wrapper) {
                 wrapper.innerHTML = `
-                    <div style="text-align: center; padding: 50px 20px; color: var(--neon-pink);">
+                    <div class="glass-section-custom" style="text-align: center; padding: 50px 20px; color: var(--neon-pink);">
                         <h2 style="text-shadow: 0 0 10px var(--neon-pink);">${title}</h2>
                         <p style="color: #ccc; font-size: 14px; margin-top: 10px;">${desc}</p>
                         <a href="index.html" class="download-btn" style="margin-top: 20px; max-width: 200px;">
@@ -1367,7 +1349,7 @@
             }
         }
 
-        // 04. කවුළු ප්‍රතිසංස්කරණය කිරීම් සහ Dynamic තනි Layer දත්ත පිරවීම් සිදු කිරීම
+        // 04. කවුළු ප්‍රතිසංස්කරණය කිරීම් සහ ස්වාධීන තනි තනි කවුළු සැකසීම
         function renderDramaDetails() {
             const unifiedLayer = document.getElementById('unified-details-layer');
             if (!unifiedLayer) return;
@@ -1394,9 +1376,9 @@
             const trailerUrl = currentEpisode.trailer || currentEpisode.trailer_link || currentEpisode.trailerUrl || currentDrama.trailer || currentDrama.trailer_link || currentDrama.trailerUrl;
             const embedUrl = (trailerUrl && trailerUrl !== "#") ? getYouTubeEmbedUrl(trailerUrl) : null;
 
-            // Specifications sub-window layout
+            // Specifications sub-window layout (Now uses class="glass-section-custom" for individual window look)
             let specsHTML = `
-                <div class="sub-window-box" id="sub-window-drama-specs">
+                <div class="glass-section-custom" id="sub-window-drama-specs">
                     <h3>📋 කතාමාලාවේ තොරතුරු (Drama Specifications)</h3>
                     <ul class="info-spec-list">
                         <li class="info-spec-item"><span class="info-spec-label">Director:</span><span class="info-spec-value">${currentEpisode.director || currentDrama.director || 'N/A'}</span></li>
@@ -1409,11 +1391,11 @@
                 </div>
             `;
 
-            // Episode Synopsis sub-window layout
+            // Episode Synopsis sub-window layout (Now uses class="glass-section-custom" for individual window look)
             let synopsisHTML = "";
             if (currentEpisode.synopsis) {
                 synopsisHTML = `
-                    <div class="sub-window-box" id="sub-window-synopsis">
+                    <div class="glass-section-custom" id="sub-window-synopsis">
                         <h3>📖 කොටසේ කතාව (Episode Synopsis)</h3>
                         <div style="color: #ccc; font-size: 13.5px; line-height: 1.8; text-align: justify;">
                             <p style="margin: 0 0 8px 0; font-weight: bold; color: var(--neon-pink); text-shadow: 0 0 5px var(--neon-pink); font-size: 14px; text-transform: uppercase;">${epNum} - කොටසේ කතාව (Episode Synopsis)</p>
@@ -1423,11 +1405,11 @@
                 `;
             }
 
-            // Trailer sub-window layout
+            // Trailer sub-window layout (Now uses class="glass-section-custom" for individual window look)
             let trailerHTML = "";
             if (embedUrl) {
                 trailerHTML = `
-                    <div class="sub-window-box" id="sub-window-trailer">
+                    <div class="glass-section-custom" id="sub-window-trailer">
                         <h3>🎬 පූර්ව ප්‍රචාරක පටය (Official Trailer)</h3>
                         <p style="margin: 0 0 12px 0; font-weight: bold; color: var(--neon-amber); text-shadow: 0 0 5px var(--neon-amber); font-size: 14px; text-transform: uppercase;">නිල පූර්ව ප්‍රචාරක පටය (Official Trailer)</p>
                         <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius:12px; border:1px solid var(--glass-border);">
@@ -1437,10 +1419,10 @@
                 `;
             }
 
-            // Generating unified single layer layout
+            // Generating unified single layer layout (Each sub-block is now a standalone glass-section-custom window)
             unifiedLayer.innerHTML = `
                 <!-- Sub-Window 01: Poster & Title -->
-                <div class="sub-window-box" id="sub-window-poster-title">
+                <div class="glass-section-custom" id="sub-window-poster-title">
                     <div style="display: flex; flex-direction: column; align-items: center; gap: 20px; width: 100%;">
                         <div class="detail-poster-wrapper">
                             <img class="detail-poster-img" src="${epImg}" alt="${currentDrama.title} ${epNum} සිංහල උපසිරැසි | Sinhala Subtitles">
