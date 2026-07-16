@@ -138,17 +138,18 @@
         }
 
         header {
-            background: rgba(2, 4, 8, 0.85) !important; 
-            backdrop-filter: blur(12px) !important;
-            -webkit-backdrop-filter: blur(12px) !important;
-            border-bottom: 1px solid var(--glass-border) !important; 
-            padding: 12px 20px;
-            position: fixed !important; 
-            top: 0; 
+            position: fixed !important;
+            top: 0;
             left: 0;
-            width: 100%;
+            right: 0;
             height: var(--header-height);
             z-index: 1010;
+            background: transparent !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            border-bottom: none !important;
+            box-shadow: none !important;
+            padding: 12px 20px;
             box-sizing: border-box;
             display: flex;
             align-items: center;
@@ -234,26 +235,27 @@
         @keyframes marquee { 0% { transform: translateX(100vw); } 100% { transform: translateX(-100%); } }
 
         .sub-nav-container { 
-            max-width: 100%; margin: 0 auto; padding: 10px 15px; box-sizing: border-box; 
+            position: fixed !important;
             top: calc(var(--header-height) + var(--header-subnav-gap)) !important; 
-            position: fixed !important; 
             left: 0;
             right: 0;
+            z-index: 1000 !important;
+            background: transparent !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            max-width: 100%; margin: 0 auto; padding: 10px 15px; box-sizing: border-box; 
             height: var(--sub-nav-height);
-            z-index: 1000;
-            background: rgba(2, 4, 8, 0.9) !important; 
-            backdrop-filter: blur(12px) !important; 
-            -webkit-backdrop-filter: blur(12px) !important;
-            border-bottom: 1px solid var(--glass-border) !important;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5) !important;
             display: flex;
             align-items: center;
         }
         .sub-nav-bar { 
-            display: flex; justify-content: space-between; align-items: center; gap: 15px; 
-            background: transparent !important; padding: 10px 20px; border-radius: 10px;
+            background: transparent !important;
             border: none !important;
             box-shadow: none !important;
+            display: flex; justify-content: space-between; align-items: center; gap: 15px; 
+            padding: 10px 20px; border-radius: 10px;
             width: 100%;
             max-width: 1300px;
             margin: 0 auto;
@@ -1203,6 +1205,11 @@
                 width: 100%;
                 height: var(--header-height) !important;
                 z-index: 1010;
+                background: transparent !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                border-bottom: none !important;
+                box-shadow: none !important;
             }
             .ticker-wrapper {
                 position: relative !important; /* Stays relative so it scrolls away */
@@ -1215,11 +1222,11 @@
                 left: 0;
                 right: 0;
                 height: var(--sub-nav-height) !important;
-                z-index: 1000;
+                z-index: 1000 !important;
                 padding: 10px 15px !important;
-                background: rgba(2, 4, 8, 0.9) !important; 
-                backdrop-filter: blur(10px) !important; 
-                -webkit-backdrop-filter: blur(10px) !important;
+                background: transparent !important; 
+                backdrop-filter: none !important; 
+                -webkit-backdrop-filter: none !important;
                 margin: 0 auto !important;
                 border: none !important;
                 box-shadow: none !important;
