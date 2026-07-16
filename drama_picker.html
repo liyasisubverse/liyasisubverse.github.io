@@ -194,15 +194,26 @@
             opacity: 0; z-index: 1;
         }
 
+        /* ⚡ ANIMATED TICKER BAR (SCROLLS NORMALLY BETWEEN HEADER & HOME) */
+        .ticker-wrapper {
+            margin-top: 75px; 
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            overflow: hidden; padding: 6px 0; position: relative;
+            z-index: 998;
+            -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+        }
+        .ticker-text { display: inline-block; white-space: nowrap; animation: marquee 25s linear infinite; font-size: 11px; font-weight: 700; text-shadow: 0 0 5px var(--neon-pink); }
+        @keyframes marquee { 0% { transform: translateX(100vw); } 100% { transform: translateX(-100%); } }
+
         /* 📌 SUB-NAVIGATION BAR (STICKS BELOW FIXED HEADER ON SCROLL) */
         .sub-nav-container { 
             position: sticky !important;
-            top: 95px !important; /* Increased gap under the fixed header */
+            top: 75px !important; 
             z-index: 1000 !important;
-            max-width: 1300px; 
-            margin: 105px auto 15px auto !important; /* Increased margin-top to clear the header cleanly */
-            padding: 5px 15px 12px 15px; 
-            box-sizing: border-box; 
+            max-width: 1300px; margin: 0 auto; padding: 5px 15px 12px 15px; box-sizing: border-box; 
             background: transparent !important;
             backdrop-filter: none !important;
             -webkit-backdrop-filter: none !important;
@@ -245,21 +256,6 @@
             white-space: nowrap;
             box-shadow: none !important;
         }
-
-        /* ⚡ ANIMATED TICKER BAR (SCROLLS NORMALLY BELOW SUB-NAVIGATION / HOME BUTTON) */
-        .ticker-wrapper {
-            margin-top: 0px; 
-            margin-bottom: 30px; /* Increased padding and gap below the Home button */
-            background: transparent !important;
-            border: none !important;
-            box-shadow: none !important;
-            overflow: hidden; padding: 6px 0; position: relative;
-            z-index: 998;
-            -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-            mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-        }
-        .ticker-text { display: inline-block; white-space: nowrap; animation: marquee 25s linear infinite; font-size: 11px; font-weight: 700; text-shadow: 0 0 5px var(--neon-pink); }
-        @keyframes marquee { 0% { transform: translateX(100vw); } 100% { transform: translateX(-100%); } }
 
         .main-container { max-width: 1300px; margin: 20px auto; padding: 0 15px; box-sizing: border-box; }
 
@@ -449,7 +445,7 @@
             object-fit: cover; background: #000; border-radius: 10px; z-index: 1; 
         }
 
-        /* 🛡️ POSTER IMAGES NEON LABELS (RENOVATED) */
+        /* 🏷️ POSTER IMAGES NEON LABELS (RENOVATED) */
         .neon-text-label {
             background: rgba(2, 4, 8, 0.85) !important;
             border: 1.5px solid currentColor !important;
@@ -999,26 +995,25 @@
                 box-shadow: none !important;
                 padding: 8px 10px !important;
             }
-            .sub-nav-container {
-                position: sticky !important;
-                top: 70px !important; /* Increased spacing gap under mobile header */
-                z-index: 1000 !important;
-                padding: 5px 10px !important;
-                background: transparent !important;
-                backdrop-filter: none !important;
-                -webkit-backdrop-filter: none !important;
-                margin: 75px auto 10px auto !important; /* Spacing gap below fixed mobile header */
-                border: none !important;
-                box-shadow: none !important;
-            }
             .ticker-wrapper {
-                margin-top: 0px !important;
-                margin-bottom: 15px !important;
+                margin-top: 55px !important;
                 position: static !important; 
                 background: transparent !important;
                 border: none !important;
                 box-shadow: none !important;
                 z-index: 998 !important;
+            }
+            .sub-nav-container {
+                position: fixed !important;
+                top: 55px !important; 
+                z-index: 1000 !important;
+                padding: 5px 10px !important;
+                background: transparent !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                margin: 0 auto !important;
+                border: none !important;
+                box-shadow: none !important;
             }
 
             .header-container { flex-direction: row !important; justify-content: space-between !important; align-items: center !important; width: 100%; gap: 10px; }
@@ -1064,6 +1059,11 @@
         </div>
     </header>
 
+    <!-- ⚡ TICKER WRAPPER (SCROLLS NORMALLY IN-BETWEEN HEADER & HOME) -->
+    <div class="ticker-wrapper">
+        <div class="ticker-text" id="ticker-text">⚡ Loading Subtitle Terminal...</div>
+    </div>
+
     <!-- 📌 SUB-NAVIGATION BAR (STICKS BELOW FIXED HEADER ON SCROLL) -->
     <nav class="sub-nav-container">
         <div class="sub-nav-bar">
@@ -1072,11 +1072,6 @@
             <div class="sub-nav-date" id="cyberDate">📅 Loading...</div>
         </div>
     </nav>
-
-    <!-- ⚡ TICKER WRAPPER (SCROLLS NORMALLY BELOW SUB-NAVIGATION / HOME BUTTON) -->
-    <div class="ticker-wrapper">
-        <div class="ticker-text" id="ticker-text">⚡ Loading Subtitle Terminal...</div>
-    </div>
 
     <!-- MAIN BODY CONTAINER -->
     <main class="main-container">
