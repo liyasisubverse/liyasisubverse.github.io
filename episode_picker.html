@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ලියැසි SUBVERSE - උපසිරැසි බාගත කිරීමේ කවුළුව</title>
+    <title>ලියැසි SUBVERSE - උපසිරැසි කවුළුව</title>
     
     <!-- 🛡️ CONTENT SECURITY POLICY (CSP) META TAG -->
     <meta http-equiv="Content-Security-Policy" content="
@@ -13,7 +13,7 @@
         font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; 
         img-src 'self' data: https: http:; 
         frame-src 'self' https://www.youtube.com https://youtube.com;
-        connect-src 'self' https://liyasi-github-votes-default-rtdb.firebaseio.com https://liyasisubverse1-liyasi-backend.hf.space https://ask-gemini.rashmi004005g.workers.dev https://groq.rashmi004005g.workers.dev https://www.google-analytics.com;
+        connect-src 'self' https://liyasi-github-votes-default-rtdb.firebaseio.com https://liyasisubverse1-liyasi-backend.hf.space https://ask-gemini.rashmi004005g.workers.dev https://groq.rashmi004005g.workers.dev https://www.google-analytics.com https://*.google-analytics.com;
     ">
 
     <!-- 🛡️ FRAME-BUSTING -->
@@ -31,9 +31,9 @@
         }
     </script>
 
-    <!-- FAVICON LINK -->
+    <!-- FAVICON -->
     <link rel="icon" type="image/png" href=""> <!-- කරුණාකර ඔබගේ favicon.png ලින්ක් එක href="" තුළ මෙතැන ඇතුලත් කරන්න -->
-    
+
     <!-- SEO META TAGS -->
     <meta name="description" id="meta-desc" content="ලියැසි SUBVERSE වෙතින් ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි නොමිලේ සෘජුවම බාගත කරගන්න.">
     <meta name="keywords" id="meta-keywords" content="liyasi subverse, sinhala subtitles, sinhala sub, liyasi sub, korean drama sinhala sub">
@@ -43,14 +43,14 @@
     <meta property="og:title" id="og-title" content="ලියැසි SUBVERSE">
     <meta property="og:description" id="og-desc" content="ගුණාත්මක බවින් ඉහළම ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි නොමිලේ, සෘජුවම බාගත කරගන්න.">
     <meta property="og:image" id="og-image" content=""> <!-- කරුණාකර ඔබගේ Social Preview ලින්ක් එක content="" තුළ මෙතැන ඇතුලත් කරන්න -->
-    <meta property="og:type" content="video.episode">
+    <meta property="og:type" content="video.tv_show">
 
-    <!-- TVEpisode JSON-LD Schema (Structured Data) -->
-    <script type="application/ld+json" id="episode-schema"></script>
+    <!-- TVSeries JSON-LD Schema (Structured Data) -->
+    <script type="application/ld+json" id="series-schema"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Segoe+UI:wght@400;600;800;900&display=swap" rel="stylesheet">
-
+    
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQ65HDS0TE"></script>
     <script>
@@ -60,7 +60,6 @@
       gtag('config', 'G-WQ65HDS0TE');
     </script>
 
-    <!-- WEBSITE CONFIGURATIONS -->
     <script>
         var HEADER_BANNER_LOGO = "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/81260990-6d71-4fbb-b966-43f96215438e.png"; 
         var ABOUT_ME_ART_LOGO = "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/f026c5f2-4d0c-4845-8b23-2a9ddf39dca4.png";       
@@ -72,7 +71,7 @@
         var CLOUDFLARE_WORKER_URL_GROQ = "https://groq.rashmi004005g.workers.dev"; 
     </script>
     <style>
-        /* 🎨 PREMIUM CYBERPUNK PALETTE */
+        /* 🎨 PREMIUM CYBERPUNK PALETTE & VARIABLES */
         :root {
             --bg-main: #020408;
             --neon-cyan: #00f0ff;
@@ -87,7 +86,7 @@
 
             /* 📏 ADJUSTABLE HEIGHTS & GAPS (පරතරයන් වෙනස් කිරීමට පහත අගයන් භාවිත කරන්න) */
             --header-height: 75px;         /* හෙඩර් එකෙහි උස */
-            --sub-nav-height: 55px;        /* ή හෝම් බටන් සහිත බාර් එකෙහි උස */
+            --sub-nav-height: 55px;        /* හෝම් බටන් සහිත බාර් එකෙහි උස */
             --header-subnav-gap: 15px;     /* හෙඩර් එක සහ හෝම් බාර් එක අතර පරතරය */
             --subnav-ticker-gap: 15px;     /* හෝම් බාර් එක සහ අකුරු දුවන බාර් එක අතර පරතරය */
             --ticker-main-gap: 30px;       /* අකුරු දුවන බාර් එක සහ ප්‍රධාන විස්තර කොටස අතර පරතරය */
@@ -136,11 +135,11 @@
             right: 0;
             height: var(--header-height);
             z-index: 1010;
-            background: rgba(2, 4, 8, 0.85) !important;
-            backdrop-filter: blur(12px) !important;
-            -webkit-backdrop-filter: blur(12px) !important;
-            border-bottom: 1px solid rgba(0, 240, 255, 0.2) !important;
-            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.7) !important;
+            background: transparent !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            border-bottom: none !important;
+            box-shadow: none !important;
             padding: 12px 20px 5px 20px;
         }
         .header-container {
@@ -204,7 +203,7 @@
             -webkit-text-fill-color: transparent;
             text-shadow: 0 0 10px rgba(0, 240, 255, 0.5), 0 0 20px rgba(255, 0, 127, 0.3);
             animation: tagline-fade 20s infinite ease-in-out, rgb-shift-text 6s linear infinite;
-            opacity: 0; z-index: 2;
+            opacity: 0; z-index: 1;
         }
 
         /* 📌 SUB-NAVIGATION BAR (STICKS BELOW FIXED HEADER ON SCROLL) */
@@ -223,12 +222,9 @@
         }
         .sub-nav-bar { 
             display: flex; justify-content: space-between; align-items: center; gap: 15px; 
-            background: rgba(6, 11, 25, 0.85) !important; 
-            backdrop-filter: blur(12px) !important;
-            -webkit-backdrop-filter: blur(12px) !important;
-            padding: 8px 20px; border-radius: 10px;
-            border: 1px solid var(--glass-border) !important;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6) !important;
+            background: transparent !important; padding: 8px 20px; border-radius: 10px;
+            border: none !important;
+            box-shadow: none !important;
             height: var(--sub-nav-height);
         }
         .sub-nav-item {
@@ -243,7 +239,6 @@
             background: transparent !important; 
             text-shadow: 0 0 12px var(--neon-cyan); 
             border: none !important; 
-            box-shadow: none !important;
         }
         
         .sub-nav-clock {
@@ -561,44 +556,96 @@
         .info-spec-label { color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); font-weight: bold; text-align: left; }
         .info-spec-value { color: #fff; font-weight: 800; text-align: right; }
 
-        .cast-grid-box { display: grid; grid-template-columns: repeat(6, 1fr); gap: 15px; margin-top: 15px; }
-        .cast-member-item { display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .trailer-iframe-wrapper {
+            position: relative; width: 100%; padding-bottom: 56.25%; 
+            height: 0; border-radius: 8px; overflow: hidden;
+            border: 1px solid var(--glass-border); box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+        .trailer-iframe-wrapper iframe {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        }
+
+        .episodes-section {
+            background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px;
+            padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); margin-bottom: 30px;
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+        }
+
+        .episodes-grid-cards {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; margin-top: 20px;
+        }
+        .movie-style-card {
+            background: #000; border-radius: 6px; overflow: hidden; position: relative; text-decoration: none;
+            aspect-ratio: 2 / 3; box-shadow: 0 5px 15px rgba(0,0,0,0.7); transition: all 0.3s ease;
+            border-top: 3.5px solid var(--neon-cyan); border-bottom: 3.5px solid var(--neon-cyan);
+        }
+        .movie-style-card:hover { transform: scale(1.05); border-color: var(--neon-pink); box-shadow: 0 0 15px var(--neon-pink); }
         
-        .cast-img-container { 
-            position: relative; width: 65px; height: 65px; border-radius: 50%; overflow: hidden; 
-            z-index: 1; border: none; display: flex; align-items: center; justify-content: center;
-            margin-bottom: 8px;
+        .badge-top-left {
+            position: absolute; top: 8px; left: 8px; background: rgba(2, 4, 8, 0.85); color: #fff;
+            padding: 3px 8px; font-size: 10px; font-weight: 900; border-radius: 4px; border: 1px solid var(--neon-cyan); box-shadow: 0 0 8px rgba(0, 240, 255, 0.4); z-index: 2; text-transform: uppercase;
+        }
+        .title-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,1) 40%, transparent); padding: 12px 6px; }
+        .title-overlay p { color: var(--neon-cyan); text-shadow: 0 0 6px var(--neon-cyan); margin: 0; font-size: 10.5px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: center; }
+
+        .poster-img {
+            width: 100%; height: 100%;
+            object-fit: cover; 
+            object-position: center;
+            background: #000; opacity: 0.8; transition: opacity 0.3s;
+        }
+
+        .episodes-grid-buttons { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; margin-top: 20px; }
+        .ep-btn {
+            background: rgba(2, 4, 8, 0.6); border: 1px solid var(--glass-border); color: #ccc;
+            padding: 14px; border-radius: 8px; font-weight: 800; text-align: center; text-decoration: none;
+            transition: 0.3s; display: flex; flex-direction: column; align-items: center; gap: 6px; cursor: pointer;
+        }
+        .ep-btn.active-cyan { border-color: var(--neon-cyan); color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); }
+        .ep-btn.active-cyan:hover { background: rgba(0, 240, 255, 0.1); box-shadow: 0 0 15px var(--neon-cyan); }
+        .ep-btn.active-pink { border-color: var(--neon-pink); color: var(--neon-pink); text-shadow: 0 0 5px var(--neon-pink); }
+        .ep-btn.active-pink:hover { background: rgba(255, 0, 127, 0.1); box-shadow: 0 0 15px var(--neon-pink); }
+
+        .download-btn {
+            position: relative; width: 100%; max-width: 280px; height: 48px; text-align: center; text-transform: uppercase;
+            font-weight: 900; font-size: 11.5px; padding: 13px 16px; border-radius: 6px; text-decoration: none;
+            transition: 0.3s; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            overflow: hidden; z-index: 1; 
+            background: transparent !important;
+            border: none !important;
+            color: #ffffff !important;                     
+            white-space: nowrap;
             transform: translateZ(0);
             -webkit-transform: translateZ(0);
             will-change: transform;
         }
-        .cast-img-container::before {
-            content: ''; position: absolute; top: -20%; left: -20%; width: 140%; height: 140%;
-            background: conic-gradient(var(--neon-cyan) 0deg, transparent 40%, transparent 100%);
-            animation: rgb-rotate 1.5s linear infinite; 
-            -webkit-animation: rgb-rotate 1.5s linear infinite;
+        .download-btn::before {
+            content: ''; position: absolute; top: -150%; left: -50%; width: 200%; height: 400%;
+            background: conic-gradient(#0055ff 0deg, transparent 40%, transparent 100%);
+            animation: rgb-rotate 2s linear infinite; -webkit-animation: rgb-rotate 2s linear infinite;
             z-index: -2;
         }
-        .cast-img-container::after { 
-            content: ''; position: absolute; 
-            inset: 1.5px; 
-            background: #020408; border-radius: 50%; z-index: -1; 
+        .download-btn::after {
+            content: ''; position: absolute; inset: 2px;
+            background: rgba(6, 11, 25, 0.95); border-radius: 4px; z-index: -1;
+            transition: background 0.3s ease;
         }
-        
-        .cast-img-container img { 
-            width: calc(100% - 3px); height: calc(100% - 3px); 
-            object-fit: cover; object-position: top center; 
-            border-radius: 50%; position: relative; z-index: 1; 
+        .btn-sheen-sweep {
+            position: absolute; top: 0; left: -150%; width: 50%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05) 10%, rgba(255, 255, 255, 0.9) 50%, rgba(0, 240, 255, 0.4) 60%, transparent);
+            transform: skewX(-20deg); animation: lightning-sweep 4s infinite linear; z-index: 2; pointer-events: none;
         }
 
-        .cast-member-name { font-size: 11px; font-weight: bold; color: #ccc; }
-
-        .map-responsive-box { width: 100%; text-align: center; margin-top: 10px; border-radius: 12px; overflow: hidden; border: 1px solid var(--glass-border); }
-        .map-responsive-box img { max-width: 100%; height: auto; display: block; margin: 0 auto; opacity: 0.9; }
+        .episode-nav-container {
+            display: flex; justify-content: space-between; gap: 15px; align-items: center; width: 100%;
+        }
+        .episode-nav-container .download-btn {
+            flex: 1; margin: 0; max-width: 100%;
+        }
 
         .sl-vote-container {
             border: 1px solid var(--glass-border); background: rgba(0,0,0,0.3);
-            border-radius: 12px; padding: 20px; text-align: center; margin-top: 25px;
+            border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 25px;
         }
         .sl-vote-title { font-size: 13px; font-weight: 900; color: #fff; letter-spacing: 0.5px; margin-bottom: 12px; }
         .neon-bar-wrapper { height: 8px; background: rgba(255,255,255,0.05); border-radius: 10px; overflow: hidden; margin-bottom: 15px; }
@@ -616,63 +663,6 @@
         .vote-btn-custom.vote-dislike { background: rgba(255, 0, 127, 0.05); color: var(--neon-pink); border-color: rgba(255, 0, 127, 0.2); }
         .vote-btn-custom.vote-dislike:hover { background: rgba(255, 0, 127, 0.15); box-shadow: 0 0 15px rgba(255, 0, 127, 0.3); }
         .vote-count { background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 11px; }
-
-        .download-box { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 15px; }
-        .download-btn {
-            position: relative; width: 100%; max-width: 280px; height: 48px; text-align: center; text-transform: uppercase;
-            font-weight: 900; font-size: 11.5px; padding: 13px 16px; border-radius: 6px; text-decoration: none;
-            transition: 0.3s; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-            overflow: hidden; z-index: 1; 
-            background: transparent !important;
-            border: none !important;
-            color: #ffffff !important;                     
-            white-space: nowrap;                           
-            transform: translateZ(0);
-            -webkit-transform: translateZ(0);
-            will-change: transform;
-        }
-        .download-btn::before {
-            content: ''; position: absolute; top: -150%; left: -50%; width: 200%; height: 400%;
-            background: conic-gradient(#0055ff 0deg, transparent 40%, transparent 100%);
-            animation: rgb-rotate 2s linear infinite; -webkit-animation: rgb-rotate 2s linear infinite;
-            z-index: -2;
-        }
-        .download-btn::after {
-            content: ''; position: absolute; inset: 2px;
-            background: rgba(6, 11, 25, 0.95); border-radius: 4px; z-index: -1;
-            transition: background 0.3s ease;
-        }
-        .download-btn.tg-video::before {
-            background: conic-gradient(#0088cc 0deg, transparent 40%, transparent 100%);
-        }
-        .btn-sheen-sweep {
-            position: absolute; top: 0; left: -150%; width: 50%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05) 10%, rgba(255, 255, 255, 0.9) 50%, rgba(0, 240, 255, 0.4) 60%, transparent);
-            transform: skewX(-20deg); animation: lightning-sweep 4s infinite linear; z-index: 2; pointer-events: none;
-        }
-
-        .episode-nav-container {
-            display: flex; justify-content: space-between; gap: 15px; align-items: center; width: 100%;
-        }
-        .episode-nav-container .download-btn {
-            flex: 1; margin: 0; max-width: 100%;
-        }
-
-        .cat-vote-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-
-        .comment-card {
-            background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border);
-            border-radius: 8px; padding: 15px; margin-bottom: 15px; position: relative;
-            border-left: 3px solid var(--neon-cyan); text-align: left;
-        }
-        .comment-header { display: flex; justify-content: space-between; font-size: 12px; color: var(--neon-cyan); margin-bottom: 8px; font-weight: bold; }
-        .comment-body { font-size: 13px; line-height: 1.6; color: #ddd; }
-        .comment-input-field {
-            width: 100%; background: rgba(0, 0, 0, 0.5); border: 1px solid var(--glass-border);
-            border-radius: 6px; color: #fff; padding: 12px; font-size: 13px; margin-bottom: 12px; outline: none; transition: 0.3s;
-        }
-        .comment-input-field:focus { border-color: var(--neon-cyan); box-shadow: 0 0 10px rgba(0, 240, 255, 0.3); }
-        textarea.comment-input-field { resize: vertical; min-height: 80px; }
 
         .about-section { 
             background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 15px; padding: 30px; margin-top: 50px; 
@@ -931,16 +921,57 @@
         }
         .chat-send-btn:hover { box-shadow: 0 0 15px var(--neon-cyan); transform: scale(1.05); }
 
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-
+        /* 🔄 SYNCHRONIZED ROTATING ANIMATION FOR LOGO & TAGLINE */
+        @keyframes logo-laser-draw {
+            0%, 40% {
+                opacity: 1;
+                visibility: visible;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            45%, 95% {
+                opacity: 0;
+                visibility: hidden;
+                transform: translate(-50%, -50%) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                visibility: visible;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+        @keyframes tagline-fade {
+            0%, 40% {
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-50%) scale(0.95);
+            }
+            45%, 95% {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(-50%) scale(1);
+            }
+            100% {
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-50%) scale(0.95);
+            }
+        }
+        @keyframes rgb-shift-text {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
         @keyframes rgb-fast-rotate {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-
         @keyframes rgb-rotate { 
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); } 
+        }
+        @-webkit-keyframes rgb-rotate { 
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); } 
         }
 
         footer { background: rgba(4, 8, 16, 0.95); border-top: 2px solid var(--neon-cyan); padding: 40px 20px; text-align: center; margin-top: 40px; box-shadow: 0 -10px 30px rgba(0, 240, 255, 0.1); }
@@ -951,98 +982,160 @@
         .footer-description { font-size: 13px; color: #fff; text-shadow: 0 0 5px var(--neon-pink); line-height: 1.6; margin-bottom: 25px; }
         .footer-credits { font-size: 11px; color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px; }
 
-        /* 📱 RESPONSIVE ADJUSTMENTS FOR MOBILE DEVICES (කවුළු කැපීම වැළැක්වීම සහ හෙඩර් එක පාලනය කිරීම) */
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
         @media (max-width: 768px) {
+            .drama-details-container { padding: 0 !important; }
+            .detail-poster-wrapper { width: 280px !important; height: 420px !important; max-width: 92% !important; }
+            .info-spec-list { grid-template-columns: 1fr; }
+            .episodes-grid-cards { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; }
+            .episodes-grid-buttons { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; }
+            .ep-btn { padding: 10px; font-size: 11px; }
+            .about-section { flex-direction: column; text-align: center; }
+        }
+        @media (max-width: 600px) {
             :root {
-                --header-height: 65px;
-                --sub-nav-height: 48px;
+                --header-height: 55px;
+                --sub-nav-height: 45px;
                 --header-subnav-gap: 8px;
                 --subnav-ticker-gap: 8px;
                 --ticker-main-gap: 15px;
             }
-            header {
-                padding: 8px 15px 5px 15px;
-            }
-            .logo-wrapper {
-                height: 50px;
-                max-width: 280px;
-            }
-            .site-logo-img {
-                height: 35px;
-            }
-            .coded-tagline-text {
-                font-size: 11px;
-            }
-            .coded-tagline-text span {
-                font-size: 9px !important;
-            }
-            .sub-nav-bar {
-                padding: 6px 12px;
-                gap: 8px;
-                border-radius: 8px;
-            }
-            .sub-nav-item {
-                padding: 6px 12px;
-                font-size: 11px;
-            }
-            .sub-nav-clock, .sub-nav-date {
-                font-size: 10px;
-                padding: 4px 8px;
-            }
             .main-container {
-                padding: 0 10px;
+                width: 100% !important;
+                max-width: 100% !important;
+                padding: 0 10px !important;
+                margin: 0 auto !important;
+                overflow-x: hidden !important;
             }
-            .glass-section-custom, .glass-card-custom {
-                padding: 15px;
-                border-radius: 12px;
-                margin-bottom: 15px;
+            .header-container, .sub-nav-container {
+                width: 100% !important;
+                max-width: 100% !important;
+                padding-left: 10px !important;
+                padding-right: 10px !important;
+                box-sizing: border-box !important;
             }
-            .drama-main-title {
-                font-size: 22px;
+            header {
+                position: fixed !important;
+                top: 0 !important;
+                z-index: 1010 !important;
+                height: var(--header-height) !important;
+                background: transparent !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                border: none !important;
+                box-shadow: none !important;
+                padding: 8px 10px !important;
             }
+            .sub-nav-container {
+                position: fixed !important;
+                top: calc(var(--header-height) + var(--header-subnav-gap)) !important; 
+                z-index: 1000 !important;
+                padding: 0 10px !important;
+                background: transparent !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                margin: 0 auto !important;
+                border: none !important;
+                box-shadow: none !important;
+            }
+            .ticker-wrapper {
+                margin-top: calc(var(--header-height) + var(--header-subnav-gap) + var(--sub-nav-height) + var(--subnav-ticker-gap)) !important;
+                position: static !important; 
+                background: transparent !important;
+                border: none !important;
+                box-shadow: none !important;
+                z-index: 998 !important;
+                margin-bottom: var(--ticker-main-gap) !important;
+            }
+
+            .header-container { flex-direction: row !important; justify-content: space-between !important; align-items: center !important; width: 100%; gap: 10px; }
+            .logo-wrapper { width: 100% !important; max-width: 260px !important; height: 45px !important; }
+            .site-logo-img { height: 35px !important; }
+            .coded-tagline-text { font-size: 11.5px !important; line-height: 1.25 !important; letter-spacing: 0.5px !important; }
+            .coded-tagline-text span { font-size: 8.5px !important; }
+            .sub-nav-bar { flex-direction: row !important; justify-content: space-between !important; gap: 8px; padding: 10px 12px; height: var(--sub-nav-height) !important; }
+            .sub-nav-item { font-size: 11px; padding: 6px 14px; }
+            .sub-nav-clock { font-size: 10px !important; padding: 5px 10px !important; }
+            .sub-nav-date { font-size: 10px !important; padding: 5px 10px !important; }
+
+            /* 📱 STABILITY CONFIGURATIONS FOR MOBILE VIEWPORTS (කැපීම වැළැක්වීමේ රීති) */
             .poster-genres-container {
                 grid-template-columns: repeat(2, 1fr) !important;
                 gap: 4px !important;
-                bottom: 8px;
-                left: 8px;
-                right: 8px;
+                bottom: 8px !important;
+                left: 8px !important;
+                right: 8px !important;
             }
             .poster-genres-container .neon-text-label {
-                font-size: 8px !important;
+                font-size: 8.5px !important;
                 padding: 3px 2px !important;
             }
-            .neon-text-label {
-                font-size: 9px !important;
-                padding: 4px 6px !important;
-            }
-            .cast-grid-box {
-                grid-template-columns: repeat(3, 1fr) !important;
-                gap: 10px;
-            }
-            .cast-img-container {
-                width: 55px;
-                height: 55px;
-            }
             .info-spec-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 4px;
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                gap: 4px !important;
             }
             .info-spec-value {
                 text-align: left !important;
-                width: 100%;
+                width: 100% !important;
             }
-            .cat-vote-wrapper {
-                grid-template-columns: 1fr !important;
-                gap: 10px;
+        }
+
+        @media (max-width: 480px) {
+            .logo-wrapper {
+                max-width: 220px !important;
+            }
+            .coded-tagline-text {
+                font-size: 10.5px !important;
+            }
+            .sub-nav-bar {
+                padding: 6px 8px !important;
+                gap: 4px !important;
+            }
+            .sub-nav-item {
+                font-size: 9.5px !important;
+                padding: 4px 8px !important;
+            }
+            .sub-nav-clock, .sub-nav-date {
+                font-size: 8.5px !important;
+                padding: 4px 6px !important;
+            }
+            .episodes-grid-cards {
+                grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)) !important;
+                gap: 8px !important;
+            }
+            .movie-style-card {
+                border-top: 2px solid var(--neon-cyan) !important;
+                border-bottom: 2px solid var(--neon-cyan) !important;
+            }
+            .badge-top-left {
+                font-size: 8px !important;
+                padding: 2px 5px !important;
+                top: 4px !important;
+                left: 4px !important;
+            }
+            .rating-bar-vertical {
+                font-size: 8px !important;
+                padding: 2px 4px !important;
+                right: 4px !important;
+                top: 4px !important;
+            }
+            .episodes-grid-buttons {
+                grid-template-columns: repeat(auto-fill, minmax(95px, 1fr)) !important;
+                gap: 8px !important;
+            }
+            .ep-btn {
+                padding: 8px !important;
+                font-size: 10px !important;
             }
             .sl-vote-buttons {
-                flex-direction: column;
-                gap: 8px;
+                flex-direction: column !important;
+                gap: 8px !important;
             }
             .vote-btn-custom {
-                width: 100% !important;
                 max-width: 100% !important;
+                width: 100% !important;
             }
             .social-icons-wrapper {
                 gap: 12px !important;
@@ -1053,26 +1146,6 @@
             }
             .social-btn i {
                 font-size: 18px !important;
-            }
-        }
-
-        @media (max-width: 400px) {
-            .logo-wrapper {
-                max-width: 220px;
-            }
-            .coded-tagline-text {
-                font-size: 10px;
-            }
-            .sub-nav-bar {
-                padding: 4px 8px;
-            }
-            .sub-nav-item {
-                padding: 4px 8px;
-                font-size: 10px;
-            }
-            .sub-nav-clock, .sub-nav-date {
-                font-size: 9px;
-                padding: 3px 6px;
             }
         }
     </style>
@@ -1134,68 +1207,33 @@
         <section class="drama-details-container" id="drama-details-wrapper">
             <!-- Static Fallback Content for SEO Crawlers -->
             <div style="padding: 20px; text-align: center; width: 100%;">
-                <h2>ලියැසි SUBVERSE - උපසිරැසි බාගත කිරීමේ කවුළුව</h2>
-                <p>ආසියානු කතාමාලා වල නිශ්චිත කොටස් (Episodes) සඳහා සිංහල උපසිරැසි සහ වීඩියෝ ලින්ක්ස් මෙතැනින් නොමිලේ ලබාගන්න.</p>
+                <h2>ලියැසි SUBVERSE - උපසිරැසි කවුළුව</h2>
+                <p>නවතම ආසියානු කතාමාලා (K-Dramas, C-Dramas, J-Dramas) වල සියලුම කොටස් සඳහා සිංහල උපසිරැසි මෙතැනින් නොමිලේ ලබාගන්න.</p>
             </div>
         </section>
 
-        <!-- 📖 EPISODE STORY SYNOPSIS BOX -->
-        <section class="glass-section-custom" id="episode-story-section-wrapper" style="display:none;"></section>
+        <!-- 🇱🇰 SRI LANKA IMDB OVERALL VOTE WIDGET -->
+        <section class="glass-section-custom" id="overall-vote-section" style="display: none;"></section>
 
-        <!-- 🎭 CAST & CREW DYNAMIC HOLDER -->
-        <section class="glass-section-custom" id="cast-section-wrapper" style="display:none;"></section>
+        <!-- 💾 EPISODES DOWNLOAD SECTION -->
+        <section class="episodes-section" id="episodes-section-wrapper"></section>
 
-        <!-- 🗺️ STORY MAP DYNAMIC HOLDER -->
-        <section class="glass-section-custom" id="map-section-wrapper" style="display:none;"></section>
-
-        <!-- 🍿 OFFICIAL TRAILER DYNAMIC HOLDER -->
-        <section class="glass-section-custom" id="trailer-section-wrapper" style="display:none;"></section>
-
-        <!-- 🇱🇰 VOTE / USER CHOICE DYNAMIC HOLDER -->
-        <section class="glass-section-custom" id="vote-section-wrapper" style="display:none;"></section>
-
-        <!-- 📥 DOWNLOAD BOX CONTAINER -->
-        <section class="glass-section-custom" id="download-section-wrapper" style="display:none;"></section>
-
-        <!-- ⬅️   ➡️ NAVIGATION BUTTONS CONTAINER -->
-        <section class="glass-section-custom" id="episode-navigation-wrapper" style="display:none; margin-bottom: 25px;">
+        <!-- ⬅️      ➡️ DRAMA NAVIGATION BUTTONS CONTAINER -->
+        <section class="glass-section-custom" id="drama-navigation-wrapper" style="display:none; margin-bottom: 25px;">
             <div class="episode-nav-container">
-                <a id="prev-episode-btn" class="download-btn" href="#">
+                <a id="prev-drama-btn" class="download-btn" href="#">
                     <span class="btn-sheen-sweep"></span>
-                    <span style="position:relative; z-index:3;">⬅️ Previous</span>
+                    <span style="position:relative; z-index:3;">⬅️ Prev Drama</span>
                 </a>
-                <a id="next-episode-btn" class="download-btn" href="#">
+                <a id="next-drama-btn" class="download-btn" href="#">
                     <span class="btn-sheen-sweep"></span>
-                    <span style="position:relative; z-index:3;">Next ➡️</span>
+                    <span style="position:relative; z-index:3;">Next Drama ➡️</span>
                 </a>
             </div>
         </section>
 
-        <!-- 📂 CATEGORY/GENRE CHOICE PANEL -->
-        <section class="glass-section-custom" id="genre-vote-wrapper" style="display:none;">
-            <h3>📂 ඔබට වැඩිපුරම අවශ්‍ය කුමන ප්‍රභේදද? (Vote for Genre)</h3>
-            <div class="cat-vote-wrapper" id="genre-vote-container">
-                <!-- Genre voting items will be populated dynamically -->
-            </div>
-        </section>
-
-        <!-- 💬 REAL-TIME COMMENTS SECTION -->
-        <section class="glass-section-custom" id="comments-section-wrapper">
-            <h3>💬 අදහස් සහ ප්‍රතිචාර (Comments)</h3>
-            <div id="comments-list-container">
-                <p style="font-size:12px; color:var(--text-muted);">ප්‍රතිචාර පූරණය වෙමින් පවතී...</p>
-            </div>
-            <div style="margin-top: 20px;">
-                <input type="text" id="commenter-name-input" placeholder="ඔබේ නම (Name)" class="comment-input-field">
-                <textarea id="comment-text-input" placeholder="ඔබේ අදහස මෙතැන ලියන්න (Write your comment)..." class="comment-input-field"></textarea>
-                <button class="vote-btn-custom vote-like" style="max-width: 150px; display:flex; margin: 10px 0 0 0;" onclick="submitEpisodeComment()">
-                    <i class="fa-solid fa-paper-plane"></i> SUBMIT
-                </button>
-            </div>
-        </section>
-
-        <!-- ABOUT US SECTION -->
-        <section class="about-section" id="about-us-section-wrapper" style="display:none;"></section>
+        <!-- ABOUT US GLASS BOX -->
+        <section class="about-section" id="about-us-section-wrapper" style="display:none; margin-top: 30px;"></section>
 
         <!-- 🌐 GLOWING SOCIAL MEDIA PLUG -->
         <section class="social-plug-box">
@@ -1241,7 +1279,6 @@
         </div>
     </div>
 
-    <!-- FOOTER -->
     <footer>
         <div class="footer-content">
             <div class="footer-brand"><span class="sinhala">ලියැසි</span><span class="english">SUBVERSE</span></div>
@@ -1250,14 +1287,23 @@
         </div>
     </footer>
 
-    <!-- JAVASCRIPT LOGIC -->
+    <!-- JAVASCRIPT RENDERING ENGINE -->
     <script>
         const safeLocalStorage = {
             getItem: function(key) {
-                try { return localStorage.getItem(key); } catch (e) { return null; }
+                try {
+                    return localStorage.getItem(key);
+                } catch (e) {
+                    console.warn("Storage access denied:", e);
+                    return null;
+                }
             },
             setItem: function(key, value) {
-                try { localStorage.setItem(key, value); } catch (e) {}
+                try {
+                    localStorage.setItem(key, value);
+                } catch (e) {
+                    console.warn("Storage access denied:", e);
+                }
             }
         };
 
@@ -1309,264 +1355,12 @@
         updateCyberClock();
 
         const urlParams = new URLSearchParams(window.location.search);
-        const dramaId = urlParams.get('drama_id');
-        const epNum = urlParams.get('ep'); 
-
-        let currentDrama = null;
-        let currentEpisode = null;
+        const dramaId = urlParams.get('id');
+        let dramaUniqueVoteId = dramaId;
         let globalConfig = {};
 
-        async function initPage() {
-            if (!dramaId || !epNum) {
-                showError("⚠️ Drama / Episode Not Found", "The requested episode data could not be parsed.");
-                return;
-            }
-
-            let database = {};
-            try {
-                const response = await fetch('data.json?v=' + new Date().getTime());
-                if (response.ok) {
-                    database = await response.json();
-                    globalConfig = database.config || {};
-                    currentDrama = database.dramas ? database.dramas[dramaId] : null;
-                    if (currentDrama) {
-                        currentEpisode = (currentDrama.episodes || []).find(e => e.episode === epNum);
-                    }
-                }
-            } catch (e) {
-                console.error("Failed to load database:", e);
-            }
-
-            if (!currentDrama || !currentEpisode) {
-                showError("⚠️ Drama / Episode Not Found", "The requested drama ID or episode could not be retrieved from the system.");
-                return;
-            }
-
-            // Dynamically update SEO Meta Tags
-            document.title = `${currentDrama.title || ''} ${epNum} සිංහල උපසිරැසි | Sinhala Subtitles - ලියැසි SUBVERSE`;
-            
-            const metaDesc = document.getElementById('meta-desc');
-            if (metaDesc) {
-                metaDesc.setAttribute('content', `${currentDrama.title || ''} ${epNum} (සිංහල උපසිරැසි) - ${currentEpisode.synopsis ? currentEpisode.synopsis.slice(0, 150) : (currentDrama.synopsis ? currentDrama.synopsis.slice(0, 150) : '')}...`);
-            }
-            const metaKeywords = document.getElementById('meta-keywords');
-            if (metaKeywords) {
-                metaKeywords.setAttribute('content', `${currentDrama.title || ''} ${epNum} sinhala sub, ${currentDrama.title || ''} ${epNum} sinhala subtitles, liyasi sub, subverse, ${currentDrama.title || ''} liyasi`);
-            }
-            const ogTitle = document.getElementById('og-title');
-            if (ogTitle) {
-                ogTitle.setAttribute('content', `${currentDrama.title || ''} ${epNum} සිංහල උපසිරැසි | Sinhala Subtitles - ලියැසි SUBVERSE`);
-            }
-            const ogDesc = document.getElementById('og-desc');
-            if (ogDesc) {
-                ogDesc.setAttribute('content', `නවතම ${currentDrama.title || ''} කතාමාලාවේ ${epNum} කොටස සඳහා සිංහල උපසිරැසි නොමිලේ සෘජුවම බාගත කරගන්න.`);
-            }
-            const ogImage = document.getElementById('og-image');
-            const dramaImg = currentDrama.image_url || currentDrama.image || currentDrama.imageUrl || '';
-            const epImg = currentEpisode.image || currentEpisode.image_url || currentEpisode.imageUrl || dramaImg;
-            if (ogImage && epImg) {
-                ogImage.setAttribute('content', epImg);
-            }
-
-            // Populate TVEpisode Schema Markup dynamically
-            const schemaEl = document.getElementById('episode-schema');
-            if (schemaEl) {
-                const schemaData = {
-                    "@context": "https://schema.org",
-                    "@type": "TVEpisode",
-                    "name": currentEpisode.title || epNum,
-                    "episodeNumber": epNum.replace(/\D/g, "") || "1",
-                    "description": currentEpisode.synopsis || currentDrama.synopsis || "",
-                    "image": epImg,
-                    "partOfTVSeries": {
-                        "@type": "TVSeries",
-                        "name": currentDrama.title
-                    },
-                    "author": {
-                        "@type": "Organization",
-                        "name": "ලියැසි SUBVERSE"
-                    }
-                };
-                schemaEl.textContent = JSON.stringify(schemaData);
-            }
-
-            const tickerEl = document.getElementById('ticker-text');
-            if (tickerEl) tickerEl.innerHTML = `⚡ ${currentDrama.title || ''} [${epNum}] උපසිරැසි දැන් බාගත කරගත හැක! • `;
-
-            let latestEpTgLink = globalConfig.telegram_channel_link || "#";
-            if (currentEpisode && currentEpisode.tg_link) {
-                latestEpTgLink = currentEpisode.tg_link;
-            }
-
-            const tgBtn = document.getElementById('tg-config-link');
-            if (tgBtn) tgBtn.href = latestEpTgLink;
-
-            const fbBtn = document.getElementById('fb-main-icon-link');
-            if (fbBtn) fbBtn.href = globalConfig.facebook_link || "#";
-
-            const ytBtn = document.getElementById('yt-main-icon-link');
-            if (ytBtn) ytBtn.href = globalConfig.youtube_link || "#";
-
-            const bloggerBtn = document.getElementById('blogger-config-link');
-            if (bloggerBtn) bloggerBtn.href = globalConfig.blogger_link || "";
-
-            renderDramaDetails();
-            renderCast();
-            renderMap();
-            renderTrailer();
-            renderVotePanel();
-            renderDownloadBox();
-            setupNavigation();
-            renderGenreVotes();
-            renderAboutUs();
-            
-            loadClicksAndVotes();
-            loadComments();
-            loadGenreVoteData();
-            renderDynamicChatChips(globalConfig, database.dramas);
-            resetChatMessages();
-        }
-
-        function showError(title, desc) {
-            const wrapper = document.getElementById('drama-details-wrapper');
-            if (wrapper) {
-                wrapper.innerHTML = `
-                    <div style="text-align: center; padding: 50px 20px; color: var(--neon-pink);">
-                        <h2 style="text-shadow: 0 0 10px var(--neon-pink);">${title}</h2>
-                        <p style="color: #ccc; font-size: 14px; margin-top: 10px;">${desc}</p>
-                        <a href="index.html" class="download-btn" style="margin-top: 20px; max-width: 200px;">
-                            <span class="btn-sheen-sweep"></span>
-                            <span style="position:relative; z-index:3;"><i class="fa-solid fa-house"></i> Home</span>
-                        </a>
-                    </div>
-                `;
-            }
-        }
-
-        function renderDramaDetails() {
-            const wrapper = document.getElementById('drama-details-wrapper');
-            if (!wrapper) return;
-            const rating = parseFloat(currentEpisode.imdb || currentDrama.imdb || '8.5');
-            const isComplete = currentDrama.status === "COMPLETE";
-            const statusColor = isComplete ? "var(--neon-pink)" : "var(--neon-cyan)";
-
-            const dramaImg = currentDrama.image_url || currentDrama.image || currentDrama.imageUrl || '';
-            const epImg = currentEpisode.image || currentEpisode.image_url || currentEpisode.imageUrl || dramaImg;
-
-            const breadcrumbEl = document.getElementById('breadcrumb-container');
-            if (breadcrumbEl) {
-                const dramaTypeLabel = currentDrama.type === "K-DRAMA" ? "Korean Drama" : currentDrama.type === "C-DRAMA" ? "Chinese Drama" : "Japanese Drama";
-                breadcrumbEl.innerHTML = `
-                    <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
-                    <i class="fa-solid fa-chevron-right breadcrumb-separator"></i>
-                    <a href="index.html">${dramaTypeLabel}</a>
-                    <i class="fa-solid fa-chevron-right breadcrumb-separator"></i>
-                    <a href="drama_picker.html?id=${currentDrama.id}">${currentDrama.title}</a>
-                    <i class="fa-solid fa-chevron-right breadcrumb-separator"></i>
-                    <span class="breadcrumb-current">${epNum}</span>
-                `;
-            }
-
-            wrapper.innerHTML = `
-                <!-- CARD 01: POSTER & TITLE ONLY -->
-                <div class="glass-card-custom">
-                    <div class="card-poster-title-inner">
-                        <div class="detail-poster-wrapper">
-                            <img class="detail-poster-img" src="${epImg}" alt="${currentDrama.title} ${epNum} සිංහල උපසිරැසි | Sinhala Subtitles">
-                            <div class="poster-top-row" style="position: absolute; top: 12px; left: 12px; right: 12px; display: flex; flex-direction: column; gap: 6px; z-index: 3;">
-                                <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-                                    <span class="neon-text-label neon-cyan-glow" style="flex: 0 1 auto;">${currentDrama.status}</span>
-                                    <span class="neon-text-label neon-purple-glow" style="flex: 0 1 auto;">${currentDrama.type || 'DRAMA'}</span>
-                                    <span class="neon-text-label neon-pink-glow" style="flex: 0 1 auto;">${epNum}</span>
-                                </div>
-                                <div style="display: flex; justify-content: flex-start; align-items: center; width: 100%;">
-                                    <span class="neon-text-label neon-amber-glow"><i class="fa-solid fa-star" style="font-size: 8px; margin-right: 2px;"></i>${rating}</span>
-                                </div>
-                            </div>
-                            <div class="poster-bottom-gradient"></div>
-                            <div class="poster-genres-container">
-                                ${currentDrama.genres ? currentDrama.genres.map((g, idx) => {
-                                    const neonColors = ['neon-cyan-glow', 'neon-purple-glow', 'neon-pink-glow', 'neon-amber-glow'];
-                                    return `<span class="neon-text-label ${neonColors[idx % neonColors.length]}">${g}</span>`;
-                                }).join('') : ''}
-                            </div>
-                        </div>
-                        <div class="detail-title-col">
-                            <h1 class="drama-main-title">${currentDrama.title || ''}</h1>
-                            <h4 style="color: var(--neon-cyan); text-shadow:0 0 5px var(--neon-cyan); margin: 15px 0 0 0; font-size: 16px; font-weight: 800; text-transform: uppercase;">${currentEpisode.title || ''}</h4>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CARD 02: SPECIFICATIONS (DRAMA DETAILS) -->
-                <div class="glass-card-custom">
-                    <h3 class="card-heading-cyan"><i class="fa-solid fa-circle-info"></i> කතාමාලා විස්තර (Drama Details)</h3>
-                    <ul class="info-spec-list">
-                        <li class="info-spec-item"><span class="info-spec-label">Director:</span><span class="info-spec-value">${currentEpisode.director || currentDrama.director || 'N/A'}</span></li>
-                        <li class="info-spec-item"><span class="info-spec-label">Writer:</span><span class="info-spec-value">${currentEpisode.writer || currentDrama.writer || 'N/A'}</span></li>
-                        <li class="info-spec-item"><span class="info-spec-label">Network:</span><span class="info-spec-value">${currentEpisode.network || currentDrama.network || 'N/A'}</span></li>
-                        <li class="info-spec-item"><span class="info-spec-label">First Aired:</span><span class="info-spec-value">${currentEpisode.first_air_date || currentDrama.first_air_date || 'N/A'}</span></li>
-                        <li class="info-spec-item"><span class="info-spec-label">Runtime:</span><span class="info-spec-value">${currentEpisode.runtime || currentDrama.runtime || 'N/A'}</span></li>
-                        <li class="info-spec-item"><span class="info-spec-label">Country:</span><span class="info-spec-value">${currentEpisode.country || currentDrama.country || 'N/A'}</span></li>
-                    </ul>
-                    <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); padding: 20px; border-radius: 10px; line-height: 1.8; color: #ccc; font-size: 13.5px; margin-top: 20px;">
-                        <h3 style="color: ${statusColor}; text-shadow: 0 0 5px ${statusColor}; margin: 0 0 10px 0; font-size: 14px; text-transform: uppercase; font-weight: 900;">කතාමාලාවේ විස්තරය (Drama Synopsis)</h3>
-                        <p style="margin: 0; text-align: justify;">${currentDrama.synopsis || ''}</p>
-                    </div>
-                </div>
-            `;
-
-            const epStoryWrapper = document.getElementById('episode-story-section-wrapper');
-            if (epStoryWrapper && currentEpisode.synopsis) {
-                epStoryWrapper.style.display = "block";
-                epStoryWrapper.innerHTML = `
-                    <h3 class="card-heading-pink"><i class="fa-solid fa-book-open"></i> ${currentEpisode.title || epNum} - කොටසේ කතාව (Episode Synopsis)</h3>
-                    <p style="margin: 0; text-align: justify; line-height: 1.8; color: #ddd; font-size: 13.5px;">${currentEpisode.synopsis}</p>
-                `;
-            } else if (epStoryWrapper) {
-                epStoryWrapper.style.display = "none";
-            }
-        }
-
-        function renderCast() {
-            const section = document.getElementById('cast-section-wrapper');
-            if (!section) return;
-            const cast = currentEpisode.cast || currentDrama.cast || [];
-            if (cast.length === 0) return;
-
-            section.style.display = "block";
-            let castHTML = `<h3 class="card-heading-cyan"><i class="fa-solid fa-masks-theater"></i> ප්‍රධාන නළු නිළියන් (Cast & Crew)</h3><div class="cast-grid-box">`;
-            cast.forEach(c => {
-                castHTML += `
-                    <div class="cast-member-item">
-                        <div class="cast-img-container">
-                            <img src="${c.image || c.image_url || c.imageUrl || ''}" alt="${c.name} - Cast Member" loading="lazy">
-                        </div>
-                        <span class="cast-member-name">${c.name}</span>
-                    </div>
-                `;
-            });
-            castHTML += `</div>`;
-            section.innerHTML = castHTML;
-        }
-
-        function renderMap() {
-            const section = document.getElementById('map-section-wrapper');
-            if (!section) return;
-            const mapUrl = currentEpisode.map_url || currentDrama.map_url;
-            if (!mapUrl) return;
-
-            section.style.display = "block";
-            section.innerHTML = `
-                <h3 class="card-heading-cyan"><i class="fa-solid fa-route"></i> කතාවේ සිතියම (Story Relationship Map)</h3>
-                <div class="map-responsive-box">
-                    <img src="${mapUrl}" alt="${currentDrama.title} Story Map" loading="lazy">
-                </div>
-            `;
-        }
-
         function getYouTubeEmbedUrl(urlOrId) {
-            if (!urlOrId) return null;
+            if (!urlOrId) return "";
             urlOrId = urlOrId.trim();
 
             if (urlOrId.includes("youtube.com/embed/") || urlOrId.includes("youtube-nocookie.com/embed/")) {
@@ -1590,155 +1384,324 @@
             return urlOrId; 
         }
 
-        function renderTrailer() {
-            const section = document.getElementById('trailer-section-wrapper');
-            if (!section) return;
-            const trailerUrl = currentEpisode.trailer || currentEpisode.trailer_link || currentEpisode.trailerUrl || currentDrama.trailer || currentDrama.trailer_link || currentDrama.trailerUrl;
-            if (!trailerUrl || trailerUrl === "#") return;
-
-            const embedUrl = getYouTubeEmbedUrl(trailerUrl);
-            if (!embedUrl) return;
-
-            section.style.display = "block";
-            section.innerHTML = `
-                <h3 class="card-heading-amber"><i class="fa-brands fa-youtube" style="color: #ff0000;"></i> නිල පූර්ව ප්‍රචාරක පටය (Official Trailer)</h3>
-                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius:12px; border:1px solid var(--glass-border);">
-                    <iframe src="${embedUrl}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen loading="lazy"></iframe>
-                </div>
-            `;
-        }
-
-        function renderVotePanel() {
-            const wrapper = document.getElementById('vote-section-wrapper');
-            if (!wrapper) return;
-            wrapper.style.display = "block";
-            wrapper.innerHTML = `
-                <h3 class="card-heading-cyan"><i class="fa-solid fa-square-poll-vertical"></i> මෙම කොටස (Episode) පිළිබඳ ඔබේ මනාපය (Rate This Episode)</h3>
-                <div class="sl-vote-container" style="margin-top:0;">
-                    <div class="sl-vote-title">ඔබ මෙම කොටසට කැමතිද? (Do you like this episode?)</div>
-                    <div class="neon-bar-wrapper">
-                        <div class="neon-bar-track">
-                            <div id="ep-vote-bar" class="neon-bar-fill" style="width: 0%;"></div>
-                        </div>
-                    </div>
-                    <div class="sl-vote-buttons">
-                        <button class="vote-btn-custom vote-like" onclick="submitEpisodeVote('likes')">
-                            👍 LIKE <span class="vote-count" id="ep-like-count">0</span>
-                        </button>
-                        <button class="vote-btn-custom vote-dislike" onclick="submitEpisodeVote('dislikes')">
-                            👎 DISLIKE <span class="vote-count" id="ep-dislike-count">0</span>
-                        </button>
-                    </div>
-                </div>
-            `;
-        }
-
-        function renderDownloadBox() {
-            const wrapper = document.getElementById('download-section-wrapper');
-            if (!wrapper) return;
-            
-            // 📡 Telegram fallback to global Config Link if ep.tg_link is absent
-            const fallbackTelegramLink = currentEpisode.tg_link || globalConfig.telegram_channel_link || "#";
-
-            wrapper.style.display = "block";
-            wrapper.innerHTML = `
-                <h3 class="card-heading-cyan"><i class="fa-solid fa-cloud-arrow-down"></i> උපසිරැසි සහ වීඩියෝ ලබාගැනීමේ කවුළුව (Subtitle & Video Download)</h3>
-                <div class="download-box">
-                    <a href="${currentEpisode.link || '#'}" target="_blank" class="download-btn" onclick="trackDownload('sub')">
-                        <span class="btn-sheen-sweep"></span>
-                        <i class="fa-solid fa-download"></i> උපසිරැසි ලබාගන්න (SUBTITLE)
-                    </a>
-                    <div style="font-size: 11.5px; color: var(--text-muted); margin-bottom: 10px;">
-                        බාගත කිරීම් ගණන (Subtitle Downloads): <span id="sub-count-ui" style="color: var(--neon-cyan); font-weight: bold; font-family: monospace;">0</span>
-                    </div>
-
-                    <a href="${fallbackTelegramLink}" target="_blank" class="download-btn tg-video" onclick="trackDownload('tg')">
-                        <span class="btn-sheen-sweep"></span>
-                        <i class="fa-brands fa-telegram"></i> ටෙලිග්‍රෑම් වීඩියෝව (TELEGRAM)
-                    </a>
-                    <div style="font-size: 11.5px; color: var(--text-muted);">
-                        නැරඹුම් වාර ගණන (Telegram Clicks): <span id="tg-count-ui" style="color: var(--neon-pink); font-weight: bold; font-family: monospace;">0</span>
-                    </div>
-                </div>
-            `;
-        }
-
-        function setupNavigation() {
-            const episodes = currentDrama.episodes || [];
-            if (episodes.length <= 1) return;
-
-            const currentIndex = episodes.findIndex(e => e.episode === epNum);
-            if (currentIndex === -1) return;
-
-            const navWrapper = document.getElementById('episode-navigation-wrapper');
-            if (navWrapper) navWrapper.style.display = "block";
-            const prevBtn = document.getElementById('prev-episode-btn');
-            const nextBtn = document.getElementById('next-episode-btn');
-
-            if (currentIndex > 0) {
-                if (prevBtn) {
-                    prevBtn.style.display = "inline-flex";
-                    prevBtn.href = `episode_picker.html?drama_id=${dramaId}&ep=${episodes[currentIndex - 1].episode}`;
+        async function loadDramaDetails() {
+            try {
+                const response = await fetch('data.json?v=' + new Date().getTime());
+                if (response.ok) {
+                    const database = await response.json();
+                    globalConfig = database.config || {};
+                    const drama = database.dramas ? database.dramas[dramaId] : null;
+                    if (drama) {
+                        renderDramaDetails(drama, globalConfig, database);
+                    } else {
+                        showNotFound();
+                    }
                 }
-            } else {
-                if (prevBtn) prevBtn.style.display = "none";
-            }
-
-            if (currentIndex < episodes.length - 1) {
-                if (nextBtn) {
-                    nextBtn.style.display = "inline-flex";
-                    nextBtn.href = `episode_picker.html?drama_id=${dramaId}&ep=${episodes[currentIndex + 1].episode}`;
-                }
-            } else {
-                if (nextBtn) nextBtn.style.display = "none";
+            } catch (e) {
+                showNotFound();
             }
         }
 
-        function renderGenreVotes() {
-            const wrapper = document.getElementById('genre-vote-wrapper');
-            if (!wrapper) return;
-            wrapper.style.display = "block";
+        function renderDramaDetails(drama, config, database) {
             
-            const genres = [
-                { id: "cat_fantasy", title: "🔮 Fantasy (මායාවී)" },
-                { id: "cat_sci_fi", title: "🚀 Sci-Fi (විද්‍යා ප්‍රබන්ධ)" },
-                { id: "cat_romance", title: "💖 Romance (ආදර කතා)" },
-                { id: "cat_comedy", title: "😂 Comedy (හාස්‍යමය)" },
-                { id: "cat_thriller", title: "🔪 Thriller / Action (ත්‍රාසජනක)" }
-            ];
+            // Dynamically update SEO meta tags
+            document.title = `${drama.title} සිංහල උපසිරැසි | Sinhala Subtitles - ලියැසි SUBVERSE`;
+            
+            const metaDesc = document.getElementById('meta-desc');
+            if (metaDesc) {
+                metaDesc.setAttribute('content', `${drama.title} (සිංහල උපසිරැසි) - ${drama.synopsis ? drama.synopsis.slice(0, 150) : ''}...`);
+            }
+            const metaKeywords = document.getElementById('meta-keywords');
+            if (metaKeywords) {
+                metaKeywords.setAttribute('content', `${drama.title} sinhala sub, ${drama.title} sinhala subtitles, liyasi sub, subverse, ${drama.title} liyasi`);
+            }
+            const ogTitle = document.getElementById('og-title');
+            if (ogTitle) {
+                ogTitle.setAttribute('content', `${drama.title} සිංහල උපසිරැසි | Sinhala Subtitles - ලියැසි SUBVERSE`);
+            }
+            const ogDesc = document.getElementById('og-desc');
+            if (ogDesc) {
+                ogDesc.setAttribute('content', `නවතම ${drama.title} කතාමාලාවේ සියලුම කොටස් සඳහා ගුණාත්මක බවින් ඉහළම සිංහල උපසිරැසි නොමිලේ සෘජුවම බාගත කරගන්න.`);
+            }
+            const ogImage = document.getElementById('og-image');
+            const dramaImg = drama.image_url || drama.image || drama.imageUrl || '';
+            if (ogImage && dramaImg) {
+                ogImage.setAttribute('content', dramaImg);
+            }
 
-            const container = document.getElementById('genre-vote-container');
-            if (container) {
-                container.innerHTML = "";
-                genres.forEach(g => {
-                    container.innerHTML += `
-                        <div class="sl-vote-container" data-id="${g.id}" style="margin-top:0;">
-                            <div class="sl-vote-title"><b>${g.title}</b></div>
-                            <div class="neon-bar-wrapper">
-                                <div class="neon-bar-track">
-                                    <div id="genre-bar-${g.id}" class="neon-bar-fill" style="width: 0%;"></div>
-                                </div>
-                            </div>
-                            <div class="sl-vote-buttons">
-                                <button class="vote-btn-custom vote-like" onclick="submitGenreVote('${g.id}', 'likes')">
-                                    👍 <span class="vote-count" id="genre-${g.id}-likes">0</span>
-                                </button>
-                                <button class="vote-btn-custom vote-dislike" onclick="submitGenreVote('${g.id}', 'dislikes')">
-                                    👎 <span class="vote-count" id="genre-${g.id}-dislikes">0</span>
-                                </button>
-                            </div>
+            // Populate TVSeries Schema Markup dynamically
+            const schemaEl = document.getElementById('series-schema');
+            if (schemaEl) {
+                const schemaData = {
+                    "@context": "https://schema.org",
+                    "@type": "TVSeries",
+                    "name": drama.title,
+                    "description": drama.synopsis || "",
+                    "image": dramaImg,
+                    "genre": drama.genres || [],
+                    "numberOfEpisodes": drama.total_episodes || "",
+                    "author": {
+                        "@type": "Organization",
+                        "name": "ලියැසි SUBVERSE"
+                    }
+                };
+                schemaEl.textContent = JSON.stringify(schemaData);
+            }
+
+            let latestDramaTgLink = config.telegram_channel_link || "#";
+            if (drama.episodes && drama.episodes.length > 0) {
+                const sortedEps = [...drama.episodes].sort((a, b) => {
+                    const numA = parseInt(a.episode.match(/\d+/)?.[0] || 0);
+                    const numB = parseInt(b.episode.match(/\d+/)?.[0] || 0);
+                    return numB - numA;
+                });
+                const latestEpWithTg = sortedEps.find(ep => ep.tg_link);
+                if (latestEpWithTg && latestEpWithTg.tg_link) {
+                    latestDramaTgLink = latestEpWithTg.tg_link;
+                }
+            }
+
+            const tgBtn = document.getElementById('tg-config-link');
+            if (tgBtn) tgBtn.href = latestDramaTgLink;
+
+            const fbBtn = document.getElementById('fb-main-icon-link');
+            if (fbBtn) fbBtn.href = config.facebook_link || "#";
+
+            const ytBtn = document.getElementById('yt-main-icon-link');
+            if (ytBtn) ytBtn.href = config.youtube_link || "#";
+
+            const tickerEl = document.getElementById('ticker-text');
+            if (tickerEl) tickerEl.innerHTML = `⚡ ${drama.title} Subtitles Updated! • `;
+
+            const rating = parseFloat(drama.imdb) || 0.0;
+            const isComplete = drama.status === "COMPLETE";
+            const statusColor = isComplete ? "var(--neon-pink)" : "var(--neon-cyan)";
+
+            const breadcrumbEl = document.getElementById('breadcrumb-container');
+            if (breadcrumbEl) {
+                const dramaTypeLabel = drama.type === "K-DRAMA" ? "Korean Drama" : drama.type === "C-DRAMA" ? "Chinese Drama" : "Japanese Drama";
+                breadcrumbEl.innerHTML = `
+                    <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+                    <i class="fa-solid fa-chevron-right breadcrumb-separator"></i>
+                    <a href="index.html">${dramaTypeLabel}</a>
+                    <i class="fa-solid fa-chevron-right breadcrumb-separator"></i>
+                    <span class="breadcrumb-current">${drama.title}</span>
+                `;
+            }
+
+            let trailerHTML = "";
+            const trailerUrl = drama.trailer || drama.trailer_link || drama.trailerUrl;
+            if (trailerUrl) {
+                const embedUrl = getYouTubeEmbedUrl(trailerUrl);
+                if (embedUrl) {
+                    trailerHTML = `
+                        <h3 class="card-heading-amber">
+                            <i class="fa-brands fa-youtube" style="color: #ff0000; font-size: 16px;"></i> පූර්ව ප්‍රචාරක පටය (Official Trailer)
+                        </h3>
+                        <div class="trailer-iframe-wrapper">
+                            <iframe src="${embedUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
                         </div>
                     `;
-                });
+                }
             }
-        }
 
-        function renderAboutUs() {
+            // 🔲 SINGLE LAYER CARDS WITH FIXED LAYOUTS
+            const detailsWrapper = document.getElementById('drama-details-wrapper');
+            if (detailsWrapper) {
+                detailsWrapper.innerHTML = `
+                    <!-- CARD 01: POSTER & TITLE ONLY -->
+                    <div class="glass-card-custom">
+                        <div class="card-poster-title-inner">
+                            <div class="detail-poster-wrapper">
+                                <img class="detail-poster-img" src="${dramaImg}" alt="${drama.title} සිංහල උපසිරැසි | Sinhala Subtitles">
+                                <div class="poster-top-row" style="position: absolute; top: 12px; left: 12px; right: 12px; display: flex; flex-direction: column; gap: 6px; z-index: 3;">
+                                    <!-- Row 1: Status, Type, Episodes strictly in one row -->
+                                    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                                        <span class="neon-text-label neon-cyan-glow" style="flex: 0 1 auto;">${drama.status}</span>
+                                        <span class="neon-text-label neon-purple-glow" style="flex: 0 1 auto;">${drama.type}</span>
+                                        <span class="neon-text-label neon-pink-glow" style="flex: 0 1 auto;">${drama.total_episodes || '?'} EPS</span>
+                                    </div>
+                                    <!-- Row 2: IMDB rating strictly below ONGOING (Status) -->
+                                    <div style="display: flex; justify-content: flex-start; align-items: center; width: 100%;">
+                                        <span class="neon-text-label neon-amber-glow"><i class="fa-solid fa-star" style="font-size: 8px; margin-right: 2px;"></i>${drama.imdb}</span>
+                                    </div>
+                                </div>
+                                <div class="poster-bottom-gradient"></div>
+                                <div class="poster-genres-container">
+                                    ${drama.genres ? drama.genres.map((g, idx) => {
+                                        const neonColors = ['neon-cyan-glow', 'neon-purple-glow', 'neon-pink-glow', 'neon-amber-glow'];
+                                        return `<span class="neon-text-label ${neonColors[idx % neonColors.length]}">${g}</span>`;
+                                    }).join('') : ''}
+                                </div>
+                            </div>
+                            <div class="detail-title-col">
+                                <h1 class="drama-main-title">${drama.title}</h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CARD 02: SPECIFICATIONS (DRAMA DETAILS) -->
+                    <div class="glass-card-custom">
+                        <h3 class="card-heading-cyan"><i class="fa-solid fa-circle-info"></i> කතාමාලා විස්තර (Drama Details)</h3>
+                        <ul class="info-spec-list">
+                            <li class="info-spec-item"><span class="info-spec-label">Director:</span> <span class="info-spec-value">${drama.director || 'N/A'}</span></li>
+                            <li class="info-spec-item"><span class="info-spec-label">Writer:</span> <span class="info-spec-value">${drama.writer || 'N/A'}</span></li>
+                            <li class="info-spec-item"><span class="info-spec-label">Network:</span> <span class="info-spec-value">${drama.network || 'N/A'}</span></li>
+                            <li class="info-spec-item"><span class="info-spec-label">Country:</span> <span class="info-spec-value">${drama.country || 'N/A'}</span></li>
+                            <li class="info-spec-item"><span class="info-spec-label">Air Date:</span> <span class="info-spec-value">${drama.first_air_date || 'N/A'}</span></li>
+                            <li class="info-spec-item"><span class="info-spec-label">Runtime:</span> <span class="info-spec-value">${drama.runtime || 'N/A'}</span></li>
+                        </ul>
+                    </div>
+
+                    <!-- CARD 03: SYNOPSIS (කවුළුව 01) -->
+                    <div class="glass-card-custom">
+                        <h3 class="card-heading-pink"><i class="fa-solid fa-book-open"></i> කතා සාරාංශය (Synopsis)</h3>
+                        <p class="drama-synopsis-text">${drama.synopsis || 'කතා සාරාංශයක් ඇතුළත් කර නොමැත.'}</p>
+                    </div>
+
+                    <!-- CARD 04: OFFICIAL TRAILER (කවුළුව 02 - ඇත්නම් පමණක් දර්ශනය වේ) -->
+                    ${trailerHTML ? `
+                    <div class="glass-card-custom">
+                        ${trailerHTML}
+                    </div>
+                    ` : ''}
+                `;
+            }
+
+            const episodesWrapper = document.getElementById('episodes-section-wrapper');
+            if (episodesWrapper) {
+                let episodesHTML = '';
+
+                if (isComplete && drama.batch_link) {
+                    episodesHTML += `
+                        <div class="batch-download-wrapper" style="margin-bottom: 20px;">
+                            <a href="${drama.batch_link}" target="_blank" class="download-btn" style="max-width: 100%;">
+                                <span class="btn-sheen-sweep"></span>
+                                <i class="fa-solid fa-file-zipper"></i> BATCH DOWNLOAD FULL SEASON (.ZIP)
+                            </a>
+                        </div>
+                    `;
+                }
+
+                episodesHTML += `<h2 style="font-size: 15px; font-weight: 900; color: var(--neon-amber); text-shadow: 0 0 8px var(--neon-amber); text-transform: uppercase; margin: 0 0 20px 0; border-left: 3px solid var(--neon-amber); padding-left: 10px;">උපසිරැසි ලබාගන්න (Download Subtitles)</h2>`;
+
+                const episodesMap = {};
+                if (drama.episodes) {
+                    drama.episodes.forEach(epObj => {
+                        const matchNum = epObj.episode.match(/\d+/);
+                        if (matchNum) {
+                            const epIndex = parseInt(matchNum[0]);
+                            episodesMap[epIndex] = epObj;
+                        }
+                    });
+                }
+
+                const totalEpsCount = drama.total_episodes || 16;
+
+                if (!isComplete) {
+                    episodesHTML += `<div class="episodes-grid-cards">`;
+                    for (let i = 1; i <= totalEpsCount; i++) {
+                        const epData = episodesMap[i];
+                        if (epData && epData.link) {
+                            const epImg = epData.image || epData.image_url || epData.imageUrl || dramaImg;
+                            const epRating = parseFloat(epData.imdb || drama.imdb || '8.5');
+                            let epRatingColor = epRating >= 8.5 ? "#00ff66" : epRating >= 7.5 ? "#ffaa00" : "#ff007f";
+                            let epRatingShadow = epRating >= 8.5 ? "rgba(0, 255, 102, 0.4)" : epRating >= 7.5 ? "rgba(255, 170, 0, 0.4)" : "rgba(255, 0, 127, 0.4)";
+                            episodesHTML += `
+                                <a href="episode_picker.html?drama_id=${drama.id}&ep=${epData.episode}" class="movie-style-card">
+                                    <span class="badge-top-left">${epData.episode}</span>
+                                    <div class="rating-bar-vertical" style="border-right-color: ${epRatingColor}; color: ${epRatingColor}; text-shadow: 0 0 8px ${epRatingColor}; box-shadow: 0 0 10px ${epRatingShadow};">
+                                        <i class="fa-solid fa-star" style="font-size: 8px;"></i>
+                                        <span>${epData.imdb || drama.imdb}</span>
+                                    </div>
+                                    <img class="poster-img" src="${epImg}" alt="${drama.title} ${epData.episode} සිංහල උපසිරැසි | Sinhala Subtitles">
+                                    <div class="title-overlay"><p>${epData.title}</p></div>
+                                </a>
+                            `;
+                        } else {
+                            episodesHTML += `
+                                <div class="movie-style-card" style="opacity: 0.25; cursor: not-allowed;">
+                                    <span class="badge-top-left">EP ${String(i).padStart(2, '0')}</span>
+                                    <img class="poster-img" src="${dramaImg}" alt="${drama.title} Upcoming Episode සිංහල උපසිරැසි">
+                                    <div class="title-overlay" style="background: rgba(0,0,0,0.85);"><p style="color:var(--text-muted)">⏳ UPCOMING</p></div>
+                                </div>
+                            `;
+                        }
+                    }
+                } else {
+                    episodesHTML += `<div class="episodes-grid-buttons">`;
+                    const activeColorClass = 'active-pink';
+                    for (let i = 1; i <= totalEpsCount; i++) {
+                        const epData = episodesMap[i];
+                        if (epData && epData.link) {
+                            episodesHTML += `
+                                <a href="episode_picker.html?drama_id=${drama.id}&ep=${epData.episode}" class="ep-btn ${activeColorClass}">
+                                    <i class="fa-solid fa-circle-play" style="font-size: 14px;"></i>
+                                    <span>EPISODE ${String(i).padStart(2, '0')}</span>
+                                </a>
+                            `;
+                        } else {
+                            episodesHTML += `
+                                <div class="ep-btn upcoming">
+                                    <i class="fa-solid fa-clock" style="font-size: 14px;"></i>
+                                    <span>EPISODE ${String(i).padStart(2, '0')}</span>
+                                </div>
+                            `;
+                        }
+                    }
+                }
+
+                episodesHTML += `</div>`;
+                episodesWrapper.innerHTML = episodesHTML;
+            }
+
+            const dramaKeys = Object.keys(database.dramas || {});
+            const currentDramaIndex = dramaKeys.indexOf(dramaId);
+            const prevDramaBtn = document.getElementById('prev-drama-btn');
+            const nextDramaBtn = document.getElementById('next-drama-btn');
+            const navWrapper = document.getElementById('drama-navigation-wrapper');
+
+            if (currentDramaIndex !== -1 && dramaKeys.length > 1) {
+                if (navWrapper) navWrapper.style.display = 'block';
+
+                if (currentDramaIndex > 0) {
+                    const prevId = dramaKeys[currentDramaIndex - 1];
+                    if (prevDramaBtn) {
+                        prevDramaBtn.href = `drama_picker.html?id=${prevId}`;
+                        prevDramaBtn.style.opacity = '1';
+                        prevDramaBtn.style.pointerEvents = 'auto';
+                    }
+                } else {
+                    if (prevDramaBtn) {
+                        prevDramaBtn.style.opacity = '0.3';
+                        prevDramaBtn.style.pointerEvents = 'none';
+                        prevDramaBtn.removeAttribute('href');
+                    }
+                }
+
+                if (currentDramaIndex < dramaKeys.length - 1) {
+                    const nextId = dramaKeys[currentDramaIndex + 1];
+                    if (nextDramaBtn) {
+                        nextDramaBtn.href = `drama_picker.html?id=${nextId}`;
+                        nextDramaBtn.style.opacity = '1';
+                        nextDramaBtn.style.pointerEvents = 'auto';
+                    }
+                } else {
+                    if (nextDramaBtn) {
+                        nextDramaBtn.style.opacity = '0.3';
+                        nextDramaBtn.style.pointerEvents = 'none';
+                        nextDramaBtn.removeAttribute('href');
+                    }
+                }
+            } else {
+                if (navWrapper) navWrapper.style.display = 'none';
+            }
+
             const aboutUsSection = document.getElementById('about-us-section-wrapper');
             if (aboutUsSection) {
                 aboutUsSection.style.display = 'flex';
-                const aboutMeText = globalConfig.about_me_text || "අපි ඔබ වෙත ගෙන එන්නේ ගුණාත්මක බවින් ඉහළම ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි පමණි. අපගේ නිල සමාජ මාධ්‍ය ජාලයන් සමඟ එක් වී අලුත්ම උපසිරැසි නිකුත් වූ සැනින් ලබාගන්න.";
-                const aboutMeAvatar = globalConfig.about_me_avatar || ABOUT_ME_ART_LOGO;
+                const aboutMeText = config.about_me_text || "අපි ඔබ වෙත ගෙන එන්නේ ගුණාත්මක බවින් ඉහළම ආසියානු කතාමාලා සඳහා සිංහල උපසිරැසි පමණි. අපගේ නිල සමාජ මාධ්‍ය ජාලයන් සමඟ එක් වී අලුත්ම උපසිරැසි නිකුත් වූ සැනින් ලබාගන්න.";
+                const aboutMeAvatar = config.about_me_avatar || ABOUT_ME_ART_LOGO;
                 aboutUsSection.innerHTML = `
                     <h3 class="about-header-title">ලියැසි SUBVERSE (About Us)</h3>
                     <div class="about-avatar-wrapper">
@@ -1752,263 +1715,37 @@
                     <a href="about.html" class="about-btn">About Us පිටුවට පිවිසෙන්න</a>
                 `;
             }
+
+            renderOverallVoteSection();
+            renderDynamicChatChips(config, database.dramas);
+            resetChatMessages();
+            startRealtimeSync();
         }
 
-        const epClean = epNum ? epNum.replace(/\s+/g, '_') : "EP_00";
-
-        async function loadClicksAndVotes() {
-            if (!dramaId) return;
-            
-            try {
-                const res = await fetch(`${firebaseURL}episode_clicks/${dramaId}/${epClean}.json`);
-                if (res.ok) {
-                    const data = await res.json();
-                    if (data !== null) {
-                        const subEl = document.getElementById('sub-count-ui');
-                        if (subEl) subEl.innerText = data.sub !== undefined ? data.sub : 0;
-                        const tgEl = document.getElementById('tg-count-ui');
-                        if (tgEl) tgEl.innerText = data.tg !== undefined ? data.tg : 0;
-                    }
-                }
-            } catch (e) {
-                console.error("Failed to load clicks:", e);
-            }
-
-            try {
-                const res = await fetch(`${firebaseURL}episode_votes/${dramaId}/${epClean}.json`);
-                if (res.ok) {
-                    const data = await res.json();
-                    const l = (data !== null && data.likes !== undefined) ? parseInt(data.likes) : 0;
-                    const d = (data !== null && data.dislikes !== undefined) ? parseInt(data.dislikes) : 0;
-                    
-                    const likeEl = document.getElementById('ep-like-count');
-                    if (likeEl) likeEl.innerText = l;
-                    const dislikeEl = document.getElementById('ep-dislike-count');
-                    if (dislikeEl) dislikeEl.innerText = d;
-                    updateEpisodeVoteBar(l, d);
-                }
-            } catch (e) {
-                console.error("Failed to load votes:", e);
-            }
-        }
-
-        async function trackDownload(type) {
-            if (!dramaId) return;
-            const countKey = `voted_${type}_${dramaId}_${epClean}`;
-            const countUrl = `${firebaseURL}episode_clicks/${dramaId}/${epClean}/${type}.json`;
-            
-            if (safeLocalStorage.getItem(countKey) === 'true') {
-                return;
-            }
-            
-            try {
-                const res = await fetch(countUrl);
-                let count = 0;
-                if (res.ok) {
-                    const val = await res.json();
-                    if (val !== null) count = parseInt(val) || 0;
-                }
-                count++;
-                
-                await fetch(countUrl, {
-                    method: 'PUT',
-                    body: JSON.stringify(count)
-                });
-                
-                safeLocalStorage.setItem(countKey, 'true');
-                const uiEl = document.getElementById(`${type}-count-ui`);
-                if (uiEl) uiEl.innerText = count;
-            } catch (e) {
-                console.error("Firebase update failed:", e);
-            }
-        }
-
-        async function submitEpisodeVote(type) {
-            const voteKey = `voted_episode_${dramaId}_${epClean}`;
-            const isAdmin = safeLocalStorage.getItem('isAdmin') === 'true';
-
-            if (!isAdmin && safeLocalStorage.getItem(voteKey) === 'true') {
-                alert("⚠️ ඔබ දැනටමත් මෙම කොටස සඳහා මනාපය පළ කර ඇත! ❤️");
-                return;
-            }
-
-            if (!dramaId) return;
-            const voteUrl = `${firebaseURL}episode_votes/${dramaId}/${epClean}/${type}.json`;
-            try {
-                const res = await fetch(voteUrl);
-                let count = 0;
-                if (res.ok) {
-                    const val = await res.json();
-                    if (val !== null) count = parseInt(val) || 0;
-                }
-                count++;
-
-                await fetch(voteUrl, {
-                    method: 'PUT',
-                    body: JSON.stringify(count)
-                });
-
-                if (!isAdmin) {
-                    safeLocalStorage.setItem(voteKey, 'true');
-                }
-                loadClicksAndVotes(); 
-            } catch (e) {
-                console.error("Vote submission failed:", e);
-            }
-        }
-
-        function updateEpisodeVoteBar(l, d) {
-            const bar = document.getElementById('ep-vote-bar');
-            if (!bar) return;
-            const total = l + d;
-            const pct = total > 0 ? (l / total) * 100 : 0;
-            bar.style.width = pct + "%";
-        }
-
-        async function loadGenreVoteData() {
-            try {
-                const res = await fetch(`${firebaseURL}genre_votes.json`);
-                if (res.ok) {
-                    const data = await res.json();
-                    const genres = ["cat_fantasy", "cat_sci_fi", "cat_romance", "cat_comedy", "cat_thriller"];
-                    
-                    genres.forEach(gid => {
-                        const gData = data ? data[gid] : null;
-                        const l = (gData && gData.likes !== undefined) ? parseInt(gData.likes) : 0;
-                        const d = (gData && gData.dislikes !== undefined) ? parseInt(gData.dislikes) : 0;
-                        
-                        const elLikes = document.getElementById(`genre-${gid}-likes`);
-                        const elDislikes = document.getElementById(`genre-${gid}-dislikes`);
-                        if (elLikes) elLikes.innerText = l;
-                        if (elDislikes) elDislikes.innerText = d;
-                        
-                        const bar = document.getElementById(`genre-bar-${gid}`);
-                        if (bar) {
-                            const total = l + d;
-                            const pct = total > 0 ? (l / total) * 100 : 0;
-                            bar.style.width = pct + "%";
-                        }
-                    });
-                }
-            } catch (e) {
-                console.error("Failed to load genre votes:", e);
-            }
-        }
-
-        async function submitGenreVote(gid, type) {
-            const voteKey = `voted_genre_${gid}`;
-            const isAdmin = safeLocalStorage.getItem('isAdmin') === 'true';
-
-            if (!isAdmin && safeLocalStorage.getItem(voteKey) === 'true') {
-                alert("⚠️ ඔබ දැනටමත් මෙම ප්‍රභේදය සඳහා මනාපය පළ කර ඇත! ❤️");
-                return;
-            }
-
-            const voteUrl = `${firebaseURL}genre_votes/${gid}/${type}.json`;
-            try {
-                const res = await fetch(voteUrl);
-                let count = 0;
-                if (res.ok) {
-                    const val = await res.json();
-                    if (val !== null) count = parseInt(val) || 0;
-                }
-                count++;
-
-                await fetch(voteUrl, {
-                    method: 'PUT',
-                    body: JSON.stringify(count)
-                });
-
-                if (!isAdmin) {
-                    safeLocalStorage.setItem(voteKey, 'true');
-                }
-                loadGenreVoteData(); 
-            } catch (e) {
-                console.error("Genre vote submission failed:", e);
-            }
-        }
-
-        async function loadComments(isBackground = false) {
-            if (!dramaId) return;
-            const container = document.getElementById('comments-list-container');
-            if (!container) return;
-            
-            try {
-                const res = await fetch(`${firebaseURL}comments/${dramaId}/${epClean}.json`);
-                if (res.ok) {
-                    const data = await res.json();
-                    if (data === null || typeof data !== 'object') {
-                        throw new Error("No data");
-                    }
-                    
-                    let commentsHTML = "";
-                    const commentsArray = Object.keys(data).map(key => data[key]);
-                    commentsArray.sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
-
-                    commentsArray.forEach(c => {
-                        const dateStr = c.timestamp ? new Date(c.timestamp).toLocaleDateString('si-LK') : "";
-                        const timeStr = c.timestamp ? new Date(c.timestamp).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) : "";
-                        
-                        commentsHTML += `
-                            <div class="comment-card">
-                                <div class="comment-header">
-                                    <span>👤 ${c.name || 'Anonymous'}</span>
-                                    <span>📅 ${dateStr} ${timeStr}</span>
-                                </div>
-                                <div class="comment-body">${c.text || ''}</div>
-                            </div>
-                        `;
-                    });
-
-                    if (container.innerHTML !== commentsHTML) {
-                        container.innerHTML = commentsHTML;
-                    }
-                } else {
-                    throw new Error("Fetch failed");
-                }
-            } catch (e) {
-                if (!isBackground) {
-                    container.innerHTML = `<p style="font-size:12px; color:var(--text-muted); text-align:center;">තවමත් කිසිදු ප්‍රතිචාරයක් නොමැත. පළමු ප්‍රතිචාරය ඔබේ කරන්න! 💬</p>`;
-                }
-            }
-        }
-
-        async function submitEpisodeComment() {
-            const nameInput = document.getElementById('commenter-name-input');
-            const textInput = document.getElementById('comment-text-input');
-            if (!nameInput || !textInput) return;
-            
-            const name = nameInput.value.trim() || "Anonymous User";
-            const text = textInput.value.trim();
-
-            if (text === "") {
-                alert("කරුණාකර ඔබේ අදහස ලියා ඉන්පසු සබ්මිට් කරන්න!");
-                return;
-            }
-
-            if (!dramaId) return;
-
-            const payload = {
-                name: name,
-                text: text,
-                timestamp: Date.now()
-            };
-
-            try {
-                const res = await fetch(`${firebaseURL}comments/${dramaId}/${epClean}.json`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                if (!res.ok) throw new Error("Failed");
-            } catch (e) {
-                console.error("Failed to post comment:", e);
-            }
-            
-            nameInput.value = "";
-            textInput.value = "";
-            loadComments(); 
+        function renderOverallVoteSection() {
+            const wrapper = document.getElementById('overall-vote-section');
+            if (!wrapper) return;
+            wrapper.style.display = "block";
+            wrapper.innerHTML = `
+                <h3 style="color: var(--neon-cyan); text-shadow: 0 0 8px var(--neon-cyan); font-size: 14px; font-weight: 900; text-transform: uppercase; border-left: 3px solid var(--neon-cyan); padding-left: 10px; margin: 0 0 15px 0;">🇱🇰 මෙම කතාමාලාවට ඔබේ මනාපය පළ කරන්න (Rate This Drama)</h3>
+                <div class="sl-vote-container" data-id="${dramaUniqueVoteId}" style="margin-top:0;">
+                    <div class="sl-vote-title">ඔබ මෙම කතාමාලාවට කැමතිද? (Do you like this drama?)</div>
+                    <div class="neon-bar-wrapper">
+                        <div class="neon-bar-track">
+                            <div id="drama-vote-bar" class="neon-bar-fill" style="width: 0%;"></div>
+                        </div>
+                    </div>
+                    <div class="sl-vote-buttons">
+                        <button class="vote-btn-custom vote-like" onclick="handleSLVote('like', this)">
+                            👍 LIKE <span class="vote-count sl-like-cnt">0</span>
+                        </button>
+                        <button class="vote-btn-custom vote-dislike" onclick="handleSLVote('dislike', this)">
+                            👎 DISLIKE <span class="vote-count sl-dislike-cnt">0</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+            loadVotes();
         }
 
         function renderDynamicChatChips(config, dramas) {
@@ -2042,13 +1779,96 @@
             }
         }
 
-        function startRealtimeSync() {
-            setInterval(() => {
-                loadClicksAndVotes();
-                loadComments(true);
-            }, 3000);
+        async function loadVotes() {
+            if (!dramaId) return;
+            try {
+                const res = await fetch(`${firebaseURL}drama_votes/${dramaId}.json`);
+                if (res.ok) {
+                    const data = await res.json();
+                    
+                    const likes = (data && data.like !== undefined) ? parseInt(data.like) : 0;
+                    const dislikes = (data && data.dislike !== undefined) ? parseInt(data.dislike) : 0;
+
+                    const likeEl = document.querySelector('.sl-like-cnt');
+                    const dislikeEl = document.querySelector('.sl-dislike-cnt');
+                    if (likeEl) likeEl.innerText = likes;
+                    if (dislikeEl) dislikeEl.innerText = dislikes;
+
+                    const total = likes + dislikes;
+                    const fillEl = document.getElementById('drama-vote-bar');
+                    if (fillEl) {
+                        fillEl.style.width = (total > 0 ? ((likes / total) * 100) : 0) + '%';
+                    }
+                }
+            } catch(e) {
+                console.error("Error loading votes:", e);
+            }
         }
 
+        async function handleSLVote(type, btn) {
+            if (!dramaId) return;
+            const voteLocalStorageKey = 'voted_drama_' + dramaId;
+            const isAdmin = safeLocalStorage.getItem('isAdmin') === 'true';
+            
+            if (!isAdmin && safeLocalStorage.getItem(voteLocalStorageKey) === 'true') {
+                alert("⚠️ ඔබ දැනටමත් ඔබේ මනාපය පළ කර ඇත! ❤️");
+                return;
+            }
+
+            try {
+                const res = await fetch(`${firebaseURL}drama_votes/${dramaId}.json`);
+                let currentData = { like: 0, dislike: 0 };
+                if (res.ok) {
+                    const temp = await res.json();
+                    if (temp !== null) currentData = temp;
+                }
+                
+                let newLikes = currentData.like || 0;
+                let newDislikes = currentData.dislike || 0;
+
+                if (type === 'like') newLikes++;
+                if (type === 'dislike') newDislikes++;
+
+                await fetch(`${firebaseURL}drama_votes/${dramaId}.json`, {
+                    method: 'PATCH',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ [type]: type === 'like' ? newLikes : newDislikes })
+                });
+
+                if (!isAdmin) {
+                    safeLocalStorage.setItem(voteLocalStorageKey, 'true');
+                }
+                loadVotes(); 
+            } catch(e) {
+                console.error("Error updating vote:", e);
+                alert("⚠️ සන්නිවේදන දෝෂයකි. කරුණාකර නැවත උත්සාහ කරන්න.");
+            }
+        }
+
+        function startRealtimeSync() {
+            setInterval(loadVotes, 3000);
+        }
+
+        function showNotFound() {
+            const wrapper = document.getElementById('drama-details-wrapper');
+            if (wrapper) {
+                wrapper.innerHTML = `
+                    <div style="grid-column: span 2; text-align: center; padding: 80px 0; color: var(--neon-pink);">
+                        <i class="fa-solid fa-triangle-exclamation" style="font-size: 48px; text-shadow: 0 0 15px var(--neon-pink); margin-bottom: 20px;"></i>
+                        <h2 style="font-size: 20px; font-weight: bold; margin-bottom: 10px;">Drama Not Found</h2>
+                        <p style="color: var(--text-muted); margin-bottom: 25px;">The requested drama ID could not be found in the system.</p>
+                        <a href="index.html" class="download-btn" style="max-width: 200px; margin: 0 auto;">
+                            <span class="btn-sheen-sweep"></span>
+                            <span style="position:relative; z-index:3;"><i class="fa-solid fa-house"></i> Home</span>
+                        </a>
+                    </div>
+                `;
+            }
+            const episodesWrapper = document.getElementById('episodes-section-wrapper');
+            if (episodesWrapper) episodesWrapper.style.display = 'none';
+        }
+
+        /* 🤖 CYBER-AI CHATBOT FUNCTIONALITY */
         let autoCloseTimer;
 
         function toggleAIChat() {
@@ -2644,30 +2464,19 @@
             animateGeminiParticles();
         }
 
-        function initApp() {
-            try { initBackground(); } catch(e) { console.error(e); }
-            try { resetChatMessages(); } catch(e) { console.error(e); }
-            try { initPage(); } catch(e) { console.error(e); }
-            try { startRealtimeSync(); } catch(e) { console.error(e); }
-        }
-
-        if (document.readyState === "loading") {
-            document.addEventListener("DOMContentLoaded", initApp);
-        } else {
-            initApp();
-        }
+        window.onload = function() {
+            initBackground();
+            loadDramaDetails();
+        };
 
         /* 🛡️ OBFUSCATION EXPLICIT GLOBAL BINDINGS */
         window.toggleDropdown = toggleDropdown;
-        window.submitEpisodeComment = submitEpisodeComment;
-        window.submitEpisodeVote = submitEpisodeVote;
-        window.submitGenreVote = submitGenreVote;
-        window.trackDownload = trackDownload;
+        window.handleSLVote = handleSLVote;
         window.quickSend = quickSend;
         window.toggleAIChat = toggleAIChat;
         window.sendAIMessage = sendAIMessage;
         window.startVoiceRecognition = startVoiceRecognition;
-        
     </script>
 </body>
 </html>
+`
