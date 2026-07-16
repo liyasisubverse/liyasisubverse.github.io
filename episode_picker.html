@@ -84,6 +84,13 @@
             --text-muted: #94a3b8;
             --glass-bg: rgba(6, 11, 25, 0.7);
             --glass-border: rgba(0, 240, 255, 0.15);
+
+            /* 📏 ADJUSTABLE HEIGHTS & GAPS (පරතරයන් වෙනස් කිරීමට පහත අගයන් භාවිත කරන්න) */
+            --header-height: 75px;         /* හෙඩර් එකෙහි උස */
+            --sub-nav-height: 55px;        /* හෝම් බටන් සහිත බාර් එකෙහි උස */
+            --header-subnav-gap: 15px;     /* හෙඩර් එක සහ හෝම් බාර් එක අතර පරතරය */
+            --subnav-ticker-gap: 15px;     /* හෝම් බාර් එක සහ අකුරු දුවන බාර් එක අතර පරතරය */
+            --ticker-main-gap: 30px;       /* අකුරු දුවන බාර් එක සහ ප්‍රධාන විස්තර කොටස අතර පරතරය */
         }
 
         * { box-sizing: border-box; }
@@ -121,18 +128,14 @@
             pointer-events: none;
         }
 
-        .sticky-top-bar {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: transparent !important;
-            backdrop-filter: none !important;
-            -webkit-backdrop-filter: none !important;
-            border-bottom: none !important;
-            box-shadow: none !important;
-        }
-
+        /* 📌 STICKY / FIXED HEADER CONFIGURATIONS */
         header {
+            position: fixed !important;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-height);
+            z-index: 1010;
             background: transparent !important;
             backdrop-filter: none !important;
             -webkit-backdrop-filter: none !important;
@@ -153,7 +156,7 @@
         .dropdown-menu {
             display: none; position: absolute; left: 0; top: 40px; background: rgba(6, 11, 25, 0.95);
             border: 1px solid var(--neon-cyan); box-shadow: 0 0 15px rgba(0,240,255,0.3); border-radius: 6px;
-            width: 160px; z-index: 1010; backdrop-filter: blur(10px);
+            width: 160px; z-index: 1015; backdrop-filter: blur(10px);
         }
         .dropdown-menu a { display: flex; align-items: center; gap: 8px; color: white; padding: 10px 15px; text-decoration: none; font-size: 13px; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.05); transition: 0.2s; }
         .dropdown-menu a:hover { background: rgba(0,240,255,0.1); color: var(--neon-cyan); }
@@ -165,14 +168,16 @@
             text-decoration: none; 
             display: flex; 
             align-items: center; 
+            justify-content: center;
             overflow: hidden;
             margin: 0 auto; 
         }
         .site-logo-img { 
             position: absolute;
-            left: 0; right: 0; top: 0; bottom: 0;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
             height: 50px; width: auto; 
-            margin: auto;
             z-index: 1; 
             animation: logo-laser-draw 20s infinite ease-in-out;
         }
@@ -186,6 +191,8 @@
         .coded-tagline-text {
             position: absolute;
             left: 0; width: 100%;
+            top: 50%;
+            transform: translateY(-50%);
             font-family: 'Share Tech Mono', monospace;
             font-size: 15px; font-weight: bold; line-height: 1.3;
             letter-spacing: 0.8px;
@@ -196,11 +203,17 @@
             -webkit-text-fill-color: transparent;
             text-shadow: 0 0 10px rgba(0, 240, 255, 0.5), 0 0 20px rgba(255, 0, 127, 0.3);
             animation: tagline-fade 20s infinite ease-in-out, rgb-shift-text 6s linear infinite;
-            opacity: 0; z-index: 1;
+            opacity: 0; z-index: 2;
         }
 
+        /* 📌 SUB-NAVIGATION BAR (STICKS BELOW FIXED HEADER ON SCROLL) */
         .sub-nav-container { 
-            max-width: 1300px; margin: 0 auto; padding: 5px 15px 12px 15px; box-sizing: border-box; 
+            position: fixed !important;
+            top: calc(var(--header-height) + var(--header-subnav-gap)) !important; 
+            left: 0;
+            right: 0;
+            z-index: 1000 !important;
+            max-width: 1300px; margin: 0 auto; padding: 0 15px; box-sizing: border-box; 
             background: transparent !important;
             backdrop-filter: none !important;
             -webkit-backdrop-filter: none !important;
@@ -212,6 +225,7 @@
             background: transparent !important; padding: 8px 20px; border-radius: 10px;
             border: none !important;
             box-shadow: none !important;
+            height: var(--sub-nav-height);
         }
         .sub-nav-item {
             color: var(--text-main); text-decoration: none; font-size: 13px; font-weight: 800;
@@ -245,18 +259,22 @@
             box-shadow: none !important;
         }
 
+        /* ⚡ ANIMATED TICKER BAR (SCROLLS NORMALLY BETWEEN SUB-NAV AND MAIN CONTAINER) */
         .ticker-wrapper {
+            margin-top: calc(var(--header-height) + var(--header-subnav-gap) + var(--sub-nav-height) + var(--subnav-ticker-gap)); 
             background: transparent !important;
             border: none !important;
             box-shadow: none !important;
             overflow: hidden; padding: 6px 0; position: relative;
+            z-index: 998;
             -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
             mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+            margin-bottom: var(--ticker-main-gap);
         }
         .ticker-text { display: inline-block; white-space: nowrap; animation: marquee 25s linear infinite; font-size: 11px; font-weight: 700; text-shadow: 0 0 5px var(--neon-pink); }
         @keyframes marquee { 0% { transform: translateX(100vw); } 100% { transform: translateX(-100%); } }
 
-        .main-container { max-width: 1300px; margin: 20px auto; padding: 0 15px; box-sizing: border-box; }
+        .main-container { max-width: 1300px; margin: 0 auto; padding: 0 15px; box-sizing: border-box; }
 
         .breadcrumb-nav {
             max-width: 1300px;
@@ -297,27 +315,120 @@
             padding-left: 10px; margin: 0 0 15px 0; letter-spacing: 1px;
         }
 
+        /* 🔲 SINGLE LAYER GLASS WINDOW RECONSTRUCTION */
         .drama-details-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 30px;
-            background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px;
-            padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); margin-bottom: 30px;
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            gap: 20px;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+            margin-bottom: 30px;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            width: 100%;
+        }
+
+        .glass-card-custom {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 25px;
+        }
+
+        .card-poster-title-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            width: 100%;
+        }
+
+        .detail-title-col {
+            width: 100%;
             text-align: center;
         }
 
+        .drama-main-title {
+            font-size: 28px;
+            font-weight: 900;
+            margin: 0;
+            text-shadow: 0 0 10px #fff;
+            text-transform: uppercase;
+            color: #fff;
+        }
+
+        .card-heading-cyan {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 8px var(--neon-cyan);
+            font-size: 14px;
+            font-weight: 900;
+            text-transform: uppercase;
+            border-left: 3px solid var(--neon-cyan);
+            padding-left: 10px;
+            margin: 0 0 15px 0;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-heading-pink {
+            color: var(--neon-pink);
+            text-shadow: 0 0 8px var(--neon-pink);
+            font-size: 14px;
+            font-weight: 900;
+            text-transform: uppercase;
+            border-left: 3px solid var(--neon-pink);
+            padding-left: 10px;
+            margin: 0 0 15px 0;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-heading-amber {
+            color: var(--neon-amber);
+            text-shadow: 0 0 8px var(--neon-amber);
+            font-size: 14px;
+            font-weight: 900;
+            text-transform: uppercase;
+            border-left: 3px solid var(--neon-amber);
+            padding-left: 10px;
+            margin: 0 0 15px 0;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
         @media (min-width: 900px) {
-            .drama-details-container {
-                flex-direction: row !important;
-                align-items: flex-start !important;
-                text-align: left !important;
-                gap: 40px !important;
+            .card-poster-title-inner {
+                flex-direction: row;
+                align-items: center;
+                text-align: left;
+            }
+            .detail-title-col {
+                flex-grow: 1;
+                text-align: left;
+                padding-left: 20px;
+            }
+            .drama-main-title {
+                font-size: 36px;
+                text-align: left;
             }
             .detail-poster-wrapper {
-                width: 440px !important; 
-                height: 660px !important; 
+                width: 380px !important; 
+                height: 570px !important; 
                 flex-shrink: 0 !important;
             }
             .detail-info-wrapper {
@@ -351,10 +462,11 @@
             object-fit: cover; background: #000; border-radius: 10px; z-index: 1; 
         }
 
+        /* 🏷️ POSTER IMAGES NEON LABELS (RENOVATED WITH GRID FOR STABILITY) */
         .neon-text-label {
-            background: none !important;
-            border: none !important;
-            box-shadow: none !important;
+            background: rgba(2, 4, 8, 0.85) !important;
+            border: 1.5px solid currentColor !important;
+            box-shadow: 0 0 10px currentColor !important;
             font-weight: 900;
             font-size: 11px;
             text-transform: uppercase;
@@ -364,7 +476,8 @@
             align-items: center;
             gap: 4px;
             margin: 0;
-            padding: 0;
+            padding: 5px 10px !important;
+            border-radius: 6px;
         }
 
         .neon-cyan-glow {
@@ -384,28 +497,25 @@
             text-shadow: 0 0 6px #ffaa00, 0 0 12px rgba(255, 170, 0, 0.6);
         }
 
-        .imdb-gauge-container {
-            position: absolute; right: 6px; top: 6px; 
-            display: flex; flex-direction: column; align-items: center !important; gap: 2px;
-            z-index: 2; 
-            background: none !important;
-            border: none !important;
-            box-shadow: none !important;
-            padding: 0 !important;
+        .poster-genres-container {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            right: 12px;
+            display: grid !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 6px !important;
+            z-index: 3;
+            overflow: visible !important;
         }
-        .imdb-track {
-            width: 10px; height: 22px;
-            background: rgba(255, 255, 255, 0.25);
-            border-radius: 2px; overflow: hidden; position: relative;
-            box-shadow: 0 0 8px rgba(0,0,0,0.8);
-        }
-        .imdb-value {
-            font-size: 9px; font-weight: 900; font-family: monospace;
-            display: flex; align-items: center; justify-content: center !important; gap: 1px;
-            margin-top: 2px;
-            text-shadow: 0 0 5px rgba(0,0,0,1), 0 0 10px rgba(0,0,0,1);
-            white-space: nowrap;
+
+        .poster-genres-container .neon-text-label {
+            text-align: center;
+            justify-content: center;
             width: 100%;
+            box-sizing: border-box;
+            font-size: 10px;
+            padding: 4px 2px !important;
         }
 
         .rating-bar-vertical {
@@ -430,7 +540,7 @@
         .info-spec-list { 
             list-style: none; 
             padding: 0; 
-            margin: 0 0 25px 0; 
+            margin: 0; 
             display: flex;
             flex-direction: column; 
             gap: 12px; 
@@ -502,17 +612,6 @@
         .vote-btn-custom.vote-dislike { background: rgba(255, 0, 127, 0.05); color: var(--neon-pink); border-color: rgba(255, 0, 127, 0.2); }
         .vote-btn-custom.vote-dislike:hover { background: rgba(255, 0, 127, 0.15); box-shadow: 0 0 15px rgba(255, 0, 127, 0.3); }
         .vote-count { background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 11px; }
-
-        .neon-header-text {
-            font-size: 14px; font-weight: 900; text-align: center; text-transform: uppercase;
-            letter-spacing: 2px; color: var(--neon-cyan);
-            text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan);
-            margin: 25px 0 15px 0; animation: neonHeaderPulse 2s infinite alternate;
-        }
-        @keyframes neonHeaderPulse {
-            0% { opacity: 0.85; text-shadow: 0 0 8px  currentColor; }
-            100% { opacity: 1; text-shadow: 0 0 18px  currentColor, 0 0 25px  currentColor; }
-        }
 
         .download-box { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 15px; }
         .download-btn {
@@ -642,11 +741,25 @@
             animation: rgb-shift-text 6s linear infinite;
             margin-bottom: 25px;
         }
-        .social-icons-wrapper { display: flex; justify-content: center; gap: 25px; }
+
+        /* 🌐 SOCIAL MEDIA PLUG INTERFACE */
+        .social-icons-wrapper { 
+            display: flex; 
+            justify-content: center; 
+            gap: 20px; 
+            flex-wrap: wrap;
+        }
 
         @media (min-width: 900px) {
             .social-icons-wrapper {
                 gap: 55px !important; 
+            }
+            .social-btn {
+                width: 60px !important;
+                height: 60px !important;
+            }
+            .social-btn i {
+                font-size: 24px !important;
             }
         }
 
@@ -669,6 +782,7 @@
         .social-btn.facebook i { color: #1877f2; text-shadow: 0 0 10px #1877f2, 0 0 20px #1877f2; }
         .social-btn.youtube i { color: #ff0000; text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000; }
         .social-btn.telegram i { color: #0088cc; text-shadow: 0 0 10px #0088cc, 0 0 20px #0088cc; }
+        .social-btn.blogger i { color: #ff5722; text-shadow: 0 0 10px #ff5722, 0 0 20px #ff5722; }
         .social-btn:hover { box-shadow: 0 0 15px var(--neon-cyan); }
 
         #cyber-ai-bubble {
@@ -813,49 +927,57 @@
         }
         .chat-send-btn:hover { box-shadow: 0 0 15px var(--neon-cyan); transform: scale(1.05); }
 
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-
-        @keyframes rgb-fast-rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
+        /* 🔄 SYNCHRONIZED ROTATING ANIMATION FOR LOGO & TAGLINE */
         @keyframes logo-laser-draw {
-            0%, 35%, 100% {
-                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            0%, 40% {
                 opacity: 1;
-                filter: drop-shadow(0 0 8px var(--neon-cyan)) brightness(1);
+                visibility: visible;
+                transform: translate(-50%, -50%) scale(1);
             }
-            40% {
-                clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
-                opacity: 0.5;
-            }
-            45%, 90% {
-                clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+            45%, 95% {
                 opacity: 0;
+                visibility: hidden;
+                transform: translate(-50%, -50%) scale(0.9);
             }
-            91% {
-                clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
-                opacity: 0.5;
-            }
-            95% {
-                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            100% {
                 opacity: 1;
-                filter: drop-shadow(0 0 20px var(--neon-cyan)) brightness(1.6);
+                visibility: visible;
+                transform: translate(-50%, -50%) scale(1);
             }
         }
         @keyframes tagline-fade {
-            0%, 40%, 95%, 100% { opacity: 0; transform: scale(0.95); pointer-events: none; }
-            45%, 90% { opacity: 1; transform: scale(1); pointer-events: auto; }
+            0%, 40% {
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-50%) scale(0.9);
+            }
+            45%, 95% {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(-50%) scale(1);
+            }
+            100% {
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-50%) scale(0.9);
+            }
         }
         @keyframes rgb-shift-text {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
+        @keyframes rgb-fast-rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
         @keyframes rgb-rotate { 
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); } 
+        }
+        @-webkit-keyframes rgb-rotate { 
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); } 
         }
 
         footer { background: rgba(4, 8, 16, 0.95); border-top: 2px solid var(--neon-cyan); padding: 40px 20px; text-align: center; margin-top: 40px; box-shadow: 0 -10px 30px rgba(0, 240, 255, 0.1); }
@@ -866,22 +988,31 @@
         .footer-description { font-size: 13px; color: #fff; text-shadow: 0 0 5px var(--neon-pink); line-height: 1.6; margin-bottom: 25px; }
         .footer-credits { font-size: 11px; color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px; }
 
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
         @media (max-width: 768px) {
-            .drama-details-container { padding: 20px !important; }
+            .drama-details-container { padding: 0 !important; }
             .detail-poster-wrapper { width: 280px !important; height: 420px !important; max-width: 92% !important; }
             .info-spec-list { grid-template-columns: 1fr; }
             .cast-grid-box { grid-template-columns: repeat(3, 1fr); gap: 10px; }
             .cat-vote-wrapper { grid-template-columns: 1fr !important; gap: 10px; }
         }
         @media (max-width: 600px) {
+            :root {
+                --header-height: 55px;
+                --sub-nav-height: 45px;
+                --header-subnav-gap: 8px;
+                --subnav-ticker-gap: 8px;
+                --ticker-main-gap: 15px;
+            }
             .main-container {
                 width: 100% !important;
                 max-width: 100% !important;
                 padding: 0 10px !important;
-                margin: 15px auto !important;
+                margin: 0 auto !important;
                 overflow-x: hidden !important;
             }
-            .header-container, .sub-nav-container, .notice-container-alert {
+            .header-container, .sub-nav-container {
                 width: 100% !important;
                 max-width: 100% !important;
                 padding-left: 10px !important;
@@ -889,26 +1020,22 @@
                 box-sizing: border-box !important;
             }
             header {
-                position: sticky !important;
+                position: fixed !important;
                 top: 0 !important;
-                z-index: 1000 !important;
+                z-index: 1010 !important;
+                height: var(--header-height) !important;
                 background: transparent !important;
                 backdrop-filter: none !important;
                 -webkit-backdrop-filter: none !important;
                 border: none !important;
                 box-shadow: none !important;
-            }
-            .ticker-wrapper {
-                position: static !important; 
-                background: transparent !important;
-                border: none !important;
-                box-shadow: none !important;
+                padding: 8px 10px !important;
             }
             .sub-nav-container {
-                position: sticky !important;
-                top: 81px !important; 
-                z-index: 998 !important;
-                padding: 10px 15px !important;
+                position: fixed !important;
+                top: calc(var(--header-height) + var(--header-subnav-gap)) !important; 
+                z-index: 1000 !important;
+                padding: 0 10px !important;
                 background: transparent !important;
                 backdrop-filter: none !important;
                 -webkit-backdrop-filter: none !important;
@@ -916,13 +1043,22 @@
                 border: none !important;
                 box-shadow: none !important;
             }
+            .ticker-wrapper {
+                margin-top: calc(var(--header-height) + var(--header-subnav-gap) + var(--sub-nav-height) + var(--subnav-ticker-gap)) !important;
+                position: static !important; 
+                background: transparent !important;
+                border: none !important;
+                box-shadow: none !important;
+                z-index: 998 !important;
+                margin-bottom: var(--ticker-main-gap) !important;
+            }
 
             .header-container { flex-direction: row !important; justify-content: space-between !important; align-items: center !important; width: 100%; gap: 10px; }
-            .logo-wrapper { width: 300px !important; height: 55px !important; }
-            .site-logo-img { height: 40px !important; }
+            .logo-wrapper { width: 300px !important; height: 45px !important; }
+            .site-logo-img { height: 35px !important; }
             .coded-tagline-text { font-size: 11.5px !important; line-height: 1.25 !important; letter-spacing: 0.5px !important; }
             .coded-tagline-text span { font-size: 8.5px !important; }
-            .sub-nav-bar { flex-direction: row !important; justify-content: space-between !important; gap: 8px; padding: 10px 12px; }
+            .sub-nav-bar { flex-direction: row !important; justify-content: space-between !important; gap: 8px; padding: 10px 12px; height: var(--sub-nav-height) !important; }
             .sub-nav-item { font-size: 11px; padding: 6px 14px; }
             .sub-nav-clock { font-size: 10px !important; padding: 5px 10px !important; }
             .sub-nav-date { font-size: 10px !important; padding: 5px 10px !important; }
@@ -934,44 +1070,42 @@
     <!-- 🌌 MATRIX BACKGROUND CANVAS -->
     <canvas id="matrix-canvas"></canvas>
 
-    <!-- 📌 STICKY TOP BAR (HEADER + SUB-NAV) -->
-    <div class="sticky-top-bar">
-        <!-- NAVIGATION HEADER -->
-        <header>
-            <div class="header-container">
-                <div class="header-left-zone">
-                    <nav class="three-dot-wrapper">
-                        <button class="three-dot-btn" onclick="toggleDropdown()"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-                        <div class="dropdown-menu" id="threeDotMenu">
-                            <a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact Us</a>
-                            <a href="disclaimer.html"><i class="fa-solid fa-triangle-exclamation"></i> Disclaimer</a>
-                            <a href="dmca.html"><i class="fa-solid fa-scale-balanced"></i> DMCA</a>
-                            <a href="request.html"><i class="fa-solid fa-film"></i> Request Drama</a>
-                            <a href="about.html"><i class="fa-solid fa-address-card"></i> About Us</a>
-                        </div>
-                    </nav>
-                    <!-- Alternating Logo & Coded Tagline -->
-                    <a href="index.html" class="logo-wrapper" id="header-logo-container">
-                        <img class="site-logo-img" src="https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/81260990-6d71-4fbb-b966-43f96215438e.png" alt="Subverse Logo">
-                        <div class="coded-tagline-text">
-                            දුර්ලභ කතා මාලා වල නිවහන<br>
-                            <span style="font-size: 11px; font-weight: bold;">(The Home of Rare Series)</span>
-                        </div>
-                    </a>
-                </div>
+    <!-- 📌 NAVIGATION HEADER (STRICTLY FIXED) -->
+    <header>
+        <div class="header-container">
+            <div class="header-left-zone">
+                <nav class="three-dot-wrapper">
+                    <button class="three-dot-btn" onclick="toggleDropdown()"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                    <div class="dropdown-menu" id="threeDotMenu">
+                        <a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact Us</a>
+                        <a href="disclaimer.html"><i class="fa-solid fa-triangle-exclamation"></i> Disclaimer</a>
+                        <a href="dmca.html"><i class="fa-solid fa-scale-balanced"></i> DMCA</a>
+                        <a href="request.html"><i class="fa-solid fa-film"></i> Request Drama</a>
+                        <a href="about.html"><i class="fa-solid fa-address-card"></i> About Us</a>
+                    </div>
+                </nav>
+                <!-- Alternating Logo & Coded Tagline -->
+                <a href="index.html" class="logo-wrapper" id="header-logo-container">
+                    <img class="site-logo-img" src="https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/81260990-6d71-4fbb-b966-43f96215438e.png" alt="Subverse Logo">
+                    <div class="coded-tagline-text">
+                        දුර්ලභ කතා මාලා වල නිවහන<br>
+                        <span style="font-size: 11px; font-weight: bold;">(The Home of Rare Series)</span>
+                    </div>
+                </a>
             </div>
-        </header>
+        </div>
+    </header>
 
-        <!-- SUB-NAVIGATION BAR -->
-        <nav class="sub-nav-container">
-            <div class="sub-nav-bar">
-                <div class="sub-nav-clock" id="cyberClock">⏰ 00:00:00 AM</div>
-                <a href="index.html" class="sub-nav-item active"><i class="fa-solid fa-house"></i> Home</a>
-                <div class="sub-nav-date" id="cyberDate">📅 Loading...</div>
-            </div>
-        </nav>
-    </div>
+    <!-- 📌 SUB-NAVIGATION BAR (STRICTLY FIXED BELOW THE HEADER) -->
+    <nav class="sub-nav-container">
+        <div class="sub-nav-bar">
+            <div class="sub-nav-clock" id="cyberClock">⏰ 00:00:00 AM</div>
+            <a href="index.html" class="sub-nav-item active"><i class="fa-solid fa-house"></i> Home</a>
+            <div class="sub-nav-date" id="cyberDate">📅 Loading...</div>
+        </div>
+    </nav>
 
+    <!-- ⚡ TICKER WRAPPER (SCROLLS NORMALLY BELOW THE SUB-NAV BAR) -->
     <div class="ticker-wrapper">
         <div class="ticker-text" id="ticker-text">⚡ Loading Subtitle Terminal...</div>
     </div>
@@ -1058,6 +1192,8 @@
                 <a href="#" target="_blank" class="social-btn facebook" id="fb-main-icon-link"><i class="fa-brands fa-facebook-f"></i></a>
                 <a href="#" target="_blank" class="social-btn youtube" id="yt-main-icon-link"><i class="fa-brands fa-youtube"></i></a>
                 <a href="#" target="_blank" class="social-btn telegram" id="tg-config-link"><i class="fa-brands fa-telegram"></i></a>
+                <!-- 📝 කරුණාකර ඔබගේ Blogger ලින්ක් එක පහත href="" තුළ ඇතුලත් කරන්න -->
+                <a href="" target="_blank" class="social-btn blogger" id="blogger-config-link"><i class="fa-brands fa-blogger-b"></i></a>
             </div>
         </section>
 
@@ -1259,6 +1395,10 @@
             const ytBtn = document.getElementById('yt-main-icon-link');
             if (ytBtn) ytBtn.href = globalConfig.youtube_link || "#";
 
+            // Config blogger link
+            const bloggerBtn = document.getElementById('blogger-config-link');
+            if (bloggerBtn) bloggerBtn.href = globalConfig.blogger_link || "";
+
             renderDramaDetails();
             renderCast();
             renderMap();
@@ -1317,27 +1457,39 @@
             }
 
             wrapper.innerHTML = `
-                <div class="detail-left-column">
-                    <div class="detail-poster-wrapper">
-                        <img class="detail-poster-img" src="${epImg}" alt="${currentDrama.title} ${epNum} සිංහල උපසිරැසි | Sinhala Subtitles">
-                        <div class="poster-top-row" style="position: absolute; top: 12px; left: 12px; right: 12px; display: flex; flex-direction: row; flex-wrap: nowrap !important; align-items: center; justify-content: space-between; gap: 8px; z-index: 3; overflow-x: auto !important; scrollbar-width: none;">
-                            <span class="neon-text-label neon-cyan-glow">${currentDrama.status}</span>
-                            <span class="neon-text-label neon-purple-glow">${currentDrama.type || 'DRAMA'}</span>
-                            <span class="neon-text-label neon-pink-glow">${epNum}</span>
-                            <span class="neon-text-label neon-amber-glow"><i class="fa-solid fa-star" style="font-size: 8px; margin-right: 2px;"></i>${rating}</span>
+                <!-- CARD 01: POSTER & TITLE ONLY -->
+                <div class="glass-card-custom">
+                    <div class="card-poster-title-inner">
+                        <div class="detail-poster-wrapper">
+                            <img class="detail-poster-img" src="${epImg}" alt="${currentDrama.title} ${epNum} සිංහල උපසිරැසි | Sinhala Subtitles">
+                            <div class="poster-top-row" style="position: absolute; top: 12px; left: 12px; right: 12px; display: flex; flex-direction: column; gap: 6px; z-index: 3;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                                    <span class="neon-text-label neon-cyan-glow" style="flex: 0 1 auto;">${currentDrama.status}</span>
+                                    <span class="neon-text-label neon-purple-glow" style="flex: 0 1 auto;">${currentDrama.type || 'DRAMA'}</span>
+                                    <span class="neon-text-label neon-pink-glow" style="flex: 0 1 auto;">${epNum}</span>
+                                </div>
+                                <div style="display: flex; justify-content: flex-start; align-items: center; width: 100%;">
+                                    <span class="neon-text-label neon-amber-glow"><i class="fa-solid fa-star" style="font-size: 8px; margin-right: 2px;"></i>${rating}</span>
+                                </div>
+                            </div>
+                            <div class="poster-bottom-gradient"></div>
+                            <div class="poster-genres-container">
+                                ${currentDrama.genres ? currentDrama.genres.map((g, idx) => {
+                                    const neonColors = ['neon-cyan-glow', 'neon-purple-glow', 'neon-pink-glow', 'neon-amber-glow'];
+                                    return `<span class="neon-text-label ${neonColors[idx % neonColors.length]}">${g}</span>`;
+                                }).join('') : ''}
+                            </div>
                         </div>
-                        <div class="poster-bottom-gradient"></div>
-                        <div class="poster-genres-container" style="position: absolute; bottom: 12px; left: 12px; right: 12px; display: flex; flex-wrap: nowrap !important; gap: 10px; justify-content: center; z-index: 3; overflow-x: auto !important; scrollbar-width: none;">
-                            ${currentDrama.genres ? currentDrama.genres.map((g, idx) => {
-                                const neonColors = ['neon-cyan-glow', 'neon-purple-glow', 'neon-pink-glow', 'neon-amber-glow'];
-                                return `<span class="neon-text-label ${neonColors[idx % neonColors.length]}">${g}</span>`;
-                            }).join('') : ''}
+                        <div class="detail-title-col">
+                            <h1 class="drama-main-title">${currentDrama.title || ''}</h1>
+                            <h4 style="color: var(--neon-cyan); text-shadow:0 0 5px var(--neon-cyan); margin: 15px 0 0 0; font-size: 16px; font-weight: 800; text-transform: uppercase;">${currentEpisode.title || ''}</h4>
                         </div>
                     </div>
                 </div>
-                <div class="detail-info-wrapper">
-                    <h1 style="font-size: 28px; font-weight: 900; margin: 0 0 15px 0; text-shadow: 0 0 10px #fff; text-transform: uppercase;">${currentDrama.title || ''}</h1>
-                    <h4 style="color: var(--neon-cyan); text-shadow:0 0 5px var(--neon-cyan); margin: 0 0 20px 0; font-size: 15px; font-weight: 800; text-transform: uppercase;">${currentEpisode.title || ''}</h4>
+
+                <!-- CARD 02: SPECIFICATIONS (DRAMA DETAILS) -->
+                <div class="glass-card-custom">
+                    <h3 class="card-heading-cyan"><i class="fa-solid fa-circle-info"></i> කතාමාලා විස්තර (Drama Details)</h3>
                     <ul class="info-spec-list">
                         <li class="info-spec-item"><span class="info-spec-label">Director:</span><span class="info-spec-value">${currentEpisode.director || currentDrama.director || 'N/A'}</span></li>
                         <li class="info-spec-item"><span class="info-spec-label">Writer:</span><span class="info-spec-value">${currentEpisode.writer || currentDrama.writer || 'N/A'}</span></li>
@@ -1346,7 +1498,7 @@
                         <li class="info-spec-item"><span class="info-spec-label">Runtime:</span><span class="info-spec-value">${currentEpisode.runtime || currentDrama.runtime || 'N/A'}</span></li>
                         <li class="info-spec-item"><span class="info-spec-label">Country:</span><span class="info-spec-value">${currentEpisode.country || currentDrama.country || 'N/A'}</span></li>
                     </ul>
-                    <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); padding: 20px; border-radius: 10px; line-height: 1.8; color: #ccc; font-size: 13.5px;">
+                    <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); padding: 20px; border-radius: 10px; line-height: 1.8; color: #ccc; font-size: 13.5px; margin-top: 20px;">
                         <h3 style="color: ${statusColor}; text-shadow: 0 0 5px ${statusColor}; margin: 0 0 10px 0; font-size: 14px; text-transform: uppercase; font-weight: 900;">කතාමාලාවේ විස්තරය (Drama Synopsis)</h3>
                         <p style="margin: 0; text-align: justify;">${currentDrama.synopsis || ''}</p>
                     </div>
@@ -1357,7 +1509,7 @@
             if (epStoryWrapper && currentEpisode.synopsis) {
                 epStoryWrapper.style.display = "block";
                 epStoryWrapper.innerHTML = `
-                    <h3 style="color: var(--neon-pink); text-shadow: 0 0 5px var(--neon-pink); border-left-color: var(--neon-pink);">${currentEpisode.title || epNum} - කොටසේ කතාව (Episode Synopsis)</h3>
+                    <h3 class="card-heading-pink"><i class="fa-solid fa-book-open"></i> ${currentEpisode.title || epNum} - කොටසේ කතාව (Episode Synopsis)</h3>
                     <p style="margin: 0; text-align: justify; line-height: 1.8; color: #ddd; font-size: 13.5px;">${currentEpisode.synopsis}</p>
                 `;
             } else if (epStoryWrapper) {
@@ -1372,7 +1524,7 @@
             if (cast.length === 0) return;
 
             section.style.display = "block";
-            let castHTML = `<h3>🎭 ප්‍රධාන නළු නිළියන් (Cast & Crew)</h3><div class="cast-grid-box">`;
+            let castHTML = `<h3 class="card-heading-cyan"><i class="fa-solid fa-masks-theater"></i> ප්‍රධාන නළු නිළියන් (Cast & Crew)</h3><div class="cast-grid-box">`;
             cast.forEach(c => {
                 castHTML += `
                     <div class="cast-member-item">
@@ -1395,36 +1547,11 @@
 
             section.style.display = "block";
             section.innerHTML = `
-                <h3>🗺️ කතාවේ සිතියම (Story Relationship Map)</h3>
+                <h3 class="card-heading-cyan"><i class="fa-solid fa-route"></i> කතාවේ සිතියම (Story Relationship Map)</h3>
                 <div class="map-responsive-box">
                     <img src="${mapUrl}" alt="${currentDrama.title} Story Map" loading="lazy">
                 </div>
             `;
-        }
-
-        function getYouTubeEmbedUrl(urlOrId) {
-            if (!urlOrId) return null;
-            urlOrId = urlOrId.trim();
-
-            if (urlOrId.includes("youtube.com/embed/") || urlOrId.includes("youtube-nocookie.com/embed/")) {
-                return urlOrId;
-            }
-
-            let videoId = "";
-            if (urlOrId.length === 11 && !urlOrId.includes("/") && !urlOrId.includes(".")) {
-                videoId = urlOrId;
-            } else {
-                const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|shorts\/)([^#\&\?]*).*/;
-                const match = urlOrId.match(regExp);
-                if (match && match[2].length === 11) {
-                    videoId = match[2];
-                }
-            }
-
-            if (videoId) {
-                return `https://www.youtube.com/embed/${videoId}`;
-            }
-            return urlOrId; 
         }
 
         function renderTrailer() {
@@ -1438,7 +1565,7 @@
 
             section.style.display = "block";
             section.innerHTML = `
-                <h3>🍿 නිල පූර්ව ප්‍රචාරක පටය (Official Trailer)</h3>
+                <h3 class="card-heading-amber"><i class="fa-brands fa-youtube" style="color: #ff0000;"></i> නිල පූර්ව ප්‍රචාරක පටය (Official Trailer)</h3>
                 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius:12px; border:1px solid var(--glass-border);">
                     <iframe src="${embedUrl}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen loading="lazy"></iframe>
                 </div>
@@ -1450,7 +1577,7 @@
             if (!wrapper) return;
             wrapper.style.display = "block";
             wrapper.innerHTML = `
-                <h3>🇱🇰 මෙම කොටස (Episode) පිළිබඳ ඔබේ මනාපය (Rate This Episode)</h3>
+                <h3 class="card-heading-cyan"><i class="fa-solid fa-square-poll-vertical"></i> මෙම කොටස (Episode) පිළිබඳ ඔබේ මනාපය (Rate This Episode)</h3>
                 <div class="sl-vote-container" style="margin-top:0;">
                     <div class="sl-vote-title">ඔබ මෙම කොටසට කැමතිද? (Do you like this episode?)</div>
                     <div class="neon-bar-wrapper">
@@ -1479,7 +1606,7 @@
 
             wrapper.style.display = "block";
             wrapper.innerHTML = `
-                <h3>📥 උපසිරැසි සහ වීඩියෝ ලබාගැනීමේ කවුළුව (Subtitle & Video Download)</h3>
+                <h3 class="card-heading-cyan"><i class="fa-solid fa-cloud-arrow-down"></i> උපසිරැසි සහ වීඩියෝ ලබාගැනීමේ කවුළුව (Subtitle & Video Download)</h3>
                 <div class="download-box">
                     <a href="${currentEpisode.link || '#'}" target="_blank" class="download-btn" onclick="trackDownload('sub')">
                         <span class="btn-sheen-sweep"></span>
