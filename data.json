@@ -3,6 +3,12 @@
     {
       "title": "Joseon Attorney: A Morality",
       "episode": "EP 08",
+      "image_url": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/c0ffdb5b-9722-4a9b-bfa5-726b81dd9a56.jpg",
+      "post_link": "episode_picker.html?drama_id=206715&ep=EP 08"
+    },
+    {
+      "title": "Joseon Attorney: A Morality",
+      "episode": "EP 08",
       "image_url": "https://i.ibb.co/23xKnG79/60b83a1c8f87.jpg story_map_image = https://i.ibb.co/Xx69sDVZ/81e8c3a61814.png",
       "post_link": "episode_picker.html?drama_id=206715&ep=EP 08"
     },
@@ -41,12 +47,6 @@
       "episode": "EP 02",
       "image_url": "https://i.ibb.co/23xKnG79/60b83a1c8f87.jpg story_map_image = https://i.ibb.co/Xx69sDVZ/81e8c3a61814.png",
       "post_link": "episode_picker.html?drama_id=206715&ep=EP 02"
-    },
-    {
-      "title": "Joseon Attorney: A Morality",
-      "episode": "EP 01",
-      "image_url": "https://i.ibb.co/23xKnG79/60b83a1c8f87.jpg story_map_image = https://i.ibb.co/Xx69sDVZ/81e8c3a61814.png",
-      "post_link": "episode_picker.html?drama_id=206715&ep=EP 01"
     }
   ],
   "dramas": {
@@ -795,7 +795,7 @@
       "status": "ONGOING",
       "imdb": "5.8",
       "total_episodes": 16,
-      "image_url": "https://i.ibb.co/23xKnG79/60b83a1c8f87.jpg story_map_image = https://i.ibb.co/Xx69sDVZ/81e8c3a61814.png",
+      "image_url": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/c0ffdb5b-9722-4a9b-bfa5-726b81dd9a56.jpg",
       "map_url": "https://i.ibb.co/Xx69sDVZ/81e8c3a61814.png",
       "synopsis": "\"Joseon Attorney: A Morality\" යනු ජොසොන් යුගයේ පසුබිමක දිවෙන නීතිමය සහ පලිගැනීමේ කතාවකි.",
       "genres": [
@@ -1145,9 +1145,9 @@
           "link": "#",
           "tg_link": "",
           "title": "✨️ නව සන්ධානය ✨️",
-          "image": "https://i.ibb.co/23xKnG79/60b83a1c8f87.jpg story_map_image = https://i.ibb.co/Xx69sDVZ/81e8c3a61814.png",
+          "image": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/c0ffdb5b-9722-4a9b-bfa5-726b81dd9a56.jpg",
           "synopsis": "රජතුමා සහ හන්-සූ රටේ දූෂණය තුරන් කිරීමට රහසින් අත්වැල් බැඳගැනීම.",
-          "map_url": "",
+          "map_url": "https://i.ibb.co/Xx69sDVZ/81e8c3a61814.png",
           "trailer": "https://www.youtube.com/embed/PxJZZVhmzc8",
           "cast": [
             {
