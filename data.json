@@ -2,6 +2,12 @@
   "latest_updates": [
     {
       "title": "Joseon Attorney: A Morality",
+      "episode": "EP 10",
+      "image_url": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/c0ffdb5b-9722-4a9b-bfa5-726b81dd9a56.jpg",
+      "post_link": "episode_picker.html?drama_id=206715&ep=EP 10"
+    },
+    {
+      "title": "Joseon Attorney: A Morality",
       "episode": "EP 09",
       "image_url": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/c0ffdb5b-9722-4a9b-bfa5-726b81dd9a56.jpg",
       "post_link": "episode_picker.html?drama_id=206715&ep=EP 09"
@@ -41,12 +47,6 @@
       "episode": "EP 07",
       "image_url": "https://i.ibb.co/23xKnG79/60b83a1c8f87.jpg story_map_image = https://i.ibb.co/Xx69sDVZ/81e8c3a61814.png",
       "post_link": "episode_picker.html?drama_id=206715&ep=EP 07"
-    },
-    {
-      "title": "Joseon Attorney: A Morality",
-      "episode": "EP 06",
-      "image_url": "https://i.ibb.co/23xKnG79/60b83a1c8f87.jpg story_map_image = https://i.ibb.co/Xx69sDVZ/81e8c3a61814.png",
-      "post_link": "episode_picker.html?drama_id=206715&ep=EP 06"
     }
   ],
   "dramas": {
@@ -793,7 +793,7 @@
       "title": "Joseon Attorney: A Morality",
       "type": "K-DRAMA",
       "status": "ONGOING",
-      "imdb": "5.8",
+      "imdb": "5.9",
       "total_episodes": 16,
       "image_url": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/c0ffdb5b-9722-4a9b-bfa5-726b81dd9a56.jpg",
       "map_url": "https://i.ibb.co/Xx69sDVZ/81e8c3a61814.png",
@@ -1225,6 +1225,49 @@
           "runtime": "69 min",
           "country": "South Korea (දකුණු කොරියාව)",
           "imdb": "5.8"
+        },
+        {
+          "episode": "EP 10",
+          "link": "https://liyasisubverse.github.io/subtitles/Joseon_Attorney_A_Morality/Joseon_Attorney:_A_Morality_EP_10.srt",
+          "tg_link": "",
+          "title": "✨️ දරුණු පාවාදීම ✨️",
+          "image": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/c0ffdb5b-9722-4a9b-bfa5-726b81dd9a56.jpg",
+          "synopsis": "හන්-සූ විශ්වාස කළ ළඟම අයෙකුගෙන් සිදුවන අනපේක්ෂිත පාවාදීම.",
+          "map_url": "https://i.ibb.co/Xx69sDVZ/81e8c3a61814.png",
+          "trailer": "https://www.youtube.com/embed/PxJZZVhmzc8",
+          "cast": [
+            {
+              "name": "Woo Do-hwan",
+              "image": "https://image.tmdb.org/t/p/w200/6r1yIpHLmoIqujKv9KQeZPEUhXy.jpg"
+            },
+            {
+              "name": "Bona",
+              "image": "https://image.tmdb.org/t/p/w200/z3L2wtjfJ2RoT2fmoUJgsMAXnLZ.jpg"
+            },
+            {
+              "name": "Cha Hak-yeon",
+              "image": "https://image.tmdb.org/t/p/w200/wI2xhjCXyWOWnH9iQK8PnGwLuEL.jpg"
+            },
+            {
+              "name": "Cheon Ho-jin",
+              "image": "https://image.tmdb.org/t/p/w200/eS5jGpHrBDu3wtHHEfUNkwnZ0uE.jpg"
+            },
+            {
+              "name": "Song Geon-hee",
+              "image": "https://image.tmdb.org/t/p/w200/8rjlzhudRf3w3xtSso7R7BG8Ikq.jpg"
+            },
+            {
+              "name": "Lee Doo-seok",
+              "image": "https://image.tmdb.org/t/p/w200/slfoiusX9IrWAB0oi9IbOJ2ih23.jpg"
+            }
+          ],
+          "director": "Kim Seung-ho, Lee Han-joon",
+          "writer": "Choi Jin-young",
+          "network": "MBC",
+          "first_air_date": "2023-03-31",
+          "runtime": "69 min",
+          "country": "South Korea (දකුණු කොරියාව)",
+          "imdb": "5.9"
         }
       ]
     }
