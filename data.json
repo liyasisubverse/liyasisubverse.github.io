@@ -2,6 +2,12 @@
   "latest_updates": [
     {
       "title": "The East Palace",
+      "episode": "EP 02",
+      "image_url": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/6e8d5b8b-3b3b-4b59-a872-2a11ba13e6ff.jpg",
+      "post_link": "episode_picker.html?drama_id=279323&ep=EP 02"
+    },
+    {
+      "title": "The East Palace",
       "episode": "EP 01",
       "image_url": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/6e8d5b8b-3b3b-4b59-a872-2a11ba13e6ff.jpg",
       "post_link": "episode_picker.html?drama_id=279323&ep=EP 01"
@@ -40,12 +46,6 @@
       "title": "Joseon Attorney: A Morality",
       "episode": "EP 08",
       "image_url": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/c0ffdb5b-9722-4a9b-bfa5-726b81dd9a56.jpg",
-      "post_link": "episode_picker.html?drama_id=206715&ep=EP 08"
-    },
-    {
-      "title": "Joseon Attorney: A Morality",
-      "episode": "EP 08",
-      "image_url": "https://i.ibb.co/23xKnG79/60b83a1c8f87.jpg story_map_image = https://i.ibb.co/Xx69sDVZ/81e8c3a61814.png",
       "post_link": "episode_picker.html?drama_id=206715&ep=EP 08"
     }
   ],
@@ -1276,7 +1276,7 @@
       "title": "The East Palace",
       "type": "K-DRAMA",
       "status": "ONGOING",
-      "imdb": "7.9",
+      "imdb": "8.1",
       "total_episodes": 8,
       "image_url": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/6e8d5b8b-3b3b-4b59-a872-2a11ba13e6ff.jpg",
       "map_url": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/51e5d6fb-b053-444d-955a-ddbbe6e1fdfb.png",
@@ -1347,6 +1347,41 @@
           "runtime": "N/A",
           "country": "South Korea (දකුණු කොරියාව)",
           "imdb": "7.9"
+        },
+        {
+          "episode": "EP 02",
+          "link": "https://liyasisubverse.github.io/subtitles/The_East_Palace/The_East_Palace_EP_02.srt",
+          "tg_link": "",
+          "title": "✨️ අනපේක්ෂිත හවුල ✨️",
+          "image": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/6e8d5b8b-3b3b-4b59-a872-2a11ba13e6ff.jpg",
+          "synopsis": "මාරාන්තික උගුල්වලින් බේරෙන ගු-චොන් සහ සැන්ග්-ගැං මාලිගයේ ඉතිරි ගැටලු විසඳීමට අත්වැල් බැඳගැනීම.",
+          "map_url": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/51e5d6fb-b053-444d-955a-ddbbe6e1fdfb.png",
+          "trailer": "https://www.youtube.com/embed/wBUkNE1l9DU",
+          "cast": [
+            {
+              "name": "Nam Joo-hyuk",
+              "image": "https://image.tmdb.org/t/p/w200/kuLC8pR24kbEIAjfg3WpKW41Kcl.jpg"
+            },
+            {
+              "name": "Roh Yoon-seo",
+              "image": "https://image.tmdb.org/t/p/w200/A67wGhTozfav5saZ1Umi5f98Ezb.jpg"
+            },
+            {
+              "name": "Cho Seung-woo",
+              "image": "https://image.tmdb.org/t/p/w200/agXysHUmaUdHrEQAZ2ZMvMR5oCU.jpg"
+            },
+            {
+              "name": "Jang Young-nam",
+              "image": "https://image.tmdb.org/t/p/w200/u0hl8WSswFhKVaKwaMAERU0xUJk.jpg"
+            }
+          ],
+          "director": "Choi Jung-kyu",
+          "writer": "Kwon So-ra",
+          "network": "Netflix",
+          "first_air_date": "2026-07-17",
+          "runtime": "N/A",
+          "country": "South Korea (දකුණු කොරියාව)",
+          "imdb": "8.1"
         }
       ]
     }
