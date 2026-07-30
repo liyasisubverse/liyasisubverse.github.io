@@ -1,6 +1,12 @@
 {
   "latest_updates": [
     {
+      "title": "The East Palace",
+      "episode": "EP 03",
+      "image_url": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/6e8d5b8b-3b3b-4b59-a872-2a11ba13e6ff.jpg",
+      "post_link": "episode_picker.html?drama_id=279323&ep=EP 03"
+    },
+    {
       "title": "Joseon Attorney: A Morality",
       "episode": "EP 11",
       "image_url": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/c0ffdb5b-9722-4a9b-bfa5-726b81dd9a56.jpg",
@@ -41,12 +47,6 @@
       "episode": "EP 09",
       "image_url": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/c0ffdb5b-9722-4a9b-bfa5-726b81dd9a56.jpg",
       "post_link": "episode_picker.html?drama_id=206715&ep=EP 09"
-    },
-    {
-      "title": "Joseon Attorney: A Morality",
-      "episode": "EP 08",
-      "image_url": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/c0ffdb5b-9722-4a9b-bfa5-726b81dd9a56.jpg",
-      "post_link": "episode_picker.html?drama_id=206715&ep=EP 08"
     }
   ],
   "dramas": {
@@ -1319,7 +1319,7 @@
       "title": "The East Palace",
       "type": "K-DRAMA",
       "status": "ONGOING",
-      "imdb": "8.1",
+      "imdb": "7.9",
       "total_episodes": 8,
       "image_url": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/6e8d5b8b-3b3b-4b59-a872-2a11ba13e6ff.jpg",
       "map_url": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/51e5d6fb-b053-444d-955a-ddbbe6e1fdfb.png",
@@ -1425,6 +1425,41 @@
           "runtime": "N/A",
           "country": "South Korea (දකුණු කොරියාව)",
           "imdb": "8.1"
+        },
+        {
+          "episode": "EP 03",
+          "link": "https://liyasisubverse.github.io/subtitles/The_East_Palace/The_East_Palace_EP_03.srt",
+          "tg_link": "",
+          "title": "✨️ ආත්ම ලෝකය ✨️",
+          "image": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/6e8d5b8b-3b3b-4b59-a872-2a11ba13e6ff.jpg",
+          "synopsis": "රජුගේ තර්ජන හමුවේ කුමරුගේ ජීවිතය බේරා ගැනීමට ගු-චොන් ආත්ම ලෝකයට පිවිසීම.",
+          "map_url": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/51e5d6fb-b053-444d-955a-ddbbe6e1fdfb.png",
+          "trailer": "https://www.youtube.com/embed/wBUkNE1l9DU",
+          "cast": [
+            {
+              "name": "Nam Joo-hyuk",
+              "image": "https://image.tmdb.org/t/p/w200/kuLC8pR24kbEIAjfg3WpKW41Kcl.jpg"
+            },
+            {
+              "name": "Roh Yoon-seo",
+              "image": "https://image.tmdb.org/t/p/w200/A67wGhTozfav5saZ1Umi5f98Ezb.jpg"
+            },
+            {
+              "name": "Cho Seung-woo",
+              "image": "https://image.tmdb.org/t/p/w200/agXysHUmaUdHrEQAZ2ZMvMR5oCU.jpg"
+            },
+            {
+              "name": "Jang Young-nam",
+              "image": "https://image.tmdb.org/t/p/w200/u0hl8WSswFhKVaKwaMAERU0xUJk.jpg"
+            }
+          ],
+          "director": "Choi Jung-kyu",
+          "writer": "Kwon So-ra",
+          "network": "Netflix",
+          "first_air_date": "2026-07-17",
+          "runtime": "N/A",
+          "country": "South Korea (දකුණු කොරියාව)",
+          "imdb": "7.9"
         }
       ]
     }
