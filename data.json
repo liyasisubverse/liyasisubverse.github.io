@@ -2,6 +2,12 @@
   "latest_updates": [
     {
       "title": "Joseon Attorney: A Morality",
+      "episode": "EP 15",
+      "image_url": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/c0ffdb5b-9722-4a9b-bfa5-726b81dd9a56.jpg",
+      "post_link": "episode_picker.html?drama_id=206715&ep=EP 15"
+    },
+    {
+      "title": "Joseon Attorney: A Morality",
       "episode": "EP 14",
       "image_url": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/c0ffdb5b-9722-4a9b-bfa5-726b81dd9a56.jpg",
       "post_link": "episode_picker.html?drama_id=206715&ep=EP 14"
@@ -41,12 +47,6 @@
       "episode": "EP 02",
       "image_url": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/6e8d5b8b-3b3b-4b59-a872-2a11ba13e6ff.jpg",
       "post_link": "episode_picker.html?drama_id=279323&ep=EP 02"
-    },
-    {
-      "title": "The East Palace",
-      "episode": "EP 01",
-      "image_url": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/6e8d5b8b-3b3b-4b59-a872-2a11ba13e6ff.jpg",
-      "post_link": "episode_picker.html?drama_id=279323&ep=EP 01"
     }
   ],
   "dramas": {
@@ -1405,6 +1405,49 @@
           "title": "✨️ උසාවි සටන ✨️",
           "image": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/c0ffdb5b-9722-4a9b-bfa5-726b81dd9a56.jpg",
           "synopsis": "රාජ සභාව ඉදිරියේ පැවැත්වෙන තීරණාත්මක සහ ආන්දෝලනාත්මක නඩු විභාගය.",
+          "map_url": "https://i.ibb.co/Xx69sDVZ/81e8c3a61814.png",
+          "trailer": "https://www.youtube.com/embed/PxJZZVhmzc8",
+          "cast": [
+            {
+              "name": "Woo Do-hwan",
+              "image": "https://image.tmdb.org/t/p/w200/6r1yIpHLmoIqujKv9KQeZPEUhXy.jpg"
+            },
+            {
+              "name": "Bona",
+              "image": "https://image.tmdb.org/t/p/w200/z3L2wtjfJ2RoT2fmoUJgsMAXnLZ.jpg"
+            },
+            {
+              "name": "Cha Hak-yeon",
+              "image": "https://image.tmdb.org/t/p/w200/wI2xhjCXyWOWnH9iQK8PnGwLuEL.jpg"
+            },
+            {
+              "name": "Cheon Ho-jin",
+              "image": "https://image.tmdb.org/t/p/w200/eS5jGpHrBDu3wtHHEfUNkwnZ0uE.jpg"
+            },
+            {
+              "name": "Song Geon-hee",
+              "image": "https://image.tmdb.org/t/p/w200/8rjlzhudRf3w3xtSso7R7BG8Ikq.jpg"
+            },
+            {
+              "name": "Lee Doo-seok",
+              "image": "https://image.tmdb.org/t/p/w200/cQD0FqioziCBJE7KZC3KGmrO6xg.jpg"
+            }
+          ],
+          "director": "Kim Seung-ho, Lee Han-joon",
+          "writer": "Choi Jin-young",
+          "network": "MBC",
+          "first_air_date": "2023-03-31",
+          "runtime": "69 min",
+          "country": "South Korea (දකුණු කොරියාව)",
+          "imdb": "6.1"
+        },
+        {
+          "episode": "EP 15",
+          "link": "https://liyasisubverse.github.io/subtitles/Joseon_Attorney_A_Morality/Joseon_Attorney:_A_Morality_EP_15.srt",
+          "tg_link": "",
+          "title": "✨️ පරිත්‍යාගය ✨️",
+          "image": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/c0ffdb5b-9722-4a9b-bfa5-726b81dd9a56.jpg",
+          "synopsis": "හන්-සූව සහ රට බේරාගැනීම වෙනුවෙන් යොන්-ජූ කුමරිය කරන ලොකු කැපකිරීම.",
           "map_url": "https://i.ibb.co/Xx69sDVZ/81e8c3a61814.png",
           "trailer": "https://www.youtube.com/embed/PxJZZVhmzc8",
           "cast": [
