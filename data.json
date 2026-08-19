@@ -1,6 +1,12 @@
 {
   "latest_updates": [
     {
+      "title": "Eternal Love of the Fox",
+      "episode": "EP 01",
+      "image_url": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/2abc8e9f-c0a2-4877-be6c-cd56ead4ee58.jpg",
+      "post_link": "episode_picker.html?drama_id=274641&ep=EP 01"
+    },
+    {
       "title": "The East Palace",
       "episode": "EP 08",
       "image_url": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/6e8d5b8b-3b3b-4b59-a872-2a11ba13e6ff.jpg",
@@ -41,12 +47,6 @@
       "episode": "EP 14",
       "image_url": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/c0ffdb5b-9722-4a9b-bfa5-726b81dd9a56.jpg",
       "post_link": "episode_picker.html?drama_id=206715&ep=EP 14"
-    },
-    {
-      "title": "The East Palace",
-      "episode": "EP 04",
-      "image_url": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/6e8d5b8b-3b3b-4b59-a872-2a11ba13e6ff.jpg",
-      "post_link": "episode_picker.html?drama_id=279323&ep=EP 04"
     }
   ],
   "dramas": {
@@ -1850,6 +1850,98 @@
           "runtime": "N/A",
           "country": "South Korea (දකුණු කොරියාව)",
           "imdb": "8.2"
+        }
+      ]
+    },
+    "274641": {
+      "id": "274641",
+      "title": "Eternal Love of the Fox",
+      "type": "C-DRAMA",
+      "status": "ONGOING",
+      "imdb": "9.0",
+      "total_episodes": 24,
+      "image_url": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/2abc8e9f-c0a2-4877-be6c-cd56ead4ee58.jpg",
+      "map_url": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/8f80a680-e88a-4b12-bac1-3c5cb67465b8.png",
+      "synopsis": "\"Eternal Love of the Fox\" යනු අද්භූත අතුරුදන්වීමක් සෙවීම සඳහා මාලිගයට යන තරුණියකට, බලවත් නරි රාක්ෂයෙකු මුණගැසීමෙන් පසු සිදුවන අපූරු සහ අභිරහස් සිදුවීම් මාලාවක් වටා ගතුකෙරෙන සුන්දර මනඃකල්පිත ප්‍රේම කතාවකි.",
+      "genres": [
+        "Drama"
+      ],
+      "director": "Zeng Huang Wu, Xu Sheng Wang",
+      "writer": "N/A",
+      "network": "iQiyi",
+      "first_air_date": "2026-01-22",
+      "runtime": "N/A",
+      "country": "China (චීනය)",
+      "trailer": "https://www.youtube.com/embed/5MTcbTueOWE",
+      "cast": [
+        {
+          "name": "Sun Chenjun",
+          "image": "https://image.tmdb.org/t/p/w200/2QAr710FGLb65bFmHEjQcHK09VS.jpg"
+        },
+        {
+          "name": "Zhang Yuenan",
+          "image": "https://image.tmdb.org/t/p/w200/6ZK8MFqiQGNzjPQR8LSAL4uh9ev.jpg"
+        },
+        {
+          "name": "Wang Xingwei",
+          "image": "https://image.tmdb.org/t/p/w200/ogIeggyCJOb84nSNSa1v6By8EM4.jpg"
+        },
+        {
+          "name": "Wang Jiali",
+          "image": "https://image.tmdb.org/t/p/w200/xsa8JNrmuIabauktlJncAySni2q.jpg"
+        },
+        {
+          "name": "Zhang Qing",
+          "image": "https://image.tmdb.org/t/p/w200/xMhKzZGBe1q9A7kCA8VIpUZUwCQ.jpg"
+        },
+        {
+          "name": "Zhang Feifei",
+          "image": "https://image.tmdb.org/t/p/w200/qtLIZQmMhPlwKbgCWWKBz9SNvQW.jpg"
+        }
+      ],
+      "episodes": [
+        {
+          "episode": "EP 01",
+          "link": "https://liyasisubverse.github.io/subtitles/Eternal_Love_of_the_Fox/Eternal_Love_of_the_Fox_EP_01.srt",
+          "tg_link": "",
+          "title": "✨️ අතුරුදහන් වීම ✨️",
+          "image": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/2abc8e9f-c0a2-4877-be6c-cd56ead4ee58.jpg",
+          "synopsis": "පියා සෙවීම සඳහා හුවෝ ෂියැංජියු මාලිගයට ඇතුළු වීම.",
+          "map_url": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/8f80a680-e88a-4b12-bac1-3c5cb67465b8.png",
+          "trailer": "https://www.youtube.com/embed/5MTcbTueOWE",
+          "cast": [
+            {
+              "name": "Sun Chenjun",
+              "image": "https://image.tmdb.org/t/p/w200/2QAr710FGLb65bFmHEjQcHK09VS.jpg"
+            },
+            {
+              "name": "Zhang Yuenan",
+              "image": "https://image.tmdb.org/t/p/w200/6ZK8MFqiQGNzjPQR8LSAL4uh9ev.jpg"
+            },
+            {
+              "name": "Wang Xingwei",
+              "image": "https://image.tmdb.org/t/p/w200/ogIeggyCJOb84nSNSa1v6By8EM4.jpg"
+            },
+            {
+              "name": "Wang Jiali",
+              "image": "https://image.tmdb.org/t/p/w200/xsa8JNrmuIabauktlJncAySni2q.jpg"
+            },
+            {
+              "name": "Zhang Qing",
+              "image": "https://image.tmdb.org/t/p/w200/xMhKzZGBe1q9A7kCA8VIpUZUwCQ.jpg"
+            },
+            {
+              "name": "Zhang Feifei",
+              "image": "https://image.tmdb.org/t/p/w200/qtLIZQmMhPlwKbgCWWKBz9SNvQW.jpg"
+            }
+          ],
+          "director": "Zeng Huang Wu, Xu Sheng Wang",
+          "writer": "N/A",
+          "network": "iQiyi",
+          "first_air_date": "2026-01-22",
+          "runtime": "N/A",
+          "country": "China (චීනය)",
+          "imdb": "9.0"
         }
       ]
     }
