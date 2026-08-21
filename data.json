@@ -2,6 +2,12 @@
   "latest_updates": [
     {
       "title": "Eternal Love of the Fox",
+      "episode": "EP 03",
+      "image_url": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/2abc8e9f-c0a2-4877-be6c-cd56ead4ee58.jpg",
+      "post_link": "episode_picker.html?drama_id=274641&ep=EP 03"
+    },
+    {
+      "title": "Eternal Love of the Fox",
       "episode": "EP 02",
       "image_url": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/2abc8e9f-c0a2-4877-be6c-cd56ead4ee58.jpg",
       "post_link": "episode_picker.html?drama_id=274641&ep=EP 02"
@@ -41,12 +47,6 @@
       "episode": "EP 16",
       "image_url": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/c0ffdb5b-9722-4a9b-bfa5-726b81dd9a56.jpg",
       "post_link": "episode_picker.html?drama_id=206715&ep=EP 16"
-    },
-    {
-      "title": "Joseon Attorney: A Morality",
-      "episode": "EP 15",
-      "image_url": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/c0ffdb5b-9722-4a9b-bfa5-726b81dd9a56.jpg",
-      "post_link": "episode_picker.html?drama_id=206715&ep=EP 15"
     }
   ],
   "dramas": {
@@ -1950,6 +1950,49 @@
           "title": "✨️ අහඹු හමුවීම ✨️",
           "image": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/2abc8e9f-c0a2-4877-be6c-cd56ead4ee58.jpg",
           "synopsis": "ෂියැංජියුට නරි රාක්ෂයා මුණගැසීම.",
+          "map_url": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/8f80a680-e88a-4b12-bac1-3c5cb67465b8.png",
+          "trailer": "https://www.youtube.com/embed/5MTcbTueOWE",
+          "cast": [
+            {
+              "name": "Sun Chenjun",
+              "image": "https://image.tmdb.org/t/p/w200/2QAr710FGLb65bFmHEjQcHK09VS.jpg"
+            },
+            {
+              "name": "Zhang Yuenan",
+              "image": "https://image.tmdb.org/t/p/w200/6ZK8MFqiQGNzjPQR8LSAL4uh9ev.jpg"
+            },
+            {
+              "name": "Wang Xingwei",
+              "image": "https://image.tmdb.org/t/p/w200/ogIeggyCJOb84nSNSa1v6By8EM4.jpg"
+            },
+            {
+              "name": "Wang Jiali",
+              "image": "https://image.tmdb.org/t/p/w200/xsa8JNrmuIabauktlJncAySni2q.jpg"
+            },
+            {
+              "name": "Zhang Qing",
+              "image": "https://image.tmdb.org/t/p/w200/xMhKzZGBe1q9A7kCA8VIpUZUwCQ.jpg"
+            },
+            {
+              "name": "Zhang Feifei",
+              "image": "https://image.tmdb.org/t/p/w200/qtLIZQmMhPlwKbgCWWKBz9SNvQW.jpg"
+            }
+          ],
+          "director": "Zeng Huang Wu, Xu Sheng Wang",
+          "writer": "N/A",
+          "network": "iQiyi",
+          "first_air_date": "2026-01-22",
+          "runtime": "N/A",
+          "country": "China (චීනය)",
+          "imdb": "9.0"
+        },
+        {
+          "episode": "EP 03",
+          "link": "https://liyasisubverse.github.io/subtitles/Eternal_Love_of_the_Fox/Eternal_Love_of_the_Fox_EP_03.srt",
+          "tg_link": "",
+          "title": "✨️ අභිරහස ✨️",
+          "image": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/2abc8e9f-c0a2-4877-be6c-cd56ead4ee58.jpg",
+          "synopsis": "මාලිගය තුළ සිදුවන අමුතු අද්භූත සිදුවීම්.",
           "map_url": "https://i.supaimg.com/80defc3e-b8e0-4b07-adaa-d97d791a3154/8f80a680-e88a-4b12-bac1-3c5cb67465b8.png",
           "trailer": "https://www.youtube.com/embed/5MTcbTueOWE",
           "cast": [
